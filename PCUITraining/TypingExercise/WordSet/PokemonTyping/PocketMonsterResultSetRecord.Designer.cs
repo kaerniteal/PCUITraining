@@ -1,0 +1,184 @@
+﻿namespace TypingExercise.WordSet.PokemonTyping
+{
+    partial class PocketMonsterResultSetRecord
+    {
+        /// <summary> 
+        /// 必要なデザイナー変数です。
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// 使用中のリソースをすべてクリーンアップします。
+        /// </summary>
+        /// <param name="disposing">マネージ リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region コンポーネント デザイナーで生成されたコード
+
+        /// <summary> 
+        /// デザイナー サポートに必要なメソッドです。このメソッドの内容を 
+        /// コード エディターで変更しないでください。
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.lblPokemon = new System.Windows.Forms.Label();
+            this.tableRecord = new System.Windows.Forms.TableLayoutPanel();
+            this.lblETime = new System.Windows.Forms.Label();
+            this.lblGetted = new System.Windows.Forms.Label();
+            this.lblCount = new System.Windows.Forms.Label();
+            this.lblBonus = new System.Windows.Forms.Label();
+            this.pBoxUp = new System.Windows.Forms.PictureBox();
+            this.pBoxPockMon = new System.Windows.Forms.PictureBox();
+            this.tableRecord.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxPockMon)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // lblPokemon
+            // 
+            this.lblPokemon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPokemon.AutoSize = true;
+            this.lblPokemon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblPokemon.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblPokemon.ForeColor = System.Drawing.Color.White;
+            this.lblPokemon.Location = new System.Drawing.Point(3, 11);
+            this.lblPokemon.Name = "lblPokemon";
+            this.lblPokemon.Size = new System.Drawing.Size(234, 37);
+            this.lblPokemon.TabIndex = 3;
+            this.lblPokemon.Text = "ぽけもん";
+            // 
+            // tableRecord
+            // 
+            this.tableRecord.ColumnCount = 10;
+            this.tableRecord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 240F));
+            this.tableRecord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.tableRecord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableRecord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableRecord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tableRecord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableRecord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableRecord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 0F));
+            this.tableRecord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 0F));
+            this.tableRecord.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableRecord.Controls.Add(this.lblPokemon, 0, 0);
+            this.tableRecord.Controls.Add(this.lblETime, 1, 0);
+            this.tableRecord.Controls.Add(this.lblGetted, 4, 0);
+            this.tableRecord.Controls.Add(this.lblCount, 5, 0);
+            this.tableRecord.Controls.Add(this.lblBonus, 3, 0);
+            this.tableRecord.Controls.Add(this.pBoxUp, 2, 0);
+            this.tableRecord.Controls.Add(this.pBoxPockMon, 6, 0);
+            this.tableRecord.Location = new System.Drawing.Point(0, 3);
+            this.tableRecord.Name = "tableRecord";
+            this.tableRecord.RowCount = 1;
+            this.tableRecord.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableRecord.Size = new System.Drawing.Size(992, 60);
+            this.tableRecord.TabIndex = 4;
+            // 
+            // lblETime
+            // 
+            this.lblETime.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblETime.AutoSize = true;
+            this.lblETime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblETime.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblETime.ForeColor = System.Drawing.Color.White;
+            this.lblETime.Location = new System.Drawing.Point(260, 11);
+            this.lblETime.Name = "lblETime";
+            this.lblETime.Size = new System.Drawing.Size(137, 37);
+            this.lblETime.TabIndex = 3;
+            this.lblETime.Text = "00000";
+            // 
+            // lblGetted
+            // 
+            this.lblGetted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGetted.AutoSize = true;
+            this.lblGetted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblGetted.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblGetted.ForeColor = System.Drawing.Color.Red;
+            this.lblGetted.Location = new System.Drawing.Point(553, 15);
+            this.lblGetted.Name = "lblGetted";
+            this.lblGetted.Size = new System.Drawing.Size(174, 29);
+            this.lblGetted.TabIndex = 3;
+            this.lblGetted.Text = "捕獲失敗";
+            // 
+            // lblCount
+            // 
+            this.lblCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCount.AutoSize = true;
+            this.lblCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblCount.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblCount.ForeColor = System.Drawing.Color.White;
+            this.lblCount.Location = new System.Drawing.Point(733, 18);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(114, 24);
+            this.lblCount.TabIndex = 3;
+            this.lblCount.Text = "○○匹め";
+            // 
+            // lblBonus
+            // 
+            this.lblBonus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBonus.AutoSize = true;
+            this.lblBonus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblBonus.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblBonus.ForeColor = System.Drawing.Color.Yellow;
+            this.lblBonus.Location = new System.Drawing.Point(453, 16);
+            this.lblBonus.Name = "lblBonus";
+            this.lblBonus.Size = new System.Drawing.Size(94, 27);
+            this.lblBonus.TabIndex = 3;
+            this.lblBonus.Text = "+999";
+            // 
+            // pBoxUp
+            // 
+            this.pBoxUp.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pBoxUp.Location = new System.Drawing.Point(403, 23);
+            this.pBoxUp.Name = "pBoxUp";
+            this.pBoxUp.Size = new System.Drawing.Size(24, 14);
+            this.pBoxUp.TabIndex = 4;
+            this.pBoxUp.TabStop = false;
+            // 
+            // pBoxPockMon
+            // 
+            this.pBoxPockMon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pBoxPockMon.Location = new System.Drawing.Point(853, 3);
+            this.pBoxPockMon.Name = "pBoxPockMon";
+            this.pBoxPockMon.Size = new System.Drawing.Size(114, 54);
+            this.pBoxPockMon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBoxPockMon.TabIndex = 5;
+            this.pBoxPockMon.TabStop = false;
+            // 
+            // PocketMonsterResultSetRecord
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Controls.Add(this.tableRecord);
+            this.Name = "PocketMonsterResultSetRecord";
+            this.Size = new System.Drawing.Size(992, 63);
+            this.tableRecord.ResumeLayout(false);
+            this.tableRecord.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxPockMon)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label lblPokemon;
+        private System.Windows.Forms.TableLayoutPanel tableRecord;
+        private System.Windows.Forms.Label lblETime;
+        private System.Windows.Forms.Label lblBonus;
+        private System.Windows.Forms.Label lblGetted;
+        private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.PictureBox pBoxUp;
+        private System.Windows.Forms.PictureBox pBoxPockMon;
+    }
+}

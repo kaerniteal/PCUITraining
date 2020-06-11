@@ -11,8 +11,11 @@ namespace PCUITraining
         [STAThread]
         static void Main()
         {
-            PCUIT.Init();
-            PCUIT.Start();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // メイン処理.
+            PCUITraining.Start();
         }
     }
 }

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A652E426-0777-427F-AB78-4AFA03E444BB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TypingExercise</RootNamespace>
+    <AssemblyName>TypingExercise</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configs\TypExcConf.cs" />
+    <Compile Include="Definitions\CorrectSpelling.cs" />
+    <Compile Include="Definitions\CorrectSpellingTable.cs" />
+    <Compile Include="Executors\SetExecutor.cs" />
+    <Compile Include="Executors\SetResult.cs" />
+    <Compile Include="Executors\WordExecutor.cs" />
+    <Compile Include="Executors\WordResult.cs" />
+    <Compile Include="Interfaces\IExecutor.cs" />
+    <Compile Include="Interfaces\IResultSetDlg.cs" />
+    <Compile Include="Interfaces\IResultWordDlg.cs" />
+    <Compile Include="Interfaces\IViewer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypExc.cs" />
+    <Compile Include="Views\FormTypExc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormTypExc.Designer.cs">
+      <DependentUpon>FormTypExc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormTypExcDebug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormTypExcDebug.Designer.cs">
+      <DependentUpon>FormTypExcDebug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KeyboardPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\KeyboardPanel.Designer.cs">
+      <DependentUpon>KeyboardPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PicturePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PicturePanel.Designer.cs">
+      <DependentUpon>PicturePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WordSet\PokemonTyping\FormPocketMonsterDataViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WordSet\PokemonTyping\FormPocketMonsterDataViewer.Designer.cs">
+      <DependentUpon>FormPocketMonsterDataViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterGameData.cs" />
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterGameDataRecord.cs" />
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterJudgmentResult.cs" />
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterList.cs" />
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterResultSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterResultSet.Designer.cs">
+      <DependentUpon>PocketMonsterResultSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterResultSetRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterResultSetRecord.Designer.cs">
+      <DependentUpon>PocketMonsterResultSetRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterResultWord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterResultWord.Designer.cs">
+      <DependentUpon>PocketMonsterResultWord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterWord.cs" />
+    <Compile Include="WordSet\PokemonTyping\PocketMonsterSet.cs" />
+    <Compile Include="WordSet\WordBase.cs" />
+    <Compile Include="WordSet\WordCorrect.cs" />
+    <Compile Include="WordSet\WordSetBase.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="CorrectSpelling.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{8d9eed30-b3e4-4be1-9da3-f38c0e887216}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PCUITCommon\PCUITCommon.csproj">
+      <Project>{57bd4808-a2ce-4246-a2ea-2076eff7540c}</Project>
+      <Name>PCUITCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resorce\monsterboll.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resorce\up!.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WordSet\PokemonTyping\PocketMonsterList.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
