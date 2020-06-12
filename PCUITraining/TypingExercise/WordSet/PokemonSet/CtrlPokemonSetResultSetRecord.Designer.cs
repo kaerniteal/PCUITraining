@@ -1,6 +1,6 @@
-﻿namespace TypingExercise.WordSet.PokemonTyping
+﻿namespace TypingExercise.WordSet.PokemonSet
 {
-    partial class PocketMonsterResultSetRecord
+    partial class CtrlPokemonSetResultSetRecord
     {
         /// <summary> 
         /// 必要なデザイナー変数です。

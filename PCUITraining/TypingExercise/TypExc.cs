@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Common.Extentions;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using TypingExercise.Configs;
 using TypingExercise.Definitions;
 using TypingExercise.WordSet;
-using TypingExercise.WordSet.PokemonTyping;
+using TypingExercise.WordSet.PokemonSet;
 
 namespace TypingExercise
 {
@@ -44,7 +46,7 @@ namespace TypingExercise
             // ワードセットのリストを生成.
             WordListList = new List<WordSetBase>
             {
-                new PocketMonsterSet(),
+                new PokemonSet(),
             };
 
             // ワードセットをロード.
@@ -66,8 +68,14 @@ namespace TypingExercise
         /// <returns></returns>
         public static WordSetBase GetWordList(string name)
         {
-            return WordListList
-                .Find(list => name.Equals(list.GetName()));
+            var wordSet = WordListList
+                .Find(list => name.Equals(list.GetGameName()));
+            if (null == wordSet)
+            {
+                MessageBox.Show("[{0}]が見つかりません".Fmt(name));
+            }
+
+            return wordSet;
         }
     }
 }

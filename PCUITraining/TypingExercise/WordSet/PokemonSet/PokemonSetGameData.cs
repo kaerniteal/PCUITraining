@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace TypingExercise.WordSet.PokemonTyping
+namespace TypingExercise.WordSet.PokemonSet
 {
     /// <summary>
-    /// ポケットモンスターゲームデータ.
+    /// ポケモンタイプゲームデータ.
     /// </summary>
-    public class PocketMonsterGameData
+    public class PokemonSetGameData
     {
         /// <summary>
         /// このデータのファイル名.
@@ -18,15 +18,39 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// <summary>
         /// データレコードリスト.
         /// </summary>
-        public List<PocketMonsterGameDataRecord> RecordList { get; set; }
+        public List<PokemonSetGameDataRecord> RecordList { get; set; }
+
+        /// <summary>
+        /// 単語入力毎に結果を表示するかどうか.
+        /// </summary>
+        public bool ShowWordResult { get; set; }
+
+        /// <summary>
+        /// 綴りを大文字で表示するかどうか.
+        /// </summary>
+        public bool ShowSpellUpper { get; set; }
+
+        /// <summary>
+        /// Web画像検索時追加キーワード.
+        /// </summary>
+        public List<string> AddWebImageSearchKeywordList { get; set; }
+
 
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public PocketMonsterGameData()
+        public PokemonSetGameData()
         {
-            this.RecordList = new List<PocketMonsterGameDataRecord>();
+            this.RecordList = new List<PokemonSetGameDataRecord>();
+
+            this.ShowWordResult = true;
+            this.ShowSpellUpper = false;
+            this.AddWebImageSearchKeywordList = new List<string>
+            {
+                @"ポケモン図鑑",
+            };
         }
+
 
         /// <summary>
         /// ロード処理.
@@ -34,19 +58,19 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// <remarks>ロードが成功した場合新たなインスタンスを返す。失敗した場合は自身を返す</remarks>
         /// <param name="userPath">保存先ユーザーPath</param>
         /// <returns></returns>
-        public static PocketMonsterGameData Load(string userPath)
+        public static PokemonSetGameData Load(string userPath)
         {
-            var userData = new PocketMonsterGameData();
+            var userData = new PokemonSetGameData();
 
             var folderPath = userData.CreateDataFolder(userPath);
-            var filePath = folderPath + FileNameFormat.Fmt(PocketMonsterSet.Name);
+            var filePath = folderPath + FileNameFormat.Fmt(PokemonSet.Name);
 
             // ファイルの存在をチェックし、存在する場合のみ読み込む。
             if (File.Exists(filePath))
             {
                 try
                 {
-                    userData = filePath.JsonLoad<PocketMonsterGameData>();
+                    userData = filePath.JsonLoad<PokemonSetGameData>();
                 }
                 catch (Exception ex)
                 {
@@ -69,7 +93,7 @@ namespace TypingExercise.WordSet.PokemonTyping
         public bool Save(string userPath)
         {
             var folderPath = CreateDataFolder(userPath);
-            var filePath = folderPath + FileNameFormat.Fmt(PocketMonsterSet.Name);
+            var filePath = folderPath + FileNameFormat.Fmt(PokemonSet.Name);
 
             try
             {
@@ -91,7 +115,7 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// <returns>フォルダパス</returns>
         public string CreateDataFolder(string userPath)
         {
-            var folderPath = @"{0}\{1}\".Fmt(userPath, PocketMonsterSet.Name);
+            var folderPath = @"{0}\{1}\".Fmt(userPath, PokemonSet.Name);
 
             try
             {

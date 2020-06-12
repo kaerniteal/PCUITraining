@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using TypingExercise;
 using TypingExercise.Views;
-using TypingExercise.WordSet.PokemonTyping;
+using TypingExercise.WordSet.PokemonSet;
 
 namespace PCUITraining.Forms
 {
@@ -54,7 +54,7 @@ namespace PCUITraining.Forms
 
         private void btnPokeMonTyping_Click(object sender, EventArgs e)
         {
-            var wordSet = TypExc.GetWordList(PocketMonsterSet.Name);
+            var wordSet = TypExc.GetWordList(PokemonSet.Name);
             var formExec = new FormTypExcDebug(wordSet);
             formExec.ShowDialog();
         }

@@ -3,7 +3,6 @@ using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Datas;
-using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,29 +12,23 @@ using System.Windows.Forms;
 using TypingExercise.Definitions;
 using TypingExercise.Executors;
 using TypingExercise.Interfaces;
-using TypingExercise.WordSet;
 
 namespace TypingExercise.Views
 {
     /// <summary>
     /// 実行フォーム.
     /// </summary>
-    public partial class FormTypExc : Form, IViewer
+    public partial class FormTypExc : Form, ITypExcViewer
     {
-        /// <summary>
-        /// ワードセット.
-        /// </summary>
-        private WordSetBase WordSet { get; set; }
-
         /// <summary>
         /// ユーザーデータ.
         /// </summary>
-        private UserData UserData { get; set; }
+        private ITypExcGameInstance GameInstance { get; set; }
 
         /// <summary>
         /// 実行インタフェース.
         /// </summary>
-        private IExecutor Executor { get; set; }
+        private ITypExcExecutor Executor { get; set; }
 
         /// <summary>
         /// ミスタイプ表示ToolTip
@@ -45,14 +38,12 @@ namespace TypingExercise.Views
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        /// <param name="wordSet">ワードセット</param>
-        /// <param name="userData">ユーザーデータ</param>
-        public FormTypExc(WordSetBase wordSet, UserData userData)
+        /// <param name="gameInstance">ゲームインスタンス</param>
+        public FormTypExc(ITypExcGameInstance gameInstance)
         {
             InitializeComponent();
 
-            this.WordSet = wordSet;
-            this.UserData = userData;
+            this.GameInstance = gameInstance;
 
             this.MissBallon = new CustomToolTip
             {
@@ -63,7 +54,7 @@ namespace TypingExercise.Views
 
             if (TypExc.Conf.ShowKeyboard)
             {
-                this.keyboardPanel1.SetKeyMap(TypExc.Conf.ShowSpellUpper);
+                this.keyboardPanel1.SetKeyMap(this.GameInstance.ShowSpellUpper());
             }
             else
             {
@@ -97,7 +88,8 @@ namespace TypingExercise.Views
         private void StartNewGame()
         {
             var num = TypExc.Conf.NnumberOfQuestions;
-            var newList = this.WordSet.CreateNewGameList(num);
+            var newList = this.GameInstance.CreateNewWordList(num);
+
             this.Executor = new SetExecutor(newList, this);
             this.Executor.Start();
         }
@@ -119,7 +111,7 @@ namespace TypingExercise.Views
             {
                 // パラメータを生成.
                 var param = new Tuple<string, PicturePanel, ImageStore>(
-                    this.WordSet.CreateWebKeyWord(word),
+                    this.GameInstance.CreateWebKeyWord(word),
                     this.pPanel,
                     imageStore);
 
@@ -163,7 +155,7 @@ namespace TypingExercise.Views
                     if (0 < correct.Spells.Count)
                     {
                         var spels = string.Join("\n", correct.Spells.ToArray());
-                        if (TypExc.Conf.ShowSpellUpper)
+                        if (this.GameInstance.ShowSpellUpper())
                         {
                             spels = spels.ToUpper();
                         }
@@ -217,12 +209,7 @@ namespace TypingExercise.Views
         /// </summary>
         public void ShowWordResult(WordResult result)
         {
-            if (TypExc.Conf.ShowWordResult)
-            {
-                // 単語の結果表示ダイアログを取得して表示.
-                var wordResultDlg = this.WordSet.GetWordResultDlg();
-                wordResultDlg.ShowWordResultDlg(result);
-            }
+            this.GameInstance.ShowWordResult(result);
         }
 
         /// <summary>
@@ -231,12 +218,7 @@ namespace TypingExercise.Views
         /// <param name="result">実行結果</param>
         public void ShowSetResult(SetResult result)
         {
-            // 結果表示ダイアログを取得して表示.
-            var setResultDlg = this.WordSet.GetSetResultDlg();
-            //*********************************************************//
-            // 結果ダイアログの中で結果をユーザーデータに保存している  //
-            //*********************************************************//
-            var dlgResult = setResultDlg.ShowSetResultDlg(result, this.UserData);
+            var dlgResult = this.GameInstance.ShowSetResultDlg(result);
 
             // もう一回の場合.
             if (DialogResult.OK == dlgResult)

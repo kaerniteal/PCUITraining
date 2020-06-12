@@ -32,10 +32,7 @@ namespace TypingExercise.Configs
             this.ShowKeyboard = true;
             this.KeyBoardFontSize = 20;
             this.NnumberOfQuestions = 10;
-            this.ShowWordResult = true;
-            this.ShowSpellUpper = false;
             this.ShowLogCaptureJudg = false;
-            this.AddWebImageSearchKeyword = @"ポケモン図鑑";
         }
 
         /// <summary>
@@ -59,24 +56,9 @@ namespace TypingExercise.Configs
         public int NnumberOfQuestions { get; set; }
 
         /// <summary>
-        /// 単語入力毎に結果を表示するかどうか.
-        /// </summary>
-        public bool ShowWordResult { get; set; }
-
-        /// <summary>
-        /// 綴りを大文字で表示するかどうか.
-        /// </summary>
-        public bool ShowSpellUpper { get; set; }
-
-        /// <summary>
         /// 捕獲判定ログを表示するかどうか.
         /// </summary>
         public bool ShowLogCaptureJudg { get; set; }
-
-        /// <summary>
-        /// Web画像検索時追加キーワード.
-        /// </summary>
-        public string AddWebImageSearchKeyword { get; set; }
 
 
         /// <summary>

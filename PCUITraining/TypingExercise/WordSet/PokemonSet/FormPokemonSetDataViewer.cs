@@ -7,12 +7,12 @@ using System.Linq;
 using System.Windows.Forms;
 using static PCUITCommon.Views.UserIcon;
 
-namespace TypingExercise.WordSet.PokemonTyping
+namespace TypingExercise.WordSet.PokemonSet
 {
     /// <summary>
     /// ポケモンタイプ－ユーザーデータ表示.
     /// </summary>
-    public partial class FormPocketMonsterDataViewer : Form
+    public partial class FormPokemonSetDataViewer : Form
     {
         /// <summary>
         /// ユーザーアイコングループ.
@@ -22,12 +22,13 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// <summary>
         /// ゲームデータ.
         /// </summary>
-        private PocketMonsterGameData GameData { get; set; }
+        private PokemonSetGameData GameData { get; set; }
 
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public FormPocketMonsterDataViewer()
+        /// <param name="userData">ユーザーデータ</param>
+        public FormPokemonSetDataViewer(UserData userData = null)
         {
             InitializeComponent();
 
@@ -36,6 +37,11 @@ namespace TypingExercise.WordSet.PokemonTyping
             this.GameData = null;
 
             this.webBrowser.Visible = false;
+
+            if (null != userData)
+            {
+                this.LoadGameData(userData);
+            }
         }
 
         /// <summary>
@@ -60,8 +66,17 @@ namespace TypingExercise.WordSet.PokemonTyping
         private void userIcon_Click(UserData userData)
         {
             // ゲームデータロード.
+            this.LoadGameData(userData);
+        }
+
+        /// <summary>
+        /// ユーザーゲームデータロード.
+        /// </summary>
+        /// <param name="userData">ユーザーデータ</param>
+        private void LoadGameData(UserData userData)
+        {
             var userFolderPath = userData.CreateUserDataFolderPath();
-            this.GameData = PocketMonsterGameData.Load(userFolderPath);
+            this.GameData = PokemonSetGameData.Load(userFolderPath);
             this.UpdateGameData();
         }
 
@@ -126,7 +141,7 @@ namespace TypingExercise.WordSet.PokemonTyping
 
             // ブラウザにポケモン図鑑を表示.
             var pokeMon = PocketMonsterList.GetPockeMonList()
-                .Find(word => record.Name.Equals(word.orgWord)) as PocketMonsterWord;
+                .Find(word => record.Name.Equals(word.orgWord)) as PokemonSetWord;
             if (null == pokeMon)
             {
                 return;

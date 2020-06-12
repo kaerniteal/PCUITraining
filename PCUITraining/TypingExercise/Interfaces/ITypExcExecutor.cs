@@ -3,7 +3,7 @@
     /// <summary>
     /// 実行インタフェース
     /// </summary>
-    public interface IExecutor
+    public interface ITypExcExecutor
     {
         /// <summary>
         /// 開始.

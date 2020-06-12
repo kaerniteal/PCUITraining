@@ -27,7 +27,7 @@ namespace TypingExercise.Executors
         /// <summary>
         /// 表示インタフェース.
         /// </summary>
-        private IViewer Viewer { get; set; }
+        private ITypExcViewer Viewer { get; set; }
 
         /// <summary>
         /// 正答リスト.
@@ -69,7 +69,7 @@ namespace TypingExercise.Executors
         /// </summary>
         /// <param name="viewer">表示インタフェース</param>
         /// <param name="word">単語クラス</param>
-        public WordExecutor(IViewer viewer, WordBase word)
+        public WordExecutor(ITypExcViewer viewer, WordBase word)
         {
             this.Viewer = viewer;
             this.CorrectList = word.correctList;

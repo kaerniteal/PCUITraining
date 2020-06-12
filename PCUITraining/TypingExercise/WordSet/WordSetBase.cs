@@ -1,4 +1,5 @@
 ﻿using Common.Utilities;
+using PCUITCommon.Users;
 using System.Collections.Generic;
 using System.Linq;
 using TypingExercise.Interfaces;
@@ -26,7 +27,7 @@ namespace TypingExercise.WordSet
         /// <summary>
         /// セット名を返す.
         /// </summary>
-        public abstract string GetName();
+        public abstract string GetGameName();
 
         /// <summary>
         /// ロード処理.
@@ -35,17 +36,11 @@ namespace TypingExercise.WordSet
         public abstract bool LoadList();
 
         /// <summary>
-        /// Web検索キーワードを生成する.
-        /// </summary>
-        /// <returns></returns>
-        public abstract string CreateWebKeyWord(string word);
-
-        /// <summary>
-        /// 新たなゲーム用リストを作成して返す.
+        /// 新たな単語リストを作成して返す.
         /// </summary>
         /// <param name="length"></param>
         /// <returns></returns>
-        public virtual List<WordBase> CreateNewGameList(int length = 0)
+        public virtual List<WordBase> CreateNewWordList(int length = 0)
         {
             var newlist = WordList
                 .OrderBy(a => UtilRandom.Next(WordList.Count))
@@ -61,15 +56,10 @@ namespace TypingExercise.WordSet
         }
 
         /// <summary>
-        /// 単語の入力結果表示ダイアログ
+        /// ゲームインスタンスを取得する.
         /// </summary>
-        /// <returns>結果表示ダイアログ</returns>
-        public abstract IResultWordDlg GetWordResultDlg();
-
-        /// <summary>
-        /// 総合結果表示ダイアログ
-        /// </summary>
-        /// <returns>結果表示ダイアログ</returns>
-        public abstract IResultSetDlg GetSetResultDlg();
+        /// <param name="userData">ユーザーデータ</param>
+        /// <returns>ゲームインスタンスインタフェース</returns>
+        public abstract ITypExcGameInstance GetGameInstance(UserData userData);
     }
 }

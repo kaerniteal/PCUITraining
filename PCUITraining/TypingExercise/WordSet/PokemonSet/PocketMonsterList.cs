@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
-namespace TypingExercise.WordSet.PokemonTyping
+namespace TypingExercise.WordSet.PokemonSet
 {
     /// <summary>
     /// ポケットモンスターリスト
@@ -14,18 +14,18 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// <summary>
         /// リソースファイル.
         /// </summary>
-        private static readonly string FileName = @".\WordSet\PokemonTyping\PocketMonsterList.txt";
+        private static readonly string FileName = @".\WordSet\PokemonSet\PocketMonsterList.txt";
 
         /// <summary>
         /// ポケモンリスト.
         /// </summary>
-        private static List<PocketMonsterWord> PockMonList = null;
+        private static List<PokemonSetWord> PockMonList = null;
 
         /// <summary>
         /// ポケモンリストを取得する.
         /// </summary>
         /// <returns></returns>
-        public static List<PocketMonsterWord> GetPockeMonList()
+        public static List<PokemonSetWord> GetPockeMonList()
         {
             if (null == PockMonList)
             {
@@ -43,7 +43,7 @@ namespace TypingExercise.WordSet.PokemonTyping
         {
             try
             {
-                PockMonList = new List<PocketMonsterWord>();
+                PockMonList = new List<PokemonSetWord>();
 
                 var listFile = new StreamReader(FileName);
 
@@ -55,7 +55,7 @@ namespace TypingExercise.WordSet.PokemonTyping
                     {
                         var num = line.Substring(0, sep);
                         var word = line.Substring(sep + 1);
-                        PockMonList.Add(new PocketMonsterWord(num, word));
+                        PockMonList.Add(new PokemonSetWord(num, word));
                     }
                     else
                     {

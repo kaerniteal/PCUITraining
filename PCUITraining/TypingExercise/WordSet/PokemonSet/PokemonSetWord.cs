@@ -1,11 +1,11 @@
 ﻿using Common.Extentions;
 
-namespace TypingExercise.WordSet.PokemonTyping
+namespace TypingExercise.WordSet.PokemonSet
 {
     /// <summary>
     /// ポケモンデータ.
     /// </summary>
-    public class PocketMonsterWord : WordBase
+    public class PokemonSetWord : WordBase
     {
         /// <summary>
         /// ポケモン図鑑No.
@@ -28,7 +28,7 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// </summary>
         /// <param name="num">ポケモン図鑑番号</param>
         /// <param name="pocketMonsterName">ポケモンの名前</param>
-        public PocketMonsterWord(string num, string pocketMonsterName) : base(pocketMonsterName)
+        public PokemonSetWord(string num, string pocketMonsterName) : base(pocketMonsterName)
         {
             this.Num = num;
         }

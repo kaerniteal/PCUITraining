@@ -8,7 +8,7 @@ namespace TypingExercise.Interfaces
     /// <summary>
     /// 表示インタフェース
     /// </summary>
-    public interface IViewer
+    public interface ITypExcViewer
     {
         /// <summary>
         /// 新しい入力対象単語をセットする.

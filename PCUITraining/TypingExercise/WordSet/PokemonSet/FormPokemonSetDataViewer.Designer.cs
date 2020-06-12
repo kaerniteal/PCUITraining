@@ -1,6 +1,6 @@
-﻿namespace TypingExercise.WordSet.PokemonTyping
+﻿namespace TypingExercise.WordSet.PokemonSet
 {
-    partial class FormPocketMonsterDataViewer
+    partial class FormPokemonSetDataViewer
     {
         /// <summary>
         /// Required designer variable.

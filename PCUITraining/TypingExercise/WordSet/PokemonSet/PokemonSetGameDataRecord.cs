@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace TypingExercise.WordSet.PokemonTyping
+namespace TypingExercise.WordSet.PokemonSet
 {
     /// <summary>
-    /// ポケットモンスターゲームデータレコード.
+    /// ポケモンタイプゲームデータレコード.
     /// </summary>
-    public class PocketMonsterGameDataRecord
+    public class PokemonSetGameDataRecord
     {
         /// <summary>
         /// ポケモン名
@@ -30,7 +30,7 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public PocketMonsterGameDataRecord()
+        public PokemonSetGameDataRecord()
         {
             this.Name = string.Empty;
             this.CapturCount = 0;

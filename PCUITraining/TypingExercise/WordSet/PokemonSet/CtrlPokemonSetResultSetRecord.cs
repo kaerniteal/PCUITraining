@@ -2,17 +2,17 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace TypingExercise.WordSet.PokemonTyping
+namespace TypingExercise.WordSet.PokemonSet
 {
     /// <summary>
     /// ポケモン総合結果表示レコードコントロール.
     /// </summary>
-    public partial class PocketMonsterResultSetRecord : UserControl
+    public partial class CtrlPokemonSetResultSetRecord : UserControl
     {
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public PocketMonsterResultSetRecord()
+        public CtrlPokemonSetResultSetRecord()
         {
             InitializeComponent();
         }
@@ -21,7 +21,7 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// 結果をセット.
         /// </summary>
         /// <param name="judgResult">捕獲判定結果</param>
-        public void SetWordResult(PocketMonsterJudgmentResult judgResult)
+        public void SetWordResult(PokemonSetJudgmentResult judgResult)
         {
             // 捕獲判定結果クラスをで捕獲判定を実施.
             this.lblPokemon.Text = judgResult.Name;

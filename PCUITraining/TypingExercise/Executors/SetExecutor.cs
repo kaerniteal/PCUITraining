@@ -16,7 +16,7 @@ namespace TypingExercise.Executors
     /// <summary>
     /// セット実行クラス.
     /// </summary>
-    public class SetExecutor : IExecutor
+    public class SetExecutor : ITypExcExecutor
     {
         /// <summary>
         /// 文字列リスト.
@@ -31,7 +31,7 @@ namespace TypingExercise.Executors
         /// <summary>
         /// 表示インタフェース.
         /// </summary>
-        private IViewer Viewer { get; set; }
+        private ITypExcViewer Viewer { get; set; }
 
         /// <summary>
         /// 文字列実行クラス.
@@ -48,7 +48,7 @@ namespace TypingExercise.Executors
         /// </summary>
         /// <param name="WordList">実施する文字列リスト</param>
         /// <param name="viewer">表示インタフェース</param>
-        public SetExecutor(List<WordBase> WordList, IViewer viewer)
+        public SetExecutor(List<WordBase> WordList, ITypExcViewer viewer)
         {
             this.WordList = WordList;
             this.CurrentIndex = 0;

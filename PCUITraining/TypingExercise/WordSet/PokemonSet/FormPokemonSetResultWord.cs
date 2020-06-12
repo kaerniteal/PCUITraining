@@ -3,19 +3,18 @@ using Common.Extentions;
 using System.Drawing;
 using System.Windows.Forms;
 using TypingExercise.Executors;
-using TypingExercise.Interfaces;
 
-namespace TypingExercise.WordSet.PokemonTyping
+namespace TypingExercise.WordSet.PokemonSet
 {
     /// <summary>
     /// ポケモン単語入力結果表示ダイアログ.
     /// </summary>
-    public partial class PocketMonsterResultWord : Form, IResultWordDlg
+    public partial class FormPokemonSetResultWord : Form
     {
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public PocketMonsterResultWord()
+        public FormPokemonSetResultWord()
         {
             InitializeComponent();
 
@@ -41,7 +40,7 @@ namespace TypingExercise.WordSet.PokemonTyping
         public DialogResult ShowWordResultDlg(WordResult wordResult)
         {
             // ボーナス算出の為に捕獲判定結果クラスを使う.
-            var result = PocketMonsterJudgmentResult.CreateResultForCalcBonus(wordResult);
+            var result = PokemonSetJudgmentResult.CreateResultForCalcBonus(wordResult);
 
             this.lblWord.Text = result.Name;
             this.lblETime.Text = result.ETimeStr;

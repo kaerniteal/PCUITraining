@@ -16,7 +16,7 @@ namespace TypingExercise.Views
     /// <summary>
     /// 実行フォーム(デバッグ).
     /// </summary>
-    public partial class FormTypExcDebug : Form, IViewer
+    public partial class FormTypExcDebug : Form, ITypExcViewer
     {
         /// <summary>
         /// ワードセット.
@@ -26,7 +26,7 @@ namespace TypingExercise.Views
         /// <summary>
         /// 実行インタフェース.
         /// </summary>
-        private IExecutor Executor { get; set; }
+        private ITypExcExecutor Executor { get; set; }
 
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace TypingExercise.Views
             this.WordSet = wordSet;
 
             var num = TypExc.Conf.NnumberOfQuestions;
-            var newList = wordSet.CreateNewGameList(num);
+            var newList = wordSet.CreateNewWordList(num);
             this.Executor = new SetExecutor(newList, this);
             this.Executor.Start();
         }
@@ -75,8 +75,6 @@ namespace TypingExercise.Views
             if (PCUIT.Conf.EnableWeb)
             {
                 // 画像を取得して表示.
-                var keyword = this.WordSet.CreateWebKeyWord(word);
-
                 // 読み込み処理を別スレッドで実行.
                 var thread = new Thread(new ThreadStart(() =>
                 {
@@ -86,7 +84,7 @@ namespace TypingExercise.Views
 
                     // 画像URLをGoogleから取得.
                     var google = new GetImageUrlFromGoogle(wc);
-                    var urls = google.GetImageUrls(keyword, this.pPanel.GetMaxImageCount());
+                    var urls = google.GetImageUrls(word, this.pPanel.GetMaxImageCount());
 
                     // 画像URLから画像データを取得.
                     var downloader = new Downloader(wc);

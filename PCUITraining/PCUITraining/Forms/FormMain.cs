@@ -5,7 +5,7 @@ using System;
 using System.Windows.Forms;
 using TypingExercise;
 using TypingExercise.Views;
-using TypingExercise.WordSet.PokemonTyping;
+using TypingExercise.WordSet.PokemonSet;
 using static PCUITCommon.Views.UserIcon;
 
 namespace PCUITraining.Forms
@@ -36,7 +36,7 @@ namespace PCUITraining.Forms
         /// </summary>
         private void SetUserIcons()
         {
-            UserIconGrp = UserIcon.CreateUserIconGrp();
+            this.UserIconGrp = UserIcon.CreateUserIconGrp();
 
             foreach (var user in PCUIT.UserDataManager.UserDataList)
             {
@@ -52,14 +52,21 @@ namespace PCUITraining.Forms
         /// <param name="e"></param>
         private void btnPokeMonTyping_Click(object sender, EventArgs e)
         {
-            var userData = GetUserData();
+            var userData = UserIconGrp.GetSelectedUserData();
             if (null == userData)
+            {
+                MessageBox.Show("ユーザーを選択してください");
+                return;
+            }
+
+            var wordSet = TypExc.GetWordList(PokemonSet.Name);
+            if (null == wordSet)
             {
                 return;
             }
 
-            var wordSet = TypExc.GetWordList(PocketMonsterSet.Name);
-            var formExec = new FormTypExc(wordSet, userData);
+            var instance = wordSet.GetGameInstance(userData);
+            var formExec = new FormTypExc(instance);
             formExec.ShowDialog();
         }
 
@@ -70,7 +77,9 @@ namespace PCUITraining.Forms
         /// <param name="e"></param>
         private void btnPokeMonTypingDataView_Click(object sender, EventArgs e)
         {
-            var fromDataView = new FormPocketMonsterDataViewer();
+            var userData = UserIconGrp.GetSelectedUserData();
+            // ユーザーデータは未選択(null)を許容する.
+            var fromDataView = new FormPokemonSetDataViewer(userData);
             fromDataView.ShowDialog();
         }
 
@@ -82,23 +91,6 @@ namespace PCUITraining.Forms
         private void btnClose_Click(object sender, EventArgs e)
         {
             PCUITraining.Stop();
-        }
-
-        /// <summary>
-        /// ユーザーデータを取得する.
-        /// </summary>
-        /// <returns></returns>
-        private UserData GetUserData()
-        {
-            // 現在画面で選択されているユーザーデータを取得する.
-            var userData = UserIconGrp.GetSelectedUserData();
-            if (null == userData)
-            {
-                MessageBox.Show("ユーザーを選択してください");
-                return null;
-            }
-
-            return userData;
         }
     }
 }

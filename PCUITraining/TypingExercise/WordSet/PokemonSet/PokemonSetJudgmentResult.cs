@@ -3,12 +3,12 @@ using Common.Utilities;
 using System.Drawing;
 using TypingExercise.Executors;
 
-namespace TypingExercise.WordSet.PokemonTyping
+namespace TypingExercise.WordSet.PokemonSet
 {
     /// <summary>
-    /// ポケットモンスター捕獲判定結果.
+    /// ポケモンタイプ捕獲判定結果.
     /// </summary>
-    public class PocketMonsterJudgmentResult
+    public class PokemonSetJudgmentResult
     {
         /// <summary>
         /// 単語入力結果.
@@ -139,7 +139,7 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// コンストラクタ.
         /// </summary>
         /// <param name="wordResult">単語の入力結果</param>
-        private PocketMonsterJudgmentResult(WordResult wordResult)
+        private PokemonSetJudgmentResult(WordResult wordResult)
         {
             this.WordResult = wordResult;
             this.UpdateETime = false;
@@ -154,10 +154,10 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// <remarks>ボーナス数値の事前計算用</remarks>
         /// <param name="wordResult">単語の入力結果</param>
         /// <returns>捕獲判定結果</returns>
-        public static PocketMonsterJudgmentResult CreateResultForCalcBonus(WordResult wordResult)
+        public static PokemonSetJudgmentResult CreateResultForCalcBonus(WordResult wordResult)
         {
             // 捕獲結果を返す.
-            return new PocketMonsterJudgmentResult(wordResult);
+            return new PokemonSetJudgmentResult(wordResult);
         }
 
         /// <summary>
@@ -166,9 +166,9 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// <param name="wordResult">単語の入力結果</param>
         /// <param name="userDataRec">ユーザーデータ(nullも想定)</param>
         /// <returns>捕獲判定結果</returns>
-        public static PocketMonsterJudgmentResult Judgment(WordResult wordResult, PocketMonsterGameDataRecord userDataRec)
+        public static PokemonSetJudgmentResult Judgment(WordResult wordResult, PokemonSetGameDataRecord userDataRec)
         {
-            var judgmentResult = new PocketMonsterJudgmentResult(wordResult);
+            var judgmentResult = new PokemonSetJudgmentResult(wordResult);
 
             // ************************ //
             // ※※！！捕獲判定！！※※ //

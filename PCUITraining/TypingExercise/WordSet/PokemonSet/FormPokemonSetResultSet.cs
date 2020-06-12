@@ -1,20 +1,17 @@
 ﻿using Common.Controls;
-using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
-using TypingExercise.Executors;
-using TypingExercise.Interfaces;
 
-namespace TypingExercise.WordSet.PokemonTyping
+namespace TypingExercise.WordSet.PokemonSet
 {
     /// <summary>
     /// ポケモン総合結果表示ダイアログ.
     /// </summary>
-    public partial class PocketMonsterResultSet : Form, IResultSetDlg
+    public partial class FormPokemonSetResultSet : Form
     {
         private int radius { get; set; }
         private int ox { get; set; }
@@ -23,12 +20,12 @@ namespace TypingExercise.WordSet.PokemonTyping
         /// <summary>
         /// レコードコントロールリスト
         /// </summary>
-        private List<PocketMonsterResultSetRecord> RecordList { get; set; }
+        private List<CtrlPokemonSetResultSetRecord> RecordList { get; set; }
 
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public PocketMonsterResultSet()
+        public FormPokemonSetResultSet()
         {
             InitializeComponent();
 
@@ -38,74 +35,22 @@ namespace TypingExercise.WordSet.PokemonTyping
 
             this.Region = new Region(new GraphicsPath());
 
-            this.RecordList = new List<PocketMonsterResultSetRecord>();
+            this.RecordList = new List<CtrlPokemonSetResultSetRecord>();
         }
 
         /// <summary>
         /// 総合結果表示
         /// </summary>
-        /// <param name="setResult">総合結果</param>
-        /// <param name="userData">ユーザーデータ</param>
+        /// <param name="judgResultList">捕獲判定結果</param>
         /// <returns>DialogResult</returns>
-        public DialogResult ShowSetResultDlg(SetResult setResult, UserData userData)
+        public DialogResult ShowSetResultDlg(List<PokemonSetJudgmentResult> judgResultList)
         {
-            //**************************************************//
-            // ユーザーデータがnullの場合、保存処理等は走らない //
-            //**************************************************//
-            var pockemonData = new PocketMonsterGameData();
-            if (null != userData)
-            {
-                // データロード(存在しな場合は新規作成)
-                var userFolderPath = userData.CreateUserDataFolderPath();
-                pockemonData = PocketMonsterGameData.Load(userFolderPath);
-            }
-
-            // 捕獲判定を実施.
-            // ユーザーデータは更新もする.
-            var judgResultList = setResult.WordResultList
-                .Select(wordResult =>
-                {
-                    // ユーザーデータのポケモン別レコードを取得する.
-                    PocketMonsterGameDataRecord record = null;
-                    if (null != pockemonData)
-                    {
-                        // ユーザーデータから取得.
-                        record = pockemonData.RecordList
-                            .Find(rec => rec.Name.Equals(wordResult.Word));
-
-                        // 存在しない場合は新たに生成して追加しておく.
-                        if (null == record)
-                        {
-                            record = new PocketMonsterGameDataRecord
-                            {
-                                Name = wordResult.Word,
-                            };
-
-                            pockemonData.RecordList.Add(record);
-                        }
-                    }
-
-                    //*****************//
-                    // 捕獲判定を実施. //
-                    //*****************//
-                    // ユーザーデータも更新して貰う.
-                    return PocketMonsterJudgmentResult.Judgment(wordResult, record);
-                })
-                .ToList();
-
-            // ユーザーデータを保存
-            if (null != userData)
-            {
-                var userFolderPath = userData.CreateUserDataFolderPath();
-                pockemonData.Save(userFolderPath);
-            }
-
             // 結果をセット.
-            this.RecordList = new List<PocketMonsterResultSetRecord>();
+            this.RecordList = new List<CtrlPokemonSetResultSetRecord>();
             for (var ii = 0; ii < judgResultList.Count; ii++ )
             {
                 var judgResult = judgResultList[ii];
-                var ctrl = new PocketMonsterResultSetRecord();
+                var ctrl = new CtrlPokemonSetResultSetRecord();
                 ctrl.SetWordResult(judgResult);
 
                 // Load時、上から順にAnimationで表示する為に非表示にしておく.
@@ -137,7 +82,7 @@ namespace TypingExercise.WordSet.PokemonTyping
                 return true;
             });
 
-            // 円のエフェクトでフォームを描画する.
+            // 上から順に表示していく.
             Animator.Animate(4000, (frame, frequency) =>
             {
                 if (!Visible || IsDisposed)
