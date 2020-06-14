@@ -71,6 +71,12 @@
     <Compile Include="Controls\CustomToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\FormMediaPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FormMediaPlayer.Designer.cs">
+      <DependentUpon>FormMediaPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extentions\CommonExtentions.cs" />
     <Compile Include="Extentions\ControlExtensions.cs" />
     <Compile Include="Extentions\DateTimeExtentions.cs" />
@@ -85,10 +91,33 @@
     </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\FormMediaPlayer.resx">
+      <DependentUpon>FormMediaPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

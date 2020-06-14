@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using PCUITCommon.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -87,7 +88,7 @@ namespace PCUITCommon.Users
 
             if (null == userData)
             {
-                MessageBox.Show("[{0}]のユーザーデータが存在しません".Fmt(name));
+                FormMessageBox.Show("[{0}]のユーザーデータが存在しません".Fmt(name));
             }
 
             if (!userData.Save())

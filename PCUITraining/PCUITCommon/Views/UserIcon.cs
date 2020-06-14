@@ -63,7 +63,7 @@ namespace PCUITCommon.Views
         /// 選択状態をセットする.
         /// </summary>
         /// <param name="selected">選択状態</param>
-        private void SetSelected(bool selected)
+        public void SetSelected(bool selected)
         {
             this.Selected = selected;
             this.BackColor = (selected)
@@ -155,6 +155,24 @@ namespace PCUITCommon.Views
                 }
 
                 return null;
+            }
+
+            /// <summary>
+            /// ユーザーデータを指定して選択状態にする.
+            /// </summary>
+            /// <param name="userData">選択状態にしたいユーザー</param>
+            public void SetSelected(UserData userData)
+            {
+                this.Clear();
+
+                foreach (var userIcon in UserIconList)
+                {
+                    if (userIcon.UserData.Equals(userData))
+                    {
+                        userIcon.SetSelected(true);
+                        return;
+                    }
+                }
             }
         }
     }

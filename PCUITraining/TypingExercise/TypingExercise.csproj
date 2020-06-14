@@ -79,11 +79,23 @@
     <Compile Include="Views\PicturePanel.Designer.cs">
       <DependentUpon>PicturePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="WordSet\PokemonSet\CtrlPokemonSetDataViewerList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WordSet\PokemonSet\CtrlPokemonSetDataViewerList.Designer.cs">
+      <DependentUpon>CtrlPokemonSetDataViewerList.cs</DependentUpon>
+    </Compile>
     <Compile Include="WordSet\PokemonSet\FormPokemonSetDataViewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WordSet\PokemonSet\FormPokemonSetDataViewer.Designer.cs">
       <DependentUpon>FormPokemonSetDataViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WordSet\PokemonSet\FormPokemonSetReciprocate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WordSet\PokemonSet\FormPokemonSetReciprocate.Designer.cs">
+      <DependentUpon>FormPokemonSetReciprocate.cs</DependentUpon>
     </Compile>
     <Compile Include="WordSet\PokemonSet\PokemonSetGameInstance.cs" />
     <Compile Include="WordSet\PokemonSet\PokemonSetGameData.cs" />
@@ -132,7 +144,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resorce\getting.mp4" />
     <Content Include="Resorce\monsterboll.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resorce\loading.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resorce\up!.gif">
@@ -141,6 +157,17 @@
     <Content Include="WordSet\PokemonSet\PocketMonsterList.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WordSet\PokemonSet\CtrlPokemonSetDataViewerList.resx">
+      <DependentUpon>CtrlPokemonSetDataViewerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WordSet\PokemonSet\FormPokemonSetDataViewer.resx">
+      <DependentUpon>FormPokemonSetDataViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WordSet\PokemonSet\FormPokemonSetReciprocate.resx">
+      <DependentUpon>FormPokemonSetReciprocate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -20,42 +20,42 @@ namespace TypingExercise.WordSet.PokemonSet
         private UserIconGrp UserIconGrp { get; set; }
 
         /// <summary>
-        /// ゲームデータ.
-        /// </summary>
-        private PokemonSetGameData GameData { get; set; }
-
-        /// <summary>
         /// コンストラクタ.
         /// </summary>
-        /// <param name="userData">ユーザーデータ</param>
+        /// <param name="userData">選択済みのユーザー(未選択ならnull可)</param>
         public FormPokemonSetDataViewer(UserData userData = null)
         {
             InitializeComponent();
 
-            // ユーザーアイコンをセット.
-            this.SetUserIcons();
-            this.GameData = null;
+            this.UserIconGrp = UserIcon.CreateUserIconGrp();
 
             this.webBrowser.Visible = false;
 
-            if (null != userData)
-            {
-                this.LoadGameData(userData);
-            }
+            // リストの選択イベントを登録.
+            this.ctrlPokemonSetDataViewerList.Selected += this.ListPokeMon_Selected;
+
+            // ユーザーアイコンをセット.
+            this.SetUserIcons(userData);
         }
 
         /// <summary>
         /// ユーザーアイコンをセット.
         /// </summary>
-        private void SetUserIcons()
+        /// <param name="userData">選択済みのユーザー(未選択ならnull可)</param>
+        private void SetUserIcons(UserData userData)
         {
-            this.UserIconGrp = UserIcon.CreateUserIconGrp();
-
             foreach (var user in PCUIT.UserDataManager.UserDataList)
             {
                 var userIcon = this.UserIconGrp.CreateUserIcon(user);
                 userIcon.OnSelected += this.userIcon_Click;
                 this.flowUserSelect.Controls.Add(userIcon);
+            }
+
+            // 最初からユーザーが選択されている場合.
+            if (null != userData)
+            {
+                this.UserIconGrp.SetSelected(userData);
+                this.LoadGameData(userData);
             }
         }
 
@@ -75,75 +75,49 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <param name="userData">ユーザーデータ</param>
         private void LoadGameData(UserData userData)
         {
-            var userFolderPath = userData.CreateUserDataFolderPath();
-            this.GameData = PokemonSetGameData.Load(userFolderPath);
-            this.UpdateGameData();
-        }
-
-        /// <summary>
-        /// 表示に反映する.
-        /// </summary>
-        private void UpdateGameData()
-        {
-            if (null == this.GameData)
+            var gameData = PokemonSetGameData.Load(userData);
+            if (null == gameData)
             {
+                this.webBrowser.Visible = false;
                 return;
             }
 
-            this.ListPokeMon.Items.Clear();
+            // 全ポケモンリスト.
+            var pockeList = PocketMonsterList.GetPockeMonList();
 
-            var sorted = this.GameData.RecordList
-                .OrderBy(rec => rec.Name);
-
-            foreach ( var record in sorted)
-            {
-                if (0  < record.CapturCount)
-                {
-                    this.ListPokeMon.Items.Add(record.Name);
-                }
-            }
-
-            // 捕獲したポケモンのリストを作成.
-            var catchList = this.GameData.RecordList
+            // 捕獲したポケモンのリスト.
+            var catchedList = gameData.RecordList
                 .Where(gdr => 0 < gdr.CapturCount)
                 .ToList();
 
-            var pockeList = PocketMonsterList.GetPockeMonList();
-            this.lblCatch.Text = string.Empty;
-            this.lblTime.Text = string.Empty;
-            this.lblComp.Text = "{0}/{1}".Fmt(catchList.Count, pockeList.Count);
+            this.lblComp.Text = "{0}/{1}".Fmt(catchedList.Count, pockeList.Count);
 
-            this.webBrowser.Visible = false;
+            // リストにデータを反映.
+            this.ctrlPokemonSetDataViewerList.SetNewList(catchedList);
+            if (catchedList.Count <= 0)
+            {
+                this.webBrowser.Visible = false;
+            }
         }
 
         /// <summary>
         /// リスト選択イベント.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ListPokeMon_SelectedIndexChanged(object sender, EventArgs e)
+        /// <param name="record">選択されたレコードデータ</param>
+        private void ListPokeMon_Selected(PokemonSetGameDataRecord record)
         {
-            var selected = this.ListPokeMon.SelectedItem.ToString();
-            if (null == selected)
-            {
-                return;
-            }
-
-            var record = GameData.RecordList
-                .Find(rec => selected.Equals(rec.Name));
             if (null == record)
             {
+                this.webBrowser.Visible = false;
                 return;
             }
-
-            this.lblCatch.Text = "{0} 匹".Fmt(record.CapturCount);
-            this.lblTime.Text = "{0} ms".Fmt(record.ShortestTime);
 
             // ブラウザにポケモン図鑑を表示.
             var pokeMon = PocketMonsterList.GetPockeMonList()
-                .Find(word => record.Name.Equals(word.orgWord)) as PokemonSetWord;
+                .Find(word => record.Name.Equals(word.orgWord));
             if (null == pokeMon)
             {
+                this.webBrowser.Visible = false;
                 return;
             }
 
@@ -159,6 +133,16 @@ namespace TypingExercise.WordSet.PokemonSet
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// フィルタ文字列変更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            this.ctrlPokemonSetDataViewerList.ShowList();
         }
     }
 }

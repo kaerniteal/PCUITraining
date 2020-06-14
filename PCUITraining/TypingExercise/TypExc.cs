@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using PCUITCommon.Views;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TypingExercise.Configs;
@@ -72,7 +73,7 @@ namespace TypingExercise
                 .Find(list => name.Equals(list.GetGameName()));
             if (null == wordSet)
             {
-                MessageBox.Show("[{0}]が見つかりません".Fmt(name));
+                FormMessageBox.Show("[{0}]が見つかりません".Fmt(name));
             }
 
             return wordSet;

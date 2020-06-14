@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using PCUITCommon.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,7 +60,7 @@ namespace TypingExercise.WordSet.PokemonSet
                     }
                     else
                     {
-                        MessageBox.Show("ポケモンデータの読み取りに失敗しました\n{0}".Fmt(line));
+                        FormMessageBox.Show("ポケモンデータの読み取りに失敗しました\n{0}".Fmt(line));
                     }
                 }
 

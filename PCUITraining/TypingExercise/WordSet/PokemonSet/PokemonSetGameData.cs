@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -56,13 +57,14 @@ namespace TypingExercise.WordSet.PokemonSet
         /// ロード処理.
         /// </summary>
         /// <remarks>ロードが成功した場合新たなインスタンスを返す。失敗した場合は自身を返す</remarks>
-        /// <param name="userPath">保存先ユーザーPath</param>
+        /// <param name="userData">対象ユーザーデータ</param>
         /// <returns></returns>
-        public static PokemonSetGameData Load(string userPath)
+        public static PokemonSetGameData Load(UserData userData)
         {
-            var userData = new PokemonSetGameData();
+            var gameData = new PokemonSetGameData();
 
-            var folderPath = userData.CreateDataFolder(userPath);
+            var userPath = userData.CreateUserDataFolderPath();
+            var folderPath = gameData.CreateDataFolder(userPath);
             var filePath = folderPath + FileNameFormat.Fmt(PokemonSet.Name);
 
             // ファイルの存在をチェックし、存在する場合のみ読み込む。
@@ -70,7 +72,7 @@ namespace TypingExercise.WordSet.PokemonSet
             {
                 try
                 {
-                    userData = filePath.JsonLoad<PokemonSetGameData>();
+                    gameData = filePath.JsonLoad<PokemonSetGameData>();
                 }
                 catch (Exception ex)
                 {
@@ -81,17 +83,18 @@ namespace TypingExercise.WordSet.PokemonSet
             // 下記の２ケースを想定して毎回出力する
             // ・読み込んだ設定ファイルに項目が不足している場合.
             // ・設定ファイルが存在しない場合.
-            userData.Save(userPath);
+            gameData.Save(userData);
 
-            return userData;
+            return gameData;
         }
 
         /// <summary>
         /// 保存処理.
         /// </summary>
-        /// <param name="rootPath">保存先のPath</param>
-        public bool Save(string userPath)
+        /// <param name="userData">対象ユーザーデータ</param>
+        public bool Save(UserData userData)
         {
+            var userPath = userData.CreateUserDataFolderPath();
             var folderPath = CreateDataFolder(userPath);
             var filePath = folderPath + FileNameFormat.Fmt(PokemonSet.Name);
 

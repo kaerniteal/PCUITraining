@@ -1,4 +1,5 @@
 ﻿using Common.Controls;
+using Common.Extentions;
 using PCUITCommon;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,6 @@ namespace PCUITraining.Forms
     public partial class FormMainDebug : Form
     {
         private List<Bitmap> Images { get; set; }
-        private int index = 0;
 
         private CustomToolTip ToolTip { get; set; }
 
@@ -50,6 +50,19 @@ namespace PCUITraining.Forms
             this.ToolTip.FontColor = Color.Red;
             this.ToolTip.BackgroundColor = Color.DimGray;
             this.ToolTip.SetToolTip(this.pictureBox1, "ミスタイプ！");
+
+
+
+            for (var ii = 0; ii < 10; ii++)
+            {
+                var psgdr = new PokemonSetGameDataRecord
+                {
+                    Name = "ポケモン" + ii,
+                    CapturCount = ii,
+                    ShortestTime = ii * 1000,
+                };
+                this.ctrlPokemonSetDataViewerList1.AddRecord(psgdr);
+            }
         }
 
         private void btnPokeMonTyping_Click(object sender, EventArgs e)
@@ -61,8 +74,9 @@ namespace PCUITraining.Forms
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            this.index++;
-            this.pictureBox1.Image = this.Images[this.index];
+            var md = new FormMediaPlayer();
+            md.Play(@"./Resorce/loading.mp4", 3);
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)

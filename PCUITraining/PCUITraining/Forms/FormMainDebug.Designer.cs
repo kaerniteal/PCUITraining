@@ -33,6 +33,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.tableUserButton = new System.Windows.Forms.TableLayoutPanel();
+            this.ctrlPokemonSetDataViewerList1 = new TypingExercise.WordSet.PokemonSet.CtrlPokemonSetDataViewerList();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(319, 116);
+            this.btnClose.Location = new System.Drawing.Point(592, 394);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 0;
@@ -79,19 +80,28 @@
             // 
             this.tableUserButton.ColumnCount = 1;
             this.tableUserButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableUserButton.Location = new System.Drawing.Point(12, 116);
+            this.tableUserButton.Location = new System.Drawing.Point(286, 12);
             this.tableUserButton.Name = "tableUserButton";
             this.tableUserButton.RowCount = 1;
             this.tableUserButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableUserButton.Size = new System.Drawing.Size(301, 23);
+            this.tableUserButton.Size = new System.Drawing.Size(381, 65);
             this.tableUserButton.TabIndex = 2;
+            // 
+            // ctrlPokemonSetDataViewerList1
+            // 
+            this.ctrlPokemonSetDataViewerList1.Location = new System.Drawing.Point(42, 106);
+            this.ctrlPokemonSetDataViewerList1.Name = "ctrlPokemonSetDataViewerList1";
+            this.ctrlPokemonSetDataViewerList1.Size = new System.Drawing.Size(321, 251);
+            this.ctrlPokemonSetDataViewerList1.TabIndex = 3;
             // 
             // FormMainDebug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(406, 151);
+            this.ClientSize = new System.Drawing.Size(679, 429);
+            this.Controls.Add(this.ctrlPokemonSetDataViewerList1);
             this.Controls.Add(this.tableUserButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnClose);
@@ -111,5 +121,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.TableLayoutPanel tableUserButton;
+        private TypingExercise.WordSet.PokemonSet.CtrlPokemonSetDataViewerList ctrlPokemonSetDataViewerList1;
     }
 }

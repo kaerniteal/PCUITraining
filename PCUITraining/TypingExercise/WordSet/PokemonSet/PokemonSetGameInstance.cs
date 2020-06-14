@@ -38,9 +38,7 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             this.PokemonSet = pokemonSet;
             this.UserData = userData;
-
-            var userFolderPath = userData.CreateUserDataFolderPath();
-            this.GameData = PokemonSetGameData.Load(userFolderPath);
+            this.GameData = PokemonSetGameData.Load(userData);
         }
 
         /// <summary>
@@ -135,8 +133,7 @@ namespace TypingExercise.WordSet.PokemonSet
             //**************************************************//
             if (null != this.UserData)
             {
-                var userFolderPath = this.UserData.CreateUserDataFolderPath();
-                this.GameData.Save(userFolderPath);
+                this.GameData.Save(this.UserData);
             }
 
             // 結果表示ダイアログを表示.

@@ -1,5 +1,4 @@
 ﻿using PCUITCommon;
-using PCUITCommon.Users;
 using PCUITCommon.Views;
 using System;
 using System.Windows.Forms;
@@ -55,7 +54,7 @@ namespace PCUITraining.Forms
             var userData = UserIconGrp.GetSelectedUserData();
             if (null == userData)
             {
-                MessageBox.Show("ユーザーを選択してください");
+                FormMessageBox.Show("ユーザーを選択してください");
                 return;
             }
 
@@ -78,9 +77,21 @@ namespace PCUITraining.Forms
         private void btnPokeMonTypingDataView_Click(object sender, EventArgs e)
         {
             var userData = UserIconGrp.GetSelectedUserData();
+
             // ユーザーデータは未選択(null)を許容する.
-            var fromDataView = new FormPokemonSetDataViewer(userData);
-            fromDataView.ShowDialog();
+            var formDataView = new FormPokemonSetDataViewer(userData);
+            formDataView.ShowDialog();
+        }
+
+        /// <summary>
+        /// ポケモンタイピング－データ交換.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPokeMonTypingReciprocate_Click(object sender, EventArgs e)
+        {
+            var formReciprocate = new FormPokemonSetReciprocate();
+            formReciprocate.ShowDialog();
         }
 
         /// <summary>
@@ -92,5 +103,6 @@ namespace PCUITraining.Forms
         {
             PCUITraining.Stop();
         }
+
     }
 }
