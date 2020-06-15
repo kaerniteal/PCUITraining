@@ -108,7 +108,7 @@ namespace TypingExercise.Views
             // 別スレッドから呼び出された場合
             if (this.InvokeRequired)
             {
-                this.BeginInvoke(this.UpdateImage);
+                this.UIInvoke(this.UpdateImage);
                 return;
             }
 

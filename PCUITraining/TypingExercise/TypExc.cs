@@ -1,7 +1,6 @@
 ﻿using Common.Extentions;
 using PCUITCommon.Views;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using TypingExercise.Configs;
 using TypingExercise.Definitions;
 using TypingExercise.WordSet;
@@ -10,7 +9,7 @@ using TypingExercise.WordSet.PokemonSet;
 namespace TypingExercise
 {
     /// <summary>
-    /// メインクラス.
+    /// タイピングアプリ－メインクラス.
     /// </summary>
     public class TypExc
     {

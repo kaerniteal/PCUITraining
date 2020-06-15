@@ -16,7 +16,7 @@ using TypingExercise.Interfaces;
 namespace TypingExercise.Views
 {
     /// <summary>
-    /// 実行フォーム.
+    /// 実行ダイアログ.
     /// </summary>
     public partial class FormTypExc : Form, ITypExcViewer
     {

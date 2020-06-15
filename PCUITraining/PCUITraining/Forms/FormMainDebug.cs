@@ -1,5 +1,6 @@
 ﻿using Common.Controls;
 using Common.Extentions;
+using MouseExercise.Views;
 using PCUITCommon;
 using System;
 using System.Collections.Generic;
@@ -50,19 +51,6 @@ namespace PCUITraining.Forms
             this.ToolTip.FontColor = Color.Red;
             this.ToolTip.BackgroundColor = Color.DimGray;
             this.ToolTip.SetToolTip(this.pictureBox1, "ミスタイプ！");
-
-
-
-            for (var ii = 0; ii < 10; ii++)
-            {
-                var psgdr = new PokemonSetGameDataRecord
-                {
-                    Name = "ポケモン" + ii,
-                    CapturCount = ii,
-                    ShortestTime = ii * 1000,
-                };
-                this.ctrlPokemonSetDataViewerList1.AddRecord(psgdr);
-            }
         }
 
         private void btnPokeMonTyping_Click(object sender, EventArgs e)
@@ -74,9 +62,8 @@ namespace PCUITraining.Forms
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            var md = new FormMediaPlayer();
-            md.Play(@"./Resorce/loading.mp4", 3);
-
+            var formExec = new FormMusExc();
+            formExec.ShowDialog();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

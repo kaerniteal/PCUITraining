@@ -14,7 +14,7 @@ namespace Common.Extentions
         /// </summary>
         /// <param name="control">自分自身</param>
         /// <param name="act">アクション</param>
-        public static void BeginInvoke(this Control control, Action act)
+        public static void UIInvoke(this Control control, Action act)
         {
             if (control.IsHandleCreated)
             {

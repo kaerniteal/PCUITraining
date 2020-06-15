@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CA5AE013-FAA7-4636-9CCF-B11D86F92C1D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>PCUITraining</RootNamespace>
-    <AssemblyName>PCUITraining</AssemblyName>
+    <ProjectGuid>{E3A6D750-5BFD-46EC-82DD-53C7C7305582}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MouseExercise</RootNamespace>
+    <AssemblyName>MouseExercise</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,81 +32,56 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Threading.Tasks.Extensions">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\FormMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormMainDebug.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormMainDebug.Designer.cs">
-      <DependentUpon>FormMainDebug.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PCUITraining.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Configs\MusExcConf.cs" />
+    <Compile Include="Executors\MusExcExecutor.cs" />
+    <Compile Include="Interfaces\IMusExcViewer.cs" />
+    <Compile Include="MusExc.cs" />
+    <Compile Include="MusExcSet\MusExcSharedData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormMainDebug.resx">
-      <DependentUpon>FormMainDebug.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    <Compile Include="Views\FormMusExc.cs">
+      <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Views\FormMusExc.Designer.cs">
+      <DependentUpon>FormMusExc.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{8d9eed30-b3e4-4be1-9da3-f38c0e887216}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MouseExercise\MouseExercise.csproj">
-      <Project>{e3a6d750-5bfd-46ec-82dd-53c7c7305582}</Project>
-      <Name>MouseExercise</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PCUITCommon\PCUITCommon.csproj">
       <Project>{57bd4808-a2ce-4246-a2ea-2076eff7540c}</Project>
       <Name>PCUITCommon</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TypingExercise\TypingExercise.csproj">
-      <Project>{a652e426-0777-427f-ab78-4afa03e444bb}</Project>
-      <Name>TypingExercise</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormMusExc.resx">
+      <DependentUpon>FormMusExc.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resorce\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
