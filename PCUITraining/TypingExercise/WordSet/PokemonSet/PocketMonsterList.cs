@@ -3,7 +3,6 @@ using PCUITCommon.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 
 namespace TypingExercise.WordSet.PokemonSet
 {

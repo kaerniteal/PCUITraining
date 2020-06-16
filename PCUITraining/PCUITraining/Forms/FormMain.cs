@@ -58,7 +58,7 @@ namespace PCUITraining.Forms
                 return;
             }
 
-            var wordSet = TypExc.GetWordList(PokemonSet.Name);
+            var wordSet = TypExc.GetWordSet(PokemonSet.Name);
             if (null == wordSet)
             {
                 return;

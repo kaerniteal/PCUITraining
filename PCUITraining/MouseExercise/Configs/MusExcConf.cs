@@ -28,37 +28,25 @@ namespace MouseExercise.Configs
         private void SetDefault()
         {
             // デフォルトはここで与える.
-            this.BaseCaptureProbability = 20;
-            this.ShowKeyboard = true;
-            this.KeyBoardFontSize = 20;
-            this.NnumberOfQuestions = 10;
-            this.ShowLogCaptureJudg = false;
+            this.ViewUpdateWait = 100;
+            this.UnitMax = 10;
+            this.DefaultGameSec = 60000;
         }
 
         /// <summary>
-        /// 捕獲確率.
+        /// 描画更新Wait(ms)
         /// </summary>
-        public int BaseCaptureProbability { get; set; }
+        public int ViewUpdateWait { get; set; }
 
         /// <summary>
-        /// キーボードナビゲーションを表示するかどうか.
+        /// 描画オブジェクト最大数.
         /// </summary>
-        public bool ShowKeyboard { get; set; }
+        public int UnitMax { get; set; }
 
         /// <summary>
-        /// キーボードナビゲーションのフォントサイズ.
+        /// 初期ゲーム時間(ミリ秒)
         /// </summary>
-        public int KeyBoardFontSize { get; set; }
-
-        /// <summary>
-        /// 1プレイの問題数.
-        /// </summary>
-        public int NnumberOfQuestions { get; set; }
-
-        /// <summary>
-        /// 捕獲判定ログを表示するかどうか.
-        /// </summary>
-        public bool ShowLogCaptureJudg { get; set; }
+        public int DefaultGameSec { get; set; }
 
 
         /// <summary>

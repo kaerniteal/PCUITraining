@@ -1,4 +1,5 @@
-﻿using PCUITCommon;
+﻿using MouseExercise;
+using PCUITCommon;
 using PCUITraining.Forms;
 using System.Windows.Forms;
 using TypingExercise;
@@ -10,12 +11,6 @@ namespace PCUITraining
     /// </summary>
     public static class PCUITraining
     {
-        /// <summary>
-        /// タイピングゲーム.
-        /// </summary>
-        public static TypExc TypExc { get; set; }
-
-
         /// <summary>
         /// 開始.
         /// </summary>
@@ -58,10 +53,16 @@ namespace PCUITraining
         private static bool Init()
         {
             // タイピングゲーム.
-            TypExc = new TypExc();
             if (!TypExc.Init())
             {
                 MessageBox.Show("TypExcの初期化に失敗しました");
+                return false;
+            }
+
+            // マウスクリックゲーム.
+            if (!MusExc.Init())
+            {
+                MessageBox.Show("MusExcの初期化に失敗しました");
                 return false;
             }
 

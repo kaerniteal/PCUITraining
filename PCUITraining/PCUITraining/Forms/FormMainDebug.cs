@@ -1,7 +1,9 @@
 ﻿using Common.Controls;
-using Common.Extentions;
+using MouseExercise;
+using MouseExercise.MusExcSet.InsectCollectingSet;
 using MouseExercise.Views;
 using PCUITCommon;
+using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -55,14 +57,20 @@ namespace PCUITraining.Forms
 
         private void btnPokeMonTyping_Click(object sender, EventArgs e)
         {
-            var wordSet = TypExc.GetWordList(PokemonSet.Name);
+            var wordSet = TypExc.GetWordSet(PokemonSet.Name);
             var formExec = new FormTypExcDebug(wordSet);
             formExec.ShowDialog();
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            var formExec = new FormMusExc();
+            var userData = new UserData
+            {
+                Name = "Tester",
+            };
+            var musExcSet = MusExc.GetMusExcSet(InsectCollectingSet.Name);
+            var gameInstance = musExcSet.GetGameInstance(userData);
+            var formExec = new FormMusExc(gameInstance);
             formExec.ShowDialog();
         }
 

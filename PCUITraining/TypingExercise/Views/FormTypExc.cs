@@ -35,6 +35,7 @@ namespace TypingExercise.Views
         /// </summary>
         private CustomToolTip MissBallon { get; set; }
 
+
         /// <summary>
         /// コンストラクタ.
         /// </summary>
@@ -44,6 +45,7 @@ namespace TypingExercise.Views
             InitializeComponent();
 
             this.GameInstance = gameInstance;
+            this.Executor = null;
 
             this.MissBallon = new CustomToolTip
             {

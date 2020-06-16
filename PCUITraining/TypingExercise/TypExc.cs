@@ -11,7 +11,7 @@ namespace TypingExercise
     /// <summary>
     /// タイピングアプリ－メインクラス.
     /// </summary>
-    public class TypExc
+    public static class TypExc
     {
         /// <summary>
         /// 設定.
@@ -26,14 +26,14 @@ namespace TypingExercise
         /// <summary>
         /// ワードセットのリスト.
         /// </summary>
-        public static List<WordSetBase> WordListList { get; set; }
+        public static List<WordSetBase> WordSetList { get; set; }
 
 
         /// <summary>
         /// 初期化処理.
         /// </summary>
         /// <returns>成否</returns>
-        public bool Init()
+        public static bool Init()
         {
             Conf = TypExcConf.Load();
 
@@ -44,13 +44,13 @@ namespace TypingExercise
             }
 
             // ワードセットのリストを生成.
-            WordListList = new List<WordSetBase>
+            WordSetList = new List<WordSetBase>
             {
                 new PokemonSet(),
             };
 
             // ワードセットをロード.
-            foreach (var set in WordListList)
+            foreach (var set in WordSetList)
             {
                 if (!set.LoadList())
                 {
@@ -66,10 +66,10 @@ namespace TypingExercise
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static WordSetBase GetWordList(string name)
+        public static WordSetBase GetWordSet(string name)
         {
-            var wordSet = WordListList
-                .Find(list => name.Equals(list.GetGameName()));
+            var wordSet = WordSetList
+                .Find(set => name.Equals(set.GetGameName()));
             if (null == wordSet)
             {
                 FormMessageBox.Show("[{0}]が見つかりません".Fmt(name));
