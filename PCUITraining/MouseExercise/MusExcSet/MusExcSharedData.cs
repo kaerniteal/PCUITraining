@@ -21,7 +21,7 @@ namespace MouseExercise.MusExcSet
         /// <summary>
         /// ユニット状態リスト
         /// </summary>
-        public MusExcSharedDataUnitState[] UnitStateList { get; set; }
+        public MusExcSharedDataUnitState[] UnitStateArray { get; set; }
 
         /// <summary>
         /// 実行結果.
@@ -36,7 +36,7 @@ namespace MouseExercise.MusExcSet
         {
             this.Counter = 0;
             this.Remaining = 0;
-            this.UnitStateList = new MusExcSharedDataUnitState[0];
+            this.UnitStateArray = new MusExcSharedDataUnitState[0];
             this.Result = new MusExcSharedDataResult();
         }
 

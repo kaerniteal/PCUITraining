@@ -31,6 +31,8 @@ namespace MouseExercise.Configs
             this.ViewUpdateWait = 100;
             this.UnitMax = 10;
             this.DefaultGameSec = 60000;
+            this.RespawnWait = 500;
+            this.IncreaseTime = 1000;
         }
 
         /// <summary>
@@ -47,6 +49,16 @@ namespace MouseExercise.Configs
         /// 初期ゲーム時間(ミリ秒)
         /// </summary>
         public int DefaultGameSec { get; set; }
+
+        /// <summary>
+        /// リスポーンのウェイト時間(ミリ秒)
+        /// </summary>
+        public int RespawnWait { get; set; }
+
+        /// <summary>
+        /// クリック成功時の増加時間(ミリ秒).
+        /// </summary>
+        public int IncreaseTime { get; set; }
 
 
         /// <summary>

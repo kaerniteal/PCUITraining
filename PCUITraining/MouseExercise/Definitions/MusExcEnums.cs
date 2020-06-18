@@ -28,15 +28,35 @@
         }
 
         /// <summary>
+        /// 移動方向
+        /// </summary>
+        public enum MOVEMENT
+        {
+            STATIONARY,         // 静止
+            HORIZONTAL_REFLECT, // 水平方向(反射)
+            VERTICAL_REFLECT,   // 水平方向(反射)
+            CROSS_REFLECT,      // 十字(反射)
+            SLANT_REFLECT,      // 斜め(反射)
+            LEFT,               // 左
+            RIGHT,              // 右
+            UP,                 // 上
+            DOWN,               // 下
+            HORIZONTAL,        // 水平
+            VERTICAL,           // 垂直
+            CROSS,              // 十字.
+            SLANT,              // 斜め.
+            RANDOM,             // ランダム.
+        }
+
+        /// <summary>
         /// 挙動
         /// </summary>
         public enum BEHAVIOR
         {
-            STATIONARY,
-            HORIZONTAL,
-            VERTICAL,
-            WINDING,
-            CIRCLE,
+            NON,        // なし
+            SWAY_LR,    // 左右揺れ
+            SWAY_UD,    // 上下揺れ
+            CIRCLE,     // 円運動
         }
 
         /// <summary>

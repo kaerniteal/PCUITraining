@@ -67,6 +67,12 @@ namespace MouseExercise.Views
             };
 
             this.Updating = false;
+
+
+            if (PCUIT.Conf.IsDebug)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
         }
 
         /// <summary>
@@ -208,33 +214,35 @@ namespace MouseExercise.Views
             }
 
             this.Updating = true;
+            this.BeginControlUpdate();
 
             // 残り時間を描画.
             this.lblTime.Text = this.SharedData.GetRemaining();
 
             // ユニットリスト
-            var unitStateList = this.SharedData.UnitStateList;
-            this.InitUnitArray(unitStateList.Length);
+            var unitStateArray = this.SharedData.UnitStateArray;
+            this.InitUnitArray(unitStateArray.Length);
 
-            for (var ii = 0; ii < unitStateList.Length; ii++)
+            for (var ii = 0; ii < unitStateArray.Length; ii++)
             {
-                var state = unitStateList[ii];
+                var state = unitStateArray[ii];
                 var unit = this.UnitArray[ii];
 
-                // TODO:DEBUG
                 if (LIFE_STATE.LIVING == state.LifeState)
                 {
-                    unit.SetImage(state.Id, @".\MusExcResorce\Units\unit_image01_01.gif");
+                    unit.Update(state);
                     unit.Visible = true;
                 }
                 else
                 {
-                    unit.Visible = false;
+                    unit.Image = null;
                 }
 
-                unit.Location = new Point(state.X, state.Y);
+                
+                unit.Location = state.ViewPoint;
             }
 
+            this.EndControlUpdate();
             this.Updating = false;
         }
 
@@ -311,7 +319,7 @@ namespace MouseExercise.Views
             /// <summary>
             /// ユニットID
             /// </summary>
-            public string Id { get; set; }
+            public string UnitImageFilePath { get; set; }
 
 
             /// <summary>
@@ -328,20 +336,19 @@ namespace MouseExercise.Views
                 this.Visible = false;
 
                 this.UnitIndex = index;
-                this.Id = string.Empty;
+                this.UnitImageFilePath = string.Empty;
             }
 
             /// <summary>
-            /// イメージをセットする.
+            /// ユニットの状態を更新する.
             /// </summary>
-            /// <param name="id"></param>
-            /// <param name="imageFilePath"></param>
-            public void SetImage(string id, string imageFilePath)
+            /// <param name="state">ユニットステータス</param>
+            public void Update(MusExcSharedDataUnitState state)
             {
-                if(!this.Id.Equals(id))
+                if(!this.UnitImageFilePath.Equals(state.DefUnit.UnitImageFilePath))
                 {
-                    this.Id = id;
-                    this.Image = new Bitmap(imageFilePath);
+                    this.UnitImageFilePath = UnitImageFilePath;
+                    this.Image = state.Image;
                 }
             }
         }

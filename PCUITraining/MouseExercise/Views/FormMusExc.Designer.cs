@@ -53,6 +53,7 @@
             this.Name = "FormMusExc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMusExc";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormMusExc_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormMusExc_KeyPress);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormMusExc_MouseDown);

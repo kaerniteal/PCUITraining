@@ -14,19 +14,14 @@ namespace MouseExercise.MusExcSet
         public DIFFICULTY Difficulty { get; set; }
 
         /// <summary>
-        /// 描画ユニット数
+        /// 同時描画ユニット数
         /// </summary>
         public int UnitNum { get; set; }
 
         /// <summary>
-        /// 最大ユニット数
+        /// 生成ユニット最大数
         /// </summary>
         public int MaxNum { get; set; }
-
-        /// <summary>
-        /// 挙動
-        /// </summary>
-        public List<BEHAVIOR> Behavior { get; set; }
 
         /// <summary>
         /// 背景タイプ.
@@ -54,9 +49,9 @@ namespace MouseExercise.MusExcSet
         public string BgImageFilePath { get; set; }
 
         /// <summary>
-        /// 昆虫画像ファイルパスリスト.
+        /// ユニットリスト.
         /// </summary>
-        public List<string> BugImageFilePathList { get; set; }
+        public List<MusExcQuestionDefUnit> UnitList { get; set; }
 
 
         /// <summary>
@@ -67,16 +62,12 @@ namespace MouseExercise.MusExcSet
             this.Difficulty = DIFFICULTY.VERY_EASY;
             this.UnitNum = 1;
             this.MaxNum = 1;
-            this.Behavior = new List<BEHAVIOR>
-            {
-                BEHAVIOR.STATIONARY,
-            };
             this.BgType = BG_TYPE.COLOR;
             this.BgColorR = 0;
             this.BgColorG = 0;
             this.BgColorB = 0;
             this.BgImageFilePath = string.Empty;
-            this.BugImageFilePathList = new List<string>();
+            this.UnitList = new List<MusExcQuestionDefUnit>();
         }
     }
 }

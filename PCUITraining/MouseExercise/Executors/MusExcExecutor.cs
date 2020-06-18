@@ -1,7 +1,11 @@
 ﻿using Common.Extentions;
+using Common.Utilities;
 using MouseExercise.Interfaces;
 using MouseExercise.MusExcSet;
+using PCUITCommon;
 using System;
+using System.Drawing;
+using System.Linq;
 using System.Threading;
 using static MouseExercise.Definitions.MusExcEnums;
 
@@ -94,7 +98,7 @@ namespace MouseExercise.Executors
         /// <param name="unitIndex">ユニットIndex</param>
         public void InputClick(int unitIndex)
         {
-            var stateList = this.SharedData.UnitStateList;
+            var stateList = this.SharedData.UnitStateArray;
             if (stateList.Length <= unitIndex)
             {
                 return;
@@ -114,8 +118,7 @@ namespace MouseExercise.Executors
             stateList[unitIndex] = new MusExcSharedDataUnitState();
 
             // 時間を増加させる.
-            // TODO:基本値をConfigへ出す。難易度で変化させる？
-            var increase = 1000;
+            var increase = MusExc.Conf.IncreaseTime;
             this.GameTime += increase;
             this.Viewer.ShowClickResult(unitIndex, increase / 1000);
 
@@ -172,7 +175,7 @@ namespace MouseExercise.Executors
                 // スレッド処理側で蘇生して貰う.
                 unitStateArray[ii] = new MusExcSharedDataUnitState();
             }
-            this.SharedData.UnitStateList = unitStateArray;
+            this.SharedData.UnitStateArray = unitStateArray;
         }
 
         /// <summary>
@@ -199,14 +202,10 @@ namespace MouseExercise.Executors
             {
                 sharedData.Counter = counter;
 
-                // 現在時刻.
-                var now = DateTime.Now;
-
-                // 経過時間(ms)
-                var span = (int)(now - this.BeginTime).TotalMilliseconds;
-
-                // 残り時間.
-                var remaining = this.GameTime - span;
+                // 時刻をセット.
+                var now = DateTime.Now;                                     // 現在時刻.
+                var span = (int)(now - this.BeginTime).TotalMilliseconds;   // 経過時間(ms)
+                var remaining = this.GameTime - span;                       // 残り時間.
                 if (remaining <= 0)
                 {
                     // 終了処理.
@@ -215,11 +214,11 @@ namespace MouseExercise.Executors
                     break;
                 }
 
-                // 残り時間をセット.
+                // ゲーム残り時間をセット.
                 sharedData.Remaining = remaining;
 
-                // ユニットステータスリストを捜査.
-                var stateList = this.SharedData.UnitStateList;
+                // ユニットステータスリストを走査して更新.
+                var stateList = this.SharedData.UnitStateArray;
                 for (var ii = 0; ii < stateList.Length; ii++ )
                 {
                     var state = stateList[ii];
@@ -229,35 +228,16 @@ namespace MouseExercise.Executors
                     }
 
                     // 蘇生フェーズ.
-                    // 下記条件を満たしていたらユニットを蘇生.
-                    // ・最大数未満.
-                    // ・DEADユニット
-                    // ・死亡時刻から0.5秒経過している.
-                    if ((this.Current.CanCreate()) &&
-                        (LIFE_STATE.DEAD == state.LifeState) &&
-                        (500 < (DateTime.Now - state.DeadTime).TotalMilliseconds))
-                    {
-                        // TODO:蘇生をメソッド化する.
-                        this.Current.CreateCount++;
-                        state.LifeState = LIFE_STATE.LIVING;
-                        state.Id = "{0}:{1}".Fmt(this.QuestionCount, this.Current.CreateCount);
+                    this.Respawn(state);
 
-                        // TODO:透過度を0にする.
-                    }
+                    // 移動フェーズ.
+                    // 前回値からの移動量を計算して、新しい座標を設定する.
+                    var mover = MusExcExecutorMovementBase.GetCalculator(state.DefUnit.Movement);
+                    mover.SetNextPoint(state, this.Viewer.GetSize());
 
-                    // TODO:未実装
-                    // 可能なら透過度を徐々に増加させる
-                    // 透過度を変更可能なPictureBoxを作る
-                    // フェードイン、フェードアウト機能を実装する.
-                    // https://dobon.net/vb/dotnet/graphics/hadeinimage.html
-
-                    // TODO:前回値からの移動量を計算して、新しい座標を設定する.
-                    var size = this.Viewer.GetSize();
-                    var h = size.Height;
-                    var w = size.Width;
-
-                    state.X = w - this.SharedData.Counter * 10 % w;
-                    state.Y = this.SharedData.Counter / h + (ii * 50);
+                    // TODO:Behaviorの実装が必要.
+                    // とりあえずBehaviorの代わり.
+                    state.ViewPoint = state.MovingPoint;
                 }
 
                 // 描画の更新中でなければ.
@@ -273,6 +253,64 @@ namespace MouseExercise.Executors
                 }
 
                 Thread.Sleep(MusExc.Conf.ViewUpdateWait);
+            }
+        }
+
+        /// <summary>
+        /// 蘇生処理.
+        /// </summary>
+        /// <param name="state">ユニットステータス</param>
+        private void Respawn(MusExcSharedDataUnitState state)
+        {
+            var qDef = this.Current.QDef;
+
+            // 下記条件を満たしていたらユニットを蘇生.
+            // ・生成ユニット最大数未満である.
+            // ・DEADユニットである
+            // ・死亡時刻からリスポーンウェイトを経過している.
+            if ((this.Current.CanCreate()) &&
+                (LIFE_STATE.DEAD == state.LifeState) &&
+                (MusExc.Conf.RespawnWait < (DateTime.Now - state.DeadTime).TotalMilliseconds))
+            {
+                // 生成カウンタをインクリメント.
+                this.Current.CreateCount++;
+
+                // ステータスを生に変更して新しいIDを付与.
+                state.LifeState = LIFE_STATE.LIVING;
+                state.Id = "{0}:{1}".Fmt(this.QuestionCount, this.Current.CreateCount);
+
+                // どのユニットを生成するのか確率に沿って決定する.
+                // 0-99の当たり値を生成する.
+                var lottNum = UtilRandom.Next(100);
+
+                // 発生確率の低いものから順に並べる.
+                var sorted = qDef.UnitList
+                    .OrderBy(u => u.Appearance)
+                    .ToList();
+
+                // 確率の低いものから検索して、最初に当たり値を上回ったものを当選とみなす.
+                var defUnit = sorted.Find(u => lottNum < u.Appearance);
+                if (null == defUnit)
+                {
+                    defUnit = sorted.Last();
+                }
+
+                if (PCUIT.Conf.IsDebug)
+                {
+                    // デバッグの際は単純にランダムで選出する.
+                    var ii = UtilRandom.Next(qDef.UnitList.Count);
+                    defUnit = qDef.UnitList[ii];
+                }
+
+                // 定義を設定.
+                state.DefUnit = defUnit;
+
+                // 画像を生成.
+                state.Image = new Bitmap(defUnit.UnitImageFilePath);
+
+                // 座標の初期値を設定する.
+                var calculator = MusExcExecutorMovementBase.GetCalculator(state.DefUnit.Movement);
+                calculator.SetInitPoint(state, this.Viewer.GetSize());
             }
         }
 

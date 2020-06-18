@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using static MouseExercise.Definitions.MusExcEnums;
 
 namespace MouseExercise.MusExcSet
@@ -8,6 +9,11 @@ namespace MouseExercise.MusExcSet
     /// </summary>
     public class MusExcSharedDataUnitState
     {
+        /// <summary>
+        /// ユニットの定義.
+        /// </summary>
+        public MusExcQuestionDefUnit DefUnit { get; set; }
+
         /// <summary>
         /// 生存状態.
         /// </summary>
@@ -24,14 +30,24 @@ namespace MouseExercise.MusExcSet
         public string Id { get; set; }
 
         /// <summary>
-        /// X座標.
+        /// 移動中心座標.
         /// </summary>
-        public int X { get; set; }
+        public Point MovingPoint { get; set; }
 
         /// <summary>
-        /// Y座標
+        /// 表示座標(移動中心座標に挙動を加えたもの).
         /// </summary>
-        public int Y { get; set; }
+        public Point ViewPoint { get; set; }
+
+        /// <summary>
+        /// 現在の挙動.
+        /// </summary>
+        public MOVEMENT CurMovement { get; set; }
+
+        /// <summary>
+        /// 表示イメージ.
+        /// </summary>
+        public Bitmap Image { get; set; }
 
 
         /// <summary>
@@ -39,11 +55,14 @@ namespace MouseExercise.MusExcSet
         /// </summary>
         public MusExcSharedDataUnitState()
         {
+            this.DefUnit = new MusExcQuestionDefUnit();
             this.LifeState = LIFE_STATE.DEAD;
             this.DeadTime = DateTime.Now;
             this.Id = string.Empty;
-            this.X = 0;
-            this.Y = 0;
+            this.MovingPoint = new Point(0, 0);
+            this.ViewPoint = new Point(0, 0);
+            this.CurMovement = this.DefUnit.Movement;
+            this.Image = null;
         }
     }
 }

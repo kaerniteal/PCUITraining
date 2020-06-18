@@ -44,6 +44,12 @@
   <ItemGroup>
     <Compile Include="Configs\MusExcConf.cs" />
     <Compile Include="Definitions\MusExcEnums.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementHorizontal.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementRight.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementUp.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementLeft.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementStationary.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementBase.cs" />
     <Compile Include="Executors\MusExcExecutor.cs" />
     <Compile Include="Interfaces\IMusExcGameInstance.cs" />
     <Compile Include="Interfaces\IMusExcExecutor.cs" />
@@ -52,10 +58,11 @@
     <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSetGameInstance.cs" />
     <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSet.cs" />
     <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSetQuestionList.cs" />
+    <Compile Include="MusExcSet\MusExcQuestionDefUnit.cs" />
     <Compile Include="MusExcSet\MusExcSharedData.cs" />
     <Compile Include="MusExcSet\MusExcQuestionDef.cs" />
     <Compile Include="MusExcSet\MusExcSetBase.cs" />
-    <Compile Include="MusExcSet\MusExcSharedDataRecord.cs" />
+    <Compile Include="MusExcSet\MusExcSharedDataUnitState.cs" />
     <Compile Include="MusExcSet\MusExcSharedDataResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -93,13 +100,157 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="MusExcResorce\Bg\bg_image01.jpg">
+    <Content Include="MusExcResorce\01_01_bg.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MusExcResorce\Units\unit_image01_01.gif">
+    <Content Include="MusExcResorce\01_01_unit01.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MusExcResorce\Units\unit_image02_01.gif">
+    <Content Include="MusExcResorce\01_01_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\01_02_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\01_02_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\01_02_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\01_03_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\01_03_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\01_03_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\02_01_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\02_01_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\02_02_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\02_02_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\02_02_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\02_03_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\02_03_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\02_03_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_01_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_01_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_01_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_01_unit03.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_01_unit04.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_01_unit09.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_02_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_02_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_02_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_02_unit03.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_02_unit04.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_03_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_03_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_03_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\03_03_unit03.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\04_01_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\04_01_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\04_01_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\04_02_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\04_02_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\04_02_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_01_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_01_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_01_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_01_unit03.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_02_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_02_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_02_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_03_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_03_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_03_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_04_bg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_04_unit01.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\05_04_unit02.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

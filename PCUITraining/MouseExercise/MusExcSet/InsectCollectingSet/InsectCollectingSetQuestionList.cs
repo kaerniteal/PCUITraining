@@ -17,6 +17,11 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         private static readonly string FileName = @".\MusExcSet\InsectCollectingSet\InsectCollectingSetQuestionList.dat";
 
         /// <summary>
+        /// 使用ガイド
+        /// </summary>
+        public string[] Usage { get; set; }
+
+        /// <summary>
         /// 設問定義リスト.
         /// </summary>
         public List<MusExcQuestionDef> QuestionList { get; set; }
@@ -27,30 +32,8 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         /// </summary>
         public InsectCollectingSetQuestionList()
         {
+            this.Usage = CreateUsage();
             this.QuestionList = new List<MusExcQuestionDef>();
-
-            {
-                var sample = new MusExcQuestionDef
-                {
-                    Difficulty = DIFFICULTY.EASY,
-                    UnitNum = 1,
-                    MaxNum = 3,
-                    Behavior = new List<BEHAVIOR> { BEHAVIOR.HORIZONTAL },
-                    BgType = BG_TYPE.COLOR,
-                    BgColorR = 70,
-                    BgColorG = 71,
-                    BgColorB = 71,
-                    BgImageFilePath = @".\MusExcResorce\Bg\bg_image01.jpg",
-                    BugImageFilePathList = new List<string>
-                    {
-                        @".\MusExcResorce\Units\unit_image01_01.gif",
-                        @".\MusExcResorce\Units\unit_image02_01.gif",
-                    },
-
-                };
-
-                this.QuestionList.Add(sample);
-            }
         }
 
         /// <summary>
@@ -90,6 +73,9 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         {
             try
             {
+                this.Usage = CreateUsage();
+                this.AddNewTemplate();
+
                 this.JsonSave(FileName);
             }
             catch (Exception ex)
@@ -99,6 +85,142 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// 使用ガイドを生成する.
+        /// </summary>
+        /// <returns>使用ガイド文字列</returns>
+        public static string[] CreateUsage()
+        {
+            return new string[]
+            {
+                "**************************************",
+                "****     このファイルの使い方     ****",
+                "**************************************",
+                "* Difficulty",
+                "*   {0}:Very easy".Fmt((int)DIFFICULTY.VERY_EASY),
+                "*   {0}:Easy".Fmt((int)DIFFICULTY.EASY),
+                "*   {0}:Normal".Fmt((int)DIFFICULTY.NORMAL),
+                "*   {0}:Hard".Fmt((int)DIFFICULTY.HARD),
+                "*   {0}:Very hard".Fmt((int)DIFFICULTY.VERY_HARD),
+                "* BgType",
+                "*   {0}:Color".Fmt((int)BG_TYPE.COLOR),
+                "*   {0}:Image".Fmt((int)BG_TYPE.IMAGE),
+                "* Movement",
+                "*   {0}:静止".Fmt((int)MOVEMENT.STATIONARY),
+                "*   {0}:水平方向(反射)".Fmt((int)MOVEMENT.HORIZONTAL_REFLECT),
+                "*   {0}:水平方向(反射)".Fmt((int)MOVEMENT.VERTICAL_REFLECT),
+                "*   {0}:十字(反射)".Fmt((int)MOVEMENT.CROSS_REFLECT),
+                "*   {0}:斜め(反射)".Fmt((int)MOVEMENT.SLANT_REFLECT),
+                "*   {0}:左".Fmt((int)MOVEMENT.LEFT),
+                "*   {0}:右".Fmt((int)MOVEMENT.RIGHT),
+                "*   {0}:上".Fmt((int)MOVEMENT.UP),
+                "*   {0}:下".Fmt((int)MOVEMENT.DOWN),
+                "*   {0}:水平".Fmt((int)MOVEMENT.HORIZONTAL),
+                "*   {0}:垂直".Fmt((int)MOVEMENT.VERTICAL),
+                "*   {0}:十字".Fmt((int)MOVEMENT.CROSS),
+                "*   {0}:斜め".Fmt((int)MOVEMENT.SLANT),
+                "*   {0}:ランダム".Fmt((int)MOVEMENT.RANDOM),
+                "* Behavior",
+                "*   {0}:なし".Fmt((int)BEHAVIOR.NON),
+                "*   {0}:左右揺れ".Fmt((int)BEHAVIOR.SWAY_LR),
+                "*   {0}:上下揺れ".Fmt((int)BEHAVIOR.SWAY_UD),
+                "*   {0}:円運動".Fmt((int)BEHAVIOR.CIRCLE),
+                "**************************************",
+            };
+        }
+
+        /// <summary>
+        /// 保存時にテンプレートを追加する.
+        /// </summary>
+        private void AddNewTemplate()
+        {
+            this.QuestionList.Clear();
+
+            // 01_01 草むらカマキリ
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.VERY_EASY,
+                UnitNum = 3,
+                MaxNum = 3,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\01_01_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "カマキリ大",
+                            Movement = MOVEMENT.STATIONARY,
+                            UnitImageFilePath = @".\MusExcResorce\01_01_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "飛カマキリ小(レア)",
+                            Movement = MOVEMENT.UP,
+                            AmountOfMovement = 5,
+                            UnitImageFilePath = @".\MusExcResorce\01_01_unit02.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
+
+            // 01_02 木のセミ
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.VERY_EASY,
+                UnitNum = 3,
+                MaxNum = 3,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\01_02_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "競鳴セミ大",
+                            Movement = MOVEMENT.STATIONARY,
+                            UnitImageFilePath = @".\MusExcResorce\01_02_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "飛セミ小(レア)",
+                            Movement = MOVEMENT.HORIZONTAL,
+                            AmountOfMovement = 5,
+                            UnitImageFilePath = @".\MusExcResorce\01_02_unit02.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
+
+            // 01_03 水辺のトンボ
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.VERY_EASY,
+                UnitNum = 3,
+                MaxNum = 3,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\01_03_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "吸水トンボ大",
+                            Movement = MOVEMENT.STATIONARY,
+                            UnitImageFilePath = @".\MusExcResorce\01_03_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "吸水トンボ小(レア)",
+                            Movement = MOVEMENT.STATIONARY,
+                            UnitImageFilePath = @".\MusExcResorce\01_03_unit02.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
+
         }
     }
 }
