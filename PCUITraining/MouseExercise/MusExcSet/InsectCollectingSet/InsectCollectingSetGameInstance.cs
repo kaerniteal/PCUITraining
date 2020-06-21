@@ -38,15 +38,18 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         /// <returns></returns>
         public MusExcQuestionDef GetQuestionDef(DIFFICULTY difficulty)
         {
-            var list = this.ICSet.GetQuestionDefList(difficulty);
-            if (list.Count <= 0)
+            // 対象難易度のリストを取得.
+            var targetDfcltList = this.ICSet.GetQuestionDefList(difficulty);
+
+            // リストが存在しない場合.
+            if (targetDfcltList.Count <= 0)
             {
-                list = this.ICSet.GetQuestionDefList(DIFFICULTY.NON); ;
+                // 難易度を問わず取得.
+                targetDfcltList = this.ICSet.GetQuestionDefList(DIFFICULTY.NON);
             }
 
-            var index = UtilRandom.Next(list.Count);
-            return list[index];
+            // そのリストの中からランダムで一つ返す.
+            return targetDfcltList.GetRandom();
         }
-
     }
 }

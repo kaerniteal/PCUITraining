@@ -1,6 +1,7 @@
 ﻿using Common.Extentions;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,7 +15,12 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <summary>
         /// 全データリスト.
         /// </summary>
-        private List<PokemonSetGameDataRecord> AllList { get; set; }
+        public List<PokemonSetGameDataRecord> AllList { get; set; }
+
+        /// <summary>
+        /// 他方データリスト.
+        /// </summary>
+        public List<PokemonSetGameDataRecord> OthreSideList { get; set; }
 
         /// <summary>
         /// 選択状態変化イベント
@@ -28,7 +34,8 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             InitializeComponent();
 
-            AllList = new List<PokemonSetGameDataRecord>();
+            this.AllList = new List<PokemonSetGameDataRecord>();
+            this.OthreSideList = new List<PokemonSetGameDataRecord>();
         }
 
         /// <summary>
@@ -46,10 +53,24 @@ namespace TypingExercise.WordSet.PokemonSet
         }
 
         /// <summary>
+        /// 他方リストセット.
+        /// </summary>
+        /// <param name="list">ポケモンデータリスト</param>
+        public void SetOtherSideList(List<PokemonSetGameDataRecord> list)
+        {
+            this.OthreSideList = list
+                .Where(rec => 0 < rec.CapturCount)
+                .ToList();
+
+            this.ShowList();
+        }
+
+        /// <summary>
         /// レコード追加.
         /// </summary>
-        /// <param name="record"></param>
-        public void AddRecord(PokemonSetGameDataRecord record)
+        /// <param name="record">レコード</param>
+        /// <param name="shadow">陰</param>
+        public void AddRecord(PokemonSetGameDataRecord record, bool shadow)
         {
             var row = new Dgvr
             {
@@ -81,6 +102,12 @@ namespace TypingExercise.WordSet.PokemonSet
 
             row.Cells.Add(col3);
 
+            // 他方が持ってるポケモンを暗くするする.
+            if (shadow)
+            {
+                row.DefaultCellStyle.ForeColor = Color.DimGray;
+            }
+
             this.dgv.Rows.Add(row);
         }
 
@@ -98,7 +125,15 @@ namespace TypingExercise.WordSet.PokemonSet
             {
                 if ((record.Name + record.CapturCount).Contains(filter))
                 {
-                    this.AddRecord(record);
+                    // 他方が持ってるポケモンを暗くする.
+                    var shadow = false;
+                    if (null != this.OthreSideList
+                        .Find(pkmn => pkmn.Name.Equals(record.Name)))
+                    {
+                        shadow = true;
+                    }
+
+                    this.AddRecord(record, shadow);
                 }
             }
         }

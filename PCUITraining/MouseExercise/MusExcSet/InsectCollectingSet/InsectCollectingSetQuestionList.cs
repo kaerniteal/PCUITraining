@@ -109,10 +109,10 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 "*   {0}:Image".Fmt((int)BG_TYPE.IMAGE),
                 "* Movement",
                 "*   {0}:静止".Fmt((int)MOVEMENT.STATIONARY),
-                "*   {0}:水平方向(反射)".Fmt((int)MOVEMENT.HORIZONTAL_REFLECT),
-                "*   {0}:水平方向(反射)".Fmt((int)MOVEMENT.VERTICAL_REFLECT),
-                "*   {0}:十字(反射)".Fmt((int)MOVEMENT.CROSS_REFLECT),
-                "*   {0}:斜め(反射)".Fmt((int)MOVEMENT.SLANT_REFLECT),
+                "*   {0}:水平方向(反転)".Fmt((int)MOVEMENT.HORIZONTAL_REFLECT),
+                "*   {0}:水平方向(反転)".Fmt((int)MOVEMENT.VERTICAL_REFLECT),
+                "*   {0}:十字(反転)".Fmt((int)MOVEMENT.CROSS_REFLECT),
+                "*   {0}:斜め(反転)".Fmt((int)MOVEMENT.SLANT_REFLECT),
                 "*   {0}:左".Fmt((int)MOVEMENT.LEFT),
                 "*   {0}:右".Fmt((int)MOVEMENT.RIGHT),
                 "*   {0}:上".Fmt((int)MOVEMENT.UP),
@@ -120,8 +120,23 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 "*   {0}:水平".Fmt((int)MOVEMENT.HORIZONTAL),
                 "*   {0}:垂直".Fmt((int)MOVEMENT.VERTICAL),
                 "*   {0}:十字".Fmt((int)MOVEMENT.CROSS),
+                "*   {0}:左上".Fmt((int)MOVEMENT.LEFTUP),
+                "*   {0}:左下".Fmt((int)MOVEMENT.LEFTDOWN),
+                "*   {0}:右上".Fmt((int)MOVEMENT.RIGHTUP),
+                "*   {0}:右下".Fmt((int)MOVEMENT.RIGHTDOWN),
                 "*   {0}:斜め".Fmt((int)MOVEMENT.SLANT),
-                "*   {0}:ランダム".Fmt((int)MOVEMENT.RANDOM),
+                "*   {0}:ランダム(10%方向転換)".Fmt((int)MOVEMENT.RANDOM_10),
+                "*   {0}:ランダム(20%方向転換)".Fmt((int)MOVEMENT.RANDOM_20),
+                "*   {0}:ランダム(25%方向転換)".Fmt((int)MOVEMENT.RANDOM_25),
+                "*   {0}:ランダム(30%方向転換)".Fmt((int)MOVEMENT.RANDOM_30),
+                "*   {0}:ランダム(35%方向転換)".Fmt((int)MOVEMENT.RANDOM_35),
+                "*   {0}:ランダム(40%方向転換)".Fmt((int)MOVEMENT.RANDOM_40),
+                "*   {0}:ランダム(50%方向転換)".Fmt((int)MOVEMENT.RANDOM_50),
+                "*   {0}:ランダム(60%方向転換)".Fmt((int)MOVEMENT.RANDOM_60),
+                "*   {0}:ランダム(70%方向転換)".Fmt((int)MOVEMENT.RANDOM_70),
+                "*   {0}:ランダム(75%方向転換)".Fmt((int)MOVEMENT.RANDOM_75),
+                "*   {0}:ランダム(80%方向転換)".Fmt((int)MOVEMENT.RANDOM_80),
+                "*   {0}:ランダム(90%方向転換)".Fmt((int)MOVEMENT.RANDOM_90),
                 "* Behavior",
                 "*   {0}:なし".Fmt((int)BEHAVIOR.NON),
                 "*   {0}:左右揺れ".Fmt((int)BEHAVIOR.SWAY_LR),
@@ -150,18 +165,18 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                     {
                         new MusExcQuestionDefUnit
                         {
-                            Name = "カマキリ大",
+                            Name = "鎌研ぎカマキリ大",
                             Movement = MOVEMENT.STATIONARY,
                             UnitImageFilePath = @".\MusExcResorce\01_01_unit01.gif",
                             Appearance = 100,
                         },
                         new MusExcQuestionDefUnit
                         {
-                            Name = "飛カマキリ小(レア)",
+                            Name = "飛アニメカマキリ小(レア)",
                             Movement = MOVEMENT.UP,
                             AmountOfMovement = 5,
                             UnitImageFilePath = @".\MusExcResorce\01_01_unit02.gif",
-                            Appearance = 1,
+                            Appearance = 5,
                         },
                     },
             });
@@ -189,7 +204,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                             Movement = MOVEMENT.HORIZONTAL,
                             AmountOfMovement = 5,
                             UnitImageFilePath = @".\MusExcResorce\01_02_unit02.gif",
-                            Appearance = 1,
+                            Appearance = 5,
                         },
                     },
             });
@@ -206,21 +221,306 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                     {
                         new MusExcQuestionDefUnit
                         {
-                            Name = "吸水トンボ大",
+                            Name = "吸水オニヤンマ大",
                             Movement = MOVEMENT.STATIONARY,
                             UnitImageFilePath = @".\MusExcResorce\01_03_unit01.gif",
                             Appearance = 100,
                         },
                         new MusExcQuestionDefUnit
                         {
-                            Name = "吸水トンボ小(レア)",
+                            Name = "吸水糸トンボ小(レア)",
                             Movement = MOVEMENT.STATIONARY,
                             UnitImageFilePath = @".\MusExcResorce\01_03_unit02.gif",
+                            Appearance = 5,
+                        },
+                    },
+            });
+
+            // 02_01 暗闇のホタル
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.EASY,
+                UnitNum = 5,
+                MaxNum = 10,
+                BgType = BG_TYPE.COLOR,
+                BgColorR = 70,
+                BgColorG = 71,
+                BgColorB = 71,
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "ホタル",
+                            Movement = MOVEMENT.SLANT_REFLECT,
+                            AmountOfMovement = 5,
+                            UnitImageFilePath = @".\MusExcResorce\02_01_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "モルフォ蝶(激レア)",
+                            Movement = MOVEMENT.LEFT,
+                            AmountOfMovement = 10,
+                            UnitImageFilePath = @".\MusExcResorce\02_01_unit02.gif",
                             Appearance = 1,
                         },
                     },
             });
 
+            // 02_02 夏山のトンボ
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.EASY,
+                UnitNum = 3,
+                MaxNum = 10,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\02_02_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "飛オニヤンマ大",
+                            Movement = MOVEMENT.SLANT_REFLECT,
+                            AmountOfMovement = 5,
+                            UnitImageFilePath = @".\MusExcResorce\02_02_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "飛糸トンボ小(激レア)",
+                            Movement = MOVEMENT.SLANT,
+                            AmountOfMovement = 20,
+                            UnitImageFilePath = @".\MusExcResorce\02_02_unit02.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
+
+            // 02_03 オレンジアップ花とハチ
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.EASY,
+                UnitNum = 3,
+                MaxNum = 10,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\02_03_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "巨大アイコン蜂",
+                            Movement = MOVEMENT.CROSS_REFLECT,
+                            AmountOfMovement = 5,
+                            UnitImageFilePath = @".\MusExcResorce\02_03_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "アイコン蜂小(レア)",
+                            Movement = MOVEMENT.SLANT_REFLECT,
+                            AmountOfMovement = 15,
+                            UnitImageFilePath = @".\MusExcResorce\02_03_unit02.gif",
+                            Appearance = 5,
+                        },
+                    },
+            });
+
+            // 03_01 AAワールド
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.NORMAL,
+                UnitNum = 5,
+                MaxNum = 10,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\03_01_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "AA バッタ",
+                            Movement = MOVEMENT.LEFT,
+                            AmountOfMovement = 15,
+                            UnitImageFilePath = @".\MusExcResorce\03_01_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "AA イモムシ",
+                            Movement = MOVEMENT.LEFT,
+                            AmountOfMovement = 5,
+                            UnitImageFilePath = @".\MusExcResorce\03_01_unit02.gif",
+                            Appearance = 63,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "AA カマキリ",
+                            Movement = MOVEMENT.STATIONARY,
+                            AmountOfMovement = 20,
+                            UnitImageFilePath = @".\MusExcResorce\03_01_unit03.gif",
+                            Appearance = 26,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "AA ピンクトンボ(レア)",
+                            Movement = MOVEMENT.LEFT,
+                            AmountOfMovement = 20,
+                            UnitImageFilePath = @".\MusExcResorce\03_01_unit04.gif",
+                            Appearance = 6,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "透明イモムシ(激レア)",
+                            Movement = MOVEMENT.LEFT,
+                            AmountOfMovement = 5,
+                            UnitImageFilePath = @".\MusExcResorce\03_01_unit09.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
+
+            // 03_02 チューリップと蜂達
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.NORMAL,
+                UnitNum = 5,
+                MaxNum = 10,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\03_02_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "アニメハチ上",
+                            Movement = MOVEMENT.VERTICAL,
+                            AmountOfMovement = 15,
+                            UnitImageFilePath = @".\MusExcResorce\03_02_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "アニメハチ右",
+                            Movement = MOVEMENT.RIGHT,
+                            AmountOfMovement = 15,
+                            UnitImageFilePath = @".\MusExcResorce\03_02_unit02.gif",
+                            Appearance = 67,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "アニメハチ左",
+                            Movement = MOVEMENT.LEFT,
+                            AmountOfMovement = 15,
+                            UnitImageFilePath = @".\MusExcResorce\03_02_unit03.gif",
+                            Appearance = 34,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "キラキラアニメハチ(激レア)",
+                            Movement = MOVEMENT.SLANT,
+                            AmountOfMovement = 20,
+                            UnitImageFilePath = @".\MusExcResorce\03_02_unit04.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
+
+            // 03_03 甲虫の世界
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.NORMAL,
+                UnitNum = 3,
+                MaxNum = 10,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\03_03_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "カブトムシ小",
+                            Movement = MOVEMENT.UP,
+                            AmountOfMovement = 15,
+                            UnitImageFilePath = @".\MusExcResorce\03_03_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "クワガタムシ小",
+                            Movement = MOVEMENT.UP,
+                            AmountOfMovement = 15,
+                            UnitImageFilePath = @".\MusExcResorce\03_03_unit02.gif",
+                            Appearance = 53,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "カミキリムシ小(レア)",
+                            Movement = MOVEMENT.HORIZONTAL,
+                            AmountOfMovement = 10,
+                            UnitImageFilePath = @".\MusExcResorce\03_03_unit03.gif",
+                            Appearance = 6,
+                        },
+                    },
+            });
+
+            // 04_01 赤い花と白い蝶
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.HARD,
+                UnitNum = 5,
+                MaxNum = 5,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\04_01_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "白い蝶小",
+                            Movement = MOVEMENT.RANDOM_50,
+                            AmountOfMovement = 10,
+                            Behavior = BEHAVIOR.SWAY_LR,
+                            AmountOfBehavior = 5,
+                            UnitImageFilePath = @".\MusExcResorce\04_01_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "ピンクのアイコン蝶(激レア)",
+                            Movement = MOVEMENT.RANDOM_50,
+                            AmountOfMovement = 15,
+                            Behavior = BEHAVIOR.SWAY_LR,
+                            AmountOfBehavior = 5,
+                            UnitImageFilePath = @".\MusExcResorce\04_01_unit02.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
+
+            // 04_02 低草とテントウムシ.
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.HARD,
+                UnitNum = 5,
+                MaxNum = 10,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\04_02_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "テントウムシ",
+                            Movement = MOVEMENT.RANDOM_30,
+                            AmountOfMovement = 10,
+                            UnitImageFilePath = @".\MusExcResorce\04_02_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "テントウムシ裏(激レア)",
+                            Movement = MOVEMENT.RANDOM_25,
+                            AmountOfMovement = 15,
+                            UnitImageFilePath = @".\MusExcResorce\04_02_unit02.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
         }
     }
 }

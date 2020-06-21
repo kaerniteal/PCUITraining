@@ -6,9 +6,9 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算水平方向クラス.
+    /// MusExc演算垂直方向クラス.
     /// </summary>
-    public class MusExcExecutorMovementHorizontal : MusExcExecutorMovementBase
+    public class MusExcExecutorMovementVertical : MusExcExecutorMovementBase
     {
         /// <summary>
         /// 末端に到達した時に反転するかどうか
@@ -20,7 +20,7 @@ namespace MouseExercise.Executors
         /// コンストラクタ.
         /// </summary>
         /// <param name="reflect">末端に到達した時に反転するかどうか</param>
-        public MusExcExecutorMovementHorizontal(bool reflect)
+        public MusExcExecutorMovementVertical(bool reflect)
         {
             this.Reflect = reflect;
         }
@@ -32,15 +32,15 @@ namespace MouseExercise.Executors
         /// <param name="present">描画領域サイズ</param>
         public override void SetInitPoint(MusExcSharedDataUnitState state, Size size)
         {
-            // 左右のどちらかをランダムで決定.
+            // 上下のどちらかをランダムで決定.
             MusExcExecutorMovementBase movement = null;
             if (UtilRandom.Half())
             {
-                movement = GetMovement(MOVEMENT.LEFT);
+                movement = GetMovement(MOVEMENT.UP);
             }
             else
             {
-                movement = GetMovement(MOVEMENT.RIGHT);
+                movement = GetMovement(MOVEMENT.DOWN);
             }
 
             // 決定した方向で初期化.
@@ -73,14 +73,14 @@ namespace MouseExercise.Executors
             // 反転設定で、末端に到達した場合は.
             if (TERMINATED.NON != movement.IsTerminated(state, size) && this.Reflect)
             {
-                // 左右を入れ替える.
-                if (MOVEMENT.LEFT == state.CurMovement)
+                // 上下を入れ替える.
+                if (MOVEMENT.UP == state.CurMovement)
                 {
-                    state.CurMovement = MOVEMENT.RIGHT;
+                    state.CurMovement = MOVEMENT.DOWN;
                 }
                 else
                 {
-                    state.CurMovement = MOVEMENT.LEFT;
+                    state.CurMovement = MOVEMENT.UP;
                 }
             }
             else

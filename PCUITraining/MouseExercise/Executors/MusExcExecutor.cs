@@ -4,6 +4,7 @@ using MouseExercise.Interfaces;
 using MouseExercise.MusExcSet;
 using PCUITCommon;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -142,26 +143,12 @@ namespace MouseExercise.Executors
         /// </summary>
         public void SetQuestion()
         {
+            // クリア回数をインクリメント.
             this.QuestionCount++;
 
             // クリア回数に応じて難易度を変更.
-            var difficulty = DIFFICULTY.VERY_EASY;
-            if (5 < this.QuestionCount)
-            {
-                difficulty = DIFFICULTY.EASY;
-            }
-            if (10 < this.QuestionCount)
-            {
-                difficulty = DIFFICULTY.NORMAL;
-            }
-            if (15 < this.QuestionCount)
-            {
-                difficulty = DIFFICULTY.HARD;
-            }
-            if (20 < this.QuestionCount)
-            {
-                difficulty = DIFFICULTY.VERY_HARD;
-            }
+            var difcIndex = this.QuestionCount / MusExc.Conf.DiffcultyLvUpCount;
+            var difficulty = this.GetDifficulty(difcIndex);
 
             // 設問を取得してセット.
             var qDef = this.Viewer.GetNextQuestionDef(difficulty);
@@ -176,6 +163,47 @@ namespace MouseExercise.Executors
                 unitStateArray[ii] = new MusExcSharedDataUnitState();
             }
             this.SharedData.UnitStateArray = unitStateArray;
+        }
+
+        /// <summary>
+        /// 難易度を取得.
+        /// </summary>
+        /// <param name="baseIndex">現在のクリア回数から基準となるIndex</param>
+        /// <returns></returns>
+        private DIFFICULTY GetDifficulty(int baseIndex)
+        {
+            // 難易度テーブル.
+            var difficultyList = new Tuple<DIFFICULTY, bool>[]
+            {
+                new Tuple<DIFFICULTY, bool>(DIFFICULTY.VERY_EASY,   MusExc.Conf.EnableDifficultyVeryEasy),
+                new Tuple<DIFFICULTY, bool>(DIFFICULTY.EASY,        MusExc.Conf.EnableDifficultyEasy),
+                new Tuple<DIFFICULTY, bool>(DIFFICULTY.NORMAL,      MusExc.Conf.EnableDifficultyNormal),
+                new Tuple<DIFFICULTY, bool>(DIFFICULTY.HARD,        MusExc.Conf.EnableDifficultyHard),
+                new Tuple<DIFFICULTY, bool>(DIFFICULTY.VERY_HARD,   MusExc.Conf.EnableDifficultyVeryHard),
+            };
+
+            // 基準を基に、有効な難易度を上げていく.
+            for (var ii = baseIndex; ii < difficultyList.Length; ii++)
+            {
+                var elem = difficultyList[ii];
+                if (elem.Item2)
+                {
+                    return elem.Item1;
+                }
+            }
+
+            // 有効な難易度がない場合は下げていく.
+            for (var ii = baseIndex; 0 < ii; ii--)
+            {
+                var elem = difficultyList[ii];
+                if (elem.Item2)
+                {
+                    return elem.Item1;
+                }
+            }
+
+            // 全て無効な場合はランダム.
+            return DIFFICULTY.NON;
         }
 
         /// <summary>
@@ -232,7 +260,7 @@ namespace MouseExercise.Executors
 
                     // 移動フェーズ.
                     // 前回値からの移動量を計算して、新しい座標を設定する.
-                    var mover = MusExcExecutorMovementBase.GetCalculator(state.DefUnit.Movement);
+                    var mover = MusExcExecutorMovementBase.GetMovement(state.DefUnit.Movement);
                     mover.SetNextPoint(state, this.Viewer.GetSize());
 
                     // TODO:Behaviorの実装が必要.
@@ -295,21 +323,30 @@ namespace MouseExercise.Executors
                     defUnit = sorted.Last();
                 }
 
-                if (PCUIT.Conf.IsDebug)
+                if (MusExc.Conf.AppearanceProbabilityEqual)
                 {
                     // デバッグの際は単純にランダムで選出する.
-                    var ii = UtilRandom.Next(qDef.UnitList.Count);
-                    defUnit = qDef.UnitList[ii];
+                    defUnit = qDef.UnitList.GetRandom();
                 }
 
                 // 定義を設定.
                 state.DefUnit = defUnit;
 
                 // 画像を生成.
-                state.Image = new Bitmap(defUnit.UnitImageFilePath);
+                if (MusExc.Conf.IsOffice)
+                {
+                    state.Image = new Bitmap(@".\MusExcResorce\dummy.jpg");
+                }
+                else
+                {
+                    state.Image = new Bitmap(defUnit.UnitImageFilePath);
+                }
+                state.ImageSize = new Size(
+                    state.Image.Size.Width,
+                    state.Image.Size.Height);
 
                 // 座標の初期値を設定する.
-                var calculator = MusExcExecutorMovementBase.GetCalculator(state.DefUnit.Movement);
+                var calculator = MusExcExecutorMovementBase.GetMovement(state.DefUnit.Movement);
                 calculator.SetInitPoint(state, this.Viewer.GetSize());
             }
         }

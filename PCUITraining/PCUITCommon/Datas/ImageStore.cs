@@ -85,8 +85,7 @@ namespace PCUITCommon.Datas
                 .ToArray();
             if (0 < images.Length)
             {
-                var ii = UtilRandom.Next(images.Length);
-                return images[ii];
+                return images.GetRandom();
             }
 
             return null;

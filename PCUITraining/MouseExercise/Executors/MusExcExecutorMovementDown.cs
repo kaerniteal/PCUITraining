@@ -6,9 +6,9 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算右方向クラス.
+    /// MusExc演算下方向クラス.
     /// </summary>
-    public class MusExcExecutorMovementRight : MusExcExecutorMovementBase
+    public class MusExcExecutorMovementDown : MusExcExecutorMovementBase
     {
         /// <summary>
         /// 初期位置算出処理.
@@ -18,9 +18,9 @@ namespace MouseExercise.Executors
         public override void SetInitPoint(MusExcSharedDataUnitState state, Size size)
         {
             // 新しい座標をセット.
-            var y = UtilRandom.Next(GetEndOfBottom(state, size));
-            state.MovingPoint = new Point(0, y);
-            state.CurMovement = MOVEMENT.RIGHT;
+            var x = UtilRandom.Next(GetEndOfRight(state, size));
+            state.MovingPoint = new Point(x, 0);
+            state.CurMovement = MOVEMENT.DOWN;
         }
 
         /// <summary>
@@ -31,10 +31,10 @@ namespace MouseExercise.Executors
         /// <returns>描画領域の端かどうか</returns>
         public override TERMINATED IsTerminated(MusExcSharedDataUnitState state, Size size)
         {
-            // 右端に到達しているかをチェック.
-            if (GetEndOfRight(state, size) <= state.MovingPoint.X)
+            // 下端に到達しているかをチェック.
+            if (GetEndOfBottom(state, size) <= state.MovingPoint.Y)
             {
-                return TERMINATED.RIGHT;
+                return TERMINATED.BOTTOM;
             }
 
             return TERMINATED.NON;
@@ -47,20 +47,20 @@ namespace MouseExercise.Executors
         /// <param name="present">描画領域サイズ</param>
         public override void SetNextPoint(MusExcSharedDataUnitState state, Size size)
         {
-            // 右端をチェック.
+            // 下端をチェック.
             if (TERMINATED.NON != this.IsTerminated(state, size))
             {
-                // 右端なので、初期位置を算出.
+                // 下端なので、初期位置を算出.
                 this.SetInitPoint(state, size);
             }
             else
             {
-                // まだ右に移動可能
+                // まだ下に移動可能
                 var cur = state.MovingPoint;
-                var x = cur.X + state.DefUnit.AmountOfMovement;
+                var y = cur.Y + state.DefUnit.AmountOfMovement;
 
                 // 新しい座標をセット.
-                state.MovingPoint = new Point(x, cur.Y);
+                state.MovingPoint = new Point(cur.X, y);
             }
         }
     }

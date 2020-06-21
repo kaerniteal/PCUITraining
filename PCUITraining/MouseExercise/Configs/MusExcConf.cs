@@ -28,12 +28,25 @@ namespace MouseExercise.Configs
         private void SetDefault()
         {
             // デフォルトはここで与える.
+            this.IsOffice = true;
             this.ViewUpdateWait = 100;
             this.UnitMax = 10;
             this.DefaultGameSec = 60000;
             this.RespawnWait = 500;
-            this.IncreaseTime = 1000;
+            this.IncreaseTime = 0;
+            this.AppearanceProbabilityEqual = false;
+            this.DiffcultyLvUpCount = 5;
+            this.EnableDifficultyVeryEasy = true;
+            this.EnableDifficultyEasy = true;
+            this.EnableDifficultyNormal = true;
+            this.EnableDifficultyHard = true;
+            this.EnableDifficultyVeryHard = true;
         }
+
+        /// <summary>
+        /// 仕事中モード.
+        /// </summary>
+        public bool IsOffice { get; set; }
 
         /// <summary>
         /// 描画更新Wait(ms)
@@ -59,6 +72,41 @@ namespace MouseExercise.Configs
         /// クリック成功時の増加時間(ミリ秒).
         /// </summary>
         public int IncreaseTime { get; set; }
+
+        /// <summary>
+        /// 全てのユニットの出現確立を等しくするかどうか.
+        /// </summary>
+        public bool AppearanceProbabilityEqual { get; set; }
+
+        /// <summary>
+        /// 何設問クリアで難易度が上昇するか.
+        /// </summary>
+        public int DiffcultyLvUpCount { get; set; }
+
+        /// <summary>
+        /// 難易度ベリーイージーが有効かどうか.
+        /// </summary>
+        public bool EnableDifficultyVeryEasy { get; set; }
+
+        /// <summary>
+        /// 難易度イージーが有効かどうか.
+        /// </summary>
+        public bool EnableDifficultyEasy { get; set; }
+
+        /// <summary>
+        /// 難易度ノーマルが有効かどうか.
+        /// </summary>
+        public bool EnableDifficultyNormal { get; set; }
+
+        /// <summary>
+        /// 難易度ハードが有効かどうか.
+        /// </summary>
+        public bool EnableDifficultyHard { get; set; }
+
+        /// <summary>
+        /// 難易度ベリーハードが有効かどうか.
+        /// </summary>
+        public bool EnableDifficultyVeryHard { get; set; }
 
 
         /// <summary>

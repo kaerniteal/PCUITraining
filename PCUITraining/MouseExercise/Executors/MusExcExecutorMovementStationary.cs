@@ -19,9 +19,21 @@ namespace MouseExercise.Executors
         {
             // 新しい座標をセット.
             var x = UtilRandom.Next(GetEndOfRight(state, size));
-            var y = UtilRandom.Next(GetEndOfBottomt(state, size));
+            var y = UtilRandom.Next(GetEndOfBottom(state, size));
             state.MovingPoint = new Point(x, y);
             state.CurMovement = MOVEMENT.STATIONARY;
+        }
+
+        /// <summary>
+        /// 描画領域の終端に到達しているかどうか.
+        /// </summary>
+        /// <param name="unitState">ユニットステータス</param>
+        /// <param name="viewSize">描画領域サイズ</param>
+        /// <returns>描画領域の端かどうか</returns>
+        public override TERMINATED IsTerminated(MusExcSharedDataUnitState state, Size size)
+        {
+            // 移動しないので処理不要.
+            return TERMINATED.NON;
         }
 
         /// <summary>

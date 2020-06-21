@@ -6,9 +6,9 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算右方向クラス.
+    /// MusExc演算左上方向クラス.
     /// </summary>
-    public class MusExcExecutorMovementRight : MusExcExecutorMovementBase
+    public class MusExcExecutorMovementLeftUp : MusExcExecutorMovementBase
     {
         /// <summary>
         /// 初期位置算出処理.
@@ -17,10 +17,22 @@ namespace MouseExercise.Executors
         /// <param name="present">描画領域サイズ</param>
         public override void SetInitPoint(MusExcSharedDataUnitState state, Size size)
         {
+            // 右か下かを決定.
+            if (UtilRandom.Half())
+            {
+                // 右からの場合.
+                var y = UtilRandom.Next(GetEndOfBottom(state, size));
+                state.MovingPoint = new Point(size.Width, y);
+            }
+            else
+            {
+                // 下からの場合.
+                var x = UtilRandom.Next(GetEndOfRight(state, size));
+                state.MovingPoint = new Point(x, size.Height);
+            }
+
             // 新しい座標をセット.
-            var y = UtilRandom.Next(GetEndOfBottom(state, size));
-            state.MovingPoint = new Point(0, y);
-            state.CurMovement = MOVEMENT.RIGHT;
+            state.CurMovement = MOVEMENT.LEFTUP;
         }
 
         /// <summary>
@@ -31,10 +43,16 @@ namespace MouseExercise.Executors
         /// <returns>描画領域の端かどうか</returns>
         public override TERMINATED IsTerminated(MusExcSharedDataUnitState state, Size size)
         {
-            // 右端に到達しているかをチェック.
-            if (GetEndOfRight(state, size) <= state.MovingPoint.X)
+            // 左端に到達しているかをチェック.
+            if (state.MovingPoint.X <= 0)
             {
-                return TERMINATED.RIGHT;
+                return TERMINATED.LEFT;
+            }
+
+            // 上端に到達しているかをチェック.
+            if (state.MovingPoint.Y <= 0)
+            {
+                return TERMINATED.TOP;
             }
 
             return TERMINATED.NON;
@@ -47,20 +65,21 @@ namespace MouseExercise.Executors
         /// <param name="present">描画領域サイズ</param>
         public override void SetNextPoint(MusExcSharedDataUnitState state, Size size)
         {
-            // 右端をチェック.
+            // 左端,上端をチェック.
             if (TERMINATED.NON != this.IsTerminated(state, size))
             {
-                // 右端なので、初期位置を算出.
+                // 左端,上端なので、初期位置を算出.
                 this.SetInitPoint(state, size);
             }
             else
             {
-                // まだ右に移動可能
+                // まだ左上に移動可能
                 var cur = state.MovingPoint;
-                var x = cur.X + state.DefUnit.AmountOfMovement;
+                var x = cur.X - state.DefUnit.AmountOfMovement;
+                var y = cur.Y - state.DefUnit.AmountOfMovement;
 
                 // 新しい座標をセット.
-                state.MovingPoint = new Point(x, cur.Y);
+                state.MovingPoint = new Point(x, y);
             }
         }
     }

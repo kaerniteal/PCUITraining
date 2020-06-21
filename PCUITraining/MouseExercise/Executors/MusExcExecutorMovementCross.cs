@@ -6,9 +6,9 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算水平方向クラス.
+    /// MusExc演算十字方向クラス.
     /// </summary>
-    public class MusExcExecutorMovementHorizontal : MusExcExecutorMovementBase
+    public class MusExcExecutorMovementCross : MusExcExecutorMovementBase
     {
         /// <summary>
         /// 末端に到達した時に反転するかどうか
@@ -20,7 +20,7 @@ namespace MouseExercise.Executors
         /// コンストラクタ.
         /// </summary>
         /// <param name="reflect">末端に到達した時に反転するかどうか</param>
-        public MusExcExecutorMovementHorizontal(bool reflect)
+        public MusExcExecutorMovementCross(bool reflect)
         {
             this.Reflect = reflect;
         }
@@ -32,15 +32,19 @@ namespace MouseExercise.Executors
         /// <param name="present">描画領域サイズ</param>
         public override void SetInitPoint(MusExcSharedDataUnitState state, Size size)
         {
-            // 左右のどちらかをランダムで決定.
+            // 垂直か水平のどちらかをランダムで決定.
             MusExcExecutorMovementBase movement = null;
             if (UtilRandom.Half())
             {
-                movement = GetMovement(MOVEMENT.LEFT);
+                movement = this.Reflect
+                    ? GetMovement(MOVEMENT.HORIZONTAL_REFLECT)
+                    : GetMovement(MOVEMENT.HORIZONTAL);
             }
             else
             {
-                movement = GetMovement(MOVEMENT.RIGHT);
+                movement = this.Reflect
+                    ? GetMovement(MOVEMENT.VERTICAL_REFLECT)
+                    : GetMovement(MOVEMENT.VERTICAL);
             }
 
             // 決定した方向で初期化.
@@ -55,7 +59,7 @@ namespace MouseExercise.Executors
         /// <returns>描画領域の端かどうか</returns>
         public override TERMINATED IsTerminated(MusExcSharedDataUnitState state, Size size)
         {
-            // 左右方向の現在の向きを取得.
+            // 十字方向の現在の向きを取得.
             var movement = GetMovement(state.CurMovement);
             return movement.IsTerminated(state, size);
         }
@@ -69,25 +73,7 @@ namespace MouseExercise.Executors
         {
             // 現在の向きでMovementを取得.
             var movement = GetMovement(state.CurMovement);
-
-            // 反転設定で、末端に到達した場合は.
-            if (TERMINATED.NON != movement.IsTerminated(state, size) && this.Reflect)
-            {
-                // 左右を入れ替える.
-                if (MOVEMENT.LEFT == state.CurMovement)
-                {
-                    state.CurMovement = MOVEMENT.RIGHT;
-                }
-                else
-                {
-                    state.CurMovement = MOVEMENT.LEFT;
-                }
-            }
-            else
-            {
-                // 上記以外の場合はそのままの向きで動作.
-                movement.SetNextPoint(state, size);
-            }
+            movement.SetNextPoint(state, size);
         }
     }
 }

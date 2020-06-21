@@ -29,17 +29,31 @@
         private void InitializeComponent()
         {
             this.lblTime = new System.Windows.Forms.Label();
+            this.lblGot = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTime
             // 
+            this.lblTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTime.AutoSize = true;
+            this.lblTime.BackColor = System.Drawing.Color.Transparent;
             this.lblTime.ForeColor = System.Drawing.Color.White;
-            this.lblTime.Location = new System.Drawing.Point(6, 0);
+            this.lblTime.Location = new System.Drawing.Point(617, 9);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(37, 12);
             this.lblTime.TabIndex = 5;
             this.lblTime.Text = "00.000";
+            // 
+            // lblGot
+            // 
+            this.lblGot.AutoSize = true;
+            this.lblGot.ForeColor = System.Drawing.Color.White;
+            this.lblGot.Location = new System.Drawing.Point(12, 9);
+            this.lblGot.Name = "lblGot";
+            this.lblGot.Size = new System.Drawing.Size(35, 12);
+            this.lblGot.TabIndex = 5;
+            this.lblGot.Text = "debug";
+            this.lblGot.Visible = false;
             // 
             // FormMusExc
             // 
@@ -47,6 +61,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(732, 361);
+            this.Controls.Add(this.lblGot);
             this.Controls.Add(this.lblTime);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -66,5 +81,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblGot;
     }
 }

@@ -1,5 +1,4 @@
-﻿using Common.Controls;
-using Common.Extentions;
+﻿using Common.Extentions;
 using MouseExercise.Executors;
 using MouseExercise.Interfaces;
 using MouseExercise.MusExcSet;
@@ -37,14 +36,14 @@ namespace MouseExercise.Views
         private UnitPBox[] UnitArray { get; set; }
 
         /// <summary>
-        /// 捕獲表示ToolTip
-        /// </summary>
-        private CustomToolTip Ballon { get; set; }
-
-        /// <summary>
         /// 更新中フラグ.
         /// </summary>
         public bool Updating { get; set; }
+
+        /// <summary>
+        /// 描画領域サイズ.
+        /// </summary>
+        public Size ViewSize { get; set; }
 
 
         /// <summary>
@@ -55,21 +54,23 @@ namespace MouseExercise.Views
         {
             InitializeComponent();
 
+            if (!MusExc.Conf.IsOffice)
+            {
+                this.lblTime.Font = PCUIT.GetFont(28);
+            }
+
             this.GameInstance = gameInstance;
             this.SharedData = new MusExcSharedData();
             this.Executor = null;
             this.UnitArray = new UnitPBox[MusExc.Conf.UnitMax];
-            this.Ballon = new CustomToolTip
-            {
-                CustomFont = PCUIT.GetFont(36),
-                FontColor = Color.Yellow,
-                BackgroundColor = Color.DimGray,
-            };
-
             this.Updating = false;
 
-
             if (PCUIT.Conf.IsDebug)
+            {
+                this.lblGot.Visible = true;
+            }
+
+            if (MusExc.Conf.IsOffice)
             {
                 this.WindowState = FormWindowState.Normal;
             }
@@ -82,6 +83,8 @@ namespace MouseExercise.Views
         /// <param name="e"></param>
         private void FormMusExc_Load(object sender, EventArgs e)
         {
+            // 別スレッドでも参照するため、サイズを別インスタンス化しておく.
+            this.ViewSize = new Size(this.Size.Width, this.Size.Height);
             this.StartNewGame();
         }
 
@@ -162,6 +165,12 @@ namespace MouseExercise.Views
                 this.BackgroundImage = null;
             }
 
+            if (MusExc.Conf.IsOffice)
+            {
+                this.BackColor = Color.FromArgb(243, 242, 241);
+                this.BackgroundImage = null;
+            }
+
             return qDef;
         }
 
@@ -177,10 +186,6 @@ namespace MouseExercise.Views
             {
                 return;
             }
-
-            this.Ballon.Active = true;
-            this.Ballon.Show("＋{0}秒".Fmt(increase), this, 500);
-            unit.Image = null;
         }
 
         /// <summary>
@@ -189,7 +194,7 @@ namespace MouseExercise.Views
         /// <returns>サイズ</returns>
         public Size GetSize()
         {
-            return this.Size;
+            return this.ViewSize;
         }
 
         /// <summary>
@@ -219,6 +224,21 @@ namespace MouseExercise.Views
             // 残り時間を描画.
             this.lblTime.Text = this.SharedData.GetRemaining();
 
+            // デバッグ出力
+            if (PCUIT.Conf.IsDebug)
+            {
+                var debugShot = "Unit Count:{0}\n".Fmt(this.SharedData.UnitStateArray.Length);
+                foreach(var unitState in this.SharedData.UnitStateArray)
+                {
+                    debugShot += "{0} > {1} {2} {3}\n".Fmt(
+                        unitState.Id,
+                        unitState.LifeState,
+                        unitState.ViewPoint,
+                        unitState.DefUnit.UnitImageFilePath);
+                }
+                this.lblGot.Text = debugShot;
+            }
+
             // ユニットリスト
             var unitStateArray = this.SharedData.UnitStateArray;
             this.InitUnitArray(unitStateArray.Length);
@@ -235,10 +255,9 @@ namespace MouseExercise.Views
                 }
                 else
                 {
-                    unit.Image = null;
+                    unit.ImageOff();
                 }
-
-                
+               
                 unit.Location = state.ViewPoint;
             }
 
@@ -284,7 +303,7 @@ namespace MouseExercise.Views
                 }
                 else if (max <= ii)
                 {
-                    this.UnitArray[ii].Image = null;
+                    this.UnitArray[ii].ImageOff();
                     this.UnitArray[ii].Visible = false;
                 }
             }
@@ -317,7 +336,7 @@ namespace MouseExercise.Views
             public int UnitIndex { get; set; }
 
             /// <summary>
-            /// ユニットID
+            /// イメージファイルパス.
             /// </summary>
             public string UnitImageFilePath { get; set; }
 
@@ -347,9 +366,19 @@ namespace MouseExercise.Views
             {
                 if(!this.UnitImageFilePath.Equals(state.DefUnit.UnitImageFilePath))
                 {
-                    this.UnitImageFilePath = UnitImageFilePath;
+                    Console.WriteLine("Image change {0} <> {1}".Fmt(this.UnitImageFilePath, state.DefUnit.UnitImageFilePath));
+                    this.UnitImageFilePath = state.DefUnit.UnitImageFilePath;
                     this.Image = state.Image;
                 }
+            }
+
+            /// <summary>
+            /// イメージをOffにする.
+            /// </summary>
+            public void ImageOff()
+            {
+                this.UnitImageFilePath = string.Empty;
+                this.Image = null;
             }
         }
     }

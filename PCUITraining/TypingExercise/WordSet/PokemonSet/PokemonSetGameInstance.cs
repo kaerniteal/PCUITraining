@@ -72,8 +72,7 @@ namespace TypingExercise.WordSet.PokemonSet
                 return word;
             }
 
-            var rndm = UtilRandom.Next(count);
-            var keyword = this.GameData.AddWebImageSearchKeywordList[rndm];
+            var keyword = this.GameData.AddWebImageSearchKeywordList.GetRandom();
             return keyword + "+" + word;
         }
 

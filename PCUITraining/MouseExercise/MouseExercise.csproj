@@ -44,8 +44,17 @@
   <ItemGroup>
     <Compile Include="Configs\MusExcConf.cs" />
     <Compile Include="Definitions\MusExcEnums.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementCross.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementLeftDown.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementRightDown.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementRightUp.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementLeftUp.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementSlant.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementRandom.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementVertical.cs" />
     <Compile Include="Executors\MusExcExecutorMovementHorizontal.cs" />
     <Compile Include="Executors\MusExcExecutorMovementRight.cs" />
+    <Compile Include="Executors\MusExcExecutorMovementDown.cs" />
     <Compile Include="Executors\MusExcExecutorMovementUp.cs" />
     <Compile Include="Executors\MusExcExecutorMovementLeft.cs" />
     <Compile Include="Executors\MusExcExecutorMovementStationary.cs" />
@@ -251,6 +260,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MusExcResorce\05_04_unit02.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MusExcResorce\dummy.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
