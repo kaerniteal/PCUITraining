@@ -4,7 +4,7 @@ using PCUITCommon.Users;
 namespace MouseExercise.MusExcSet.InsectCollectingSet
 {
     /// <summary>
-    /// ワードセット－ポケモンタイピング
+    /// MusExcSet－昆虫採集
     /// </summary>
     public class InsectCollectingSet : MusExcSetBase
     {

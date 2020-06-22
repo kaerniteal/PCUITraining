@@ -1,4 +1,5 @@
 ﻿using MouseExercise.MusExcSet;
+using System.Windows.Forms;
 using static MouseExercise.Definitions.MusExcEnums;
 
 namespace MouseExercise.Interfaces
@@ -14,5 +15,12 @@ namespace MouseExercise.Interfaces
         /// <param name="difficulty">難易度</param>
         /// <returns></returns>
         MusExcQuestionDef GetQuestionDef(DIFFICULTY difficulty);
+
+        /// <summary>
+        /// 結果を表示する.
+        /// </summary>
+        /// <param name="result">実行結果</param>
+        /// <returns>ダイアログリザルト</returns>
+        DialogResult ShowSetResultDlg(MusExcSharedDataResult result);
     }
 }

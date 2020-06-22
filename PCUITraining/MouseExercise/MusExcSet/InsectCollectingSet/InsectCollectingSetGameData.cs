@@ -4,12 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace TypingExercise.WordSet.PokemonSet
+namespace MouseExercise.MusExcSet.InsectCollectingSet
 {
     /// <summary>
-    /// ポケモンタイプゲームデータ.
+    /// 昆虫採集セットゲームデータ.
     /// </summary>
-    public class PokemonSetGameData
+    public class InsectCollectingSetGameData
     {
         /// <summary>
         /// このデータのファイル名.
@@ -17,39 +17,22 @@ namespace TypingExercise.WordSet.PokemonSet
         public static readonly string FileNameFormat = @"{0}.dat";
 
         /// <summary>
-        /// 単語入力毎に結果を表示するかどうか.
+        /// トータルスコアリスト.
         /// </summary>
-        public bool ShowWordResult { get; set; }
-
-        /// <summary>
-        /// 綴りを大文字で表示するかどうか.
-        /// </summary>
-        public bool ShowSpellUpper { get; set; }
-
-        /// <summary>
-        /// Web画像検索時追加キーワード.
-        /// </summary>
-        public List<string> AddWebImageSearchKeywordList { get; set; }
+        public int[] ScoreList { get; set; }
 
         /// <summary>
         /// データレコードリスト.
         /// </summary>
-        public List<PokemonSetGameDataRecord> RecordList { get; set; }
+        public List<InsectCollectingSetGameDataRecord> RecordList { get; set; }
 
 
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public PokemonSetGameData()
+        public InsectCollectingSetGameData()
         {
-            this.ShowWordResult = true;
-            this.ShowSpellUpper = false;
-            this.AddWebImageSearchKeywordList = new List<string>
-            {
-                @"ポケモン図鑑",
-            };
-
-            this.RecordList = new List<PokemonSetGameDataRecord>();
+            this.RecordList = new List<InsectCollectingSetGameDataRecord>();
         }
 
 
@@ -59,20 +42,20 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <remarks>ロードが成功した場合新たなインスタンスを返す。失敗した場合は自身を返す</remarks>
         /// <param name="userData">対象ユーザーデータ</param>
         /// <returns></returns>
-        public static PokemonSetGameData Load(UserData userData)
+        public static InsectCollectingSetGameData Load(UserData userData)
         {
-            var gameData = new PokemonSetGameData();
+            var gameData = new InsectCollectingSetGameData();
 
             var userPath = userData.CreateUserDataFolderPath();
             var folderPath = gameData.CreateDataFolder(userPath);
-            var filePath = folderPath + FileNameFormat.Fmt(PokemonSet.Name);
+            var filePath = folderPath + FileNameFormat.Fmt(InsectCollectingSet.Name);
 
             // ファイルの存在をチェックし、存在する場合のみ読み込む。
             if (File.Exists(filePath))
             {
                 try
                 {
-                    gameData = filePath.JsonLoad<PokemonSetGameData>();
+                    gameData = filePath.JsonLoad<InsectCollectingSetGameData>();
                 }
                 catch (Exception ex)
                 {
@@ -96,7 +79,7 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             var userPath = userData.CreateUserDataFolderPath();
             var folderPath = CreateDataFolder(userPath);
-            var filePath = folderPath + FileNameFormat.Fmt(PokemonSet.Name);
+            var filePath = folderPath + FileNameFormat.Fmt(InsectCollectingSet.Name);
 
             try
             {
@@ -118,7 +101,7 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <returns>フォルダパス</returns>
         private string CreateDataFolder(string userPath)
         {
-            var folderPath = @"{0}\{1}\".Fmt(userPath, PokemonSet.Name);
+            var folderPath = @"{0}\{1}\".Fmt(userPath, InsectCollectingSet.Name);
 
             try
             {

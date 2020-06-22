@@ -112,6 +112,10 @@ namespace MouseExercise.Executors
                 return;
             }
 
+            // クリックされたユニットの情報を結果に格納.
+            var deadUnit = stateList[unitIndex];
+            this.SharedData.Result.DeadUnitList.Add(deadUnit.DefUnit);
+
             // 死亡数をインクリメント.
             this.Current.DeadCount++;
 
@@ -260,6 +264,7 @@ namespace MouseExercise.Executors
 
                     // 移動フェーズ.
                     // 前回値からの移動量を計算して、新しい座標を設定する.
+                    // TODO:他のユニットとの重複チェック、重複する場合には移動させない.
                     var mover = MusExcExecutorMovementBase.GetMovement(state.DefUnit.Movement);
                     mover.SetNextPoint(state, this.Viewer.GetSize());
 
@@ -273,11 +278,6 @@ namespace MouseExercise.Executors
                 {
                     // 描画更新を通知.
                     this.Viewer.ViewUpdate();
-                }
-                else
-                {
-                    // 描画更新中.
-                    Console.WriteLine("not update >> " + counter);
                 }
 
                 Thread.Sleep(MusExc.Conf.ViewUpdateWait);
@@ -346,6 +346,7 @@ namespace MouseExercise.Executors
                     state.Image.Size.Height);
 
                 // 座標の初期値を設定する.
+                // TODO:重複判定、重複した場合には初期位置の再抽選を行う.
                 var calculator = MusExcExecutorMovementBase.GetMovement(state.DefUnit.Movement);
                 calculator.SetInitPoint(state, this.Viewer.GetSize());
             }

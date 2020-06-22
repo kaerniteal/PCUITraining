@@ -37,6 +37,7 @@
             this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.tBoxFilter = new System.Windows.Forms.TextBox();
             this.lblTitleFilter = new System.Windows.Forms.Label();
+            this.cmbSort = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.tableLayout.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +67,7 @@
             this.Column1,
             this.Column2,
             this.Column3});
-            this.tableLayout.SetColumnSpan(this.dgv, 2);
+            this.tableLayout.SetColumnSpan(this.dgv, 3);
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -78,14 +79,14 @@
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.GridColor = System.Drawing.Color.Black;
-            this.dgv.Location = new System.Drawing.Point(3, 34);
+            this.dgv.Location = new System.Drawing.Point(3, 55);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowTemplate.Height = 21;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(273, 282);
+            this.dgv.Size = new System.Drawing.Size(505, 469);
             this.dgv.TabIndex = 4;
             this.dgv.SelectionChanged += new System.EventHandler(this.dgv_SelectionChanged);
             // 
@@ -115,19 +116,22 @@
             // 
             // tableLayout
             // 
-            this.tableLayout.ColumnCount = 2;
+            this.tableLayout.ColumnCount = 3;
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayout.Controls.Add(this.tBoxFilter, 1, 0);
-            this.tableLayout.Controls.Add(this.lblTitleFilter, 0, 0);
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout.Controls.Add(this.tBoxFilter, 2, 0);
+            this.tableLayout.Controls.Add(this.lblTitleFilter, 1, 0);
             this.tableLayout.Controls.Add(this.dgv, 0, 1);
+            this.tableLayout.Controls.Add(this.cmbSort, 0, 0);
             this.tableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayout.Location = new System.Drawing.Point(0, 0);
             this.tableLayout.Name = "tableLayout";
             this.tableLayout.RowCount = 2;
             this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayout.Size = new System.Drawing.Size(279, 319);
+            this.tableLayout.Size = new System.Drawing.Size(511, 527);
             this.tableLayout.TabIndex = 5;
             // 
             // tBoxFilter
@@ -138,9 +142,9 @@
             this.tBoxFilter.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tBoxFilter.ForeColor = System.Drawing.Color.DodgerBlue;
             this.tBoxFilter.ImeMode = System.Windows.Forms.ImeMode.Katakana;
-            this.tBoxFilter.Location = new System.Drawing.Point(86, 3);
+            this.tBoxFilter.Location = new System.Drawing.Point(359, 3);
             this.tBoxFilter.Name = "tBoxFilter";
-            this.tBoxFilter.Size = new System.Drawing.Size(190, 37);
+            this.tBoxFilter.Size = new System.Drawing.Size(149, 37);
             this.tBoxFilter.TabIndex = 108;
             this.tBoxFilter.TextChanged += new System.EventHandler(this.tBoxFilter_TextChanged);
             // 
@@ -151,12 +155,31 @@
             this.lblTitleFilter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitleFilter.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblTitleFilter.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblTitleFilter.Location = new System.Drawing.Point(3, 0);
+            this.lblTitleFilter.Location = new System.Drawing.Point(181, 0);
             this.lblTitleFilter.Name = "lblTitleFilter";
-            this.lblTitleFilter.Size = new System.Drawing.Size(77, 31);
+            this.lblTitleFilter.Size = new System.Drawing.Size(172, 52);
             this.lblTitleFilter.TabIndex = 105;
             this.lblTitleFilter.Text = "しぼりこみ";
             this.lblTitleFilter.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // cmbSort
+            // 
+            this.cmbSort.BackColor = System.Drawing.Color.Black;
+            this.cmbSort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmbSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbSort.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cmbSort.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.cmbSort.FormattingEnabled = true;
+            this.cmbSort.Items.AddRange(new object[] {
+            "アイウエオ順",
+            "ほかく数順",
+            "最速タイム順"});
+            this.cmbSort.Location = new System.Drawing.Point(3, 3);
+            this.cmbSort.Name = "cmbSort";
+            this.cmbSort.Size = new System.Drawing.Size(172, 41);
+            this.cmbSort.TabIndex = 109;
+            this.cmbSort.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // CtrlPokemonSetDataViewerList
             // 
@@ -165,7 +188,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.tableLayout);
             this.Name = "CtrlPokemonSetDataViewerList";
-            this.Size = new System.Drawing.Size(279, 319);
+            this.Size = new System.Drawing.Size(511, 527);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.tableLayout.ResumeLayout(false);
             this.tableLayout.PerformLayout();
@@ -182,5 +205,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayout;
         private System.Windows.Forms.Label lblTitleFilter;
         private System.Windows.Forms.TextBox tBoxFilter;
+        private System.Windows.Forms.ComboBox cmbSort;
     }
 }

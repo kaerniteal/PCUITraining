@@ -36,6 +36,8 @@ namespace TypingExercise.WordSet.PokemonSet
 
             this.AllList = new List<PokemonSetGameDataRecord>();
             this.OthreSideList = new List<PokemonSetGameDataRecord>();
+
+            this.cmbSort.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -118,10 +120,33 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             this.dgv.Rows.Clear();
 
+            var sortedList = this.AllList;
+            switch (this.cmbSort.SelectedIndex)
+            {
+                // アイウエオ順は元のリストなのでソート不要.
+                case 0:
+                    break;
+
+                // 捕獲数順
+                case 1:
+                    sortedList = this.AllList
+                        .OrderByDescending(elm => elm.CapturCount)
+                        .ToList();
+                    break;
+
+                    // 最速タイム順.
+                case 2:
+                    sortedList = this.AllList
+                        .Where(elm => 0 != elm.ShortestTime)
+                        .OrderBy(elm => elm.ShortestTime)
+                        .ToList();
+                    break;
+            }
+
             var filter = this.tBoxFilter.Text;
 
             // フィルタしつつセット.
-            foreach (var record in this.AllList)
+            foreach (var record in sortedList)
             {
                 if ((record.Name + record.CapturCount).Contains(filter))
                 {
@@ -199,6 +224,16 @@ namespace TypingExercise.WordSet.PokemonSet
                     dgvr.Selected = true;
                 }
             }
+        }
+
+        /// <summary>
+        /// コンボボックスチェンジ.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ShowList();
         }
 
         /// <summary>

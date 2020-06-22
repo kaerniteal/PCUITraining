@@ -5,6 +5,7 @@ using MouseExercise.MusExcSet;
 using PCUITCommon;
 using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using static MouseExercise.Definitions.MusExcEnums;
 
@@ -219,7 +220,6 @@ namespace MouseExercise.Views
             }
 
             this.Updating = true;
-            this.BeginControlUpdate();
 
             // 残り時間を描画.
             this.lblTime.Text = this.SharedData.GetRemaining();
@@ -251,17 +251,29 @@ namespace MouseExercise.Views
                 if (LIFE_STATE.LIVING == state.LifeState)
                 {
                     unit.Update(state);
-                    unit.Visible = true;
+                    if (!unit.Visible)
+                    {
+                        unit.Visible = true;
+                    }
                 }
                 else
                 {
                     unit.ImageOff();
                 }
-               
-                unit.Location = state.ViewPoint;
+
+                // 元の領域.
+
+                if (!unit.Location.Equals(state.ViewPoint))
+                {
+                    unit.BeginControlUpdate();
+                    var oldRect = new Rectangle(unit.Location, unit.Size);
+                    unit.Location = state.ViewPoint;
+                    unit.EndControlUpdate();
+                    this.Invalidate(oldRect);
+                    this.Update();
+                }
             }
 
-            this.EndControlUpdate();
             this.Updating = false;
         }
 
@@ -280,7 +292,18 @@ namespace MouseExercise.Views
             this.InitUnitArray(0);
             this.lblTime.Text = @"00.000";
 
-            // TODO:結果ダイアログを表示.
+            // 結果ダイアログを表示.
+            var dlgResult = this.GameInstance.ShowSetResultDlg(this.SharedData.Result);
+
+            // もう一回の場合.
+            if (DialogResult.OK == dlgResult)
+            {
+                this.StartNewGame();
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         /// <summary>

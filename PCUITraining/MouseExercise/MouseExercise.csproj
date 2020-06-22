@@ -64,13 +64,16 @@
     <Compile Include="Interfaces\IMusExcExecutor.cs" />
     <Compile Include="Interfaces\IMusExcViewer.cs" />
     <Compile Include="MusExc.cs" />
+    <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSetGameDataRecord.cs" />
     <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSetGameInstance.cs" />
     <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSet.cs" />
     <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSetQuestionList.cs" />
+    <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSetGameData.cs" />
     <Compile Include="MusExcSet\MusExcQuestionDefUnit.cs" />
     <Compile Include="MusExcSet\MusExcSharedData.cs" />
     <Compile Include="MusExcSet\MusExcQuestionDef.cs" />
     <Compile Include="MusExcSet\MusExcSetBase.cs" />
+    <Compile Include="MusExcSet\MusExcSharedDataResultRecord.cs" />
     <Compile Include="MusExcSet\MusExcSharedDataUnitState.cs" />
     <Compile Include="MusExcSet\MusExcSharedDataResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
