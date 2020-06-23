@@ -60,6 +60,12 @@
     <Compile Include="Views\UserIcon.Designer.cs">
       <DependentUpon>UserIcon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UserSelector.Designer.cs">
+      <DependentUpon>UserSelector.cs</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserIcon.resx">
       <DependentUpon>UserIcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserSelector.resx">
+      <DependentUpon>UserSelector.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

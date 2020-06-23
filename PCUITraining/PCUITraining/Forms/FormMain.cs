@@ -19,6 +19,7 @@ namespace PCUITraining.Forms
         /// </summary>
         private UserIconGrp UserIconGrp { get; set; }
 
+
         /// <summary>
         /// コンストラクタ.
         /// </summary>
@@ -27,21 +28,17 @@ namespace PCUITraining.Forms
             InitializeComponent();
 
             // ユーザーアイコンをセット.
-            SetUserIcons();
+            this.UserIconGrp = this.userSelector.SetUserIcons();
         }
 
         /// <summary>
-        /// ユーザーアイコンをセット.
+        /// 設定ボタン.
         /// </summary>
-        private void SetUserIcons()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pBoxConfig_Click(object sender, EventArgs e)
         {
-            this.UserIconGrp = UserIcon.CreateUserIconGrp();
-
-            foreach (var user in PCUIT.UserDataManager.UserDataList)
-            {
-                var userIcon = UserIconGrp.CreateUserIcon(user);
-                this.flowUserSelect.Controls.Add(userIcon);
-            }
+            FormMessageBox.Show("まだできてないよ！");
         }
 
         /// <summary>
@@ -103,6 +100,5 @@ namespace PCUITraining.Forms
         {
             PCUITraining.Stop();
         }
-
     }
 }

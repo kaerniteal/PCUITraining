@@ -32,12 +32,12 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnPokeMonTyping = new System.Windows.Forms.Button();
             this.tableMain = new System.Windows.Forms.TableLayoutPanel();
-            this.tableUserSelect = new System.Windows.Forms.TableLayoutPanel();
-            this.flowUserSelect = new System.Windows.Forms.FlowLayoutPanel();
             this.btnPokeMonTypingDataView = new System.Windows.Forms.Button();
             this.btnPokeMonTypingReciprocate = new System.Windows.Forms.Button();
+            this.userSelector = new PCUITCommon.Views.UserSelector();
+            this.pBoxConfig = new System.Windows.Forms.PictureBox();
             this.tableMain.SuspendLayout();
-            this.tableUserSelect.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxConfig)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -80,9 +80,10 @@
             this.tableMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableMain.Controls.Add(this.btnPokeMonTyping, 1, 1);
             this.tableMain.Controls.Add(this.btnClose, 1, 4);
-            this.tableMain.Controls.Add(this.tableUserSelect, 1, 0);
             this.tableMain.Controls.Add(this.btnPokeMonTypingDataView, 2, 1);
             this.tableMain.Controls.Add(this.btnPokeMonTypingReciprocate, 3, 1);
+            this.tableMain.Controls.Add(this.userSelector, 1, 0);
+            this.tableMain.Controls.Add(this.pBoxConfig, 3, 0);
             this.tableMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableMain.Location = new System.Drawing.Point(0, 0);
             this.tableMain.Name = "tableMain";
@@ -94,30 +95,6 @@
             this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableMain.Size = new System.Drawing.Size(615, 445);
             this.tableMain.TabIndex = 1;
-            // 
-            // tableUserSelect
-            // 
-            this.tableUserSelect.ColumnCount = 1;
-            this.tableMain.SetColumnSpan(this.tableUserSelect, 3);
-            this.tableUserSelect.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableUserSelect.Controls.Add(this.flowUserSelect, 0, 1);
-            this.tableUserSelect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableUserSelect.Location = new System.Drawing.Point(64, 3);
-            this.tableUserSelect.Name = "tableUserSelect";
-            this.tableUserSelect.RowCount = 3;
-            this.tableUserSelect.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableUserSelect.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableUserSelect.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableUserSelect.Size = new System.Drawing.Size(485, 83);
-            this.tableUserSelect.TabIndex = 100;
-            // 
-            // flowUserSelect
-            // 
-            this.flowUserSelect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowUserSelect.Location = new System.Drawing.Point(3, 13);
-            this.flowUserSelect.Name = "flowUserSelect";
-            this.flowUserSelect.Size = new System.Drawing.Size(479, 57);
-            this.flowUserSelect.TabIndex = 0;
             // 
             // btnPokeMonTypingDataView
             // 
@@ -147,6 +124,28 @@
             this.btnPokeMonTypingReciprocate.UseVisualStyleBackColor = false;
             this.btnPokeMonTypingReciprocate.Click += new System.EventHandler(this.btnPokeMonTypingReciprocate_Click);
             // 
+            // userSelector
+            // 
+            this.userSelector.BackColor = System.Drawing.Color.Transparent;
+            this.tableMain.SetColumnSpan(this.userSelector, 2);
+            this.userSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userSelector.Location = new System.Drawing.Point(64, 3);
+            this.userSelector.Name = "userSelector";
+            this.userSelector.Size = new System.Drawing.Size(424, 83);
+            this.userSelector.TabIndex = 102;
+            // 
+            // pBoxConfig
+            // 
+            this.pBoxConfig.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pBoxConfig.Image = ((System.Drawing.Image)(resources.GetObject("pBoxConfig.Image")));
+            this.pBoxConfig.Location = new System.Drawing.Point(494, 3);
+            this.pBoxConfig.Name = "pBoxConfig";
+            this.pBoxConfig.Size = new System.Drawing.Size(55, 83);
+            this.pBoxConfig.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBoxConfig.TabIndex = 103;
+            this.pBoxConfig.TabStop = false;
+            this.pBoxConfig.Click += new System.EventHandler(this.pBoxConfig_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -161,7 +160,7 @@
             this.Text = "Typing Exercise";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableMain.ResumeLayout(false);
-            this.tableUserSelect.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxConfig)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -171,9 +170,9 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnPokeMonTyping;
         private System.Windows.Forms.TableLayoutPanel tableMain;
-        private System.Windows.Forms.TableLayoutPanel tableUserSelect;
-        private System.Windows.Forms.FlowLayoutPanel flowUserSelect;
         private System.Windows.Forms.Button btnPokeMonTypingDataView;
         private System.Windows.Forms.Button btnPokeMonTypingReciprocate;
+        private PCUITCommon.Views.UserSelector userSelector;
+        private System.Windows.Forms.PictureBox pBoxConfig;
     }
 }

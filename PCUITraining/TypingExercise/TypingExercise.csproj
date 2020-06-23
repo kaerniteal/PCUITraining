@@ -144,14 +144,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resorce\getting.mp4" />
-    <Content Include="Resorce\monsterboll.png">
+    <Content Include="TypExcResorce\getting.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resorce\loading.mp4">
+    <Content Include="TypExcResorce\monsterboll.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resorce\up!.gif">
+    <Content Include="TypExcResorce\loading.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypExcResorce\up!.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="WordSet\PokemonSet\PocketMonsterList.txt">
