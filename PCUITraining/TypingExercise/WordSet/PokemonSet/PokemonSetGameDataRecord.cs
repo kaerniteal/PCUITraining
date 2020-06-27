@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TypingExercise.WordSet.PokemonSet
 {
     /// <summary>
     /// ポケモンタイプゲームデータレコード.
     /// </summary>
+    [Serializable]
     public class PokemonSetGameDataRecord
     {
         /// <summary>

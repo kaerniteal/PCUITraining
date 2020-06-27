@@ -6,7 +6,7 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算右方向クラス.
+    /// MusExc移動方向演算右方向クラス.
     /// </summary>
     public class MusExcExecutorMovementRight : MusExcExecutorMovementBase
     {
@@ -20,7 +20,7 @@ namespace MouseExercise.Executors
             // 新しい座標をセット.
             var y = UtilRandom.Next(GetEndOfBottom(state, size));
             state.MovingPoint = new Point(0, y);
-            state.CurMovement = MOVEMENT.RIGHT;
+            state.CurrentMovement = MOVEMENT.RIGHT;
         }
 
         /// <summary>

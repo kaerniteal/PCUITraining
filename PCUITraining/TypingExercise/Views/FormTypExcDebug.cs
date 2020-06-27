@@ -89,7 +89,7 @@ namespace TypingExercise.Views
                     // 画像URLから画像データを取得.
                     var downloader = new Downloader(wc);
 
-                    for( var ii = 0; ii < urls.Count; ii++ )
+                    for (var ii = 0; ii < urls.Count; ii++)
                     {
                         var image = downloader.GetImage(urls[ii]);
 

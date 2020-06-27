@@ -5,7 +5,6 @@ using MouseExercise.MusExcSet;
 using PCUITCommon;
 using System;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 using static MouseExercise.Definitions.MusExcEnums;
 
@@ -121,7 +120,7 @@ namespace MouseExercise.Views
         /// <param name="e"></param>
         private void FormMusExc_MouseDown(object sender, MouseEventArgs e)
         {
-            switch(e.Button)
+            switch (e.Button)
             {
                 case MouseButtons.Left:
                     Console.WriteLine("left press");
@@ -228,7 +227,7 @@ namespace MouseExercise.Views
             if (PCUIT.Conf.IsDebug)
             {
                 var debugShot = "Unit Count:{0}\n".Fmt(this.SharedData.UnitStateArray.Length);
-                foreach(var unitState in this.SharedData.UnitStateArray)
+                foreach (var unitState in this.SharedData.UnitStateArray)
                 {
                     debugShot += "{0} > {1} {2} {3}\n".Fmt(
                         unitState.Id,
@@ -312,7 +311,7 @@ namespace MouseExercise.Views
         /// <param name="max">最大数</param>
         private void InitUnitArray(int max)
         {
-            for(var ii = 0; ii < this.UnitArray.Length; ii++ )
+            for (var ii = 0; ii < this.UnitArray.Length; ii++)
             {
                 if (null == this.UnitArray[ii])
                 {
@@ -387,7 +386,7 @@ namespace MouseExercise.Views
             /// <param name="state">ユニットステータス</param>
             public void Update(MusExcSharedDataUnitState state)
             {
-                if(!this.UnitImageFilePath.Equals(state.DefUnit.UnitImageFilePath))
+                if (!this.UnitImageFilePath.Equals(state.DefUnit.UnitImageFilePath))
                 {
                     Console.WriteLine("Image change {0} <> {1}".Fmt(this.UnitImageFilePath, state.DefUnit.UnitImageFilePath));
                     this.UnitImageFilePath = state.DefUnit.UnitImageFilePath;

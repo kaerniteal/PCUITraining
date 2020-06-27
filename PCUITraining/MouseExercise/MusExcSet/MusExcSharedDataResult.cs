@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace MouseExercise.MusExcSet
@@ -38,6 +37,15 @@ namespace MouseExercise.MusExcSet
                     DefUnit = chank.ElementAt(0),
                 })
                 .ToList();
+        }
+
+        /// <summary>
+        /// スコア合計を返す.
+        /// </summary>
+        /// <returns>スコア合計</returns>
+        public int GetTotalScore()
+        {
+            return this.DeadUnitList.Sum(unit => unit.Score);
         }
     }
 }

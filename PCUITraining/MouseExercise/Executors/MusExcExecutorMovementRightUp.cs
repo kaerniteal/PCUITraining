@@ -6,7 +6,7 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算右上方向クラス.
+    /// MusExc移動方向演算右上方向クラス.
     /// </summary>
     public class MusExcExecutorMovementRightUp : MusExcExecutorMovementBase
     {
@@ -32,7 +32,7 @@ namespace MouseExercise.Executors
             }
 
             // 新しい座標をセット.
-            state.CurMovement = MOVEMENT.RIGHTUP;
+            state.CurrentMovement = MOVEMENT.RIGHTUP;
         }
 
         /// <summary>

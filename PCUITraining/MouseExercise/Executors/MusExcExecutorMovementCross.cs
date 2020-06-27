@@ -6,7 +6,7 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算十字方向クラス.
+    /// MusExc移動方向演算十字方向クラス.
     /// </summary>
     public class MusExcExecutorMovementCross : MusExcExecutorMovementBase
     {
@@ -60,7 +60,7 @@ namespace MouseExercise.Executors
         public override TERMINATED IsTerminated(MusExcSharedDataUnitState state, Size size)
         {
             // 十字方向の現在の向きを取得.
-            var movement = GetMovement(state.CurMovement);
+            var movement = GetMovement(state.CurrentMovement);
             return movement.IsTerminated(state, size);
         }
 
@@ -72,7 +72,7 @@ namespace MouseExercise.Executors
         public override void SetNextPoint(MusExcSharedDataUnitState state, Size size)
         {
             // 現在の向きでMovementを取得.
-            var movement = GetMovement(state.CurMovement);
+            var movement = GetMovement(state.CurrentMovement);
             movement.SetNextPoint(state, size);
         }
     }

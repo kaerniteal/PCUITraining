@@ -5,7 +5,7 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算基底クラス.
+    /// MusExc移動方向演算基底クラス.
     /// </summary>
     public abstract class MusExcExecutorMovementBase
     {
@@ -33,13 +33,13 @@ namespace MouseExercise.Executors
 
 
         /// <summary>
-        /// 演算クラスを取得する(ファクトリ).
+        /// 移動方向演算クラスを取得する(ファクトリ).
         /// </summary>
         /// <param name="movement">移動方向</param>
         /// <returns>演算クラス</returns>
         public static MusExcExecutorMovementBase GetMovement(MOVEMENT movement)
         {
-            switch(movement)
+            switch (movement)
             {
                 case MOVEMENT.STATIONARY:         // 静止
                     return new MusExcExecutorMovementStationary();

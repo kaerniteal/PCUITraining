@@ -63,6 +63,8 @@ namespace TypingExercise.Views
                 this.keyboardPanel1.Visible = false;
             }
 
+            this.fingerPanel.SetKeyMap();
+
             this.StartNewGame();
         }
 
@@ -192,6 +194,7 @@ namespace TypingExercise.Views
                 }
 
                 this.keyboardPanel1.SetLightKey(nextKey);
+                this.fingerPanel.SetLightFinger(nextKey);
             }
 
             // MissTypeを表示.

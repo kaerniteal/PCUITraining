@@ -134,7 +134,7 @@ namespace PCUITCommon.Views
             /// </summary>
             public void Clear()
             {
-                foreach(var icon in this.UserIconList)
+                foreach (var icon in this.UserIconList)
                 {
                     icon.SetSelected(false);
                 }

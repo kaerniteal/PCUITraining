@@ -25,7 +25,7 @@ namespace PCUITraining.Forms
             InitializeComponent();
 
             var users = PCUIT.UserDataManager.UserDataList;
-            foreach(var user in users)
+            foreach (var user in users)
             {
                 var btn = new Button();
 
@@ -46,8 +46,8 @@ namespace PCUITraining.Forms
 
             }
 
-//            this.components = new Container();
-//            this.ToolTip = new CustomToolTip(this.components);
+            //            this.components = new Container();
+            //            this.ToolTip = new CustomToolTip(this.components);
             this.ToolTip = new CustomToolTip();
             this.ToolTip.CustomFont = PCUIT.GetFont(48);
             this.ToolTip.FontColor = Color.Red;
@@ -77,6 +77,12 @@ namespace PCUITraining.Forms
         private void btnClose_Click(object sender, EventArgs e)
         {
             PCUITraining.Stop();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var testform = new Common.Controls.Sample.TestCircleEffectForm();
+            testform.ShowDialog();
         }
     }
 }

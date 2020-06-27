@@ -1,7 +1,6 @@
 ﻿using Common.Utilities;
 using MouseExercise.Interfaces;
 using PCUITCommon.Users;
-using System.Linq;
 using System.Windows.Forms;
 using static MouseExercise.Definitions.MusExcEnums;
 
@@ -72,7 +71,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             var resultList = result.GetResultList();
 
             // ゲームデータに反映.
-            foreach(var record in resultList)
+            foreach (var record in resultList)
             {
                 var target = this.GameData.RecordList
                     .Find(rec => rec.Name.Equals(record.UnitName));
@@ -82,8 +81,8 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                     {
                         Name = record.UnitName,
                         CaptureCount = 1,
+                        Score = record.DefUnit.Score,
                         ImageFilePath = record.DefUnit.UnitImageFilePath,
-                        // TODO:スコアも含めるならここで.
                     });
                 }
                 else

@@ -6,7 +6,7 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算斜めクラス.
+    /// MusExc移動方向演算斜めクラス.
     /// </summary>
     public class MusExcExecutorMovementSlant : MusExcExecutorMovementBase
     {
@@ -67,7 +67,7 @@ namespace MouseExercise.Executors
         public override TERMINATED IsTerminated(MusExcSharedDataUnitState state, Size size)
         {
             // 現在の向きを取得.
-            var movement = GetMovement(state.CurMovement);
+            var movement = GetMovement(state.CurrentMovement);
             return movement.IsTerminated(state, size);
         }
 
@@ -79,36 +79,36 @@ namespace MouseExercise.Executors
         public override void SetNextPoint(MusExcSharedDataUnitState state, Size size)
         {
             // 現在の向きでMovementを取得.
-            var movement = GetMovement(state.CurMovement);
+            var movement = GetMovement(state.CurrentMovement);
 
             // 反転設定で、末端に到達した場合は.
             var terminated = movement.IsTerminated(state, size);
             if (TERMINATED.NON != terminated && this.Reflect)
             {
                 // 方向を入れ替える.
-                switch(state.CurMovement)
+                switch (state.CurrentMovement)
                 {
                     case MOVEMENT.LEFTUP:
                         switch (terminated)
                         {
-                            case TERMINATED.LEFT:   state.CurMovement = MOVEMENT.RIGHTUP;   break;
-                            case TERMINATED.TOP:    state.CurMovement = MOVEMENT.LEFTDOWN;  break;
+                            case TERMINATED.LEFT: state.CurrentMovement = MOVEMENT.RIGHTUP; break;
+                            case TERMINATED.TOP: state.CurrentMovement = MOVEMENT.LEFTDOWN; break;
                         }
                         break;
 
                     case MOVEMENT.LEFTDOWN:
                         switch (terminated)
                         {
-                            case TERMINATED.LEFT:   state.CurMovement = MOVEMENT.RIGHTDOWN; break;
-                            case TERMINATED.BOTTOM: state.CurMovement = MOVEMENT.LEFTUP;    break;
+                            case TERMINATED.LEFT: state.CurrentMovement = MOVEMENT.RIGHTDOWN; break;
+                            case TERMINATED.BOTTOM: state.CurrentMovement = MOVEMENT.LEFTUP; break;
                         }
                         break;
 
                     case MOVEMENT.RIGHTUP:
                         switch (terminated)
                         {
-                            case TERMINATED.RIGHT:  state.CurMovement = MOVEMENT.LEFTUP;    break;
-                            case TERMINATED.TOP:    state.CurMovement = MOVEMENT.RIGHTDOWN; break;
+                            case TERMINATED.RIGHT: state.CurrentMovement = MOVEMENT.LEFTUP; break;
+                            case TERMINATED.TOP: state.CurrentMovement = MOVEMENT.RIGHTDOWN; break;
                         }
                         break;
 
@@ -116,8 +116,8 @@ namespace MouseExercise.Executors
                     default:
                         switch (terminated)
                         {
-                            case TERMINATED.RIGHT:  state.CurMovement = MOVEMENT.LEFTDOWN;  break;
-                            case TERMINATED.BOTTOM: state.CurMovement = MOVEMENT.RIGHTUP;   break;
+                            case TERMINATED.RIGHT: state.CurrentMovement = MOVEMENT.LEFTDOWN; break;
+                            case TERMINATED.BOTTOM: state.CurrentMovement = MOVEMENT.RIGHTUP; break;
                         }
                         break;
                 }

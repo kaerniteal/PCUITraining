@@ -6,7 +6,7 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算ランダム方向クラス.
+    /// MusExc移動方向演算ランダム方向クラス.
     /// </summary>
     public class MusExcExecutorMovementRandom : MusExcExecutorMovementBase
     {
@@ -50,7 +50,7 @@ namespace MouseExercise.Executors
             movement.SetInitPoint(state, size);
 
             // 現在方向はランダムで決定する.
-            state.CurMovement = MovementArray.GetRandom();
+            state.CurrentMovement = MovementArray.GetRandom();
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace MouseExercise.Executors
         /// <returns>描画領域の端かどうか</returns>
         public override TERMINATED IsTerminated(MusExcSharedDataUnitState state, Size size)
         {
-            // 現在の向きを取得.
-            var movement = GetMovement(state.CurMovement);
+            // 現在の向きでMovementを取得.
+            var movement = GetMovement(state.CurrentMovement);
             return movement.IsTerminated(state, size);
         }
 
@@ -74,7 +74,7 @@ namespace MouseExercise.Executors
         public override void SetNextPoint(MusExcSharedDataUnitState state, Size size)
         {
             // 現在の向きでMovementを取得.
-            var movement = GetMovement(state.CurMovement);
+            var movement = GetMovement(state.CurrentMovement);
 
             // 確率で方向を変える.
             if (UtilRandom.Next(100) < this.Percent)

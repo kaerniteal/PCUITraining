@@ -1,7 +1,5 @@
 ﻿using Common.Extentions;
-using PCUITCommon;
 using PCUITCommon.Users;
-using PCUITCommon.Views;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -19,6 +17,7 @@ namespace TypingExercise.WordSet.PokemonSet
         /// </summary>
         private UserIconGrp UserIconGrp { get; set; }
 
+
         /// <summary>
         /// コンストラクタ.
         /// </summary>
@@ -27,29 +26,13 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             InitializeComponent();
 
-            this.UserIconGrp = UserIcon.CreateUserIconGrp();
-
             this.webBrowser.Visible = false;
 
             // リストの選択イベントを登録.
             this.ctrlPokemonSetDataViewerList.Selected += this.ListPokeMon_Selected;
 
             // ユーザーアイコンをセット.
-            this.SetUserIcons(userData);
-        }
-
-        /// <summary>
-        /// ユーザーアイコンをセット.
-        /// </summary>
-        /// <param name="userData">選択済みのユーザー(未選択ならnull可)</param>
-        private void SetUserIcons(UserData userData)
-        {
-            foreach (var user in PCUIT.UserDataManager.UserDataList)
-            {
-                var userIcon = this.UserIconGrp.CreateUserIcon(user);
-                userIcon.OnSelected += this.userIcon_Click;
-                this.flowUserSelect.Controls.Add(userIcon);
-            }
+            this.UserIconGrp = this.userSelector.SetUserIcons(this.userIcon_Click);
 
             // 最初からユーザーが選択されている場合.
             if (null != userData)

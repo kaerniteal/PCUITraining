@@ -43,7 +43,7 @@ namespace Common.Controls
         private void ComMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
             // ステータスに合わせて.
-            switch(e.newState)
+            switch (e.newState)
             {
                 case 1:
                     // 再生が終了したら閉じる.

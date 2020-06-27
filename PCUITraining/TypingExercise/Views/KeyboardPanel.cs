@@ -103,6 +103,7 @@ namespace TypingExercise.Views
         /// </summary>
         private Label LastLightKey { get; set; }
 
+
         /// <summary>
         /// コンストラクタ.
         /// </summary>

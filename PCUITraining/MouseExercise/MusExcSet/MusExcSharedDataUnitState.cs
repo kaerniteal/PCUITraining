@@ -42,7 +42,12 @@ namespace MouseExercise.MusExcSet
         /// <summary>
         /// 現在の移動方向.
         /// </summary>
-        public MOVEMENT CurMovement { get; set; }
+        public MOVEMENT CurrentMovement { get; set; }
+
+        /// <summary>
+        /// 現在の挙動位置.
+        /// </summary>
+        public BEHAVIOR_POS CurrentBehavior { get; set; }
 
         /// <summary>
         /// 表示イメージ.
@@ -66,7 +71,8 @@ namespace MouseExercise.MusExcSet
             this.Id = string.Empty;
             this.MovingPoint = new Point(0, 0);
             this.ViewPoint = new Point(0, 0);
-            this.CurMovement = this.DefUnit.Movement;
+            this.CurrentMovement = this.DefUnit.Movement;
+            this.CurrentBehavior = BEHAVIOR_POS.NON;
             this.Image = null;
             this.ImageSize = new Size();
         }

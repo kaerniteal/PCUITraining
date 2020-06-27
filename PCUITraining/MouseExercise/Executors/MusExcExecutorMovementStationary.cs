@@ -6,7 +6,7 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算静止クラス.
+    /// MusExc移動方向演算静止クラス.
     /// </summary>
     public class MusExcExecutorMovementStationary : MusExcExecutorMovementBase
     {
@@ -21,7 +21,7 @@ namespace MouseExercise.Executors
             var x = UtilRandom.Next(GetEndOfRight(state, size));
             var y = UtilRandom.Next(GetEndOfBottom(state, size));
             state.MovingPoint = new Point(x, y);
-            state.CurMovement = MOVEMENT.STATIONARY;
+            state.CurrentMovement = MOVEMENT.STATIONARY;
         }
 
         /// <summary>

@@ -28,75 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.tableUserSelect = new System.Windows.Forms.TableLayoutPanel();
-            this.flowUserSelect = new System.Windows.Forms.FlowLayoutPanel();
-            this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.lblTitleComp = new System.Windows.Forms.Label();
-            this.lblComp = new System.Windows.Forms.Label();
             this.ctrlPokemonSetDataViewerList = new TypingExercise.WordSet.PokemonSet.CtrlPokemonSetDataViewerList();
+            this.lblComp = new System.Windows.Forms.Label();
+            this.lblTitleComp = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.tableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.userSelector = new PCUITCommon.Views.UserSelector();
             this.tableLayout.SuspendLayout();
-            this.tableUserSelect.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayout
+            // ctrlPokemonSetDataViewerList
             // 
-            this.tableLayout.ColumnCount = 3;
-            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayout.Controls.Add(this.tableUserSelect, 0, 0);
-            this.tableLayout.Controls.Add(this.webBrowser, 2, 0);
-            this.tableLayout.Controls.Add(this.btnClose, 0, 3);
-            this.tableLayout.Controls.Add(this.lblTitleComp, 0, 1);
-            this.tableLayout.Controls.Add(this.lblComp, 1, 1);
-            this.tableLayout.Controls.Add(this.ctrlPokemonSetDataViewerList, 0, 2);
-            this.tableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayout.Location = new System.Drawing.Point(0, 0);
-            this.tableLayout.Name = "tableLayout";
-            this.tableLayout.RowCount = 4;
-            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayout.Size = new System.Drawing.Size(1152, 659);
-            this.tableLayout.TabIndex = 0;
+            this.ctrlPokemonSetDataViewerList.BackColor = System.Drawing.Color.Black;
+            this.tableLayout.SetColumnSpan(this.ctrlPokemonSetDataViewerList, 2);
+            this.ctrlPokemonSetDataViewerList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPokemonSetDataViewerList.Location = new System.Drawing.Point(3, 166);
+            this.ctrlPokemonSetDataViewerList.Name = "ctrlPokemonSetDataViewerList";
+            this.ctrlPokemonSetDataViewerList.Size = new System.Drawing.Size(569, 422);
+            this.ctrlPokemonSetDataViewerList.TabIndex = 106;
             // 
-            // tableUserSelect
+            // lblComp
             // 
-            this.tableUserSelect.ColumnCount = 1;
-            this.tableLayout.SetColumnSpan(this.tableUserSelect, 2);
-            this.tableUserSelect.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableUserSelect.Controls.Add(this.flowUserSelect, 0, 1);
-            this.tableUserSelect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableUserSelect.Location = new System.Drawing.Point(3, 3);
-            this.tableUserSelect.Name = "tableUserSelect";
-            this.tableUserSelect.RowCount = 3;
-            this.tableUserSelect.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableUserSelect.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableUserSelect.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableUserSelect.Size = new System.Drawing.Size(569, 125);
-            this.tableUserSelect.TabIndex = 101;
+            this.lblComp.AutoSize = true;
+            this.lblComp.BackColor = System.Drawing.Color.Black;
+            this.lblComp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblComp.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblComp.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblComp.Location = new System.Drawing.Point(175, 131);
+            this.lblComp.Name = "lblComp";
+            this.lblComp.Size = new System.Drawing.Size(397, 32);
+            this.lblComp.TabIndex = 104;
+            this.lblComp.Text = "0/980";
             // 
-            // flowUserSelect
+            // lblTitleComp
             // 
-            this.flowUserSelect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowUserSelect.Location = new System.Drawing.Point(3, 13);
-            this.flowUserSelect.Name = "flowUserSelect";
-            this.flowUserSelect.Size = new System.Drawing.Size(563, 99);
-            this.flowUserSelect.TabIndex = 0;
-            // 
-            // webBrowser
-            // 
-            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser.Location = new System.Drawing.Point(578, 3);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser.Name = "webBrowser";
-            this.tableLayout.SetRowSpan(this.webBrowser, 3);
-            this.webBrowser.Size = new System.Drawing.Size(571, 585);
-            this.webBrowser.TabIndex = 105;
+            this.lblTitleComp.AutoSize = true;
+            this.lblTitleComp.BackColor = System.Drawing.Color.Black;
+            this.lblTitleComp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTitleComp.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblTitleComp.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblTitleComp.Location = new System.Drawing.Point(3, 131);
+            this.lblTitleComp.Name = "lblTitleComp";
+            this.lblTitleComp.Size = new System.Drawing.Size(166, 32);
+            this.lblTitleComp.TabIndex = 104;
+            this.lblTitleComp.Text = "こんぷ率";
+            this.lblTitleComp.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnClose
             // 
@@ -114,42 +91,49 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // lblTitleComp
+            // webBrowser
             // 
-            this.lblTitleComp.AutoSize = true;
-            this.lblTitleComp.BackColor = System.Drawing.Color.Black;
-            this.lblTitleComp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitleComp.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblTitleComp.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblTitleComp.Location = new System.Drawing.Point(3, 131);
-            this.lblTitleComp.Name = "lblTitleComp";
-            this.lblTitleComp.Size = new System.Drawing.Size(166, 32);
-            this.lblTitleComp.TabIndex = 104;
-            this.lblTitleComp.Text = "こんぷ率";
-            this.lblTitleComp.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser.Location = new System.Drawing.Point(578, 3);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.tableLayout.SetRowSpan(this.webBrowser, 3);
+            this.webBrowser.Size = new System.Drawing.Size(571, 585);
+            this.webBrowser.TabIndex = 105;
             // 
-            // lblComp
+            // tableLayout
             // 
-            this.lblComp.AutoSize = true;
-            this.lblComp.BackColor = System.Drawing.Color.Black;
-            this.lblComp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblComp.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblComp.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblComp.Location = new System.Drawing.Point(175, 131);
-            this.lblComp.Name = "lblComp";
-            this.lblComp.Size = new System.Drawing.Size(397, 32);
-            this.lblComp.TabIndex = 104;
-            this.lblComp.Text = "0/980";
+            this.tableLayout.ColumnCount = 3;
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayout.Controls.Add(this.webBrowser, 2, 0);
+            this.tableLayout.Controls.Add(this.btnClose, 0, 3);
+            this.tableLayout.Controls.Add(this.lblTitleComp, 0, 1);
+            this.tableLayout.Controls.Add(this.lblComp, 1, 1);
+            this.tableLayout.Controls.Add(this.ctrlPokemonSetDataViewerList, 0, 2);
+            this.tableLayout.Controls.Add(this.userSelector, 0, 0);
+            this.tableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayout.Location = new System.Drawing.Point(0, 0);
+            this.tableLayout.Name = "tableLayout";
+            this.tableLayout.RowCount = 4;
+            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayout.Size = new System.Drawing.Size(1152, 659);
+            this.tableLayout.TabIndex = 0;
             // 
-            // ctrlPokemonSetDataViewerList
+            // userSelector
             // 
-            this.ctrlPokemonSetDataViewerList.BackColor = System.Drawing.Color.Black;
-            this.tableLayout.SetColumnSpan(this.ctrlPokemonSetDataViewerList, 2);
-            this.ctrlPokemonSetDataViewerList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlPokemonSetDataViewerList.Location = new System.Drawing.Point(3, 166);
-            this.ctrlPokemonSetDataViewerList.Name = "ctrlPokemonSetDataViewerList";
-            this.ctrlPokemonSetDataViewerList.Size = new System.Drawing.Size(569, 422);
-            this.ctrlPokemonSetDataViewerList.TabIndex = 106;
+            this.userSelector.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayout.SetColumnSpan(this.userSelector, 2);
+            this.userSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userSelector.Location = new System.Drawing.Point(3, 3);
+            this.userSelector.Name = "userSelector";
+            this.userSelector.Size = new System.Drawing.Size(569, 125);
+            this.userSelector.TabIndex = 107;
             // 
             // FormPokemonSetDataViewer
             // 
@@ -166,20 +150,18 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableLayout.ResumeLayout(false);
             this.tableLayout.PerformLayout();
-            this.tableUserSelect.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private CtrlPokemonSetDataViewerList ctrlPokemonSetDataViewerList;
         private System.Windows.Forms.TableLayoutPanel tableLayout;
-        private System.Windows.Forms.TableLayoutPanel tableUserSelect;
-        private System.Windows.Forms.FlowLayoutPanel flowUserSelect;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.WebBrowser webBrowser;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitleComp;
         private System.Windows.Forms.Label lblComp;
-        private CtrlPokemonSetDataViewerList ctrlPokemonSetDataViewerList;
+        private PCUITCommon.Views.UserSelector userSelector;
     }
 }

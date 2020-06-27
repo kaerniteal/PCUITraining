@@ -87,6 +87,22 @@
         }
 
         /// <summary>
+        /// 挙動位置.
+        /// </summary>
+        public enum BEHAVIOR_POS
+        {
+            NON,        // なし
+            LEFT,       // 左.
+            RIGHT,      // 右.
+            UP,         // 上.
+            DOWN,       // 下.
+            LEFT_UP,    // 左上.
+            LEFT_DOWN,  // 左下.
+            RIGHT_UP,   // 右上.
+            RIGHT_DOWN, // 右下.
+        }
+
+        /// <summary>
         /// ユニット状態
         /// </summary>
         public enum LIFE_STATE

@@ -33,6 +33,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnNext = new System.Windows.Forms.Button();
             this.tableUserButton = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,6 +87,16 @@
             this.tableUserButton.Size = new System.Drawing.Size(381, 65);
             this.tableUserButton.TabIndex = 2;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 71);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(141, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormMainDebug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -93,6 +104,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(679, 429);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tableUserButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnClose);
@@ -112,5 +124,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.TableLayoutPanel tableUserButton;
+        private System.Windows.Forms.Button button1;
     }
 }

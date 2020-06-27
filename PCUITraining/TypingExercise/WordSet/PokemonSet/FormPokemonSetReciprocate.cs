@@ -1,6 +1,5 @@
 ﻿using Common.Controls;
 using Common.Extentions;
-using PCUITCommon;
 using PCUITCommon.Users;
 using PCUITCommon.Views;
 using System;
@@ -33,28 +32,9 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             InitializeComponent();
 
-            this.UserIconGrpLeft = UserIcon.CreateUserIconGrp();
-            this.UserIconGrpRight = UserIcon.CreateUserIconGrp();
-
             // ユーザーアイコンをセット.
-            this.SetUserIcons();
-        }
-
-        /// <summary>
-        /// ユーザーアイコンをセット.
-        /// </summary>
-        private void SetUserIcons()
-        {
-            foreach (var user in PCUIT.UserDataManager.UserDataList)
-            {
-                var leftIcon = this.UserIconGrpLeft.CreateUserIcon(user);
-                leftIcon.OnSelected += this.userIcon_ClickLeft;
-                this.flowUserSelectLeft.Controls.Add(leftIcon);
-
-                var rightIcon = this.UserIconGrpRight.CreateUserIcon(user);
-                rightIcon.OnSelected += this.userIcon_ClickRight;
-                this.flowUserSelectRight.Controls.Add(rightIcon);
-            }
+            this.UserIconGrpLeft = this.userSelectorLeft.SetUserIcons(this.userIcon_ClickLeft);
+            this.UserIconGrpRight = this.userSelectorRight.SetUserIcons(this.userIcon_ClickRight);
         }
 
         /// <summary>

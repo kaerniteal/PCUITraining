@@ -44,6 +44,11 @@
   <ItemGroup>
     <Compile Include="Configs\MusExcConf.cs" />
     <Compile Include="Definitions\MusExcEnums.cs" />
+    <Compile Include="Executors\MusExcExecutorBehaviorCircle.cs" />
+    <Compile Include="Executors\MusExcExecutorBehaviorSwayUD.cs" />
+    <Compile Include="Executors\MusExcExecutorBehaviorSwayLR.cs" />
+    <Compile Include="Executors\MusExcExecutorBehaviorBlank.cs" />
+    <Compile Include="Executors\MusExcExecutorBehaviorBase.cs" />
     <Compile Include="Executors\MusExcExecutorMovementCross.cs" />
     <Compile Include="Executors\MusExcExecutorMovementLeftDown.cs" />
     <Compile Include="Executors\MusExcExecutorMovementRightDown.cs" />

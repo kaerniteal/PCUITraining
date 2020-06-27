@@ -134,7 +134,7 @@ namespace TypingExercise.WordSet.PokemonSet
                         .ToList();
                     break;
 
-                    // 最速タイム順.
+                // 最速タイム順.
                 case 2:
                     sortedList = this.AllList
                         .Where(elm => 0 != elm.ShortestTime)
@@ -152,7 +152,7 @@ namespace TypingExercise.WordSet.PokemonSet
                 {
                     // 他方が持ってるポケモンを暗くする.
                     var shadow = false;
-                    if (null != this.OthreSideList
+                    if (null != this.OthreSideList && null != this.OthreSideList
                         .Find(pkmn => pkmn.Name.Equals(record.Name)))
                     {
                         shadow = true;
@@ -211,7 +211,7 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <param name="name">選択するポケモン</param>
         public void SetSelected(string name)
         {
-            foreach(var row in this.dgv.Rows)
+            foreach (var row in this.dgv.Rows)
             {
                 var dgvr = row as Dgvr;
                 if (null == dgvr)

@@ -1,5 +1,4 @@
-﻿using PCUITCommon;
-using PCUITCommon.Views;
+﻿using PCUITCommon.Views;
 using System;
 using System.Windows.Forms;
 using TypingExercise;

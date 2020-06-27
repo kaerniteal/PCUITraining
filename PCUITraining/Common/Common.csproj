@@ -67,7 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Animator.cs" />
+    <Compile Include="Controls\AnimationOpacityEffect.cs" />
+    <Compile Include="Controls\AnimationCircleEffect.cs" />
+    <Compile Include="Thread\AnimationTimer.cs" />
     <Compile Include="Controls\CustomToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -76,6 +78,12 @@
     </Compile>
     <Compile Include="Controls\FormMediaPlayer.Designer.cs">
       <DependentUpon>FormMediaPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Sample\TestCircleEffectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Sample\TestCircleEffectForm.Designer.cs">
+      <DependentUpon>TestCircleEffectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Extentions\CommonExtentions.cs" />
     <Compile Include="Extentions\ControlExtensions.cs" />
@@ -94,6 +102,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\FormMediaPlayer.resx">
       <DependentUpon>FormMediaPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Sample\TestCircleEffectForm.resx">
+      <DependentUpon>TestCircleEffectForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

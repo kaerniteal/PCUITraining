@@ -16,9 +16,14 @@
         public string ImageFilePath { get; set; }
 
         /// <summary>
+        /// 得点.
+        /// </summary>
+        public int Score { get; set; }
+
+        /// <summary>
         /// 捕獲数.
         /// </summary>
-        public int CaptureCount { get; set; } 
+        public int CaptureCount { get; set; }
 
 
         /// <summary>
@@ -28,6 +33,7 @@
         {
             this.Name = string.Empty;
             this.ImageFilePath = string.Empty;
+            this.Score = 0;
             this.CaptureCount = 0;
         }
     }

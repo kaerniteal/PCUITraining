@@ -2,9 +2,7 @@
 using Common.Utilities;
 using MouseExercise.Interfaces;
 using MouseExercise.MusExcSet;
-using PCUITCommon;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -230,7 +228,7 @@ namespace MouseExercise.Executors
             this.BeginTime = DateTime.Now;
 
             // メインループ.
-            for (int counter =0; counter < int.MaxValue && this.Continue; counter++)
+            for (int counter = 0; counter < int.MaxValue && this.Continue; counter++)
             {
                 sharedData.Counter = counter;
 
@@ -251,7 +249,7 @@ namespace MouseExercise.Executors
 
                 // ユニットステータスリストを走査して更新.
                 var stateList = this.SharedData.UnitStateArray;
-                for (var ii = 0; ii < stateList.Length; ii++ )
+                for (var ii = 0; ii < stateList.Length; ii++)
                 {
                     var state = stateList[ii];
                     if (null == state)
@@ -268,9 +266,9 @@ namespace MouseExercise.Executors
                     var mover = MusExcExecutorMovementBase.GetMovement(state.DefUnit.Movement);
                     mover.SetNextPoint(state, this.Viewer.GetSize());
 
-                    // TODO:Behaviorの実装が必要.
-                    // とりあえずBehaviorの代わり.
-                    state.ViewPoint = state.MovingPoint;
+                    // 挙動分を加味して実際の表示位置を決定する.
+                    var behavior = MusExcExecutorBehaviorBase.GetBehavior(state.DefUnit.Behavior);
+                    behavior.SetViewPoint(state);
                 }
 
                 // 描画の更新中でなければ.

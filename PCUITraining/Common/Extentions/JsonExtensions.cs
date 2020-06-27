@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.Unicode;
 
 namespace Common.Extentions
@@ -61,12 +62,34 @@ namespace Common.Extentions
             var options = new JsonSerializerOptions
             {
                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),  // これを指定しないと日本語として読めなくなる\uXXXXみたいな値で出力される
-                WriteIndented = indented
+                WriteIndented = indented,
             };
+
+            // ENUMを文字列で出力する.
+//            options.Converters.Add(new JsonStringEnumConverter());
 
             // シリアライズしてファイルに出力する.
             var jsonString = JsonSerializer.Serialize(self, options);
             File.WriteAllText(filePath, jsonString);
+        }
+
+        /// <summary>
+        /// シリアライズオプションを取得する.
+        /// </summary>
+        /// <returns>シリアライズオプション</returns>
+        private static JsonSerializerOptions GetSerializerOption()
+        {
+            // シリアライズオプションを設定する.
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),  // これを指定しないと日本語として読めなくなる\uXXXXみたいな値で出力される
+                WriteIndented = true,
+            };
+
+            // ENUMを文字列で出力する.
+            options.Converters.Add(new JsonStringEnumConverter());
+
+            return options;
         }
     }
 }

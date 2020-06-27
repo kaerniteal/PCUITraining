@@ -33,6 +33,11 @@ namespace MouseExercise.MusExcSet
         public int AmountOfBehavior { get; set; }
 
         /// <summary>
+        /// 得点.
+        /// </summary>
+        public int Score { get; set; }
+
+        /// <summary>
         /// ユニット画像ファイルパス.
         /// </summary>
         public string UnitImageFilePath { get; set; }
@@ -52,6 +57,7 @@ namespace MouseExercise.MusExcSet
             this.AmountOfMovement = 1;
             this.Behavior = BEHAVIOR.NON;
             this.AmountOfBehavior = 1;
+            this.Score = 0;
             this.UnitImageFilePath = string.Empty;
             this.Appearance = 100;
         }

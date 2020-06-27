@@ -6,7 +6,7 @@ using static MouseExercise.Definitions.MusExcEnums;
 namespace MouseExercise.Executors
 {
     /// <summary>
-    /// MusExc演算垂直方向クラス.
+    /// MusExc移動方向演算垂直方向クラス.
     /// </summary>
     public class MusExcExecutorMovementVertical : MusExcExecutorMovementBase
     {
@@ -56,7 +56,7 @@ namespace MouseExercise.Executors
         public override TERMINATED IsTerminated(MusExcSharedDataUnitState state, Size size)
         {
             // 左右方向の現在の向きを取得.
-            var movement = GetMovement(state.CurMovement);
+            var movement = GetMovement(state.CurrentMovement);
             return movement.IsTerminated(state, size);
         }
 
@@ -68,19 +68,19 @@ namespace MouseExercise.Executors
         public override void SetNextPoint(MusExcSharedDataUnitState state, Size size)
         {
             // 現在の向きでMovementを取得.
-            var movement = GetMovement(state.CurMovement);
+            var movement = GetMovement(state.CurrentMovement);
 
             // 反転設定で、末端に到達した場合は.
             if (TERMINATED.NON != movement.IsTerminated(state, size) && this.Reflect)
             {
                 // 上下を入れ替える.
-                if (MOVEMENT.UP == state.CurMovement)
+                if (MOVEMENT.UP == state.CurrentMovement)
                 {
-                    state.CurMovement = MOVEMENT.DOWN;
+                    state.CurrentMovement = MOVEMENT.DOWN;
                 }
                 else
                 {
-                    state.CurMovement = MOVEMENT.UP;
+                    state.CurrentMovement = MOVEMENT.UP;
                 }
             }
             else

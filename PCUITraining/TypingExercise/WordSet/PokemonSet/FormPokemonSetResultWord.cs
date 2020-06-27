@@ -18,7 +18,7 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             InitializeComponent();
 
-            Opacity = 0;
+            this.Opacity = 0;
         }
 
         /// <summary>
@@ -84,17 +84,8 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <param name="e"></param>
         private void PocketMonsterResultWord_Load(object sender, System.EventArgs e)
         {
-            Animator.Animate(100, (frame, frequency) =>
-            {
-                if (!Visible || IsDisposed)
-                {
-                    return false;
-                }
-
-                Opacity = (double)frame / frequency;
-
-                return true;
-            });
+            var aoe = new AnimationOpacityEffect(this);
+            aoe.FadeIn(200);
         }
     }
 }
