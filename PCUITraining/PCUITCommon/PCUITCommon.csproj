@@ -54,6 +54,12 @@
     <Compile Include="Views\FormMessageBox.Designer.cs">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\FormWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormWait.Designer.cs">
+      <DependentUpon>FormWait.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserIcon.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -77,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\FormMessageBox.resx">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormWait.resx">
+      <DependentUpon>FormWait.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UserIcon.resx">
       <DependentUpon>UserIcon.cs</DependentUpon>

@@ -107,6 +107,5 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             this.Close();
         }
-
     }
 }

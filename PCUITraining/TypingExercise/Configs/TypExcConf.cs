@@ -31,6 +31,7 @@ namespace TypingExercise.Configs
             this.BaseCaptureProbability = 20;
             this.ShowKeyboard = true;
             this.KeyBoardFontSize = 20;
+            this.ShowFinger = true;
             this.NnumberOfQuestions = 10;
             this.ShowLogCaptureJudg = false;
         }
@@ -49,6 +50,11 @@ namespace TypingExercise.Configs
         /// キーボードナビゲーションのフォントサイズ.
         /// </summary>
         public int KeyBoardFontSize { get; set; }
+
+        /// <summary>
+        /// 指パネルを表示するかどうか.
+        /// </summary>
+        public bool ShowFinger { get; set; }
 
         /// <summary>
         /// 1プレイの問題数.

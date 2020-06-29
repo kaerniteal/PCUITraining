@@ -1,6 +1,7 @@
 ﻿using Common.Utilities;
 using MouseExercise.Interfaces;
 using PCUITCommon.Users;
+using System.Linq;
 using System.Windows.Forms;
 using static MouseExercise.Definitions.MusExcEnums;
 
@@ -67,7 +68,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         /// <returns>ダイアログリザルト</returns>
         public DialogResult ShowSetResultDlg(MusExcSharedDataResult result)
         {
-            // 結果をリストで取得.
+            // 捕獲結果をリストで取得.
             var resultList = result.GetResultList();
 
             // ゲームデータに反映.
@@ -91,6 +92,19 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 }
             }
 
+            // スコアを反映.
+            var scoreList = this.GameData.ScoreList;
+            scoreList.Add(result.GetTotalScore());
+            var sortedList = scoreList
+                .OrderByDescending(score => score)
+                .ToList();
+            if (10 < sortedList.Count)
+            {
+                sortedList.RemoveAt(10);
+            }
+
+            this.GameData.ScoreList = sortedList;
+
             // 結果を更新.
             // ユーザーデータが無ければ保存しない.
             if (null != this.UserData)
@@ -98,10 +112,9 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 this.GameData.Save(this.UserData);
             }
 
-            // TODO:結果ダイアログ表示.
-
-
-            return DialogResult.Cancel;
+            // 結果ダイアログ表示.
+            var dlg = new FormInsectCollectingSetResult();
+            return dlg.ShowSetResultDlg(result, this.GameData);
         }
     }
 }

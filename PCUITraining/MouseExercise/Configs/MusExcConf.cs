@@ -33,7 +33,7 @@ namespace MouseExercise.Configs
             this.UnitMax = 10;
             this.DefaultGameSec = 60000;
             this.RespawnWait = 500;
-            this.IncreaseTime = 0;
+            this.IncreaseTime = 1000;
             this.AppearanceProbabilityEqual = false;
             this.DiffcultyLvUpCount = 5;
             this.EnableDifficultyVeryEasy = true;

@@ -239,7 +239,6 @@ namespace MouseExercise.Executors
                 if (remaining <= 0)
                 {
                     // 終了処理.
-                    sharedData.Result = new MusExcSharedDataResult();
                     this.Viewer.ShowSetResult();
                     break;
                 }

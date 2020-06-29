@@ -36,6 +36,7 @@
             this.btnPokeMonTypingReciprocate = new System.Windows.Forms.Button();
             this.userSelector = new PCUITCommon.Views.UserSelector();
             this.pBoxConfig = new System.Windows.Forms.PictureBox();
+            this.btnInsectCollecting = new System.Windows.Forms.Button();
             this.tableMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxConfig)).BeginInit();
             this.SuspendLayout();
@@ -84,6 +85,7 @@
             this.tableMain.Controls.Add(this.btnPokeMonTypingReciprocate, 3, 1);
             this.tableMain.Controls.Add(this.userSelector, 1, 0);
             this.tableMain.Controls.Add(this.pBoxConfig, 3, 0);
+            this.tableMain.Controls.Add(this.btnInsectCollecting, 1, 2);
             this.tableMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableMain.Location = new System.Drawing.Point(0, 0);
             this.tableMain.Name = "tableMain";
@@ -146,6 +148,20 @@
             this.pBoxConfig.TabStop = false;
             this.pBoxConfig.Click += new System.EventHandler(this.pBoxConfig_Click);
             // 
+            // btnInsectCollecting
+            // 
+            this.btnInsectCollecting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnInsectCollecting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInsectCollecting.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsectCollecting.ForeColor = System.Drawing.Color.LimeGreen;
+            this.btnInsectCollecting.Location = new System.Drawing.Point(64, 181);
+            this.btnInsectCollecting.Name = "btnInsectCollecting";
+            this.btnInsectCollecting.Size = new System.Drawing.Size(363, 83);
+            this.btnInsectCollecting.TabIndex = 1;
+            this.btnInsectCollecting.Text = "マウスで昆虫採集";
+            this.btnInsectCollecting.UseVisualStyleBackColor = false;
+            this.btnInsectCollecting.Click += new System.EventHandler(this.btnInsectCollecting_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -174,5 +190,6 @@
         private System.Windows.Forms.Button btnPokeMonTypingReciprocate;
         private PCUITCommon.Views.UserSelector userSelector;
         private System.Windows.Forms.PictureBox pBoxConfig;
+        private System.Windows.Forms.Button btnInsectCollecting;
     }
 }

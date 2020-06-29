@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using Common.Extentions;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Common.Controls
 {
@@ -28,6 +30,12 @@ namespace Common.Controls
             ComMediaPlayer.settings.playCount = playCount;
 
             ComMediaPlayer.Visible = true;
+
+            if (!File.Exists(url))
+            {
+                MessageBox.Show("ファイルが見つかりません：{0}".Fmt(url));
+                return;
+            }
 
             // 再生開始.
             ComMediaPlayer.URL = url;

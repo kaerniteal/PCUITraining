@@ -19,7 +19,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         /// <summary>
         /// トータルスコアリスト.
         /// </summary>
-        public int[] ScoreList { get; set; }
+        public List<int> ScoreList { get; set; }
 
         /// <summary>
         /// データレコードリスト.
@@ -33,8 +33,8 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         public InsectCollectingSetGameData()
         {
             this.RecordList = new List<InsectCollectingSetGameDataRecord>();
+            this.ScoreList = new List<int>();
         }
-
 
         /// <summary>
         /// ロード処理.

@@ -35,7 +35,8 @@ namespace MouseExercise.Executors
                     return new MusExcExecutorBehaviorSwayUD();
 
                 case BEHAVIOR.CIRCLE:   // 円運動
-                                        // TODO:未実装
+                    return new MusExcExecutorBehaviorCircle();
+
                 default:
                     return new MusExcExecutorBehaviorBlank();
             }
@@ -88,6 +89,7 @@ namespace MouseExercise.Executors
                     break;
             }
 
+            unitState.CurrentBehavior = pos;
             unitState.ViewPoint = viewPoint;
         }
     }

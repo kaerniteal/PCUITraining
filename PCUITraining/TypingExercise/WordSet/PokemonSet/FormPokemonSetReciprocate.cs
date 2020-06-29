@@ -133,7 +133,7 @@ namespace TypingExercise.WordSet.PokemonSet
 
             // ダミーの動画.
             var md = new FormMediaPlayer();
-            md.Play(@"./Resorce/loading.mp4", 3);
+            md.Play(@"./TypExcResorce/loading.mp4", 3);
 
             // 交換処理.
             if (this.DoReciprocate(leftUser, leftRec, rightUser, rightRec))

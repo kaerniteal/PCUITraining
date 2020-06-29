@@ -1,5 +1,7 @@
 ﻿using Common.Controls;
+using Common.Utilities;
 using MouseExercise;
+using MouseExercise.MusExcSet;
 using MouseExercise.MusExcSet.InsectCollectingSet;
 using MouseExercise.Views;
 using PCUITCommon;
@@ -7,6 +9,7 @@ using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using TypingExercise;
 using TypingExercise.Views;
@@ -45,14 +48,6 @@ namespace PCUITraining.Forms
                 this.tableUserButton.Controls.Add(btn, 0, 0);
 
             }
-
-            //            this.components = new Container();
-            //            this.ToolTip = new CustomToolTip(this.components);
-            this.ToolTip = new CustomToolTip();
-            this.ToolTip.CustomFont = PCUIT.GetFont(48);
-            this.ToolTip.FontColor = Color.Red;
-            this.ToolTip.BackgroundColor = Color.DimGray;
-            this.ToolTip.SetToolTip(this.pictureBox1, "ミスタイプ！");
         }
 
         private void btnPokeMonTyping_Click(object sender, EventArgs e)
@@ -66,7 +61,7 @@ namespace PCUITraining.Forms
         {
             var userData = new UserData
             {
-                Name = "Tester",
+                Name = "けんた",
             };
             var musExcSet = MusExc.GetMusExcSet(InsectCollectingSet.Name);
             var gameInstance = musExcSet.GetGameInstance(userData);
@@ -81,8 +76,15 @@ namespace PCUITraining.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var testform = new Common.Controls.Sample.TestCircleEffectForm();
-            testform.ShowDialog();
+            var result = new MusExcSharedDataResult();
+            var qList = InsectCollectingSetQuestionList.Load();
+            result.DeadUnitList = qList.QuestionList
+                .SelectMany(q => q.UnitList)
+                .ToList();
+
+            var game = new InsectCollectingSetGameData();
+            var ficsr = new FormInsectCollectingSetResult();
+            ficsr.ShowSetResultDlg(result, game);
         }
     }
 }

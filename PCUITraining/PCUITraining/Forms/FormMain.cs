@@ -1,4 +1,7 @@
-﻿using PCUITCommon.Views;
+﻿using MouseExercise;
+using MouseExercise.MusExcSet.InsectCollectingSet;
+using MouseExercise.Views;
+using PCUITCommon.Views;
 using System;
 using System.Windows.Forms;
 using TypingExercise;
@@ -62,6 +65,26 @@ namespace PCUITraining.Forms
 
             var instance = wordSet.GetGameInstance(userData);
             var formExec = new FormTypExc(instance);
+            formExec.ShowDialog();
+        }
+
+        /// <summary>
+        /// マウスで昆虫採集.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnInsectCollecting_Click(object sender, EventArgs e)
+        {
+            var userData = UserIconGrp.GetSelectedUserData();
+            if (null == userData)
+            {
+                FormMessageBox.Show("ユーザーを選択してください");
+                return;
+            }
+
+            var musExcSet = MusExc.GetMusExcSet(InsectCollectingSet.Name);
+            var gameInstance = musExcSet.GetGameInstance(userData);
+            var formExec = new FormMusExc(gameInstance);
             formExec.ShowDialog();
         }
 
