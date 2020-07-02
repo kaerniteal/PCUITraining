@@ -350,6 +350,15 @@ namespace MouseExercise.Executors
         }
 
         /// <summary>
+        /// 重なり合いのチェック.
+        /// </summary>
+        /// <returns>重なっているかどうか</returns>
+        private bool CheckOverlap()
+        {
+            return false;
+        }
+
+        /// <summary>
         /// 現在の設問中データインナークラス.
         /// </summary>
         private class CurrentQData

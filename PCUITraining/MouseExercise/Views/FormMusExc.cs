@@ -5,6 +5,8 @@ using MouseExercise.MusExcSet;
 using PCUITCommon;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using static MouseExercise.Definitions.MusExcEnums;
 
@@ -45,6 +47,16 @@ namespace MouseExercise.Views
         /// </summary>
         public Size ViewSize { get; set; }
 
+        /// <summary>
+        /// カーソルOFF
+        /// </summary>
+        private Cursor CursorOff { get; set; }
+
+        /// <summary>
+        /// カーソルON
+        /// </summary>
+        private Cursor CursorOn { get; set; }
+
 
         /// <summary>
         /// コンストラクタ.
@@ -74,6 +86,10 @@ namespace MouseExercise.Views
             {
                 this.WindowState = FormWindowState.Normal;
             }
+
+            // Cusor をロード.
+            this.CursorOff = new Cursor(@".\MusExcResorce\InsectCollectingOff.cur");
+            this.CursorOn  = new Cursor(@".\MusExcResorce\InsectCollectingOn.cur");
         }
 
         /// <summary>
@@ -85,6 +101,10 @@ namespace MouseExercise.Views
         {
             // 別スレッドでも参照するため、サイズを別インスタンス化しておく.
             this.ViewSize = new Size(this.Size.Width, this.Size.Height);
+
+            // Cusor をセット.
+            this.Cursor = this.CursorOff;
+
             this.StartNewGame();
         }
 
@@ -120,6 +140,9 @@ namespace MouseExercise.Views
         /// <param name="e"></param>
         private void FormMusExc_MouseDown(object sender, MouseEventArgs e)
         {
+            // Cusor をセット.
+            this.Cursor = this.CursorOn;
+
             switch (e.Button)
             {
                 case MouseButtons.Left:
@@ -141,7 +164,8 @@ namespace MouseExercise.Views
         /// <param name="e"></param>
         private void FormMusExc_MouseUp(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("release");
+            // Cusor をセット.
+            this.Cursor = this.CursorOff;
         }
 
         /// <summary>
@@ -319,6 +343,8 @@ namespace MouseExercise.Views
                     {
                         var pb = new UnitPBox(ii);
                         pb.MouseDown += new MouseEventHandler(this.PBox_MouseDown);
+                        pb.MouseDown += new MouseEventHandler(this.FormMusExc_MouseDown);
+                        pb.MouseUp += new MouseEventHandler(this.FormMusExc_MouseUp);
                         this.Controls.Add(pb);
                         this.UnitArray[ii] = pb;
                     }
