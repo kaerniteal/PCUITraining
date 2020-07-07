@@ -38,6 +38,7 @@
             this.pPanel = new TypingExercise.Views.PicturePanel();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.fingerPanel = new TypingExercise.Views.FingerPanel();
+            this.lblMissTypes = new System.Windows.Forms.Label();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,6 +162,7 @@
             this.tableLayoutPanel.Controls.Add(this.lblSpelling3, 2, 2);
             this.tableLayoutPanel.Controls.Add(this.lblSpelling4, 3, 2);
             this.tableLayoutPanel.Controls.Add(this.fingerPanel, 0, 4);
+            this.tableLayoutPanel.Controls.Add(this.lblMissTypes, 4, 2);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -170,6 +172,7 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.9071F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.08197F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.68852F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(1152, 659);
             this.tableLayoutPanel.TabIndex = 4;
             // 
@@ -183,6 +186,19 @@
             this.fingerPanel.Size = new System.Drawing.Size(569, 184);
             this.fingerPanel.TabIndex = 0;
             this.fingerPanel.TabStop = false;
+            // 
+            // lblMissTypes
+            // 
+            this.lblMissTypes.AutoSize = true;
+            this.lblMissTypes.BackColor = System.Drawing.Color.DimGray;
+            this.lblMissTypes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMissTypes.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblMissTypes.ForeColor = System.Drawing.Color.Red;
+            this.lblMissTypes.Location = new System.Drawing.Point(463, 180);
+            this.lblMissTypes.Name = "lblMissTypes";
+            this.lblMissTypes.Size = new System.Drawing.Size(109, 157);
+            this.lblMissTypes.TabIndex = 1000;
+            this.lblMissTypes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormTypExc
             // 
@@ -215,5 +231,6 @@
         private KeyboardPanel keyboardPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private FingerPanel fingerPanel;
+        private System.Windows.Forms.Label lblMissTypes;
     }
 }

@@ -17,14 +17,9 @@ namespace TypingExercise.WordSet.PokemonSet
         public static readonly string FileNameFormat = @"{0}.dat";
 
         /// <summary>
-        /// 単語入力毎に結果を表示するかどうか.
+        /// ユーザー毎設定.
         /// </summary>
-        public bool ShowWordResult { get; set; }
-
-        /// <summary>
-        /// 綴りを大文字で表示するかどうか.
-        /// </summary>
-        public bool ShowSpellUpper { get; set; }
+        public WordConf WordConf { get; set; }
 
         /// <summary>
         /// Web画像検索時追加キーワード.
@@ -42,8 +37,7 @@ namespace TypingExercise.WordSet.PokemonSet
         /// </summary>
         public PokemonSetGameData()
         {
-            this.ShowWordResult = true;
-            this.ShowSpellUpper = false;
+            this.WordConf = new WordConf();
             this.AddWebImageSearchKeywordList = new List<string>
             {
                 @"ポケモン図鑑",

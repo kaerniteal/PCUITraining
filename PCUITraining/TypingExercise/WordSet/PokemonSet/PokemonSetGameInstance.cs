@@ -28,6 +28,11 @@ namespace TypingExercise.WordSet.PokemonSet
         /// </summary>
         private PokemonSetGameData GameData { get; set; }
 
+        /// <summary>
+        /// マスタボールが使用された対象.
+        /// </summary>
+        private WordResult UsedMasterBoll { get; set; }
+
 
         /// <summary>
         /// コンストラクタ
@@ -39,6 +44,7 @@ namespace TypingExercise.WordSet.PokemonSet
             this.PokemonSet = pokemonSet;
             this.UserData = userData;
             this.GameData = PokemonSetGameData.Load(userData);
+            this.UsedMasterBoll = null;
         }
 
         /// <summary>
@@ -48,16 +54,17 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <returns>単語リスト</returns>
         public List<WordBase> CreateNewWordList(int length)
         {
+            this.UsedMasterBoll = null;
             return this.PokemonSet.CreateNewWordList(length);
         }
 
         /// <summary>
-        /// アルファベットを大文字で表示するかどうか.
+        /// 共通設定を返す.
         /// </summary>
-        /// <returns>true:大文字 false：小文字</returns>
-        public bool ShowSpellUpper()
+        /// <returns>共通設定eturns>
+        public WordConf GetWordConf()
         {
-            return this.GameData.ShowSpellUpper;
+            return this.GameData.WordConf;
         }
 
         /// <summary>
@@ -83,14 +90,21 @@ namespace TypingExercise.WordSet.PokemonSet
 
         public void ShowWordResult(WordResult result)
         {
-            if (!this.GameData.ShowWordResult)
+            if (!this.GameData.WordConf.ShowWordResult)
             {
                 return;
             }
 
             // 単語の結果表示ダイアログを表示.
-            var wordResultDlg = new FormPokemonSetResultWord();
-            wordResultDlg.ShowWordResultDlg(result);
+            var useMasterBoll = null == this.UsedMasterBoll;
+            var wordResultDlg = new FormPokemonSetResultWord(result, useMasterBoll);
+            wordResultDlg.ShowDialog();
+
+            // マスターボールが押されている場合.
+            if (result.UseMasterBoll)
+            {
+                this.UsedMasterBoll = result;
+            }
         }
 
         /// <summary>

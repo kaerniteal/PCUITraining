@@ -77,10 +77,7 @@ namespace MouseExercise.Views
             this.UnitArray = new UnitPBox[MusExc.Conf.UnitMax];
             this.Updating = false;
 
-            if (PCUIT.Conf.IsDebug)
-            {
-                this.lblGot.Visible = true;
-            }
+            this.lblGot.Visible = true;
 
             if (MusExc.Conf.IsOffice)
             {
@@ -248,19 +245,7 @@ namespace MouseExercise.Views
             this.lblTime.Text = this.SharedData.GetRemaining();
 
             // デバッグ出力
-            if (PCUIT.Conf.IsDebug)
-            {
-                var debugShot = "Unit Count:{0}\n".Fmt(this.SharedData.UnitStateArray.Length);
-                foreach (var unitState in this.SharedData.UnitStateArray)
-                {
-                    debugShot += "{0} > {1} {2} {3}\n".Fmt(
-                        unitState.Id,
-                        unitState.LifeState,
-                        unitState.ViewPoint,
-                        unitState.DefUnit.UnitImageFilePath);
-                }
-                this.lblGot.Text = debugShot;
-            }
+            var debugShot = "Unit Count:{0}\n".Fmt(this.SharedData.UnitStateArray.Length);
 
             // ユニットリスト
             var unitStateArray = this.SharedData.UnitStateArray;
@@ -295,7 +280,18 @@ namespace MouseExercise.Views
                     this.Invalidate(oldRect);
                     this.Update();
                 }
+
+                // DEBGU情報.
+                debugShot += "{0} > {1} {2} {3} {4} {5}\n".Fmt(
+                    state.Id,
+                    state.LifeState,
+                    state.ViewPoint,
+                    state.DefUnit.UnitImageFilePath,
+                    unit.Visible,
+                    unit.Image);
             }
+
+            this.lblGot.Text = debugShot;
 
             this.Updating = false;
         }
@@ -414,9 +410,11 @@ namespace MouseExercise.Views
             {
                 if (!this.UnitImageFilePath.Equals(state.DefUnit.UnitImageFilePath))
                 {
-                    Console.WriteLine("Image change {0} <> {1}".Fmt(this.UnitImageFilePath, state.DefUnit.UnitImageFilePath));
                     this.UnitImageFilePath = state.DefUnit.UnitImageFilePath;
-                    this.Image = state.Image;
+                    this.Image = MusExc.Conf.IsOffice
+                        ? new Bitmap(@".\MusExcResorce\dummy.jpg")
+                        : new Bitmap(state.DefUnit.UnitImageFilePath);
+                    ;
                 }
             }
 

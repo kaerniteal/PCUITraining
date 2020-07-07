@@ -18,10 +18,10 @@ namespace TypingExercise.Interfaces
         List<WordBase> CreateNewWordList(int length);
 
         /// <summary>
-        /// アルファベットを大文字で表示するかどうか.
+        /// 共通設定を返す..
         /// </summary>
-        /// <returns>true:大文字 false：小文字</returns>
-        bool ShowSpellUpper();
+        /// <returns>共通設定eturns>
+        WordConf GetWordConf();
 
         /// <summary>
         /// Web検索キーワードを生成する.

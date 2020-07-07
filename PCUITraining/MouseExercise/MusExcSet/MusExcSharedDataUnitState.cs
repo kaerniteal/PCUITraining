@@ -50,11 +50,6 @@ namespace MouseExercise.MusExcSet
         public BEHAVIOR_POS CurrentBehavior { get; set; }
 
         /// <summary>
-        /// 表示イメージ.
-        /// </summary>
-        public Bitmap Image { get; set; }
-
-        /// <summary>
         /// 画像サイズ.
         /// </summary>
         public Size ImageSize { get; set; }
@@ -73,7 +68,6 @@ namespace MouseExercise.MusExcSet
             this.ViewPoint = new Point(0, 0);
             this.CurrentMovement = this.DefUnit.Movement;
             this.CurrentBehavior = BEHAVIOR_POS.NON;
-            this.Image = null;
             this.ImageSize = new Size();
         }
     }

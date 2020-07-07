@@ -195,7 +195,10 @@ namespace MouseExercise.Executors
             }
 
             // 有効な難易度がない場合は下げていく.
-            for (var ii = baseIndex; 0 < ii; ii--)
+            var downMax = baseIndex < difficultyList.Length - 1
+                ? baseIndex
+                : difficultyList.Length - 1;
+            for (var ii = downMax; 0 < ii; ii--)
             {
                 var elem = difficultyList[ii];
                 if (elem.Item2)
@@ -329,18 +332,13 @@ namespace MouseExercise.Executors
                 // 定義を設定.
                 state.DefUnit = defUnit;
 
-                // 画像を生成.
-                if (MusExc.Conf.IsOffice)
-                {
-                    state.Image = new Bitmap(@".\MusExcResorce\dummy.jpg");
-                }
-                else
-                {
-                    state.Image = new Bitmap(defUnit.UnitImageFilePath);
-                }
+                // 画像のサイズを取得.
+                var image = MusExc.Conf.IsOffice
+                    ? new Bitmap(@".\MusExcResorce\dummy.jpg")
+                    : new Bitmap(defUnit.UnitImageFilePath);
                 state.ImageSize = new Size(
-                    state.Image.Size.Width,
-                    state.Image.Size.Height);
+                    image.Size.Width,
+                    image.Size.Height);
 
                 // 座標の初期値を設定する.
                 // TODO:重複判定、重複した場合には初期位置の再抽選を行う.

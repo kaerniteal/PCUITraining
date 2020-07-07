@@ -28,7 +28,7 @@ namespace MouseExercise.Executors
             {
                 // 下からの場合.
                 var x = UtilRandom.Next(GetEndOfRight(state, size));
-                state.MovingPoint = new Point(x, size.Height);
+                state.MovingPoint = new Point(x, size.Height - state.ImageSize.Height);
             }
 
             // 新しい座標をセット.

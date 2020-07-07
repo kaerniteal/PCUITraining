@@ -1,11 +1,9 @@
-﻿using Common.Controls;
-using Common.Extentions;
+﻿using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Datas;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
@@ -21,7 +19,7 @@ namespace TypingExercise.Views
     public partial class FormTypExc : Form, ITypExcViewer
     {
         /// <summary>
-        /// ユーザーデータ.
+        /// ゲームインスタンス.
         /// </summary>
         private ITypExcGameInstance GameInstance { get; set; }
 
@@ -29,11 +27,6 @@ namespace TypingExercise.Views
         /// 実行インタフェース.
         /// </summary>
         private ITypExcExecutor Executor { get; set; }
-
-        /// <summary>
-        /// ミスタイプ表示ToolTip
-        /// </summary>
-        private CustomToolTip MissBallon { get; set; }
 
 
         /// <summary>
@@ -47,23 +40,18 @@ namespace TypingExercise.Views
             this.GameInstance = gameInstance;
             this.Executor = null;
 
-            this.MissBallon = new CustomToolTip
-            {
-                CustomFont = PCUIT.GetFont(48),
-                FontColor = Color.Red,
-                BackgroundColor = Color.DimGray,
-            };
+            var conf = this.GameInstance.GetWordConf();
 
-            if (TypExc.Conf.ShowKeyboard)
+            if (conf.ShowKeyboard)
             {
-                this.keyboardPanel1.SetKeyMap(this.GameInstance.ShowSpellUpper());
+                this.keyboardPanel1.SetKeyMap(conf.ShowSpellUpper);
             }
             else
             {
                 this.keyboardPanel1.Visible = false;
             }
 
-            if (TypExc.Conf.ShowFinger)
+            if (conf.ShowFinger)
             {
                 this.fingerPanel.SetKeyMap();
             }
@@ -155,6 +143,8 @@ namespace TypingExercise.Views
                 this.lblSpelling4,
             };
 
+            var conf = this.GameInstance.GetWordConf();
+
             // 綴り表示エリアに一つずつセットする.
             // 前回表示情報をクリアするため、外側のループはラベルでなきゃだめ.
             for (var ii = 0; ii < lblList.Count; ii++)
@@ -166,7 +156,7 @@ namespace TypingExercise.Views
                     if (0 < correct.Spells.Count)
                     {
                         var spels = string.Join("\n", correct.Spells.ToArray());
-                        if (this.GameInstance.ShowSpellUpper())
+                        if (conf.ShowSpellUpper)
                         {
                             spels = spels.ToUpper();
                         }
@@ -179,7 +169,7 @@ namespace TypingExercise.Views
             }
 
             // KeyBoardを点燈させる.
-            if (TypExc.Conf.ShowKeyboard)
+            if (conf.ShowKeyboard)
             {
                 // キーボードナビゲーション用の文字を取得する.
                 // 最も優先度の高いSpellでナビゲーションする
@@ -202,7 +192,7 @@ namespace TypingExercise.Views
 
                 this.keyboardPanel1.SetLightKey(nextKey);
 
-                if (TypExc.Conf.ShowFinger)
+                if (conf.ShowFinger)
                 {
                     this.fingerPanel.SetLightFinger(nextKey);
                 }
@@ -211,12 +201,12 @@ namespace TypingExercise.Views
             // MissTypeを表示.
             if (missTypes.IsEmpty())
             {
-                this.MissBallon.Active = false;
+                this.lblMissTypes.Visible = false;
             }
             else
             {
-                this.MissBallon.Active = true;
-                this.MissBallon.Show("まちがい！\n [" + missTypes + "]", this.lblSpelling4, 500);
+                this.lblMissTypes.Visible = true;
+                this.lblMissTypes.Text = "ミス！\n\n [{0}]".Fmt(missTypes);
             }
         }
 

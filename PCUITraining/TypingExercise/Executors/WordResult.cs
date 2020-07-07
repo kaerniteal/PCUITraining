@@ -33,6 +33,12 @@ namespace TypingExercise.Executors
         public ImageStore ImageStore { get; set; }
 
         /// <summary>
+        /// マスタボールが使われたかどうか.
+        /// </summary>
+        public bool UseMasterBoll { get; set; }
+
+
+        /// <summary>
         /// コンストラクタ.
         /// </summary>
         /// <param name="word">文字列</param>
@@ -43,6 +49,7 @@ namespace TypingExercise.Executors
             this.MissTypeCount = 0;
             this.ConsecutiveNoMissCount = 0;
             this.ImageStore = null;
+            this.UseMasterBoll = false;
         }
     }
 }

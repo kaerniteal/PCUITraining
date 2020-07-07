@@ -37,7 +37,9 @@
             this.lblTimeBonus = new System.Windows.Forms.Label();
             this.lblCountBonus = new System.Windows.Forms.Label();
             this.lblTitleBonus = new System.Windows.Forms.Label();
+            this.pBoxMasterBoll = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxMasterBoll)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -45,7 +47,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.55039F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.44961F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 245F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 246F));
             this.tableLayoutPanel1.Controls.Add(this.lblWord, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblTitleETime, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblETime, 1, 1);
@@ -74,7 +76,7 @@
             this.lblWord.ForeColor = System.Drawing.Color.White;
             this.lblWord.Location = new System.Drawing.Point(3, 0);
             this.lblWord.Name = "lblWord";
-            this.lblWord.Size = new System.Drawing.Size(394, 80);
+            this.lblWord.Size = new System.Drawing.Size(393, 80);
             this.lblWord.TabIndex = 1;
             this.lblWord.Text = "ぽけもん";
             // 
@@ -89,7 +91,7 @@
             this.lblTitleETime.ForeColor = System.Drawing.Color.White;
             this.lblTitleETime.Location = new System.Drawing.Point(3, 80);
             this.lblTitleETime.Name = "lblTitleETime";
-            this.lblTitleETime.Size = new System.Drawing.Size(394, 120);
+            this.lblTitleETime.Size = new System.Drawing.Size(393, 120);
             this.lblTitleETime.TabIndex = 1;
             this.lblTitleETime.Text = "かかった時間";
             // 
@@ -102,7 +104,7 @@
             this.lblETime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblETime.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblETime.ForeColor = System.Drawing.Color.White;
-            this.lblETime.Location = new System.Drawing.Point(403, 80);
+            this.lblETime.Location = new System.Drawing.Point(402, 80);
             this.lblETime.Name = "lblETime";
             this.lblETime.Size = new System.Drawing.Size(243, 120);
             this.lblETime.TabIndex = 1;
@@ -119,7 +121,7 @@
             this.lblTitleCount.ForeColor = System.Drawing.Color.White;
             this.lblTitleCount.Location = new System.Drawing.Point(3, 200);
             this.lblTitleCount.Name = "lblTitleCount";
-            this.lblTitleCount.Size = new System.Drawing.Size(394, 80);
+            this.lblTitleCount.Size = new System.Drawing.Size(393, 80);
             this.lblTitleCount.TabIndex = 1;
             this.lblTitleCount.Text = "連続ノーミス回数";
             // 
@@ -132,7 +134,7 @@
             this.lblCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCount.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblCount.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lblCount.Location = new System.Drawing.Point(403, 200);
+            this.lblCount.Location = new System.Drawing.Point(402, 200);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(243, 80);
             this.lblCount.TabIndex = 1;
@@ -147,9 +149,9 @@
             this.lblTimeBonus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTimeBonus.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblTimeBonus.ForeColor = System.Drawing.Color.Yellow;
-            this.lblTimeBonus.Location = new System.Drawing.Point(652, 80);
+            this.lblTimeBonus.Location = new System.Drawing.Point(651, 80);
             this.lblTimeBonus.Name = "lblTimeBonus";
-            this.lblTimeBonus.Size = new System.Drawing.Size(240, 120);
+            this.lblTimeBonus.Size = new System.Drawing.Size(241, 120);
             this.lblTimeBonus.TabIndex = 1;
             this.lblTimeBonus.Text = "+10";
             // 
@@ -162,9 +164,9 @@
             this.lblCountBonus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCountBonus.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblCountBonus.ForeColor = System.Drawing.Color.Yellow;
-            this.lblCountBonus.Location = new System.Drawing.Point(652, 200);
+            this.lblCountBonus.Location = new System.Drawing.Point(651, 200);
             this.lblCountBonus.Name = "lblCountBonus";
-            this.lblCountBonus.Size = new System.Drawing.Size(240, 80);
+            this.lblCountBonus.Size = new System.Drawing.Size(241, 80);
             this.lblCountBonus.TabIndex = 1;
             this.lblCountBonus.Text = "+10";
             // 
@@ -177,27 +179,42 @@
             this.lblTitleBonus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitleBonus.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblTitleBonus.ForeColor = System.Drawing.Color.Yellow;
-            this.lblTitleBonus.Location = new System.Drawing.Point(652, 0);
+            this.lblTitleBonus.Location = new System.Drawing.Point(651, 0);
             this.lblTitleBonus.Name = "lblTitleBonus";
-            this.lblTitleBonus.Size = new System.Drawing.Size(240, 80);
+            this.lblTitleBonus.Size = new System.Drawing.Size(241, 80);
             this.lblTitleBonus.TabIndex = 1;
             this.lblTitleBonus.Text = "ボーナス";
             // 
-            // PocketMonsterResultWord
+            // pBoxMasterBoll
+            // 
+            this.pBoxMasterBoll.Image = global::TypingExercise.Properties.Resources.masterboll;
+            this.pBoxMasterBoll.Location = new System.Drawing.Point(910, 12);
+            this.pBoxMasterBoll.Name = "pBoxMasterBoll";
+            this.pBoxMasterBoll.Size = new System.Drawing.Size(209, 270);
+            this.pBoxMasterBoll.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pBoxMasterBoll.TabIndex = 1;
+            this.pBoxMasterBoll.TabStop = false;
+            this.pBoxMasterBoll.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // FormPokemonSetResultWord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(920, 298);
+            this.ClientSize = new System.Drawing.Size(1131, 298);
+            this.Controls.Add(this.pBoxMasterBoll);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "PocketMonsterResultWord";
+            this.Name = "FormPokemonSetResultWord";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PocketMonsterResultWord";
             this.Load += new System.EventHandler(this.PocketMonsterResultWord_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PocketMonsterResultWord_KeyPress);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxMasterBoll)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -213,5 +230,6 @@
         private System.Windows.Forms.Label lblTimeBonus;
         private System.Windows.Forms.Label lblCountBonus;
         private System.Windows.Forms.Label lblTitleBonus;
+        private System.Windows.Forms.PictureBox pBoxMasterBoll;
     }
 }

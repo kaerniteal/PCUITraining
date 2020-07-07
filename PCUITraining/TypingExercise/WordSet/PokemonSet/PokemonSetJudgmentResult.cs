@@ -134,6 +134,17 @@ namespace TypingExercise.WordSet.PokemonSet
             }
         }
 
+        /// <summary>
+        /// マスターボールによる捕獲かどうか.
+        /// </summary>
+        public bool UsedMasterBoll
+        {
+            get
+            {
+                return this.WordResult.UseMasterBoll;
+            }
+        }
+
 
         /// <summary>
         /// コンストラクタ.
@@ -170,10 +181,17 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             var judgmentResult = new PokemonSetJudgmentResult(wordResult);
 
-            // ************************ //
-            // ※※！！捕獲判定！！※※ //
-            // ************************ //
+            if (wordResult.UseMasterBoll)
             {
+                // マスターボールが使用された場合.
+                judgmentResult.JudgmentResult = true;
+            }
+            else
+            {
+                // ************************ //
+                // ※※！！捕獲判定！！※※ //
+                // ************************ //
+
                 // 基本捕獲確率.
                 var bcp = TypExc.Conf.BaseCaptureProbability;
 

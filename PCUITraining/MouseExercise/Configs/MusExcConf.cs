@@ -28,14 +28,14 @@ namespace MouseExercise.Configs
         private void SetDefault()
         {
             // デフォルトはここで与える.
-            this.IsOffice = true;
+            this.IsOffice = false;
             this.ViewUpdateWait = 100;
             this.UnitMax = 10;
             this.DefaultGameSec = 60000;
             this.RespawnWait = 500;
             this.IncreaseTime = 1000;
             this.AppearanceProbabilityEqual = false;
-            this.DiffcultyLvUpCount = 5;
+            this.DiffcultyLvUpCount = 3;
             this.EnableDifficultyVeryEasy = true;
             this.EnableDifficultyEasy = true;
             this.EnableDifficultyNormal = true;

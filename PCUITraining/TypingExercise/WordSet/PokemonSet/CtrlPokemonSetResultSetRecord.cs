@@ -61,6 +61,9 @@ namespace TypingExercise.WordSet.PokemonSet
             // イメージ.
             this.pBoxPockMon.Visible = judgResult.JudgmentResult;
             this.pBoxPockMon.Image = judgResult.PockImage;
+
+            // マスターボール.
+            this.pBoxMasterBoll.Visible = judgResult.UsedMasterBoll;
         }
     }
 }

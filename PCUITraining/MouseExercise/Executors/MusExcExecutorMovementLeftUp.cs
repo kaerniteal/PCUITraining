@@ -22,13 +22,13 @@ namespace MouseExercise.Executors
             {
                 // 右からの場合.
                 var y = UtilRandom.Next(GetEndOfBottom(state, size));
-                state.MovingPoint = new Point(size.Width, y);
+                state.MovingPoint = new Point(size.Width - state.ImageSize.Width, y);
             }
             else
             {
                 // 下からの場合.
                 var x = UtilRandom.Next(GetEndOfRight(state, size));
-                state.MovingPoint = new Point(x, size.Height);
+                state.MovingPoint = new Point(x, size.Height - state.ImageSize.Height);
             }
 
             // 新しい座標をセット.

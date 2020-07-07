@@ -19,7 +19,7 @@ namespace MouseExercise.Executors
         {
             // 新しい座標をセット.
             var y = UtilRandom.Next(GetEndOfBottom(state, size));
-            state.MovingPoint = new Point(size.Width, y);
+            state.MovingPoint = new Point(size.Width - state.ImageSize.Width, y);
             state.CurrentMovement = MOVEMENT.LEFT;
         }
 

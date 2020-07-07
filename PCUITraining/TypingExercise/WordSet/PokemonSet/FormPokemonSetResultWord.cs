@@ -12,33 +12,24 @@ namespace TypingExercise.WordSet.PokemonSet
     public partial class FormPokemonSetResultWord : Form
     {
         /// <summary>
+        /// 単語入力結果/
+        /// </summary>
+        private WordResult WordResult { get; set; }
+
+
+        /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public FormPokemonSetResultWord()
+        /// <param name="wordResult">単語の入力結果</param>
+        /// <param name="useMasterBoll">マスターボールの使用可否</param>
+        public FormPokemonSetResultWord(WordResult wordResult, bool useMasterBoll)
         {
             InitializeComponent();
 
             this.Opacity = 0;
-        }
 
-        /// <summary>
-        /// KeyPress
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PocketMonsterResultWord_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // 何か押下されたら消える.
-            this.Close();
-        }
+            this.WordResult = wordResult;
 
-        /// <summary>
-        /// 単語の入力結果を表示する.
-        /// </summary>
-        /// <param name="wordResult">単語の入力結果</param>
-        /// <returns>DialogResult</returns>
-        public DialogResult ShowWordResultDlg(WordResult wordResult)
-        {
             // ボーナス算出の為に捕獲判定結果クラスを使う.
             var result = PokemonSetJudgmentResult.CreateResultForCalcBonus(wordResult);
 
@@ -73,8 +64,18 @@ namespace TypingExercise.WordSet.PokemonSet
             this.lblTimeBonus.Text = "＋{0}".Fmt(timeBonus);
             this.lblCountBonus.Text = "＋{0}".Fmt(countBonus);
 
-            // ダイアログとして表示.
-            return this.ShowDialog();
+            this.pBoxMasterBoll.Visible = useMasterBoll;
+        }
+
+        /// <summary>
+        /// KeyPress
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PocketMonsterResultWord_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 何か押下されたら消える.
+            this.Close();
         }
 
         /// <summary>
@@ -86,6 +87,17 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             var aoe = new AnimationOpacityEffect(this);
             aoe.FadeIn(200);
+        }
+
+        /// <summary>
+        /// マスタボールクリック.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox1_Click(object sender, System.EventArgs e)
+        {
+            this.WordResult.UseMasterBoll = true;
+            this.Close();
         }
     }
 }
