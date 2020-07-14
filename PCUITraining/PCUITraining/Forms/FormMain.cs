@@ -40,7 +40,8 @@ namespace PCUITraining.Forms
         /// <param name="e"></param>
         private void pBoxConfig_Click(object sender, EventArgs e)
         {
-            FormMessageBox.Show("まだできてないよ！");
+            var dlg = new FormSetting();
+            dlg.ShowDialog();
         }
 
         /// <summary>

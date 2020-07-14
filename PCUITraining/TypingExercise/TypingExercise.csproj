@@ -247,6 +247,9 @@
     <EmbeddedResource Include="WordSet\PokemonSet\FormPokemonSetReciprocate.resx">
       <DependentUpon>FormPokemonSetReciprocate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WordSet\PokemonSet\FormPokemonSetResultSet.resx">
+      <DependentUpon>FormPokemonSetResultSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WordSet\PokemonSet\FormPokemonSetResultWord.resx">
       <DependentUpon>FormPokemonSetResultWord.cs</DependentUpon>
     </EmbeddedResource>

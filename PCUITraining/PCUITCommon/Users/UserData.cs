@@ -30,6 +30,7 @@ namespace PCUITCommon.Users
         /// </summary>
         public string IconFileName { get; set; }
 
+
         /// <summary>
         /// コンストラクタ.
         /// </summary>
@@ -39,6 +40,20 @@ namespace PCUITCommon.Users
             this.FontColorStr = Color.White.ToString();
             this.UseCustomIcon = false;
             this.IconFileName = string.Empty;
+        }
+
+        /// <summary>
+        /// クローン.
+        /// </summary>
+        public UserData Clone()
+        {
+            return new UserData
+            {
+                Name = this.Name,
+                FontColorStr = this.FontColorStr,
+                UseCustomIcon = this.UseCustomIcon,
+                IconFileName = this.IconFileName,
+            };
         }
 
         /// <summary>
@@ -69,17 +84,17 @@ namespace PCUITCommon.Users
 
             var path = userData.CreateUserDataFilePath();
 
-            // ファイルの存在をチェックし、存在する場合のみ読み込む。
-            if (File.Exists(path))
+            try
             {
-                try
+                // ファイルの存在をチェックし、存在する場合のみ読み込む。
+                if (File.Exists(path))
                 {
                     userData = path.JsonLoad<UserData>();
                 }
-                catch (Exception ex)
-                {
-                    ex.ShowMessageBox(@"ファイル[{0}]の読み込みに失敗しました}".Fmt(path));
-                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox(@"ファイル[{0}]の読み込みに失敗しました}".Fmt(path));
             }
 
             // 下記の２ケースを想定して毎回出力する
@@ -95,6 +110,8 @@ namespace PCUITCommon.Users
         /// </summary>
         public bool Save()
         {
+            CreateUserDataFolder();
+
             var path = this.CreateUserDataFilePath();
 
             try
@@ -111,17 +128,48 @@ namespace PCUITCommon.Users
         }
 
         /// <summary>
+        /// ユーザーデータを削除する.
+        /// </summary>
+        /// <returns></returns>
+        public bool Delete()
+        {
+            try
+            {
+                var path = this.CreateUserDataFolderPath();
+
+                //フォルダを根こそぎ削除
+                var di = new DirectoryInfo(path);
+                di.Delete(true);
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox("ユーザーデータの削除に失敗しました");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// アイコンをロードする.
         /// </summary>
         /// <returns>アイコン</returns>
-        public Bitmap LoadIcon()
+        public Image LoadIcon()
         {
             try
             {
                 if (this.UseCustomIcon)
                 {
                     var path = Path.Combine(this.CreateUserDataFolderPath(), this.IconFileName);
-                    return new Bitmap(path);
+                    if (File.Exists(path))
+                    {
+                        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                        {
+                            var img = Image.FromStream(fs);
+                            fs.Close();
+                            return img;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -139,6 +187,25 @@ namespace PCUITCommon.Users
         public string CreateUserDataFolderPath()
         {
             return Path.Combine(UserDataManager.RootPath, this.Name);
+        }
+
+        /// <summary>
+        /// ユーザーデータフォルダを生成する.
+        /// </summary>
+        private void CreateUserDataFolder()
+        {
+            try
+            {
+                var folderPath = CreateUserDataFolderPath();
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ShowMessageBox("ユーザーフォルダの生成に失敗しました");
+            }
         }
 
         /// <summary>

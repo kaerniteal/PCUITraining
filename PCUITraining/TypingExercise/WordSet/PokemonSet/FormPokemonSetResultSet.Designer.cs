@@ -37,7 +37,7 @@
             // 
             this.btonOK.BackColor = System.Drawing.Color.DimGray;
             this.btonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btonOK.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btonOK.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btonOK.ForeColor = System.Drawing.Color.Yellow;
             this.btonOK.Location = new System.Drawing.Point(12, 698);
             this.btonOK.Name = "btonOK";
@@ -51,7 +51,7 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.DimGray;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnCancel.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btnCancel.ForeColor = System.Drawing.Color.Red;
             this.btnCancel.Location = new System.Drawing.Point(588, 698);
             this.btnCancel.Name = "btnCancel";
@@ -81,7 +81,7 @@
             this.tableWordResult.Size = new System.Drawing.Size(1138, 680);
             this.tableWordResult.TabIndex = 1;
             // 
-            // PocketMonsterResultSet
+            // FormPokemonSetResultSet
             // 
             this.AcceptButton = this.btonOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -93,7 +93,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btonOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "PocketMonsterResultSet";
+            this.Name = "FormPokemonSetResultSet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PocketMonsterResultSet";
             this.Load += new System.EventHandler(this.PocketMonsterResultSet_Load);

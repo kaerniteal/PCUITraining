@@ -173,7 +173,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Typing Exercise";
+            this.Text = "PCUIT";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tableMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pBoxConfig)).EndInit();

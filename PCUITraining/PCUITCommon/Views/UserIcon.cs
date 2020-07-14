@@ -77,6 +77,18 @@ namespace PCUITCommon.Views
         }
 
         /// <summary>
+        /// 画像データを破棄する.
+        /// </summary>
+        public void RemoveImage()
+        {
+            if (null != this.pBox.Image)
+            {
+                this.pBox.Image.Dispose();
+                this.pBox.Image = null;
+            }
+        }
+
+        /// <summary>
         /// クリックイベントの取得
         /// </summary>
         /// <param name="sender"></param>
@@ -105,7 +117,13 @@ namespace PCUITCommon.Views
         public class UserIconGrp
         {
             /// <summary>
-            /// ユーザーアイコンクラスリスト.
+            /// 登録可能ユーザー数.
+            /// </summary>
+            public const int MAX_USER = 5;
+
+
+            /// <summary>
+            /// ユーザーアイコンリスト.
             /// </summary>
             private List<UserIcon> UserIconList { get; set; }
 
@@ -115,6 +133,24 @@ namespace PCUITCommon.Views
             public UserIconGrp()
             {
                 UserIconList = new List<UserIcon>();
+            }
+
+            /// <summary>
+            /// ユーザー数を取得する.
+            /// </summary>
+            /// <returns>ユーザー数</returns>
+            public int GetUserCount()
+            {
+                return this.UserIconList.Count;
+            }
+
+            /// <summary>
+            /// ユーザーが追加可能かどうか.
+            /// </summary>
+            /// <returns>追加可否</returns>
+            public bool CanAdd()
+            {
+                return this.UserIconList.Count < MAX_USER;
             }
 
             /// <summary>
@@ -141,20 +177,35 @@ namespace PCUITCommon.Views
             }
 
             /// <summary>
-            /// 選択されているユーザーを取得する.
+            /// 選択されているユーザーアイコンを取得する.
             /// </summary>
-            /// <returns>選択されているユーザーデータ</returns>
-            public UserData GetSelectedUserData()
+            /// <returns>選択されているユーザーアイコン</returns>
+            public UserIcon GetSelectedIcon()
             {
                 foreach (var userIcon in UserIconList)
                 {
                     if (userIcon.Selected)
                     {
-                        return userIcon.UserData;
+                        return userIcon;
                     }
                 }
 
                 return null;
+            }
+
+            /// <summary>
+            /// 選択されているユーザーを取得する.
+            /// </summary>
+            /// <returns>選択されているユーザーデータ</returns>
+            public UserData GetSelectedUserData()
+            {
+                var icon = this.GetSelectedIcon();
+                if (null == icon)
+                {
+                    return null;
+                }
+
+                return icon.UserData;
             }
 
             /// <summary>

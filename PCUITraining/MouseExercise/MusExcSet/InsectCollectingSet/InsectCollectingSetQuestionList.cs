@@ -548,6 +548,151 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                         },
                     },
             });
+
+            // 05_01 高原蝶々.
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.VERY_HARD,
+                UnitNum = 5,
+                MaxNum = 10,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\05_01_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "赤アゲハ",
+                            Movement = MOVEMENT.RANDOM_50,
+                            AmountOfMovement = 10,
+                            Behavior = BEHAVIOR.SWAY_LR,
+                            AmountOfBehavior = 10,
+                            Score = 500,
+                            UnitImageFilePath = @".\MusExcResorce\05_01_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "青アゲハ(レア)",
+                            Movement = MOVEMENT.RANDOM_20,
+                            AmountOfMovement = 15,
+                            Behavior = BEHAVIOR.SWAY_LR,
+                            AmountOfBehavior = 10,
+                            Score = 1000,
+                            UnitImageFilePath = @".\MusExcResorce\05_01_unit02.gif",
+                            Appearance = 10,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "黒アゲハ(激レア)",
+                            Movement = MOVEMENT.RANDOM_10,
+                            AmountOfMovement = 20,
+                            Behavior = BEHAVIOR.SWAY_LR,
+                            AmountOfBehavior = 10,
+                            Score = 2000,
+                            UnitImageFilePath = @".\MusExcResorce\05_01_unit03.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
+
+            // 05_02 マーガレット畑のハチ.
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.VERY_HARD,
+                UnitNum = 5,
+                MaxNum = 10,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\05_02_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "ハッチ蜂",
+                            Movement = MOVEMENT.RANDOM_10,
+                            AmountOfMovement = 10,
+                            Score = 500,
+                            UnitImageFilePath = @".\MusExcResorce\05_02_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "チビグルグル蝶(激レア)",
+                            Movement = MOVEMENT.RANDOM_10,
+                            AmountOfMovement = 15,
+                            Behavior = BEHAVIOR.SWAY_LR,
+                            AmountOfBehavior = 10,
+                            Score = 2000,
+                            UnitImageFilePath = @".\MusExcResorce\05_02_unit02.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
+
+            // 05_03 チューリップ畑の蝶.
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.VERY_HARD,
+                UnitNum = 5,
+                MaxNum = 10,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\05_03_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "小モルフォ蝶",
+                            Movement = MOVEMENT.RANDOM_50,
+                            AmountOfMovement = 10,
+                            Behavior = BEHAVIOR.SWAY_LR,
+                            AmountOfBehavior = 10,
+                            Score = 500,
+                            UnitImageFilePath = @".\MusExcResorce\05_03_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "トノサマバッタ(激レア)",
+                            Movement = MOVEMENT.UP,
+                            AmountOfMovement = 5,
+                            Score = 2000,
+                            UnitImageFilePath = @".\MusExcResorce\05_03_unit02.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
+
+            // 05_04 赤い花アップの蝶.
+            this.QuestionList.Add(new MusExcQuestionDef
+            {
+                Difficulty = DIFFICULTY.VERY_HARD,
+                UnitNum = 5,
+                MaxNum = 10,
+                BgType = BG_TYPE.IMAGE,
+                BgImageFilePath = @".\MusExcResorce\05_04_bg.jpg",
+                UnitList = new List<MusExcQuestionDefUnit>
+                    {
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "小青蝶",
+                            Movement = MOVEMENT.RANDOM_50,
+                            AmountOfMovement = 10,
+                            Behavior = BEHAVIOR.SWAY_LR,
+                            AmountOfBehavior = 10,
+                            Score = 500,
+                            UnitImageFilePath = @".\MusExcResorce\05_04_unit01.gif",
+                            Appearance = 100,
+                        },
+                        new MusExcQuestionDefUnit
+                        {
+                            Name = "バイバイハチ(激レア)",
+                            Movement = MOVEMENT.RANDOM_10,
+                            AmountOfMovement = 10,
+                            Score = 2000,
+                            UnitImageFilePath = @".\MusExcResorce\05_04_unit02.gif",
+                            Appearance = 1,
+                        },
+                    },
+            });
         }
     }
 }

@@ -36,8 +36,7 @@ namespace PCUITraining.Forms
                 btn.ForeColor = user.GetFontColor();
                 if (user.UseCustomIcon)
                 {
-                    Bitmap bitmap = user.LoadIcon();
-                    btn.Image = bitmap;
+                    btn.Image = user.LoadIcon();
                 }
                 btn.Click += (sender, e) =>
                 {

@@ -24,8 +24,9 @@ namespace PCUITCommon.Views
         /// <returns>ユーザーアイコングループ</returns>
         public UserIconGrp SetUserIcons(Action<UserData> action = null)
         {
-            var userIconGrp = CreateUserIconGrp();
+            var userIconGrp = UserIcon.CreateUserIconGrp();
 
+            this.flowUserSelect.Controls.Clear();
             foreach (var user in PCUIT.UserDataManager.UserDataList)
             {
                 var userIcon = userIconGrp.CreateUserIcon(user);
@@ -33,6 +34,7 @@ namespace PCUITCommon.Views
                 {
                     userIcon.OnSelected += action;
                 }
+
                 this.flowUserSelect.Controls.Add(userIcon);
             }
 
