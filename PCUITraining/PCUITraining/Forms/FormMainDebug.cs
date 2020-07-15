@@ -1,5 +1,5 @@
 ﻿using Common.Controls;
-using Common.Utilities;
+using Common.Extentions;
 using MouseExercise;
 using MouseExercise.MusExcSet;
 using MouseExercise.MusExcSet.InsectCollectingSet;
@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TypingExercise;
 using TypingExercise.Views;
@@ -38,6 +40,7 @@ namespace PCUITraining.Forms
                 {
                     btn.Image = user.LoadIcon();
                 }
+
                 btn.Click += (sender, e) =>
                 {
                     var b = sender as Button;
@@ -84,6 +87,42 @@ namespace PCUITraining.Forms
             var game = new InsectCollectingSetGameData();
             var ficsr = new FormInsectCollectingSetResult();
             ficsr.ShowSetResultDlg(result, game);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Clic begin");
+
+            this.AsyncRapper();
+
+            // ここは AsyncRapper の中の非同期処理を待たずに処理される.
+            Console.WriteLine("Clic end");
+        }
+
+        /// <summary>
+        /// 重い処理のラップ.
+        /// </summary>
+        private async void AsyncRapper()
+        {
+            Console.WriteLine("AsyncRapper begin");
+
+            var res = await Task.Run(() => HavyFunc(3000));
+
+            // ここは HavyFunc 実行後に処理される.
+            Console.WriteLine("AsyncRapper end result[{0}]sec wait".Fmt(res));
+        }
+
+        /// <summary>
+        /// 重い処理.
+        /// </summary>
+        /// <param name="waitTime"></param>
+        private int HavyFunc(int waitTime)
+        {
+            Console.WriteLine("HavyFunc begin");
+            Thread.Sleep(waitTime);
+            Console.WriteLine("HavyFunc end");
+
+            return waitTime / 1000;
         }
     }
 }

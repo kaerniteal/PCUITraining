@@ -68,6 +68,7 @@ namespace PCUITraining.Forms
             this.Mode = MODE.UPDATE;
             this.UserIconGrp = userIconGrp;
             this.UserData = userData;
+            this.OrgImagePath = userData.CreateImageFilePath();
         }
 
         /// <summary>
@@ -276,8 +277,11 @@ namespace PCUITraining.Forms
                 Directory.CreateDirectory(dirPath);
 
                 // イメージファイルの複製.
-                var dstPath = Path.Combine(this.UserData.CreateUserDataFolderPath(), this.UserData.IconFileName);
-                File.Copy(this.OrgImagePath, dstPath);
+                var dstPath = this.UserData.CreateImageFilePath();
+                if (!dstPath.Equals(this.OrgImagePath))
+                {
+                    File.Copy(this.OrgImagePath, dstPath);
+                }
 
                 // 保存処理.
                 this.UserData.Save();

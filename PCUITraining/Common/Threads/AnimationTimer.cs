@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Common.Thread
+namespace Common.Threads
 {
     /// <summary>
     /// コントロールアニメーションクラス.

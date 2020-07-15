@@ -158,17 +158,14 @@ namespace PCUITCommon.Users
         {
             try
             {
-                if (this.UseCustomIcon)
+                var path = this.CreateImageFilePath();
+                if (File.Exists(path))
                 {
-                    var path = Path.Combine(this.CreateUserDataFolderPath(), this.IconFileName);
-                    if (File.Exists(path))
+                    using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                     {
-                        using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
-                        {
-                            var img = Image.FromStream(fs);
-                            fs.Close();
-                            return img;
-                        }
+                        var img = Image.FromStream(fs);
+                        fs.Close();
+                        return img;
                     }
                 }
             }
@@ -178,6 +175,15 @@ namespace PCUITCommon.Users
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// ユーザーデータフォルダパスを生成する.
+        /// </summary>
+        /// <returns>ユーザーデータフォルダのPath</returns>
+        public string CreateImageFilePath()
+        {
+            return Path.Combine(this.CreateUserDataFolderPath(), this.IconFileName);
         }
 
         /// <summary>

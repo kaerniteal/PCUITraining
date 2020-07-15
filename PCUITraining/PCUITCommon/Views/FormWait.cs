@@ -1,4 +1,4 @@
-﻿using Common.Thread;
+﻿using Common.Threads;
 using System.Drawing;
 using System.Windows.Forms;
 

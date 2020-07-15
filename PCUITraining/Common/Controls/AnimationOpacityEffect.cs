@@ -1,4 +1,4 @@
-﻿using Common.Thread;
+﻿using Common.Threads;
 using System.Windows.Forms;
 
 namespace Common.Controls

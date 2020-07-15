@@ -1,4 +1,4 @@
-﻿using Common.Thread;
+﻿using Common.Threads;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
