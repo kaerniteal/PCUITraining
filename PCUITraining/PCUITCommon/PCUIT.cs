@@ -1,7 +1,9 @@
-﻿using PCUITCommon.Configs;
+﻿using Common.Web;
+using PCUITCommon.Configs;
 using PCUITCommon.Users;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Net;
 
 namespace PCUITCommon
 {
@@ -70,6 +72,17 @@ namespace PCUITCommon
             instance.FontMap.Add(size, font);
 
             return font;
+        }
+
+        /// <summary>
+        /// WebClientを取得します.
+        /// </summary>
+        /// <returns></returns>
+        public static WebClient GetWebClient()
+        {
+            return Conf.ProxyUse
+                ? new WebClientWithSystemProxy(Conf.ProxyId, Conf.ProxyPassword)
+                : new WebClient();
         }
     }
 }

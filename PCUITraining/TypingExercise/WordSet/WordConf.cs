@@ -6,6 +6,11 @@
     public class WordConf
     {
         /// <summary>
+        /// 綴りを表示するかどうか.
+        /// </summary>
+        public bool ShowCorrectSpelling { get; set; }
+
+        /// <summary>
         /// キーボードナビゲーションを表示するかどうか.
         /// </summary>
         public bool ShowKeyboard { get; set; }
@@ -25,16 +30,23 @@
         /// </summary>
         public bool ShowSpellUpper { get; set; }
 
+        /// <summary>
+        /// 綴り候補をすべて表示するか、一つだけ表示するか.
+        /// </summary>
+        public bool ShowAllSpell { get; set; }
+
 
         /// <summary>
         /// コンストラクタ.
         /// </summary>
         public WordConf()
         {
+            this.ShowCorrectSpelling = true;
             this.ShowKeyboard = true;
             this.ShowFinger = true;
             this.ShowWordResult = true;
             this.ShowSpellUpper = false;
+            this.ShowAllSpell = true;
         }
     }
 }

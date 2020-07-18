@@ -10,7 +10,7 @@ namespace Common.Web
     /// <summary>
     /// Googleの画像検索を利用して、画像のURLリストを取得する.
     /// </summary>
-    public class GetImageUrlFromGoogle
+    public class GetImageUrlFromGoogle : HtmlAnalizerBase
     {
         /// <summary>
         /// Googleの画像検索フォーマット.
@@ -23,11 +23,6 @@ namespace Common.Web
         private static readonly string GOOGLE_IMAGE_URL_PRE = @"https://encrypted-tbn0.gstatic.com/images";
 
         /// <summary>
-        /// Web Client
-        /// </summary>
-        private WebClient Wc { get; set; }
-
-        /// <summary>
         /// 取得した画像URLのリスト.
         /// </summary>
         private List<string> ImageUrlList { get; set; }
@@ -37,9 +32,8 @@ namespace Common.Web
         /// コンストラクタ.
         /// </summary>
         /// <param name="wc">Web Client</param>
-        public GetImageUrlFromGoogle(WebClient wc)
+        public GetImageUrlFromGoogle(WebClient wc) : base(wc)
         {
-            this.Wc = wc;
             this.ImageUrlList = new List<string>();
         }
 
@@ -51,59 +45,18 @@ namespace Common.Web
         /// <returns>画像へのURLリスト</returns>
         public List<string> GetImageUrls(string keyword, int count)
         {
-            try
-            {
-                var url = GOOGLE_URL_FORMAT.Fmt(keyword, count);
+            var url = GOOGLE_URL_FORMAT.Fmt(keyword, count);
 
-                this.Wc.Encoding = Encoding.UTF8;
-                var html = this.Wc.DownloadString(url);
+            this.Url(url);
 
-                // 取得したHTMLを解析して画像URLリスト(this.ImageUrlList)を生成する.
-                this.HtmlAnalize(html);
-
-                return this.ImageUrlList;
-            }
-            catch (WebException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            return new List<string>();
-        }
-
-        /// <summary>
-        /// HTML解析処理.
-        /// </summary>
-        /// <param name="html">html</param>
-        private void HtmlAnalize(string html)
-        {
-            if (html.IsEmpty())
-            {
-                return;
-            }
-
-            // 行にバラす.
-            var replaced = html.Replace(">", ">\n");
-
-            // 一行ずつ読み込む
-            using (var rs = new StringReader(replaced))
-            {
-                // 末端まで繰り返す
-                while (-1 < rs.Peek())
-                {
-                    // 一行読み込んで解析する.
-                    this.LineAnalize(rs.ReadLine());
-                }
-
-                rs.Close();
-            }
+            return this.ImageUrlList;
         }
 
         /// <summary>
         /// 行解析処理.
         /// </summary>
         /// <param name="line">解析行</param>
-        private void LineAnalize(string line)
+        protected override void LineAnalize(string line)
         {
             var httpIndex = line.IndexOf(GOOGLE_IMAGE_URL_PRE);
             if (httpIndex < 0)

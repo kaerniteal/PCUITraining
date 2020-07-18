@@ -9,7 +9,10 @@ namespace TypingExercise.Views
     /// <summary>
     /// イメージ表示パネル(
     /// </summary>
-    /// <remarks>別スレッドからの画像更新にも対応</remarks>
+    /// <remarks>
+    /// 別スレッドからの画像更新にも対応
+    /// 
+    /// </remarks>
     public partial class PicturePanel : UserControl
     {
         /// <summary>
@@ -105,31 +108,28 @@ namespace TypingExercise.Views
         /// </summary>
         public void UpdateImage()
         {
-            // 別スレッドから呼び出された場合
-            if (this.InvokeRequired)
+            // 別スレッドから呼び出された場合の考慮.
+            this.UIInvoke(() =>
             {
-                this.UIInvoke(this.UpdateImage);
-                return;
-            }
-
-            if (null == this.ImageStore)
-            {
-                return;
-            }
-
-            // 更新されたイメージのリストのみ取得.
-            var images = this.ImageStore.GetUpdateImages();
-
-            for (var ii = 0; ii < this.pBoxList.Count && ii < images.Length; ii++)
-            {
-                var image = images[ii];
-                if (null == image)
+                if (null == this.ImageStore)
                 {
-                    continue;
+                    return;
                 }
 
-                this.pBoxList[ii].Image = image;
-            }
+                // 更新されたイメージのリストのみ取得.
+                var images = this.ImageStore.GetUpdateImages();
+
+                for (var ii = 0; ii < this.pBoxList.Count && ii < images.Length; ii++)
+                {
+                    var image = images[ii];
+                    if (null == image)
+                    {
+                        continue;
+                    }
+
+                    this.pBoxList[ii].Image = image;
+                }
+            });
         }
     }
 }

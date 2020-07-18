@@ -78,9 +78,7 @@ namespace TypingExercise.Views
                 // 読み込み処理を別スレッドで実行.
                 var thread = new Thread(new ThreadStart(() =>
                 {
-                    var wc = PCUIT.Conf.ProxyUse
-                        ? new WebClientWithSystemProxy(PCUIT.Conf.ProxyId, PCUIT.Conf.ProxyPassword)
-                        : new WebClient();
+                    var wc = PCUIT.GetWebClient();
 
                     // 画像URLをGoogleから取得.
                     var google = new GetImageUrlFromGoogle(wc);

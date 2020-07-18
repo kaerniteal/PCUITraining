@@ -99,7 +99,7 @@
             this.lblSpelling2.AutoSize = true;
             this.lblSpelling2.BackColor = System.Drawing.Color.Black;
             this.lblSpelling2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSpelling2.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblSpelling2.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblSpelling2.ForeColor = System.Drawing.Color.HotPink;
             this.lblSpelling2.Location = new System.Drawing.Point(118, 180);
             this.lblSpelling2.Name = "lblSpelling2";
@@ -111,7 +111,7 @@
             this.lblSpelling3.AutoSize = true;
             this.lblSpelling3.BackColor = System.Drawing.Color.Black;
             this.lblSpelling3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSpelling3.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblSpelling3.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblSpelling3.ForeColor = System.Drawing.Color.HotPink;
             this.lblSpelling3.Location = new System.Drawing.Point(233, 180);
             this.lblSpelling3.Name = "lblSpelling3";

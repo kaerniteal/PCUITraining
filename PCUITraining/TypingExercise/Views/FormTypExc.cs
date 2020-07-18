@@ -4,7 +4,6 @@ using PCUITCommon;
 using PCUITCommon.Datas;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using TypingExercise.Definitions;
@@ -41,6 +40,26 @@ namespace TypingExercise.Views
             this.Executor = null;
 
             var conf = this.GameInstance.GetWordConf();
+
+            if (conf.ShowCorrectSpelling)
+            {
+                var spellingFont = PCUIT.GetFont(60);
+                if (conf.ShowAllSpell)
+                {
+                    spellingFont = PCUIT.GetFont(36);
+                }
+                this.lblSpelling1.Font = spellingFont;
+                this.lblSpelling2.Font = spellingFont;
+                this.lblSpelling3.Font = spellingFont;
+                this.lblSpelling4.Font = spellingFont;
+            }
+            else
+            {
+                this.lblSpelling1.Visible = false;
+                this.lblSpelling2.Visible = false;
+                this.lblSpelling3.Visible = false;
+                this.lblSpelling4.Visible = false;
+            }
 
             if (conf.ShowKeyboard)
             {
@@ -145,27 +164,53 @@ namespace TypingExercise.Views
 
             var conf = this.GameInstance.GetWordConf();
 
-            // 綴り表示エリアに一つずつセットする.
-            // 前回表示情報をクリアするため、外側のループはラベルでなきゃだめ.
-            for (var ii = 0; ii < lblList.Count; ii++)
+            if (conf.ShowCorrectSpelling)
             {
-                var spellSet = string.Empty;
-                if (ii < spellings.Count)
+                if (conf.ShowAllSpell)
                 {
-                    var correct = spellings[ii];
-                    if (0 < correct.Spells.Count)
+                    // 全ての綴りを表示する場合.
+                    // 綴り表示エリアに一つずつセットする.
+                    // 前回表示情報をクリアするため、外側のループはラベルでなきゃだめ.
+                    for (var ii = 0; ii < lblList.Count; ii++)
                     {
-                        var spels = string.Join("\n", correct.Spells.ToArray());
-                        if (conf.ShowSpellUpper)
+                        var spellSet = string.Empty;
+                        if (ii < spellings.Count)
                         {
-                            spels = spels.ToUpper();
+                            var correct = spellings[ii];
+                            if (0 < correct.Spells.Count)
+                            {
+                                var spels = string.Join("\n", correct.Spells.ToArray());
+                                if (conf.ShowSpellUpper)
+                                {
+                                    spels = spels.ToUpper();
+                                }
+
+                                spellSet = correct.Cha + "\n" + spels;
+                            }
                         }
 
-                        spellSet = correct.Cha + "\n" + spels;
+                        lblList[ii].Text = spellSet;
                     }
                 }
+                else
+                {
+                    // 最も優先度の高い綴りのみ表示する場合.
+                    var cha = string.Empty;
+                    var spell = string.Empty;
 
-                lblList[ii].Text = spellSet;
+                    if (0 < spellings.Count)
+                    {
+                        var correct = spellings[0];
+                        cha = correct.Cha;
+                        if (0 < correct.Spells.Count)
+                        {
+                            spell = correct.Spells[0];
+                        }
+                    }
+
+                    this.lblSpelling1.Text = cha;
+                    this.lblSpelling2.Text = spell;
+                }
             }
 
             // KeyBoardを点燈させる.
@@ -251,9 +296,7 @@ namespace TypingExercise.Views
             }
 
             // WebClientを生成.
-            var wc = PCUIT.Conf.ProxyUse
-                ? new WebClientWithSystemProxy(PCUIT.Conf.ProxyId, PCUIT.Conf.ProxyPassword)
-                : new WebClient();
+            var wc = PCUIT.GetWebClient();
 
             // 画像URLをGoogleから取得.
             var google = new GetImageUrlFromGoogle(wc);

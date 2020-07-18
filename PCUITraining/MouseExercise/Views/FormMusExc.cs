@@ -77,7 +77,7 @@ namespace MouseExercise.Views
             this.UnitArray = new UnitPBox[MusExc.Conf.UnitMax];
             this.Updating = false;
 
-            this.lblGot.Visible = true;
+            this.lblGot.Visible = MusExc.Conf.ShowDebugShot;
 
             if (MusExc.Conf.IsOffice)
             {
@@ -232,68 +232,65 @@ namespace MouseExercise.Views
         /// </summary>
         public void ViewUpdate()
         {
-            // 別スレッドから呼び出された場合
-            if (this.InvokeRequired)
+            // 別スレッドから呼び出された場合の考慮.
+            this.UIInvoke(() =>
             {
-                this.UIInvoke(this.ViewUpdate);
-                return;
-            }
+                this.Updating = true;
 
-            this.Updating = true;
+                // 残り時間を描画.
+                this.lblTime.Text = this.SharedData.GetRemaining();
 
-            // 残り時間を描画.
-            this.lblTime.Text = this.SharedData.GetRemaining();
+                // デバッグ出力
+                var debugShot = "Unit Count:{0}\n".Fmt(this.SharedData.UnitStateArray.Length);
 
-            // デバッグ出力
-            var debugShot = "Unit Count:{0}\n".Fmt(this.SharedData.UnitStateArray.Length);
+                // ユニットリスト
+                var unitStateArray = this.SharedData.UnitStateArray;
+                this.InitUnitArray(unitStateArray.Length);
 
-            // ユニットリスト
-            var unitStateArray = this.SharedData.UnitStateArray;
-            this.InitUnitArray(unitStateArray.Length);
-
-            for (var ii = 0; ii < unitStateArray.Length; ii++)
-            {
-                var state = unitStateArray[ii];
-                var unit = this.UnitArray[ii];
-
-                if (LIFE_STATE.LIVING == state.LifeState)
+                for (var ii = 0; ii < unitStateArray.Length; ii++)
                 {
-                    unit.Update(state);
-                    if (!unit.Visible)
+                    var state = unitStateArray[ii];
+                    var unit = this.UnitArray[ii];
+
+                    if (LIFE_STATE.LIVING == state.LifeState)
                     {
-                        unit.Visible = true;
+                        unit.Update(state);
+                        if (!unit.Visible)
+                        {
+                            unit.Visible = true;
+                        }
                     }
+                    else
+                    {
+                        unit.ImageOff();
+                    }
+
+                    // 元の領域.
+
+                    if (!unit.Location.Equals(state.ViewPoint))
+                    {
+                        unit.BeginControlUpdate();
+                        var oldRect = new Rectangle(unit.Location, unit.Size);
+                        unit.Location = state.ViewPoint;
+                        unit.EndControlUpdate();
+                        this.Invalidate(oldRect);
+                        this.Update();
+                    }
+
+                    // DEBGU情報.
+                    debugShot += "{0} > {1} {2} {3} {4} {5}\n".Fmt(
+                        state.Id,
+                        state.LifeState,
+                        state.ViewPoint,
+                        state.DefUnit.UnitImageFilePath,
+                        unit.Visible,
+                        unit.Image);
                 }
-                else
-                {
-                    unit.ImageOff();
-                }
 
-                // 元の領域.
+                this.lblGot.Text = debugShot;
 
-                if (!unit.Location.Equals(state.ViewPoint))
-                {
-                    unit.BeginControlUpdate();
-                    var oldRect = new Rectangle(unit.Location, unit.Size);
-                    unit.Location = state.ViewPoint;
-                    unit.EndControlUpdate();
-                    this.Invalidate(oldRect);
-                    this.Update();
-                }
-
-                // DEBGU情報.
-                debugShot += "{0} > {1} {2} {3} {4} {5}\n".Fmt(
-                    state.Id,
-                    state.LifeState,
-                    state.ViewPoint,
-                    state.DefUnit.UnitImageFilePath,
-                    unit.Visible,
-                    unit.Image);
-            }
-
-            this.lblGot.Text = debugShot;
-
-            this.Updating = false;
+                this.Updating = false;
+            });
         }
 
         /// <summary>
@@ -301,28 +298,25 @@ namespace MouseExercise.Views
         /// </summary>
         public void ShowSetResult()
         {
-            // 別スレッドから呼び出された場合
-            if (this.InvokeRequired)
+            // 別スレッドから呼び出された場合の考慮.
+            this.UIInvoke(() =>
             {
-                this.UIInvoke(this.ShowSetResult);
-                return;
-            }
+                this.InitUnitArray(0);
+                this.lblTime.Text = @"00.000";
 
-            this.InitUnitArray(0);
-            this.lblTime.Text = @"00.000";
+                // 結果ダイアログを表示.
+                var dlgResult = this.GameInstance.ShowSetResultDlg(this.SharedData.Result);
 
-            // 結果ダイアログを表示.
-            var dlgResult = this.GameInstance.ShowSetResultDlg(this.SharedData.Result);
-
-            // もう一回の場合.
-            if (DialogResult.OK == dlgResult)
-            {
-                this.StartNewGame();
-            }
-            else
-            {
-                this.Close();
-            }
+                // もう一回の場合.
+                if (DialogResult.OK == dlgResult)
+                {
+                    this.StartNewGame();
+                }
+                else
+                {
+                    this.Close();
+                }
+            });
         }
 
         /// <summary>

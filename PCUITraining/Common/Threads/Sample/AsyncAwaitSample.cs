@@ -5,35 +5,42 @@ using System.Threading.Tasks;
 
 namespace Common.Threads.Sample
 {
+    /// <summary>
+    /// Async Awaitを使用した非同期処理サンプル
+    /// </summary>
     public static class AsyncAwaitSample
     {
         /// <summary>
-        /// Async Awaitを使用した非同期処理サンプル
+        /// 非同期処理を呼ぶ処理.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public static void Sample(object sender, EventArgs e)
+        public static void Sample()
         {
-            Console.WriteLine("Clic begin");
+            // この処理だけ見れば同期的に進む.
+            Console.WriteLine("Sample begin");
 
             // 非同期処理を含む処理.
-            AsyncRapper();
+            AsyncFunc();
 
-            // ここは AsyncRapper の中の非同期処理を待たずに処理される.
-            Console.WriteLine("Clic end");
+            // ここは AsyncFunc 呼び出し後、続けて処理される(非同期処理を待たない).
+            Console.WriteLine("Sample end");
         }
 
         /// <summary>
-        /// 非同期を含む処理(UIのコールバック自体がこの処理に該当するのがよくあるパターン。asyncを付ける必要がある).
+        /// 非同期処理を含む処理.
         /// </summary>
-        public static async void AsyncRapper()
+        /// <remarks>
+        /// UIのコールバック自体がこの処理に該当するのがよくあるパターン。
+        /// asyncを付ける必要がある。
+        /// 非同期処理の後処理もこの中に記載できる。
+        /// </remarks>
+        public static async void AsyncFunc()
         {
-            Console.WriteLine("AsyncRapper begin");
+            Console.WriteLine("AsyncFunc begin");
 
             var res = await Task.Run(() => HavyFunc(3000));
 
             // ここは HavyFunc 実行後に処理される.
-            Console.WriteLine("AsyncRapper end result[{0}]sec wait".Fmt(res));
+            Console.WriteLine("AsyncFunc end result[{0}]sec wait".Fmt(res));
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using Common.Controls;
 using Common.Extentions;
+using Common.Threads.Sample;
 using MouseExercise;
 using MouseExercise.MusExcSet;
 using MouseExercise.MusExcSet.InsectCollectingSet;
@@ -91,38 +92,7 @@ namespace PCUITraining.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Clic begin");
-
-            this.AsyncRapper();
-
-            // ここは AsyncRapper の中の非同期処理を待たずに処理される.
-            Console.WriteLine("Clic end");
-        }
-
-        /// <summary>
-        /// 重い処理のラップ.
-        /// </summary>
-        private async void AsyncRapper()
-        {
-            Console.WriteLine("AsyncRapper begin");
-
-            var res = await Task.Run(() => HavyFunc(3000));
-
-            // ここは HavyFunc 実行後に処理される.
-            Console.WriteLine("AsyncRapper end result[{0}]sec wait".Fmt(res));
-        }
-
-        /// <summary>
-        /// 重い処理.
-        /// </summary>
-        /// <param name="waitTime"></param>
-        private int HavyFunc(int waitTime)
-        {
-            Console.WriteLine("HavyFunc begin");
-            Thread.Sleep(waitTime);
-            Console.WriteLine("HavyFunc end");
-
-            return waitTime / 1000;
+            TaskSample.Sample();
         }
     }
 }

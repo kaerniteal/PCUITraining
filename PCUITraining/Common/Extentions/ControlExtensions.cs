@@ -18,7 +18,14 @@ namespace Common.Extentions
         {
             if (control.IsHandleCreated)
             {
-                control.BeginInvoke((MethodInvoker)(() => act()));
+                if (control.InvokeRequired)
+                {
+                    control.BeginInvoke((MethodInvoker)(() => act()));
+                }
+                else
+                {
+                    act();
+                }
             }
         }
 

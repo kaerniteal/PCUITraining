@@ -29,6 +29,7 @@ namespace MouseExercise.Configs
         {
             // デフォルトはここで与える.
             this.IsOffice = false;
+            this.ShowDebugShot = false;
             this.ViewUpdateWait = 100;
             this.UnitMax = 10;
             this.DefaultGameSec = 60000;
@@ -47,6 +48,11 @@ namespace MouseExercise.Configs
         /// 仕事中モード.
         /// </summary>
         public bool IsOffice { get; set; }
+
+        /// <summary>
+        /// デバッグ情報を画面に表示するかどうか.
+        /// </summary>
+        public bool ShowDebugShot { get; set; }
 
         /// <summary>
         /// 描画更新Wait(ms)
