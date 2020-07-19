@@ -26,6 +26,8 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             InitializeComponent();
 
+            this.ctrlPokemonSetDataViewerList.AddZeroSort();
+
             this.webBrowser.Visible = false;
 
             // リストの選択イベントを登録.
@@ -76,8 +78,8 @@ namespace TypingExercise.WordSet.PokemonSet
             this.lblComp.Text = "{0}/{1}".Fmt(catchedList.Count, pockeList.Count);
 
             // リストにデータを反映.
-            this.ctrlPokemonSetDataViewerList.SetNewList(catchedList);
-            if (catchedList.Count <= 0)
+            this.ctrlPokemonSetDataViewerList.SetNewList(gameData.RecordList);
+            if (gameData.RecordList.Count <= 0)
             {
                 this.webBrowser.Visible = false;
             }

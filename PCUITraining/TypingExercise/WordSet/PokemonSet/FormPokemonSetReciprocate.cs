@@ -73,8 +73,8 @@ namespace TypingExercise.WordSet.PokemonSet
             ctrlList.SetNewList(gameData.RecordList);
 
             // 相互に持っているポケモンの色を変える
-            this.ctrlPokemonListLeft.SetOtherSideList(this.ctrlPokemonListRight.AllList);
-            this.ctrlPokemonListRight.SetOtherSideList(this.ctrlPokemonListLeft.AllList);
+            this.ctrlPokemonListLeft.SetOtherSideList(this.ctrlPokemonListRight.OrgList);
+            this.ctrlPokemonListRight.SetOtherSideList(this.ctrlPokemonListLeft.OrgList);
         }
 
         /// <summary>

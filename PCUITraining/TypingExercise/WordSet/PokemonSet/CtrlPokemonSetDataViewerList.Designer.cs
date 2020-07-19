@@ -44,6 +44,7 @@
             // 
             // dgv
             // 
+            this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
             this.dgv.AllowUserToResizeColumns = false;
             this.dgv.AllowUserToResizeRows = false;
@@ -96,7 +97,7 @@
             this.Column1.HeaderText = "Column1";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            this.Column1.Width = 56;
+            this.Column1.Width = 5;
             // 
             // Column2
             // 
@@ -104,7 +105,7 @@
             this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 56;
+            this.Column2.Width = 5;
             // 
             // Column3
             // 
@@ -112,7 +113,7 @@
             this.Column3.HeaderText = "Column3";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 56;
+            this.Column3.Width = 5;
             // 
             // tableLayout
             // 

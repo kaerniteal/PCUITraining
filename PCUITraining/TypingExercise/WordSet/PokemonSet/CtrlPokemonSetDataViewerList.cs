@@ -18,6 +18,11 @@ namespace TypingExercise.WordSet.PokemonSet
         public List<PokemonSetGameDataRecord> AllList { get; set; }
 
         /// <summary>
+        /// 元データリスト.
+        /// </summary>
+        public List<PokemonSetGameDataRecord> OrgList { get; set; }
+
+        /// <summary>
         /// 他方データリスト.
         /// </summary>
         public List<PokemonSetGameDataRecord> OthreSideList { get; set; }
@@ -35,9 +40,18 @@ namespace TypingExercise.WordSet.PokemonSet
             InitializeComponent();
 
             this.AllList = new List<PokemonSetGameDataRecord>();
+            this.OrgList = new List<PokemonSetGameDataRecord>();
             this.OthreSideList = new List<PokemonSetGameDataRecord>();
 
             this.cmbSort.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// ソートコンボボックスに０匹リストを加える.
+        /// </summary>
+        public void AddZeroSort()
+        {
+            this.cmbSort.Items.Add("０匹のポケモン");
         }
 
         /// <summary>
@@ -47,8 +61,11 @@ namespace TypingExercise.WordSet.PokemonSet
         public void SetNewList(List<PokemonSetGameDataRecord> list)
         {
             this.AllList = list
-                .Where(rec => 0 < rec.CapturCount)
                 .OrderBy(rec => rec.Name)
+                .ToList();
+
+            this.OrgList = this.AllList
+                .Where(rec => 0 < rec.CapturCount)
                 .ToList();
 
             this.ShowList();
@@ -120,7 +137,7 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             this.dgv.Rows.Clear();
 
-            var sortedList = this.AllList;
+            var sortedList = this.OrgList;
             switch (this.cmbSort.SelectedIndex)
             {
                 // アイウエオ順は元のリストなのでソート不要.
@@ -129,16 +146,45 @@ namespace TypingExercise.WordSet.PokemonSet
 
                 // 捕獲数順
                 case 1:
-                    sortedList = this.AllList
+                    sortedList = this.OrgList
                         .OrderByDescending(elm => elm.CapturCount)
                         .ToList();
                     break;
 
                 // 最速タイム順.
                 case 2:
-                    sortedList = this.AllList
+                    sortedList = this.OrgList
                         .Where(elm => 0 != elm.ShortestTime)
                         .OrderBy(elm => elm.ShortestTime)
+                        .ToList();
+                    break;
+
+                // ０匹ポケモンリスト.
+                case 3:
+                    sortedList = PocketMonsterList.GetPockeMonList()
+                        .Select(fullPoke =>
+                        {
+                            var poke = this.AllList
+                                .Find(p => p.Name.Equals(fullPoke.orgWord));
+                            if (null != poke)
+                            {
+                                // 捕獲済みのポケモン.
+                                if (0 < poke.CapturCount)
+                                {
+                                    return null;
+                                }
+
+                                // 0匹のポケモン.
+                                return poke;
+                            }
+
+                            // まだデータがないポケモン.
+                            return new PokemonSetGameDataRecord
+                            {
+                                Name = fullPoke.orgWord,
+                            };
+                        })
+                        .Where(fullPoke => null != fullPoke)
                         .ToList();
                     break;
             }
