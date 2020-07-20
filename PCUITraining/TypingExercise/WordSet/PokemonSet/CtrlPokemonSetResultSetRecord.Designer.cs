@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CtrlPokemonSetResultSetRecord));
             this.lblPokemon = new System.Windows.Forms.Label();
             this.tableRecord = new System.Windows.Forms.TableLayoutPanel();
             this.lblETime = new System.Windows.Forms.Label();
@@ -143,6 +144,7 @@
             // pBoxUp
             // 
             this.pBoxUp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pBoxUp.Image = ((System.Drawing.Image)(resources.GetObject("pBoxUp.Image")));
             this.pBoxUp.Location = new System.Drawing.Point(403, 3);
             this.pBoxUp.Name = "pBoxUp";
             this.pBoxUp.Size = new System.Drawing.Size(34, 57);

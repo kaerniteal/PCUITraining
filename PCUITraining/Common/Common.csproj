@@ -72,6 +72,12 @@
   <ItemGroup>
     <Compile Include="Controls\AnimationOpacityEffect.cs" />
     <Compile Include="Controls\AnimationCircleEffect.cs" />
+    <Compile Include="Controls\FormImageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FormImageBox.Designer.cs">
+      <DependentUpon>FormImageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Network\Ssh\ISshOutputWriter.cs" />
     <Compile Include="Network\Ssh\Sample\FormSshTest.cs">
       <SubType>Form</SubType>
@@ -115,6 +121,9 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\FormImageBox.resx">
+      <DependentUpon>FormImageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FormMediaPlayer.resx">
       <DependentUpon>FormMediaPlayer.cs</DependentUpon>
     </EmbeddedResource>

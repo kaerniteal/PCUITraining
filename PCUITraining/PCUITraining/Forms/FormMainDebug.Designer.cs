@@ -30,12 +30,9 @@
         {
             this.btnPokeMonTyping = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnNext = new System.Windows.Forms.Button();
-            this.tableUserButton = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPokeMonTyping
@@ -59,14 +56,6 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(160, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(120, 65);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnNext
             // 
             this.btnNext.Location = new System.Drawing.Point(12, 41);
@@ -76,17 +65,6 @@
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // tableUserButton
-            // 
-            this.tableUserButton.ColumnCount = 1;
-            this.tableUserButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableUserButton.Location = new System.Drawing.Point(286, 12);
-            this.tableUserButton.Name = "tableUserButton";
-            this.tableUserButton.RowCount = 1;
-            this.tableUserButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableUserButton.Size = new System.Drawing.Size(381, 65);
-            this.tableUserButton.TabIndex = 2;
             // 
             // button1
             // 
@@ -117,14 +95,11 @@
             this.ClientSize = new System.Drawing.Size(679, 429);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.tableUserButton);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPokeMonTyping);
             this.Name = "FormMainDebug";
             this.Text = "FormMainDebug";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -133,9 +108,7 @@
 
         private System.Windows.Forms.Button btnPokeMonTyping;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.TableLayoutPanel tableUserButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
     }
