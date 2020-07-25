@@ -1,27 +1,28 @@
-﻿using System.Collections.Generic;
-using TypingExercise.Interfaces;
-using TypingExercise.WordSet;
+﻿using System;
+using System.Collections.Generic;
+using TextInputExercise.Interfaces;
+using TextInputExercise.TextSet;
 
-namespace TypingExercise.Executors
+namespace TextInputExercise.Executors
 {
-    /// <summary>
-    /// 入力結果.
-    /// </summary>
-    public enum EXEC_RESULT
-    {
-        CONTINUE,
-        NEXT,
-    }
-
     /// <summary>
     /// セット実行クラス.
     /// </summary>
-    public class SetExecutor : ITypExcExecutor
+    public class SetExecutor : ITIExcExecutor
     {
+        /// <summary>
+        /// 入力結果.
+        /// </summary>
+        public enum EXEC_RESULT
+        {
+            CONTINUE,
+            NEXT,
+        }
+
         /// <summary>
         /// 文字列リスト.
         /// </summary>
-        private List<WordBase> WordList { get; set; }
+        private List<TextBase> TextList { get; set; }
 
         /// <summary>
         /// 現在実行中のIndex
@@ -31,12 +32,12 @@ namespace TypingExercise.Executors
         /// <summary>
         /// 表示インタフェース.
         /// </summary>
-        private ITypExcViewer Viewer { get; set; }
+        private ITIExcViewer Viewer { get; set; }
 
         /// <summary>
         /// 文字列実行クラス.
         /// </summary>
-        private WordExecutor WordExecutor { get; set; }
+        private TextExecutor TextExecutor { get; set; }
 
         /// <summary>
         /// 実行結果.
@@ -47,14 +48,14 @@ namespace TypingExercise.Executors
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        /// <param name="WordList">実施する文字列リスト</param>
+        /// <param name="textList">実施する文字列リスト</param>
         /// <param name="viewer">表示インタフェース</param>
-        public SetExecutor(List<WordBase> WordList, ITypExcViewer viewer)
+        public SetExecutor(List<TextBase> textList, ITIExcViewer viewer)
         {
-            this.WordList = WordList;
+            this.TextList = textList;
             this.CurrentIndex = 0;
             this.Viewer = viewer;
-            this.WordExecutor = null;
+            this.TextExecutor = null;
             this.SetResult = new SetResult();
         }
 
@@ -63,48 +64,37 @@ namespace TypingExercise.Executors
         /// </summary>
         public void Start()
         {
-            this.Reset();
-        }
-
-        /// <summary>
-        /// 最初から始める.
-        /// </summary>
-        public void Reset()
-        {
             this.CurrentIndex = 0;
             this.SetResult = new SetResult();
             this.Exec(this.CurrentIndex);
         }
 
         /// <summary>
-        /// 入力されたKEYの通知.
+        /// 入力されたTEXT
         /// </summary>
-        /// <param name="key">入力KEY</param>
-        public void InputKey(char key)
+        /// <param name="text">入力文字列</param>
+        public void InputText(string text)
         {
-            if (null == this.WordExecutor)
+            if (null == this.TextExecutor)
             {
                 return;
             }
 
-            // 小文字に変換.
-            var lower = char.ToLower(key);
-
-            // 単語実行クラスへ通知し、結果を得る.
-            var status = this.WordExecutor.InputKey(lower);
+            // テキスト実行クラスへ通知し、結果を得る.
+            var status = this.TextExecutor.InputText(text);
 
             // 全て入力が済んだ場合.
             if (EXEC_RESULT.NEXT == status)
             {
                 // 結果を取得してセット結果に追加.
-                var result = this.WordExecutor.GetResult();
-                this.SetResult.WordResultList.Add(result);
+                var result = this.TextExecutor.GetResult();
+                this.SetResult.TextResultList.Add(result);
 
                 // 連続成功数を格納.
                 result.ConsecutiveNoMissCount = this.SetResult.GetCountConsecutiveNoMiss();
 
                 // 表示へ反映.
-                this.Viewer.ShowWordResult(result);
+                this.Viewer.ShowTextResult(result);
 
                 // 次へ進める.
                 this.CurrentIndex++;
@@ -113,7 +103,7 @@ namespace TypingExercise.Executors
         }
 
         /// <summary>
-        /// 終了
+        /// 終了.
         /// </summary>
         public void Stop()
         {
@@ -132,9 +122,9 @@ namespace TypingExercise.Executors
             }
 
             // 処理継続.
-            if (index < this.WordList.Count)
+            if (index < this.TextList.Count)
             {
-                this.WordExecutor = new WordExecutor(this.Viewer, this.WordList[index]);
+                this.TextExecutor = new TextExecutor(this.Viewer, this.TextList[index]);
             }
             else
             {

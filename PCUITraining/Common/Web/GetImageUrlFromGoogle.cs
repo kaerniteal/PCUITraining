@@ -53,6 +53,17 @@ namespace Common.Web
         }
 
         /// <summary>
+        /// 解析前処理.
+        /// </summary>
+        /// <param name="html">取得したHTML</param>
+        /// <returns>解析に与えるHTML</returns>
+        protected override string BeforeAnalize(string html)
+        {
+            // 行にバラす.
+            return html.Replace(">", ">\n");
+        }
+
+        /// <summary>
         /// 行解析処理.
         /// </summary>
         /// <param name="line">解析行</param>

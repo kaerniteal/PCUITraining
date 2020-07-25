@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CA5AE013-FAA7-4636-9CCF-B11D86F92C1D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>PCUITraining</RootNamespace>
-    <AssemblyName>PCUITraining</AssemblyName>
+    <ProjectGuid>{0F305B6A-C789-467D-9181-6241AA0B8BD8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TextInputExercise</RootNamespace>
+    <AssemblyName>TextInputExercise</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,12 +32,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Threading.Tasks.Extensions">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,45 +50,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\FormMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormMainDebug.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormMainDebug.Designer.cs">
-      <DependentUpon>FormMainDebug.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormSetting.Designer.cs">
-      <DependentUpon>FormSetting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormSettingUser.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormSettingUser.Designer.cs">
-      <DependentUpon>FormSettingUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PCUITraining.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Configs\TIExcConf.cs" />
+    <Compile Include="Executors\SetExecutor.cs" />
+    <Compile Include="Executors\SetResult.cs" />
+    <Compile Include="Executors\TextResult.cs" />
+    <Compile Include="Executors\TextExecutor.cs" />
+    <Compile Include="Interfaces\ITIExcGameInstance.cs" />
+    <Compile Include="Interfaces\ITIExcExecutor.cs" />
+    <Compile Include="Interfaces\ITIExcViewer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormMainDebug.resx">
-      <DependentUpon>FormMainDebug.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSetting.resx">
-      <DependentUpon>FormSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSettingUser.resx">
-      <DependentUpon>FormSettingUser.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="TextSet\PokeaniSet\PokeaniSetText.cs" />
+    <Compile Include="TextSet\PokeaniSet\PokeaniTitleList.cs" />
+    <Compile Include="TextSet\PokeaniSet\PokeaniSet.cs" />
+    <Compile Include="TextSet\PokeaniSet\PokeaniSetGameInstance.cs" />
+    <Compile Include="TextSet\PokeaniSet\PokeaniSetGameData.cs" />
+    <Compile Include="TextSet\PokeaniSet\PokeaniSetGameDataRecord.cs" />
+    <Compile Include="TextSet\TextBase.cs" />
+    <Compile Include="TextSet\TextSetBase.cs" />
+    <Compile Include="TextSet\TextCorrect.cs" />
+    <Compile Include="TextSet\TextConf.cs" />
+    <Compile Include="TIExc.cs" />
+    <Compile Include="Views\FormTIExc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormTIExc.Designer.cs">
+      <DependentUpon>FormTIExc.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -96,7 +84,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\FormTIExc.resx">
+      <DependentUpon>FormTIExc.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -111,31 +103,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PCUITResorce\setting.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{8d9eed30-b3e4-4be1-9da3-f38c0e887216}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MouseExercise\MouseExercise.csproj">
-      <Project>{e3a6d750-5bfd-46ec-82dd-53c7c7305582}</Project>
-      <Name>MouseExercise</Name>
     </ProjectReference>
     <ProjectReference Include="..\PCUITCommon\PCUITCommon.csproj">
       <Project>{57bd4808-a2ce-4246-a2ea-2076eff7540c}</Project>
       <Name>PCUITCommon</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TextInputExercise\TextInputExercise.csproj">
-      <Project>{0f305b6a-c789-467d-9181-6241aa0b8bd8}</Project>
-      <Name>TextInputExercise</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TypingExercise\TypingExercise.csproj">
-      <Project>{a652e426-0777-427f-ab78-4afa03e444bb}</Project>
-      <Name>TypingExercise</Name>
-    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -37,13 +37,26 @@ namespace Common.Web
                 this.Wc.Encoding = Encoding.UTF8;
                 var html = this.Wc.DownloadString(url);
 
+                // 解析の前処理を施す.
+                var preparation = this.BeforeAnalize(html.Trim());
+
                 // 取得したHTMLを解析する処理に預ける.
-                this.HtmlAnalize(html.Trim());
+                this.HtmlAnalize(preparation);
             }
             catch (WebException ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// 解析前処理.
+        /// </summary>
+        /// <param name="html">取得したHTML</param>
+        /// <returns>解析に与えるHTML</returns>
+        protected virtual string BeforeAnalize(string html)
+        {
+            return html;
         }
 
         /// <summary>
@@ -57,11 +70,8 @@ namespace Common.Web
                 return;
             }
 
-            // 行にバラす.
-            var replaced = html.Replace(">", ">\n");
-
             // 一行ずつ読み込む
-            using (var rs = new StringReader(replaced))
+            using (var rs = new StringReader(html))
             {
                 // 末端まで繰り返す
                 while (-1 < rs.Peek())

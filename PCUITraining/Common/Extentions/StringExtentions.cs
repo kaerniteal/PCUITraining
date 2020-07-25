@@ -46,6 +46,23 @@ namespace Common.Extentions
         }
 
         /// <summary>
+        /// 指定された文字列に該当する箇所より右側を取得する.
+        /// </summary>
+        /// <param name="self">自分自身</param>
+        /// <param name="dst">切り出したい区切り文字列</param>
+        /// <returns>dstを含まない、文字列の右部</returns>
+        public static string Right(this string self, string dst)
+        {
+            var index = self.IndexOf(dst);
+            if (0 <= index)
+            {
+                return self.Substring(index + dst.Length);
+            }
+
+            return self;
+        }
+
+        /// <summary>
         /// 数値文字列を数値へ変換する(変換不能な場合は0にする).
         /// </summary>
         /// <param name="self">変換元数値文字列</param>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30128.74
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCUITraining", "PCUITraining\PCUITraining.csproj", "{CA5AE013-FAA7-4636-9CCF-B11D86F92C1D}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{8D9EED30-B3E4-4BE1-9DA3-F38C0E887216}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouseExercise", "MouseExercise\MouseExercise.csproj", "{E3A6D750-5BFD-46EC-82DD-53C7C7305582}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextInputExercise", "TextInputExercise\TextInputExercise.csproj", "{0F305B6A-C789-467D-9181-6241AA0B8BD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E3A6D750-5BFD-46EC-82DD-53C7C7305582}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3A6D750-5BFD-46EC-82DD-53C7C7305582}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3A6D750-5BFD-46EC-82DD-53C7C7305582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F305B6A-C789-467D-9181-6241AA0B8BD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F305B6A-C789-467D-9181-6241AA0B8BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F305B6A-C789-467D-9181-6241AA0B8BD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F305B6A-C789-467D-9181-6241AA0B8BD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

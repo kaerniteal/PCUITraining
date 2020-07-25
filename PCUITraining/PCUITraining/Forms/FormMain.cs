@@ -4,6 +4,8 @@ using MouseExercise.Views;
 using PCUITCommon.Views;
 using System;
 using System.Windows.Forms;
+using TextInputExercise.TextSet.PokeaniSet;
+using TextInputExercise.Views;
 using TypingExercise;
 using TypingExercise.Views;
 using TypingExercise.WordSet.PokemonSet;
@@ -86,6 +88,31 @@ namespace PCUITraining.Forms
             var musExcSet = MusExc.GetMusExcSet(InsectCollectingSet.Name);
             var gameInstance = musExcSet.GetGameInstance(userData);
             var formExec = new FormMusExc(gameInstance);
+            formExec.ShowDialog();
+        }
+
+        /// <summary>
+        /// ポケモンライティング.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPokeMonWriting_Click(object sender, EventArgs e)
+        {
+            var userData = UserIconGrp.GetSelectedUserData();
+            if (null == userData)
+            {
+                FormMessageBox.Show("ユーザーを選択してください");
+                return;
+            }
+
+            var textSet = TIExc.GetTextSet(PokeaniSet.Name);
+            if (null == textSet)
+            {
+                return;
+            }
+
+            var instance = textSet.GetGameInstance(userData);
+            var formExec = new FormTIExc(instance);
             formExec.ShowDialog();
         }
 

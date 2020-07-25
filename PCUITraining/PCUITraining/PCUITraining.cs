@@ -66,6 +66,13 @@ namespace PCUITraining
                 return false;
             }
 
+            // ポケアニライト.
+            if (!TIExc.Init())
+            {
+                MessageBox.Show("TIExcの初期化に失敗しました");
+                return false;
+            }
+
             return true;
         }
     }
