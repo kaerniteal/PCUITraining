@@ -20,7 +20,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// <summary>
         /// 最速更新かどうか.
         /// </summary>
-        private bool Update { get; set; }
+        public bool Update { get; set; }
 
 
         /// <summary>

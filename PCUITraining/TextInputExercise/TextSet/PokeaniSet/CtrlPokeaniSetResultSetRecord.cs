@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common.Extentions;
 
 namespace TextInputExercise.TextSet.PokeaniSet
 {
@@ -31,7 +32,9 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// <param name="textResult">入力結果</param>
         public void SetTextResult(PokeaniSetTextResult textResult)
         {
-            // TODO:実装.
+            this.lblText.Text = textResult.Result.Text;
+            this.lblETime.Text = "{0}ms".Fmt(textResult.MeasuredTime);
+            this.pBoxUp.Visible = textResult.Update;
         }
     }
 }

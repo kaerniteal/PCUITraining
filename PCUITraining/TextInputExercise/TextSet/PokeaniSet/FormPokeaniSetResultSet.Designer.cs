@@ -35,23 +35,29 @@
             // 
             // btonOK
             // 
+            this.btonOK.BackColor = System.Drawing.Color.DimGray;
             this.btonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btonOK.Location = new System.Drawing.Point(12, 286);
+            this.btonOK.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F);
+            this.btonOK.ForeColor = System.Drawing.Color.Yellow;
+            this.btonOK.Location = new System.Drawing.Point(12, 699);
             this.btonOK.Name = "btonOK";
-            this.btonOK.Size = new System.Drawing.Size(272, 23);
+            this.btonOK.Size = new System.Drawing.Size(562, 89);
             this.btonOK.TabIndex = 0;
             this.btonOK.Text = "もういっかい";
-            this.btonOK.UseVisualStyleBackColor = true;
+            this.btonOK.UseVisualStyleBackColor = false;
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.DimGray;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(301, 286);
+            this.btnCancel.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F);
+            this.btnCancel.ForeColor = System.Drawing.Color.Red;
+            this.btnCancel.Location = new System.Drawing.Point(586, 699);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(272, 23);
+            this.btnCancel.Size = new System.Drawing.Size(562, 89);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "おわる";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel
             // 
@@ -70,7 +76,7 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(558, 268);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(1136, 681);
             this.tableLayoutPanel.TabIndex = 2;
             // 
             // FormPokeaniSetResultSet
@@ -78,13 +84,15 @@
             this.AcceptButton = this.btonOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(582, 321);
+            this.ClientSize = new System.Drawing.Size(1160, 800);
             this.Controls.Add(this.tableLayoutPanel);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btonOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormPokeaniSetResultSet";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormPokeaniSetResultSet";
             this.Load += new System.EventHandler(this.FormPokeaniSetResultSet_Load);
             this.ResumeLayout(false);

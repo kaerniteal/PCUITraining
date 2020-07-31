@@ -111,6 +111,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TextSet\PokeaniSet\CtrlPokeaniSetResultSetRecord.resx">
+      <DependentUpon>CtrlPokeaniSetResultSetRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextSet\PokeaniSet\FormPokeaniSetResultSet.resx">
+      <DependentUpon>FormPokeaniSetResultSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TextSet\PokeaniSet\FormPokeaniSetResultText.resx">
       <DependentUpon>FormPokeaniSetResultText.cs</DependentUpon>
     </EmbeddedResource>

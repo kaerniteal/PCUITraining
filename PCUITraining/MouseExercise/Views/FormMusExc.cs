@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.Controls;
+using Common.Extentions;
 using MouseExercise.Executors;
 using MouseExercise.Interfaces;
 using MouseExercise.MusExcSet;
@@ -364,7 +365,7 @@ namespace MouseExercise.Views
         /// <summary>
         /// ユニットを表示するインナークラス.
         /// </summary>
-        private class UnitPBox : PictureBox
+        private class UnitPBox : PictureBoxTransparentLayered
         {
             /// <summary>
             /// ユニットIndex.
