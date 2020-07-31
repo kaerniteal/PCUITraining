@@ -42,18 +42,19 @@ namespace PCUITraining.Forms
             var list = PokeaniTitleList.GetPokemonTitleList();
             foreach(var title in list)
             {
-                Console.WriteLine(title.SortID + ":" + title.Episode + ":" + title.Text);
+                Console.WriteLine(title.Total + ":" + title.Episode + ":" + title.Text);
             }
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var sample = "b 　\n\te".ToCharArray();
-            foreach(var cha in sample)
+            var grp = TextCorrect.CompatibleTolerancePattern;
+            var haifun = grp[0];
+
+            foreach(var ptn in haifun)
             {
-                var result = TextCorrect.IsIgnoreCorrectCheck(cha);
-                Console.WriteLine("[" + cha + "]:" + result);
+                Console.WriteLine("[" + ptn + "]:" + Char.ConvertToUtf32(ptn, 0));
             }
         }
 

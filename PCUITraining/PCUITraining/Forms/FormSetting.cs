@@ -63,7 +63,6 @@ namespace PCUITraining.Forms
             this.btnConf1.Enabled = isSelected;
             this.btnConf2.Enabled = isSelected;
 
-            this.btnUserAdd.Enabled = this.UserIconGrp.CanAdd();
             this.btnUserUpdate.Enabled = isSelected;
             this.btnUserDelete.Enabled = isSelected;
         }

@@ -89,10 +89,8 @@ namespace TextInputExercise.TextSet.PokeaniSet
             }
 
             // 文字列の結果表示ダイアログを表示.
-            FormMessageBox.Show("入力しました！");
-            // TODO:未実装
-            //var dlg = new FormPokemonSetResultWord(result, useMasterBoll);
-            //dlg.ShowDialog();
+            var dlg = new FormPokeaniSetResultText(result);
+            dlg.ShowDialog();
         }
 
         /// <summary>
@@ -102,11 +100,58 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// <returns>表示結果</returns>
         public DialogResult ShowSetResultDlg(SetResult result)
         {
+            var resList = result.TextResultList
+                .Select(textResult =>
+                {
+                    var pokeAni = textResult.TextBase as PokeaniSetText;
+                    if (null == pokeAni)
+                    {
+                        return null;
+                    }
+
+                    // ユーザーデータのタイトル別レコードを取得する.
+                    var record = this.GameData.RecordList
+                        .Find(rec => rec.Title.Equals(pokeAni.Text));
+
+                    // 存在しない場合は新たに生成して追加しておく.
+                    if (null == record)
+                    {
+                        record = new PokeaniSetGameDataRecord
+                        {
+                            Total = pokeAni.Total,
+                            Series = pokeAni.Series,
+                            Volume = pokeAni.Volume,
+                            Episode = pokeAni.Episode,
+                            Title = pokeAni.Text,
+                        };
+
+                        this.GameData.RecordList.Add(record);
+                    }
+
+                    // これまでの最速タイムを上回っているかどうか.
+                    if ((record.ShortestTime <= 0) ||
+                        (textResult.MeasuredTime < record.ShortestTime))
+                    {
+                        record.ShortestTime = textResult.MeasuredTime;
+                    }
+
+                    // 入力回数をインクリメント.
+                    record.InputedCount++;
+
+                    return record;
+                })
+                .ToList();
+
             //**************************************************//
             // ユーザーデータがnullの場合、保存処理等は走らない //
             //**************************************************//
             if (null != this.UserData)
             {
+                // ソートしときます.
+                this.GameData.RecordList = this.GameData.RecordList
+                                                    .OrderBy(rec => rec.Total)
+                                                    .ToList();
+
                 this.GameData.Save(this.UserData);
             }
 

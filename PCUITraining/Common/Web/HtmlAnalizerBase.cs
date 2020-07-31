@@ -27,7 +27,7 @@ namespace Common.Web
         }
 
         /// <summary>
-        /// Googleの画像検索を利用して、画像のURLリストを取得する
+        /// Htmlを取得してテキストを解析する.
         /// </summary>
         /// <param name="url">アクセスするURL</param>
         protected void Url(string url)
@@ -37,8 +37,11 @@ namespace Common.Web
                 this.Wc.Encoding = Encoding.UTF8;
                 var html = this.Wc.DownloadString(url);
 
+                // デコードする.
+                var decoded = WebUtility.HtmlDecode(html.Trim());
+
                 // 解析の前処理を施す.
-                var preparation = this.BeforeAnalize(html.Trim());
+                var preparation = this.BeforeAnalize(decoded);
 
                 // 取得したHTMLを解析する処理に預ける.
                 this.HtmlAnalize(preparation);

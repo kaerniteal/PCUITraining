@@ -1,4 +1,6 @@
 ﻿using Common.Extentions;
+using Common.Lang.Japanese;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using TextInputExercise.Executors;
@@ -47,6 +49,20 @@ namespace TextInputExercise.Views
         }
 
         /// <summary>
+        /// テキスト選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tBpxText_MouseUp(object sender, MouseEventArgs e)
+        {
+            // 読み解析.
+            var kanji = this.tBpxText.SelectedText.Trim();
+            var words = MorphologicalAnalysis.PhoneticAnalyze(kanji);
+            this.lblYomi.Text = string.Join(" ", words);
+            this.rtBoxText.Focus();
+        }
+
+        /// <summary>
         /// Key入力を取得.
         /// </summary>
         /// <param name="sender"></param>
@@ -89,7 +105,8 @@ namespace TextInputExercise.Views
         /// <param name="text">入力対象文字列</param>
         public void SetNewText(string text)
         {
-            this.lblText.Text = text;
+            this.tBpxText.Text = text;
+            this.lblYomi.Text = string.Empty;
             this.rtBoxText.Text = string.Empty;
 
             // TODO:実装
@@ -149,7 +166,7 @@ namespace TextInputExercise.Views
         /// </summary>
         public void ShowTextResult(TextResult result)
         {
-            // TODO:実装.
+            this.GameInstance.ShowTextResult(result);
         }
 
         /// <summary>
@@ -158,7 +175,17 @@ namespace TextInputExercise.Views
         /// <param name="result">実行結果</param>
         public void ShowSetResult(SetResult result)
         {
-            // TODO:実装.
+            var dlgResult = this.GameInstance.ShowSetResultDlg(result);
+
+            // もう一回の場合.
+            if (DialogResult.OK == dlgResult)
+            {
+                this.StartNewGame();
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

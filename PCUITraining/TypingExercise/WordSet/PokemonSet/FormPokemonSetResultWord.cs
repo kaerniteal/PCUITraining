@@ -68,17 +68,6 @@ namespace TypingExercise.WordSet.PokemonSet
         }
 
         /// <summary>
-        /// KeyPress
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PocketMonsterResultWord_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // 何か押下されたら消える.
-            this.Close();
-        }
-
-        /// <summary>
         /// ロードイベント.
         /// </summary>
         /// <param name="sender"></param>
@@ -87,6 +76,17 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             var aoe = new AnimationOpacityEffect(this);
             aoe.FadeIn(200);
+        }
+
+        /// <summary>
+        /// KeyPress
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PocketMonsterResultWord_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 何か押下されたら消える.
+            this.Close();
         }
 
         /// <summary>

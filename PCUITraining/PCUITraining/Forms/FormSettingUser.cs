@@ -227,7 +227,7 @@ namespace PCUITraining.Forms
         private void btnSave_Click(object sender, EventArgs e)
         {
             // 入力チェック.
-            var name = this.tBoxName.Text;
+            var name = this.tBoxName.Text.Trim();
             if (name.IsEmpty())
             {
                 FormMessageBox.Show("名前を入力してください。");
@@ -241,7 +241,12 @@ namespace PCUITraining.Forms
                 return;
             }
 
-            // TODO：重複チェック.
+            // 重複チェック.
+            if (!this.UserIconGrp.CanAdd(name))
+            {
+                FormMessageBox.Show("[{0}]は既に存在します。\n違う名前を入力してください。".Fmt(name));
+                return;
+            }
 
             // 色を取得.
             var color = (Color)this.cmbbColor.SelectedItem;

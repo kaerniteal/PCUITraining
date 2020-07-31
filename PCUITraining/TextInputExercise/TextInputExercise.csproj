@@ -59,6 +59,12 @@
     <Compile Include="Interfaces\ITIExcExecutor.cs" />
     <Compile Include="Interfaces\ITIExcViewer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextSet\PokeaniSet\FormPokeaniSetResultText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextSet\PokeaniSet\FormPokeaniSetResultText.Designer.cs">
+      <DependentUpon>FormPokeaniSetResultText.cs</DependentUpon>
+    </Compile>
     <Compile Include="TextSet\PokeaniSet\PokeaniSetText.cs" />
     <Compile Include="TextSet\PokeaniSet\PokeaniTitleList.cs" />
     <Compile Include="TextSet\PokeaniSet\PokeaniSet.cs" />
@@ -86,6 +92,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TextSet\PokeaniSet\FormPokeaniSetResultText.resx">
+      <DependentUpon>FormPokeaniSetResultText.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FormTIExc.resx">
       <DependentUpon>FormTIExc.cs</DependentUpon>
     </EmbeddedResource>

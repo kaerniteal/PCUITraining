@@ -264,7 +264,6 @@ namespace MouseExercise.Executors
 
                     // 移動フェーズ.
                     // 前回値からの移動量を計算して、新しい座標を設定する.
-                    // TODO:他のユニットとの重複チェック、重複する場合には移動させない.
                     var mover = MusExcExecutorMovementBase.GetMovement(state.DefUnit.Movement);
                     mover.SetNextPoint(state, this.Viewer.GetSize());
 
@@ -341,7 +340,6 @@ namespace MouseExercise.Executors
                     image.Size.Height);
 
                 // 座標の初期値を設定する.
-                // TODO:重複判定、重複した場合には初期位置の再抽選を行う.
                 var calculator = MusExcExecutorMovementBase.GetMovement(state.DefUnit.Movement);
                 calculator.SetInitPoint(state, this.Viewer.GetSize());
             }

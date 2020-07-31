@@ -9,6 +9,21 @@ namespace TextInputExercise.TextSet.PokeaniSet
     public class PokeaniSetGameDataRecord
     {
         /// <summary>
+        /// トータル話数.
+        /// </summary>
+        public int Total { get; set; }
+
+        /// <summary>
+        /// シリーズ.
+        /// </summary>
+        public string Series { get; set; }
+
+        /// <summary>
+        /// 編.
+        /// </summary>
+        public string Volume { get; set; }
+
+        /// <summary>
         /// 話数.
         /// </summary>
         public string Episode { get; set; }
@@ -21,7 +36,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// <summary>
         /// 入力回数.
         /// </summary>
-        public int CapturCount { get; set; }
+        public int InputedCount { get; set; }
 
         /// <summary>
         /// 最速タイム.
@@ -34,9 +49,12 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// </summary>
         public PokeaniSetGameDataRecord()
         {
+            this.Total = 0;
+            this.Series = string.Empty;
+            this.Volume = string.Empty;
             this.Episode = string.Empty;
             this.Title = string.Empty;
-            this.CapturCount = 0;
+            this.InputedCount = 0;
             this.ShortestTime = 0;
         }
     }

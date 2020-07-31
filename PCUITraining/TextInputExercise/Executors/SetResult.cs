@@ -20,26 +20,5 @@ namespace TextInputExercise.Executors
         {
             this.TextResultList = new List<TextResult>();
         }
-
-        /// <summary>
-        /// 連続ノーミス数を取得する.
-        /// </summary>
-        /// <returns></returns>
-        public int GetCountConsecutiveNoMiss()
-        {
-            // MissTypeがゼロの結果を遡ってカウントする.
-            var noMissCount = 0;
-            for (var ii = this.TextResultList.Count - 1; 0 <= ii; ii--)
-            {
-                if (0 != this.TextResultList[ii].MissTypeCount)
-                {
-                    break;
-                }
-
-                noMissCount++;
-            }
-
-            return noMissCount;
-        }
     }
 }

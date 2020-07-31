@@ -90,9 +90,6 @@ namespace TextInputExercise.Executors
                 var result = this.TextExecutor.GetResult();
                 this.SetResult.TextResultList.Add(result);
 
-                // 連続成功数を格納.
-                result.ConsecutiveNoMissCount = this.SetResult.GetCountConsecutiveNoMiss();
-
                 // 表示へ反映.
                 this.Viewer.ShowTextResult(result);
 

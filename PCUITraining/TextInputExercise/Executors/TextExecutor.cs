@@ -49,7 +49,7 @@ namespace TextInputExercise.Executors
             this.CorrectList = word.correctList;
             this.Stopwatch = new Stopwatch();
 
-            this.TextResult = new TextResult(word.Text);
+            this.TextResult = new TextResult(word);
 
             // 新しい入力単語の表示への反映は一度だけ.
             this.Viewer.SetNewText(this.CorrectText);

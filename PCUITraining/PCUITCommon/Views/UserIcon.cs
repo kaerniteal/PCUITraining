@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace PCUITCommon.Views
@@ -121,11 +122,11 @@ namespace PCUITCommon.Views
             /// </summary>
             public const int MAX_USER = 5;
 
-
             /// <summary>
             /// ユーザーアイコンリスト.
             /// </summary>
             private List<UserIcon> UserIconList { get; set; }
+
 
             /// <summary>
             /// コンストラクタ.
@@ -151,6 +152,18 @@ namespace PCUITCommon.Views
             public bool CanAdd()
             {
                 return this.UserIconList.Count < MAX_USER;
+            }
+
+            /// <summary>
+            /// 指定した名前のユーザーが追加可能かどうか.
+            /// </summary>
+            /// <param name="name">追加候補名</param>
+            /// <returns>可否</returns>
+            public bool CanAdd(string name)
+            {
+                return !this.UserIconList
+                    .Select(icon => icon.Name)
+                    .Contains(name);
             }
 
             /// <summary>

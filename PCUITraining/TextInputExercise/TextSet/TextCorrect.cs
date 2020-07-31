@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualBasic;
-using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -24,6 +23,27 @@ namespace TextInputExercise.TextSet
         /// チェック不要文字正規表現パターン.
         /// </summary>
         private static Regex IgnoreCheck { get; set; }
+
+        /// <summary>
+        /// 互換許容パータン.
+        /// </summary>
+        public static readonly List<List<string>> CompatibleTolerancePattern = new List<List<string>>
+        {
+            // ハイフンパターン.
+            new List<string>
+            {
+                "-",    // [-]:45
+                "‐",   // [‐]:8208
+                "―",   // [―]:8213
+                "ー",   // [ー]:12540
+                "ｰ",    // [ｰ]:65392
+                "－",   // [－]:65293
+                "‑",    // [?]:8209
+                "–",    // [?]:8211
+                "—",    // [?]:8212
+                "−",    // [?]:8722
+            },
+        };
 
 
         /// <summary>
@@ -54,7 +74,17 @@ namespace TextInputExercise.TextSet
             // 半角を登録.
             this.Correct.Add(Strings.StrConv(this.Char, VbStrConv.Narrow));
 
-            // TODO:互換許容パターンがあればここで登録.
+            // 互換許容パターンがあればここで登録.
+            foreach(var grp in CompatibleTolerancePattern)
+            {
+                if (grp.Contains(this.Char))
+                {
+                    foreach(var pat in grp)
+                    {
+                        this.Correct.Add(pat);
+                    }
+                }
+            }
         }
 
         /// <summary>
