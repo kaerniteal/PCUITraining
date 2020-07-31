@@ -206,6 +206,12 @@ namespace TextInputExercise.TextSet.PokeaniSet
                 {
                     var title = line.Right(">");
 
+                    // 改行を含むケース対応.
+                    if (title.Contains("<br />"))
+                    {
+                        title = title.Left("<br />");
+                    }
+
                     // 最後に確保したEpisodeと組み合わせてレコードを生成.
                     var text = new PokeaniSetText(
                         this.HookTotal.ToInt(),
@@ -213,6 +219,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
                         this.HookVolume,
                         this.HookEpisode,
                         title);
+
                     this.TitleList.Add(text);
 
                     // Episodeは他の要素とペアリングされないように潰しておく.

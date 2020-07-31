@@ -57,22 +57,24 @@
             // lblText
             // 
             this.lblText.AutoSize = true;
+            this.lblText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblText.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F);
             this.lblText.ForeColor = System.Drawing.Color.Aqua;
             this.lblText.Location = new System.Drawing.Point(3, 0);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(202, 37);
+            this.lblText.Size = new System.Drawing.Size(750, 120);
             this.lblText.TabIndex = 0;
             this.lblText.Text = "入力文字列";
             // 
             // lblETime
             // 
             this.lblETime.AutoSize = true;
+            this.lblETime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblETime.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F);
             this.lblETime.ForeColor = System.Drawing.Color.Aqua;
             this.lblETime.Location = new System.Drawing.Point(759, 0);
             this.lblETime.Name = "lblETime";
-            this.lblETime.Size = new System.Drawing.Size(113, 74);
+            this.lblETime.Size = new System.Drawing.Size(135, 120);
             this.lblETime.TabIndex = 0;
             this.lblETime.Text = "0000000";
             // 
