@@ -96,7 +96,7 @@ namespace TextInputExercise.Executors
 
                 // チェック対象文字まで進める.
                 var cha = char.MinValue;
-                for(; cIdx < cArray.Length; cIdx++)
+                for (; cIdx < cArray.Length; cIdx++)
                 {
                     var c = cArray[cIdx];
                     if (TextCorrect.IsIgnoreCorrectCheck(c))

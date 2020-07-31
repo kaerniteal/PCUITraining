@@ -75,11 +75,11 @@ namespace TextInputExercise.TextSet
             this.Correct.Add(Strings.StrConv(this.Char, VbStrConv.Narrow));
 
             // 互換許容パターンがあればここで登録.
-            foreach(var grp in CompatibleTolerancePattern)
+            foreach (var grp in CompatibleTolerancePattern)
             {
                 if (grp.Contains(this.Char))
                 {
-                    foreach(var pat in grp)
+                    foreach (var pat in grp)
                     {
                         this.Correct.Add(pat);
                     }

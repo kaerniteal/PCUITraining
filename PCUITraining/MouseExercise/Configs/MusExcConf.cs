@@ -25,7 +25,7 @@ namespace MouseExercise.Configs
         /// <summary>
         /// デフォルトをセット.
         /// </summary>
-        private void SetDefault()
+        public void SetDefault()
         {
             // デフォルトはここで与える.
             this.IsOffice = false;

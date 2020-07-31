@@ -32,6 +32,7 @@
             this.rtBoxText = new System.Windows.Forms.RichTextBox();
             this.tBpxText = new System.Windows.Forms.TextBox();
             this.lblYomi = new System.Windows.Forms.Label();
+            this.mPanel = new TextInputExercise.Views.MarqueePanel();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,6 +43,7 @@
             this.tableLayoutPanel.Controls.Add(this.rtBoxText, 0, 2);
             this.tableLayoutPanel.Controls.Add(this.tBpxText, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.lblYomi, 0, 1);
+            this.tableLayoutPanel.Controls.Add(this.mPanel, 0, 3);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -98,6 +100,16 @@
             this.lblYomi.Size = new System.Drawing.Size(794, 45);
             this.lblYomi.TabIndex = 2;
             // 
+            // mPanel
+            // 
+            this.mPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mPanel.Location = new System.Drawing.Point(3, 228);
+            this.mPanel.Name = "mPanel";
+            this.tableLayoutPanel.SetRowSpan(this.mPanel, 2);
+            this.mPanel.Size = new System.Drawing.Size(794, 219);
+            this.mPanel.TabIndex = 3;
+            this.mPanel.TabStop = false;
+            // 
             // FormTIExc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -110,6 +122,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormTIExc";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormTIExc_FormClosed);
             this.Load += new System.EventHandler(this.FormTIExc_Load);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
@@ -123,5 +136,6 @@
         private System.Windows.Forms.RichTextBox rtBoxText;
         private System.Windows.Forms.TextBox tBpxText;
         private System.Windows.Forms.Label lblYomi;
+        private MarqueePanel mPanel;
     }
 }

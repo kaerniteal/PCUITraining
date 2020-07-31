@@ -5,8 +5,6 @@ using MouseExercise.MusExcSet;
 using PCUITCommon;
 using System;
 using System.Drawing;
-using System.IO;
-using System.Reflection;
 using System.Windows.Forms;
 using static MouseExercise.Definitions.MusExcEnums;
 
@@ -86,7 +84,7 @@ namespace MouseExercise.Views
 
             // Cusor をロード.
             this.CursorOff = new Cursor(@".\MusExcResorce\InsectCollectingOff.cur");
-            this.CursorOn  = new Cursor(@".\MusExcResorce\InsectCollectingOn.cur");
+            this.CursorOn = new Cursor(@".\MusExcResorce\InsectCollectingOn.cur");
         }
 
         /// <summary>

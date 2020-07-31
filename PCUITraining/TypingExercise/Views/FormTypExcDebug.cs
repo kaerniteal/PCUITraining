@@ -1,10 +1,7 @@
-﻿using Common.Web;
-using PCUITCommon;
+﻿using PCUITCommon;
 using PCUITCommon.Datas;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Threading;
 using System.Windows.Forms;
 using TypingExercise.Definitions;
 using TypingExercise.Executors;
@@ -75,29 +72,8 @@ namespace TypingExercise.Views
             if (PCUIT.Conf.EnableWeb)
             {
                 // 画像を取得して表示.
-                // 読み込み処理を別スレッドで実行.
-                var thread = new Thread(new ThreadStart(() =>
-                {
-                    var wc = PCUIT.GetWebClient();
-
-                    // 画像URLをGoogleから取得.
-                    var google = new GetImageUrlFromGoogle(wc);
-                    var urls = google.GetImageUrls(word, this.pPanel.GetMaxImageCount());
-
-                    // 画像URLから画像データを取得.
-                    var downloader = new Downloader(wc);
-
-                    for (var ii = 0; ii < urls.Count; ii++)
-                    {
-                        var image = downloader.GetImage(urls[ii]);
-
-                        // パネルに表示.
-                        this.pPanel.SetImage(ii, image);
-                    }
-                }));
-
-                // スレッドを開始します。
-                thread.Start();
+                var imageStore = this.pPanel.CreateNewImageStore();
+                imageStore.DownLoadFromGoogle(word);
             }
 
             return null;

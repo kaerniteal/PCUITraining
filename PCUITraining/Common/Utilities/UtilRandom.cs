@@ -15,7 +15,7 @@ namespace Common.Utilities
         private static Random Random { get; set; }
 
         /// <summary>
-        /// ランダムな数値を返します.
+        /// [0 <= value < max]でランダムな数値を返します.
         /// </summary>
         /// <param name="max">最大</param>
         /// <returns>ランダムな数値</returns>
@@ -27,7 +27,7 @@ namespace Common.Utilities
         }
 
         /// <summary>
-        /// ランダムな数値を返します.
+        /// [min <= value < max]でランダムな数値を返します.
         /// </summary>
         /// <param name="min">最小</param>
         /// <param name="max">最大</param>
@@ -49,7 +49,7 @@ namespace Common.Utilities
                 return;
             }
 
-            long unixTime = DateTime.Now.GetUnixTime();
+            var unixTime = DateTime.Now.GetUnixTime();
             var seed = (int)(unixTime % int.MaxValue);
             Random = new Random(seed);
         }

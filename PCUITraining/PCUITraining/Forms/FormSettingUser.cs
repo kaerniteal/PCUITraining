@@ -258,7 +258,7 @@ namespace PCUITraining.Forms
 
             // Mode差異.
             var modeStr = string.Empty;
-            switch(this.Mode)
+            switch (this.Mode)
             {
                 case MODE.ADD:
                     modeStr = "追加";

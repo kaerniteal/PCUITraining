@@ -32,7 +32,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             this.dgvCapture.Rows.Clear();
 
             var resultlist = result.GetResultList();
-            foreach(var rec in resultlist)
+            foreach (var rec in resultlist)
             {
                 this.AddCaptureRecord(rec);
             }
@@ -43,7 +43,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
 
             // スコア一覧.
             var totalScore = result.GetTotalScore();
-            foreach(var score in gameData.ScoreList)
+            foreach (var score in gameData.ScoreList)
             {
                 this.AddHighScoreRecord(score, currentScore);
             }

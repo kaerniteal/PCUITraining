@@ -13,28 +13,20 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <summary>
         /// レコードコントロールリスト
         /// </summary>
-        private List<CtrlPokemonSetResultSetRecord> RecordList { get; set; }
+        private List<CtrlPokemonSetResultSetRecord> CtrlList { get; set; }
 
 
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public FormPokemonSetResultSet()
+        /// <param name="judgResultList">捕獲判定結果</param>
+        public FormPokemonSetResultSet(List<PokemonSetJudgmentResult> judgResultList)
         {
             InitializeComponent();
 
-            this.RecordList = new List<CtrlPokemonSetResultSetRecord>();
-        }
+            this.CtrlList = new List<CtrlPokemonSetResultSetRecord>();
 
-        /// <summary>
-        /// 総合結果表示
-        /// </summary>
-        /// <param name="judgResultList">捕獲判定結果</param>
-        /// <returns>DialogResult</returns>
-        public DialogResult ShowSetResultDlg(List<PokemonSetJudgmentResult> judgResultList)
-        {
             // 結果をセット.
-            this.RecordList = new List<CtrlPokemonSetResultSetRecord>();
             for (var ii = 0; ii < judgResultList.Count; ii++)
             {
                 var judgResult = judgResultList[ii];
@@ -44,11 +36,9 @@ namespace TypingExercise.WordSet.PokemonSet
                 // Load時、上から順にAnimationで表示する為に非表示にしておく.
                 ctrl.Visible = false;
 
-                this.RecordList.Add(ctrl);
+                this.CtrlList.Add(ctrl);
                 this.tableWordResult.Controls.Add(ctrl, 0, ii);
             }
-
-            return this.ShowDialog();
         }
 
         /// <summary>
@@ -78,9 +68,9 @@ namespace TypingExercise.WordSet.PokemonSet
                 {
                     // 0～9にする.
                     index--;
-                    if (index < this.RecordList.Count)
+                    if (index < this.CtrlList.Count)
                     {
-                        this.RecordList[index].Visible = true;
+                        this.CtrlList[index].Visible = true;
                     }
                 }
 

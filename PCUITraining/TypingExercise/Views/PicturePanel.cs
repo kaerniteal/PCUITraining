@@ -1,17 +1,15 @@
 ﻿using Common.Extentions;
 using PCUITCommon.Datas;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace TypingExercise.Views
 {
     /// <summary>
-    /// イメージ表示パネル(
+    /// イメージ表示パネル
     /// </summary>
     /// <remarks>
     /// 別スレッドからの画像更新にも対応
-    /// 
     /// </remarks>
     public partial class PicturePanel : UserControl
     {
@@ -23,7 +21,7 @@ namespace TypingExercise.Views
         /// <summary>
         /// イメージストア.
         /// </summary>
-        private ImageStore ImageStore { get; set; }
+        private ImageStoreDownloadFromGoogle ImageStore { get; set; }
 
 
         /// <summary>
@@ -54,51 +52,18 @@ namespace TypingExercise.Views
         }
 
         /// <summary>
-        /// セット可能な画像の最大数.
-        /// </summary>
-        /// <returns></returns>
-        public int GetMaxImageCount()
-        {
-            return this.pBoxList.Count;
-        }
-
-        /// <summary>
-        /// イメージセット.
-        /// </summary>
-        /// <param name="index">セットするpBoxIndex</param>
-        /// <param name="image">画像</param>
-        public void SetImage(int index, Bitmap image)
-        {
-            if (null != this.ImageStore)
-            {
-                this.ImageStore.SetImage(index, image);
-            }
-
-            this.UpdateImage();
-        }
-
-        /// <summary>
-        /// イメージリストセット.
-        /// </summary>
-        /// <param name="images">画像</param>
-        /// <param name="offset">オフセット</param>
-        public void SetImages(List<Bitmap> images, int offset = 0)
-        {
-            if (null != this.ImageStore)
-            {
-                this.ImageStore.SetImages(images, offset);
-            }
-        }
-
-        /// <summary>
         /// 新たなイメージストアを生成し、参照を返す.
         /// </summary>
         /// <returns>新たなイメージストア</returns>
-        public ImageStore CreateNewImageStore()
+        public ImageStoreDownloadFromGoogle CreateNewImageStore()
         {
-            this.ImageStore = new ImageStore(this.pBoxList.Count);
+            this.ImageStore = new ImageStoreDownloadFromGoogle(this.pBoxList.Count, this.UpdateImage);
 
-            this.Update();
+            // 全部クリアする.
+            foreach (var pbox in this.pBoxList)
+            {
+                pbox.Image = null;
+            }
 
             return this.ImageStore;
         }
@@ -106,7 +71,7 @@ namespace TypingExercise.Views
         /// <summary>
         /// 画像更新.
         /// </summary>
-        public void UpdateImage()
+        private void UpdateImage()
         {
             // 別スレッドから呼び出された場合の考慮.
             this.UIInvoke(() =>

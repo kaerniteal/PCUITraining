@@ -1,6 +1,4 @@
-﻿using Common.Extentions;
-using MouseExercise.MusExcSet;
-using System;
+﻿using MouseExercise.MusExcSet;
 using static MouseExercise.Definitions.MusExcEnums;
 
 namespace MouseExercise.Executors
@@ -18,7 +16,7 @@ namespace MouseExercise.Executors
         {
             // 時計回り.
             var nextBehavior = BEHAVIOR_POS.UP;
-            switch(unitState.CurrentBehavior)
+            switch (unitState.CurrentBehavior)
             {
                 case BEHAVIOR_POS.UP:
                     nextBehavior = BEHAVIOR_POS.RIGHT_UP;

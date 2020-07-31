@@ -25,7 +25,7 @@ namespace TypingExercise.Configs
         /// <summary>
         /// デフォルトをセット.
         /// </summary>
-        private void SetDefault()
+        public void SetDefault()
         {
             // デフォルトはここで与える.
             this.BaseCaptureProbability = 20;

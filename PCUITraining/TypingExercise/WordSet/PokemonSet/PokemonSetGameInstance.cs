@@ -150,8 +150,8 @@ namespace TypingExercise.WordSet.PokemonSet
             }
 
             // 結果表示ダイアログを表示.
-            var setResultDlg = new FormPokemonSetResultSet();
-            return setResultDlg.ShowSetResultDlg(judgResultList);
+            var setResultDlg = new FormPokemonSetResultSet(judgResultList);
+            return setResultDlg.ShowDialog();
         }
     }
 }

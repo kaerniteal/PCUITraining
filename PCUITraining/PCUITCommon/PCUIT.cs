@@ -78,7 +78,7 @@ namespace PCUITCommon
         /// WebClientを取得します.
         /// </summary>
         /// <returns></returns>
-        public static WebClient GetWebClient()
+        public static WebClient CreateWebClient()
         {
             return Conf.ProxyUse
                 ? new WebClientWithSystemProxy(Conf.ProxyId, Conf.ProxyPassword)

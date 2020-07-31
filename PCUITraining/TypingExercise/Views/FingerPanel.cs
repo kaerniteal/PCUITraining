@@ -114,13 +114,13 @@ namespace TypingExercise.Views
             {
                 switch (fp.Finger)
                 {
-                    case FINGER.LEFT_LITTLE:  fp.PBox = this.pBoxLeft1; break;
-                    case FINGER.LEFT_RING:    fp.PBox = this.pBoxLeft2; break;
-                    case FINGER.LEFT_MIDDLE:  fp.PBox = this.pBoxLeft3; break;
-                    case FINGER.LEFT_INDEX:   fp.PBox = this.pBoxLeft4; break;
-                    case FINGER.RIGHT_INDEX:  fp.PBox = this.pBoxRight1; break;
+                    case FINGER.LEFT_LITTLE: fp.PBox = this.pBoxLeft1; break;
+                    case FINGER.LEFT_RING: fp.PBox = this.pBoxLeft2; break;
+                    case FINGER.LEFT_MIDDLE: fp.PBox = this.pBoxLeft3; break;
+                    case FINGER.LEFT_INDEX: fp.PBox = this.pBoxLeft4; break;
+                    case FINGER.RIGHT_INDEX: fp.PBox = this.pBoxRight1; break;
                     case FINGER.RIGHT_MIDDLE: fp.PBox = this.pBoxRight2; break;
-                    case FINGER.RIGHT_RING:   fp.PBox = this.pBoxRight3; break;
+                    case FINGER.RIGHT_RING: fp.PBox = this.pBoxRight3; break;
                     case FINGER.RIGHT_LITTLE: fp.PBox = this.pBoxRight4; break;
                 }
             }
@@ -145,7 +145,7 @@ namespace TypingExercise.Views
                 this.KeyMap.Add(keyFinger.Key, fpBox);
             }
 
-            foreach(var fp in this.FingerPictureList)
+            foreach (var fp in this.FingerPictureList)
             {
                 fp.Off();
             }

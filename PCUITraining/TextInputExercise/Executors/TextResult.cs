@@ -1,5 +1,4 @@
-﻿using PCUITCommon.Datas;
-using TextInputExercise.TextSet;
+﻿using TextInputExercise.TextSet;
 
 namespace TextInputExercise.Executors
 {

@@ -1,6 +1,4 @@
-﻿using Common.Extentions;
-using MouseExercise.MusExcSet;
-using System;
+﻿using MouseExercise.MusExcSet;
 using static MouseExercise.Definitions.MusExcEnums;
 
 namespace MouseExercise.Executors

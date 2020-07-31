@@ -5,7 +5,6 @@ using PCUITCommon.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 
@@ -97,7 +96,7 @@ namespace TypingExercise.WordSet.PokemonSet
         {
             try
             {
-                var wc = PCUIT.GetWebClient();
+                var wc = PCUIT.CreateWebClient();
                 var fromWiki = new PocketMonsterListFromWiki(wc);
                 PockMonList = fromWiki.GetPocketMonsterList();
             }

@@ -30,7 +30,7 @@ namespace PCUITraining.Forms
             this.ReloadUsers();
 
             var list = UtilColor.GetWebColors();
-            foreach(var c in list)
+            foreach (var c in list)
             {
                 Console.WriteLine(c);
             }

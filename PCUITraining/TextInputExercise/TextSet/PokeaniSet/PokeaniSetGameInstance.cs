@@ -1,6 +1,5 @@
 ﻿using Common.Utilities;
 using PCUITCommon.Users;
-using PCUITCommon.Views;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -129,16 +128,19 @@ namespace TextInputExercise.TextSet.PokeaniSet
                     }
 
                     // これまでの最速タイムを上回っているかどうか.
+                    var update = false;
                     if ((record.ShortestTime <= 0) ||
                         (textResult.MeasuredTime < record.ShortestTime))
                     {
                         record.ShortestTime = textResult.MeasuredTime;
+                        update = true;
                     }
 
                     // 入力回数をインクリメント.
                     record.InputedCount++;
 
-                    return record;
+                    // 結果表示用のデータにして返す.
+                    return new PokeaniSetTextResult(textResult, update);
                 })
                 .ToList();
 
@@ -156,12 +158,8 @@ namespace TextInputExercise.TextSet.PokeaniSet
             }
 
             // 結果表示ダイアログを表示.
-            // TODO:未実装.
-            FormMessageBox.Show("ゲーム終了");
-            //var dlg = new FormPokemonSetResultSet();
-            //return dlg.ShowDialog();
-
-            return DialogResult.Cancel;
+            var setResultDlg = new FormPokeaniSetResultSet(resList);
+            return setResultDlg.ShowDialog();
         }
     }
 }

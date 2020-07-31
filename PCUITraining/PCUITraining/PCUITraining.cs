@@ -2,6 +2,7 @@
 using PCUITCommon;
 using PCUITraining.Forms;
 using System.Windows.Forms;
+using TextInputExercise;
 using TypingExercise;
 
 namespace PCUITraining

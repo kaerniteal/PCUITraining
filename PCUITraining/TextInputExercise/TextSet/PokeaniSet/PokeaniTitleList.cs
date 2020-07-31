@@ -46,7 +46,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
         {
             try
             {
-                var wc = PCUIT.GetWebClient();
+                var wc = PCUIT.CreateWebClient();
                 var fromWiki = new PocketMonsterTitleListFromWiki(wc);
                 TitleList = fromWiki.GetPocketMonsterList();
             }
@@ -142,7 +142,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
             {
                 this.Url(WikiUrl);
 
-                foreach(var title in this.TitleList)
+                foreach (var title in this.TitleList)
                 {
                     Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}".Fmt(
                         title.Series,

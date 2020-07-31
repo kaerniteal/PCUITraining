@@ -1,11 +1,9 @@
-﻿using Common.Extentions;
-using Common.Lang.Japanese;
-using System;
+﻿using Common.Lang.Japanese;
+using PCUITCommon;
 using System.Drawing;
 using System.Windows.Forms;
 using TextInputExercise.Executors;
 using TextInputExercise.Interfaces;
-using TypingExercise;
 
 namespace TextInputExercise.Views
 {
@@ -45,7 +43,18 @@ namespace TextInputExercise.Views
         /// <param name="e"></param>
         private void FormTIExc_Load(object sender, System.EventArgs e)
         {
+            this.mPanel.StartMarquee();
             this.rtBoxText.Focus();
+        }
+
+        /// <summary>
+        /// フォームクローズ.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormTIExc_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.mPanel.StopMarquee();
         }
 
         /// <summary>
@@ -109,23 +118,16 @@ namespace TextInputExercise.Views
             this.lblYomi.Text = string.Empty;
             this.rtBoxText.Text = string.Empty;
 
-            // TODO:実装
-            //// イメージストアを新しくする.
-            //var imageStore = this.pPanel.CreateNewImageStore();
+            // Webが有効な場合、画像を取得して表示する.
+            if (PCUIT.Conf.EnableWeb)
+            {
+                // イメージストアを新しくする.
+                var imageStore = this.mPanel.CreateNewImageStore();
 
-            //// Webが有効な場合、画像を取得して表示する.
-            //if (PCUIT.Conf.EnableWeb)
-            //{
-            //    // パラメータを生成.
-            //    var param = new Tuple<string, PicturePanel, ImageStore>(
-            //        this.GameInstance.CreateWebKeyWord(word),
-            //        this.pPanel,
-            //        imageStore);
-
-            //    // 読み込み処理を別スレッドで実行.
-            //    var thread = new Thread(new ParameterizedThreadStart(GetImageFromGoogle));
-            //    thread.Start(param);
-            //}
+                // 画像をロードする.
+                var keyword = this.GameInstance.CreateWebKeyWord(text);
+                imageStore.DownLoadFromGoogle(keyword);
+            }
         }
 
         /// <summary>

@@ -33,20 +33,20 @@ namespace TypingExercise.WordSet.PokemonSet
             // ボーナス算出の為に捕獲判定結果クラスを使う.
             var result = PokemonSetJudgmentResult.CreateResultForCalcBonus(wordResult);
 
-            this.lblWord.Text = result.Name;
-            this.lblETime.Text = result.ETimeStr;
+            this.lblWord.Text = result.WordResult.Word;
+            this.lblETime.Text = result.WordResult.MeasuredTime.ToString();
 
             // ミスタイプ or 連続ノーミス回数.
-            if (0 < result.MissTypeCount)
+            if (0 < result.WordResult.MissTypeCount)
             {
                 this.lblTitleCount.Text = "ミスタイプの回数";
-                this.lblCount.Text = result.MissTypeCountStr;
+                this.lblCount.Text = result.WordResult.MissTypeCount.ToString();
                 this.lblCount.ForeColor = Color.Red;
             }
             else
             {
                 this.lblTitleCount.Text = "連続ノーミス回数";
-                this.lblCount.Text = result.ConsecutiveNoMissCountStr;
+                this.lblCount.Text = result.WordResult.ConsecutiveNoMissCount.ToString();
                 this.lblCount.ForeColor = Color.LimeGreen;
             }
 

@@ -1,11 +1,8 @@
-﻿using MouseExercise;
-using MouseExercise.MusExcSet.InsectCollectingSet;
-using MouseExercise.Views;
-using PCUITCommon.Users;
+﻿using Common.Threads.Sample;
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
-using TextInputExercise.TextSet;
-using TextInputExercise.TextSet.PokeaniSet;
 using TypingExercise;
 using TypingExercise.Views;
 
@@ -25,42 +22,22 @@ namespace PCUITraining.Forms
             formExec.ShowDialog();
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            var userData = new UserData
-            {
-                Name = "けんた",
-            };
-            var musExcSet = MusExc.GetMusExcSet(InsectCollectingSet.Name);
-            var gameInstance = musExcSet.GetGameInstance(userData);
-            var formExec = new FormMusExc(gameInstance);
-            formExec.ShowDialog();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var list = PokeaniTitleList.GetPokemonTitleList();
-            foreach(var title in list)
-            {
-                Console.WriteLine(title.Total + ":" + title.Episode + ":" + title.Text);
-            }
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var grp = TextCorrect.CompatibleTolerancePattern;
-            var haifun = grp[0];
-
-            foreach(var ptn in haifun)
-            {
-                Console.WriteLine("[" + ptn + "]:" + Char.ConvertToUtf32(ptn, 0));
-            }
-        }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             PCUITraining.Stop();
+        }
+
+        private void btnTest1_Click(object sender, EventArgs e)
+        {
+            this.lBox3.Location = new Point(this.lBox3.Location.X + 1, this.lBox3.Location.Y + 1);
+        }
+
+        private void btnTest2_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnTest3_Click(object sender, EventArgs e)
+        {
         }
     }
 }

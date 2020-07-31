@@ -4,6 +4,7 @@ using MouseExercise.Views;
 using PCUITCommon.Views;
 using System;
 using System.Windows.Forms;
+using TextInputExercise;
 using TextInputExercise.TextSet.PokeaniSet;
 using TextInputExercise.Views;
 using TypingExercise;

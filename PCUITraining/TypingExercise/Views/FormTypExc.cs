@@ -1,10 +1,7 @@
 ﻿using Common.Extentions;
-using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Datas;
-using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Windows.Forms;
 using TypingExercise.Definitions;
 using TypingExercise.Executors;
@@ -127,15 +124,8 @@ namespace TypingExercise.Views
             // Webが有効な場合、画像を取得して表示する.
             if (PCUIT.Conf.EnableWeb)
             {
-                // パラメータを生成.
-                var param = new Tuple<string, PicturePanel, ImageStore>(
-                    this.GameInstance.CreateWebKeyWord(word),
-                    this.pPanel,
-                    imageStore);
-
-                // 読み込み処理を別スレッドで実行.
-                var thread = new Thread(new ParameterizedThreadStart(GetImageFromGoogle));
-                thread.Start(param);
+                var keyword = this.GameInstance.CreateWebKeyWord(word);
+                imageStore.DownLoadFromGoogle(keyword);
             }
 
             // 結果に含めるため、イメージストアを返す.
@@ -279,43 +269,6 @@ namespace TypingExercise.Views
             else
             {
                 this.Close();
-            }
-        }
-
-        /// <summary>
-        /// 画像取得処理.
-        /// </summary>
-        /// <param name="paramater"></param>
-        private static void GetImageFromGoogle(object paramater)
-        {
-            // パラメータを取得.
-            var param = paramater as Tuple<string, PicturePanel, ImageStore>;
-            if (null == param)
-            {
-                return;
-            }
-
-            // WebClientを生成.
-            var wc = PCUIT.GetWebClient();
-
-            // 画像URLをGoogleから取得.
-            var google = new GetImageUrlFromGoogle(wc);
-            var urls = google.GetImageUrls(param.Item1, param.Item2.GetMaxImageCount());
-
-            // 画像URLから画像データを取得.
-            var downloader = new Downloader(wc);
-            for (var ii = 0; ii < urls.Count; ii++)
-            {
-                // 一枚ダウンロードして.
-                var image = downloader.GetImage(urls[ii]);
-
-                // イメージコンポーネントにセットする
-                // 非同期更新なため、このイメージコンポーネントが最新のコンポーネントとは限らないが、セットする
-                param.Item3.SetImage(ii, image);
-
-                // パネルに反映.
-                // 上でセットしたコンポーネントをまだ抱えているかどうかはわからないが、パネルを更新する.
-                param.Item2.UpdateImage();
             }
         }
     }

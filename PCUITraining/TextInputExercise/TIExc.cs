@@ -5,7 +5,7 @@ using TextInputExercise.Configs;
 using TextInputExercise.TextSet;
 using TextInputExercise.TextSet.PokeaniSet;
 
-namespace TypingExercise
+namespace TextInputExercise
 {
     /// <summary>
     /// テキスト入力アプリ－メインクラス.

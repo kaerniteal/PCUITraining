@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TextInputExercise.TextSet.PokeaniSet
+﻿namespace TextInputExercise.TextSet.PokeaniSet
 {
     /// <summary>
     /// ポケアニライティングゲームデータレコード.

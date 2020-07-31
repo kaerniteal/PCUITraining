@@ -1,5 +1,4 @@
 ﻿using Common.Utilities;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
@@ -13,7 +12,8 @@ namespace PCUITCommon.Datas
         /// <summary>
         /// 画像リスト.
         /// </summary>
-        private ImageStock[] ImageList { get; set; }
+        protected ImageStock[] ImageList { get; set; }
+
 
         /// <summary>
         /// コンストラクタ.
@@ -34,21 +34,6 @@ namespace PCUITCommon.Datas
             if (index < this.ImageList.Length)
             {
                 this.ImageList[index] = new ImageStock(image);
-            }
-        }
-
-        /// <summary>
-        /// イメージリストセット.
-        /// </summary>
-        /// <param name="images">画像</param>
-        /// <param name="offset">オフセット</param>
-        public void SetImages(List<Bitmap> images, int offset = 0)
-        {
-            var dst = offset;
-            foreach (var image in images)
-            {
-                this.SetImage(dst, image);
-                dst++;
             }
         }
 
@@ -94,7 +79,7 @@ namespace PCUITCommon.Datas
         /// <summary>
         /// 更新対象イメージを格納するインナークラス.
         /// </summary>
-        private class ImageStock
+        protected class ImageStock
         {
             /// <summary>
             /// 更新要否.
@@ -105,6 +90,7 @@ namespace PCUITCommon.Datas
             /// 更新対象イメージ.
             /// </summary>
             public Bitmap Image { get; set; }
+
 
             /// <summary>
             /// コンストラクタ.
@@ -125,6 +111,5 @@ namespace PCUITCommon.Datas
                 this.Image = image;
             }
         }
-
     }
 }

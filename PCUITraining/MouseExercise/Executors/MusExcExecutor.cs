@@ -78,14 +78,9 @@ namespace MouseExercise.Executors
             // ゲーム時間をセット.
             this.GameTime = MusExc.Conf.DefaultGameSec;
 
-            // 実行パラメータを生成.
-            var param = new Tuple<IMusExcViewer, MusExcSharedData>(
-                this.Viewer,
-                this.SharedData);
-
             // 読み込み処理を別スレッドで実行.
-            var thread = new Thread(new ParameterizedThreadStart(this.MusExcExecMain));
-            thread.Start(param);
+            var thread = new Thread(new ThreadStart(this.MusExcExecMain));
+            thread.Start();
 
             // 初回の設問定義を取得.
             this.SetQuestion();
@@ -214,26 +209,15 @@ namespace MouseExercise.Executors
         /// <summary>
         /// 別スレッドメイン処理.
         /// </summary>
-        /// <param name="paramater">パラメータ</param>
-        private void MusExcExecMain(object paramater)
+        private void MusExcExecMain()
         {
-            // パラメータを取得.
-            var param = paramater as Tuple<IMusExcViewer, MusExcSharedData>;
-            if (null == param)
-            {
-                return;
-            }
-
-            var viewer = param.Item1;
-            var sharedData = param.Item2;
-
             // 開始時間を取得.
             this.BeginTime = DateTime.Now;
 
             // メインループ.
             for (int counter = 0; counter < int.MaxValue && this.Continue; counter++)
             {
-                sharedData.Counter = counter;
+                this.SharedData.Counter = counter;
 
                 // 時刻をセット.
                 var now = DateTime.Now;                                     // 現在時刻.
@@ -247,7 +231,7 @@ namespace MouseExercise.Executors
                 }
 
                 // ゲーム残り時間をセット.
-                sharedData.Remaining = remaining;
+                this.SharedData.Remaining = remaining;
 
                 // ユニットステータスリストを走査して更新.
                 var stateList = this.SharedData.UnitStateArray;
@@ -343,15 +327,6 @@ namespace MouseExercise.Executors
                 var calculator = MusExcExecutorMovementBase.GetMovement(state.DefUnit.Movement);
                 calculator.SetInitPoint(state, this.Viewer.GetSize());
             }
-        }
-
-        /// <summary>
-        /// 重なり合いのチェック.
-        /// </summary>
-        /// <returns>重なっているかどうか</returns>
-        private bool CheckOverlap()
-        {
-            return false;
         }
 
         /// <summary>

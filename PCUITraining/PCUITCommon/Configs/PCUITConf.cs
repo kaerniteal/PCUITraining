@@ -25,7 +25,7 @@ namespace PCUITCommon.Configs
         /// <summary>
         /// デフォルトをセット.
         /// </summary>
-        private void SetDefault()
+        public void SetDefault()
         {
             // デフォルトはここで与える.
             this.IsDebug = false;

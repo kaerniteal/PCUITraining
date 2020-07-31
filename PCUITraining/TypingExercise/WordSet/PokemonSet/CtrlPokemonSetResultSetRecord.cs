@@ -16,6 +16,8 @@ namespace TypingExercise.WordSet.PokemonSet
         public CtrlPokemonSetResultSetRecord()
         {
             InitializeComponent();
+
+            this.Dock = DockStyle.Fill;
         }
 
         /// <summary>
@@ -24,9 +26,11 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <param name="judgResult">捕獲判定結果</param>
         public void SetWordResult(PokemonSetJudgmentResult judgResult)
         {
+            var wordResult = judgResult.WordResult;
+
             // 捕獲判定結果クラスをで捕獲判定を実施.
-            this.lblPokemon.Text = judgResult.Name;
-            this.lblETime.Text = judgResult.ETimeStr;
+            this.lblPokemon.Text = wordResult.Word;
+            this.lblETime.Text = wordResult.MeasuredTime.ToString();
 
             // 最速タイムを更新したかどうか.
             this.pBoxUp.Visible = judgResult.UpdateETime;
@@ -57,15 +61,15 @@ namespace TypingExercise.WordSet.PokemonSet
             {
                 // 捕獲数を表示.
                 this.lblCount.Visible = judgResult.JudgmentResult;
-                this.lblCount.Text = @"{0}匹目".Fmt(judgResult.CapturCountStr);
+                this.lblCount.Text = @"{0}匹目".Fmt(judgResult.CapturCount);
             }
 
             // イメージ.
             this.pBoxPockMon.Visible = judgResult.JudgmentResult;
-            this.pBoxPockMon.Image = judgResult.PockImage;
+            this.pBoxPockMon.Image = wordResult.ImageStore.GetRandomImage();
 
             // マスターボール.
-            this.pBoxMasterBoll.Visible = judgResult.UsedMasterBoll;
+            this.pBoxMasterBoll.Visible = wordResult.UseMasterBoll;
         }
     }
 }
