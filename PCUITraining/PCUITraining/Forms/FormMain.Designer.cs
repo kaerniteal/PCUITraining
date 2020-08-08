@@ -37,6 +37,7 @@
             this.pBoxConfig = new System.Windows.Forms.PictureBox();
             this.btnInsectCollecting = new System.Windows.Forms.Button();
             this.btnPokeMonWriting = new System.Windows.Forms.Button();
+            this.btnPokeMonWritingDataView = new System.Windows.Forms.Button();
             this.userSelector = new PCUITCommon.Views.UserSelector();
             this.tableMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxConfig)).BeginInit();
@@ -88,6 +89,7 @@
             this.tableMain.Controls.Add(this.pBoxConfig, 3, 0);
             this.tableMain.Controls.Add(this.btnInsectCollecting, 1, 2);
             this.tableMain.Controls.Add(this.btnPokeMonWriting, 1, 3);
+            this.tableMain.Controls.Add(this.btnPokeMonWritingDataView, 3, 3);
             this.tableMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableMain.Location = new System.Drawing.Point(0, 0);
             this.tableMain.Name = "tableMain";
@@ -144,12 +146,13 @@
             // btnInsectCollecting
             // 
             this.btnInsectCollecting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tableMain.SetColumnSpan(this.btnInsectCollecting, 3);
             this.btnInsectCollecting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnInsectCollecting.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInsectCollecting.ForeColor = System.Drawing.Color.LimeGreen;
             this.btnInsectCollecting.Location = new System.Drawing.Point(64, 154);
             this.btnInsectCollecting.Name = "btnInsectCollecting";
-            this.btnInsectCollecting.Size = new System.Drawing.Size(363, 65);
+            this.btnInsectCollecting.Size = new System.Drawing.Size(485, 65);
             this.btnInsectCollecting.TabIndex = 1;
             this.btnInsectCollecting.Text = "マウスで昆虫採集";
             this.btnInsectCollecting.UseVisualStyleBackColor = false;
@@ -158,16 +161,31 @@
             // btnPokeMonWriting
             // 
             this.btnPokeMonWriting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tableMain.SetColumnSpan(this.btnPokeMonWriting, 2);
             this.btnPokeMonWriting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPokeMonWriting.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPokeMonWriting.ForeColor = System.Drawing.Color.Aqua;
             this.btnPokeMonWriting.Location = new System.Drawing.Point(64, 225);
             this.btnPokeMonWriting.Name = "btnPokeMonWriting";
-            this.btnPokeMonWriting.Size = new System.Drawing.Size(363, 65);
+            this.btnPokeMonWriting.Size = new System.Drawing.Size(424, 65);
             this.btnPokeMonWriting.TabIndex = 1;
             this.btnPokeMonWriting.Text = "ポケアニライティング！";
             this.btnPokeMonWriting.UseVisualStyleBackColor = false;
             this.btnPokeMonWriting.Click += new System.EventHandler(this.btnPokeMonWriting_Click);
+            // 
+            // btnPokeMonWritingDataView
+            // 
+            this.btnPokeMonWritingDataView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnPokeMonWritingDataView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPokeMonWritingDataView.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPokeMonWritingDataView.ForeColor = System.Drawing.Color.Yellow;
+            this.btnPokeMonWritingDataView.Image = ((System.Drawing.Image)(resources.GetObject("btnPokeMonWritingDataView.Image")));
+            this.btnPokeMonWritingDataView.Location = new System.Drawing.Point(494, 225);
+            this.btnPokeMonWritingDataView.Name = "btnPokeMonWritingDataView";
+            this.btnPokeMonWritingDataView.Size = new System.Drawing.Size(55, 65);
+            this.btnPokeMonWritingDataView.TabIndex = 2;
+            this.btnPokeMonWritingDataView.UseVisualStyleBackColor = false;
+            this.btnPokeMonWritingDataView.Click += new System.EventHandler(this.btnPokeMonWritingDataView_Click);
             // 
             // userSelector
             // 
@@ -209,5 +227,6 @@
         private System.Windows.Forms.PictureBox pBoxConfig;
         private System.Windows.Forms.Button btnInsectCollecting;
         private System.Windows.Forms.Button btnPokeMonWriting;
+        private System.Windows.Forms.Button btnPokeMonWritingDataView;
     }
 }

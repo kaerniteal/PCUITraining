@@ -54,5 +54,20 @@
             this.InputedCount = 0;
             this.ShortestTime = 0;
         }
+
+        /// <summary>
+        /// コンストラクタ.
+        /// </summary>
+        /// <param name="pokeAni">ポケモンタイトルデータ</param>
+        public PokeaniSetGameDataRecord(PokeaniSetText pokeAni)
+        {
+            Total = pokeAni.Total;
+            Series = pokeAni.Series;
+            Volume = pokeAni.Volume;
+            Episode = pokeAni.Episode;
+            Title = pokeAni.Text;
+            this.InputedCount = 0;
+            this.ShortestTime = 0;
+        }
     }
 }

@@ -115,15 +115,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
                     // 存在しない場合は新たに生成して追加しておく.
                     if (null == record)
                     {
-                        record = new PokeaniSetGameDataRecord
-                        {
-                            Total = pokeAni.Total,
-                            Series = pokeAni.Series,
-                            Volume = pokeAni.Volume,
-                            Episode = pokeAni.Episode,
-                            Title = pokeAni.Text,
-                        };
-
+                        record = new PokeaniSetGameDataRecord(pokeAni);
                         this.GameData.RecordList.Add(record);
                     }
 

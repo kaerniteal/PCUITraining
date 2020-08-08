@@ -73,6 +73,31 @@ namespace PCUITraining.Forms
         }
 
         /// <summary>
+        /// ポケモンタイピング－ゲームデータ表示.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPokeMonTypingDataView_Click(object sender, EventArgs e)
+        {
+            var userData = UserIconGrp.GetSelectedUserData();
+
+            // ユーザーデータは未選択(null)を許容する.
+            var formDataView = new FormPokemonSetDataViewer(userData);
+            formDataView.ShowDialog();
+        }
+
+        /// <summary>
+        /// ポケモンタイピング－データ交換.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPokeMonTypingReciprocate_Click(object sender, EventArgs e)
+        {
+            var formReciprocate = new FormPokemonSetReciprocate();
+            formReciprocate.ShowDialog();
+        }
+
+        /// <summary>
         /// マウスで昆虫採集.
         /// </summary>
         /// <param name="sender"></param>
@@ -118,28 +143,17 @@ namespace PCUITraining.Forms
         }
 
         /// <summary>
-        /// ポケモンタイピング－ゲームデータ表示.
+        /// ポケモンライティング－ゲームデータ表示.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnPokeMonTypingDataView_Click(object sender, EventArgs e)
+        private void btnPokeMonWritingDataView_Click(object sender, EventArgs e)
         {
             var userData = UserIconGrp.GetSelectedUserData();
 
             // ユーザーデータは未選択(null)を許容する.
-            var formDataView = new FormPokemonSetDataViewer(userData);
+            var formDataView = new FormPokeaniSetDataViewer(userData);
             formDataView.ShowDialog();
-        }
-
-        /// <summary>
-        /// ポケモンタイピング－データ交換.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnPokeMonTypingReciprocate_Click(object sender, EventArgs e)
-        {
-            var formReciprocate = new FormPokemonSetReciprocate();
-            formReciprocate.ShowDialog();
         }
 
         /// <summary>

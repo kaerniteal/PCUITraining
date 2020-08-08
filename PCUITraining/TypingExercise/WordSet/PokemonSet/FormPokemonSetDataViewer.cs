@@ -28,6 +28,7 @@ namespace TypingExercise.WordSet.PokemonSet
 
             this.ctrlPokemonSetDataViewerList.AddZeroSort();
 
+            this.webBrowser.ScriptErrorsSuppressed = true;
             this.webBrowser.Visible = false;
 
             // リストの選択イベントを登録.

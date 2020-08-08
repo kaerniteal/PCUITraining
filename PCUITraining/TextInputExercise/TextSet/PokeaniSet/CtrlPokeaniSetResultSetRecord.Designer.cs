@@ -71,7 +71,7 @@
             this.lblETime.AutoSize = true;
             this.lblETime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblETime.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F);
-            this.lblETime.ForeColor = System.Drawing.Color.Aqua;
+            this.lblETime.ForeColor = System.Drawing.Color.White;
             this.lblETime.Location = new System.Drawing.Point(759, 0);
             this.lblETime.Name = "lblETime";
             this.lblETime.Size = new System.Drawing.Size(135, 120);
