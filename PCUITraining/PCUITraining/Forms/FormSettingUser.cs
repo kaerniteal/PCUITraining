@@ -69,6 +69,8 @@ namespace PCUITraining.Forms
             this.UserIconGrp = userIconGrp;
             this.UserData = userData;
             this.OrgImagePath = userData.CreateImageFilePath();
+
+            this.tBoxName.ReadOnly = true;
         }
 
         /// <summary>
@@ -234,13 +236,6 @@ namespace PCUITraining.Forms
                 return;
             }
 
-            // 文字数制限
-            if (5 < name.Length)
-            {
-                FormMessageBox.Show("名前は５文字以内で入力してください");
-                return;
-            }
-
             // 重複チェック.
             if (!this.UserIconGrp.CanAdd(name))
             {
@@ -282,10 +277,13 @@ namespace PCUITraining.Forms
                 Directory.CreateDirectory(dirPath);
 
                 // イメージファイルの複製.
-                var dstPath = this.UserData.CreateImageFilePath();
-                if (!dstPath.Equals(this.OrgImagePath))
+                if (this.UserData.UseCustomIcon)
                 {
-                    File.Copy(this.OrgImagePath, dstPath);
+                    var dstPath = this.UserData.CreateImageFilePath();
+                    if (!dstPath.Equals(this.OrgImagePath))
+                    {
+                        File.Copy(this.OrgImagePath, dstPath);
+                    }
                 }
 
                 // 保存処理.

@@ -45,6 +45,8 @@ namespace PCUITraining.Forms
         {
             var dlg = new FormSetting();
             dlg.ShowDialog();
+
+            this.UserIconGrp = this.userSelector.SetUserIcons();
         }
 
         /// <summary>
