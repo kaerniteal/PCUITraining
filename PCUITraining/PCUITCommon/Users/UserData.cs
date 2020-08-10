@@ -183,7 +183,9 @@ namespace PCUITCommon.Users
         /// <returns>ユーザーデータフォルダのPath</returns>
         public string CreateImageFilePath()
         {
-            return Path.Combine(this.CreateUserDataFolderPath(), this.IconFileName);
+            return this.IconFileName.IsEmpty()
+                ? string.Empty
+                : Path.Combine(this.CreateUserDataFolderPath(), this.IconFileName);
         }
 
         /// <summary>
