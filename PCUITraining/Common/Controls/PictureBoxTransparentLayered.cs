@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
@@ -28,7 +27,7 @@ namespace Common.Controls
             base.OnPaintBackground(pevent);
 
             // 親コントロールと自身との間のコントロールを、親方向から描画.
-            for (var ii = this.Parent.Controls.Count - 1; 0 <= ii; ii-- )
+            for (var ii = this.Parent.Controls.Count - 1; 0 <= ii; ii--)
             {
                 var ctrl = this.Parent.Controls[ii];
 

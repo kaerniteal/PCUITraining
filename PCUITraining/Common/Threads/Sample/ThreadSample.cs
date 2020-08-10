@@ -59,16 +59,16 @@ namespace Common.Threads.Sample
             result = 0;
 
             // 引数付きで非同期処理を呼び出す.
-            var thread = new Thread( new ParameterizedThreadStart((param) =>
-            {
-                var val = (int)param;
+            var thread = new Thread(new ParameterizedThreadStart((param) =>
+           {
+               var val = (int)param;
 
-                Console.WriteLine("HavyFunc begin");
-                Thread.Sleep(val);
-                Console.WriteLine("HavyFunc end");
+               Console.WriteLine("HavyFunc begin");
+               Thread.Sleep(val);
+               Console.WriteLine("HavyFunc end");
 
-                result = val / 1000;
-            }));
+               result = val / 1000;
+           }));
 
             thread.Start(1000);
 
