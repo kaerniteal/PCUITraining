@@ -27,6 +27,8 @@ namespace PCUITCommon.Views
             var userIconGrp = UserIcon.CreateUserIconGrp();
 
             this.flowUserSelect.Controls.Clear();
+
+            // アイコンを追加.
             foreach (var user in PCUIT.UserDataManager.UserDataList)
             {
                 var userIcon = userIconGrp.CreateUserIcon(user);

@@ -71,6 +71,9 @@ namespace PCUITraining.Forms
             this.OrgImagePath = userData.CreateImageFilePath();
 
             this.tBoxName.ReadOnly = true;
+            this.tBoxName.ForeColor = Color.Yellow;
+            this.tBoxName.BackColor = this.BackColor;
+            this.tBoxName.BorderStyle = BorderStyle.None;
         }
 
         /// <summary>
@@ -280,7 +283,7 @@ namespace PCUITraining.Forms
                 if (this.UserData.UseCustomIcon)
                 {
                     var dstPath = this.UserData.CreateImageFilePath();
-                    if (!dstPath.Equals(this.OrgImagePath))
+                    if (!dstPath.IsEmpty() && !dstPath.Equals(this.OrgImagePath))
                     {
                         File.Copy(this.OrgImagePath, dstPath);
                     }
