@@ -1,5 +1,6 @@
 ﻿using Common.Lang.Japanese;
 using PCUITCommon;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using TextInputExercise.Executors;
@@ -9,6 +10,11 @@ namespace TextInputExercise.Views
 {
     public partial class FormTIExc : Form, ITIExcViewer
     {
+        /// <summary>
+        /// デフォルト読み文字列.
+        /// </summary>
+        private static readonly string DEF_YOMI_STR = @"読めない字はマウスでせんたくしてね";
+
         /// <summary>
         /// ゲームインスタンス.
         /// </summary>
@@ -43,6 +49,8 @@ namespace TextInputExercise.Views
         /// <param name="e"></param>
         private void FormTIExc_Load(object sender, System.EventArgs e)
         {
+            this.SetYomi();
+
             this.mPanel.StartMarquee();
             this.rtBoxText.Focus();
         }
@@ -67,7 +75,7 @@ namespace TextInputExercise.Views
             // 読み解析.
             var kanji = this.tBpxText.SelectedText.Trim();
             var words = MorphologicalAnalysis.PhoneticAnalyze(kanji);
-            this.lblYomi.Text = string.Join(" ", words);
+            this.SetYomi(words);
             this.rtBoxText.Focus();
         }
 
@@ -109,13 +117,31 @@ namespace TextInputExercise.Views
         }
 
         /// <summary>
+        /// 読みをセット.
+        /// </summary>
+        /// <param name="words">読み要素リスト</param>
+        private void SetYomi(List<string> words = null)
+        {
+            if (null == words || words.Count <= 0)
+            {
+                this.lblYomi.ForeColor = Color.Indigo;
+                this.lblYomi.Text = DEF_YOMI_STR;
+            }
+            else
+            {
+                this.lblYomi.ForeColor = Color.HotPink;
+                this.lblYomi.Text = string.Join(" ", words);
+            }
+        }
+
+        /// <summary>
         /// 新しい入力対象文字列をセットする.
         /// </summary>
         /// <param name="text">入力対象文字列</param>
         public void SetNewText(string text)
         {
             this.tBpxText.Text = text;
-            this.lblYomi.Text = string.Empty;
+            this.SetYomi();
             this.rtBoxText.Text = string.Empty;
 
             // Webが有効な場合、画像を取得して表示する.

@@ -24,6 +24,8 @@ namespace PCUITraining.Forms
         {
             InitializeComponent();
 
+            this.lblVersion.Text = $"{PCUITraining.APP_NAME} Ver{PCUITraining.APP_VER}";
+
             // ユーザーアイコンをセット.
             this.ReloadUsers();
         }
@@ -54,13 +56,14 @@ namespace PCUITraining.Forms
 
             this.btnConf1.Enabled = isSelected;
             this.btnConf2.Enabled = isSelected;
+            this.btnConf3.Enabled = isSelected;
 
             this.btnUserUpdate.Enabled = isSelected;
             this.btnUserDelete.Enabled = isSelected;
         }
 
         /// <summary>
-        /// ロードイベント.
+        /// フォームロード.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -82,7 +85,7 @@ namespace PCUITraining.Forms
                 return;
             }
 
-            FormMessageBox.Show("ポケモンタイプの設定画面です・・が、まだできてないよ！");
+            FormMessageBox.Show("ポケモンタイピングの設定画面です。\n・・が、まだできてないよ！");
         }
 
         /// <summary>
@@ -98,7 +101,23 @@ namespace PCUITraining.Forms
                 return;
             }
 
-            FormMessageBox.Show("昆虫採集の設定画面です・・が、まだできてないよ！");
+            FormMessageBox.Show("昆虫採集の設定画面です。\n・・が、まだできてないよ！");
+        }
+
+        /// <summary>
+        /// 設定ボタン３
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnConf3_Click(object sender, EventArgs e)
+        {
+            var userData = this.UserIconGrp.GetSelectedUserData();
+            if (null == userData)
+            {
+                return;
+            }
+
+            FormMessageBox.Show("ポケアニライティングの設定画面です。\n・・が、まだできてないよ！");
         }
 
         /// <summary>
@@ -185,6 +204,18 @@ namespace PCUITraining.Forms
 
             // 再ロード.
             this.ReloadUsers();
+        }
+
+        /// <summary>
+        /// 共通設定.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void btnCommonConf_Click(object sender, EventArgs e)
+        {
+            var dlg = new FormCommonConf();
+            dlg.ShowDialog();
         }
     }
 }

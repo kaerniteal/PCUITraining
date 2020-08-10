@@ -40,8 +40,8 @@
             // tableLayoutPanel
             // 
             this.tableLayoutPanel.ColumnCount = 3;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel.Controls.Add(this.lblText, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.lblETime, 1, 0);
@@ -62,7 +62,7 @@
             this.lblText.ForeColor = System.Drawing.Color.Aqua;
             this.lblText.Location = new System.Drawing.Point(3, 0);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(750, 120);
+            this.lblText.Size = new System.Drawing.Size(702, 120);
             this.lblText.TabIndex = 0;
             this.lblText.Text = "入力文字列";
             // 
@@ -72,9 +72,9 @@
             this.lblETime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblETime.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F);
             this.lblETime.ForeColor = System.Drawing.Color.White;
-            this.lblETime.Location = new System.Drawing.Point(759, 0);
+            this.lblETime.Location = new System.Drawing.Point(711, 0);
             this.lblETime.Name = "lblETime";
-            this.lblETime.Size = new System.Drawing.Size(135, 120);
+            this.lblETime.Size = new System.Drawing.Size(183, 120);
             this.lblETime.TabIndex = 0;
             this.lblETime.Text = "0000000";
             // 

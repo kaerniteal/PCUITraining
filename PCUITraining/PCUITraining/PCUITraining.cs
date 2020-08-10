@@ -13,6 +13,17 @@ namespace PCUITraining
     public static class PCUITraining
     {
         /// <summary>
+        /// APP名
+        /// </summary>
+        public static readonly string APP_VER = @"1.0.0";
+
+        /// <summary>
+        /// APP名
+        /// </summary>
+        public static readonly string APP_NAME = $"PCUITraining";
+
+
+        /// <summary>
         /// 開始.
         /// </summary>
         public static void Start()
