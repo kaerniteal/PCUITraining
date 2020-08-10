@@ -142,13 +142,10 @@ namespace MouseExercise.Views
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    Console.WriteLine("left press");
                     break;
                 case MouseButtons.Middle:
-                    Console.WriteLine("mid press");
                     break;
                 case MouseButtons.Right:
-                    Console.WriteLine("right press");
                     break;
             }
         }

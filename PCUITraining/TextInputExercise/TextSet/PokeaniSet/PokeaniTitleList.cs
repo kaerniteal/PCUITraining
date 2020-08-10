@@ -141,17 +141,6 @@ namespace TextInputExercise.TextSet.PokeaniSet
             public List<PokeaniSetText> GetPocketMonsterList()
             {
                 this.Url(WikiUrl);
-
-                foreach (var title in this.TitleList)
-                {
-                    Console.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}".Fmt(
-                        title.Series,
-                        title.Volume,
-                        title.Episode,
-                        title.Total,
-                        title.Text));
-                }
-
                 return this.TitleList;
             }
 

@@ -1,6 +1,5 @@
 ﻿using Common.Extentions;
 using Common.Utilities;
-using System.Drawing;
 using TypingExercise.Executors;
 
 namespace TypingExercise.WordSet.PokemonSet

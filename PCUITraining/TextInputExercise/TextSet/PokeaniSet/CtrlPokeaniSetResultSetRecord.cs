@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Common.Extentions;
 using System.Windows.Forms;
-using Common.Extentions;
 
 namespace TextInputExercise.TextSet.PokeaniSet
 {

@@ -1,7 +1,5 @@
-﻿using Common.Threads.Sample;
-using System;
+﻿using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Windows.Forms;
 using TypingExercise;
 using TypingExercise.Views;

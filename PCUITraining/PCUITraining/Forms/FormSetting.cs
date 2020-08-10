@@ -1,8 +1,6 @@
 ﻿using Common.Extentions;
-using Common.Utilities;
 using PCUITCommon;
 using PCUITCommon.Views;
-using System;
 using System.Windows.Forms;
 using static PCUITCommon.Views.UserIcon;
 
@@ -28,12 +26,6 @@ namespace PCUITraining.Forms
 
             // ユーザーアイコンをセット.
             this.ReloadUsers();
-
-            var list = UtilColor.GetWebColors();
-            foreach (var c in list)
-            {
-                Console.WriteLine(c);
-            }
         }
 
         /// <summary>

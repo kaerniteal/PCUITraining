@@ -1,5 +1,4 @@
 ﻿using Common.Extentions;
-using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -34,7 +33,6 @@ namespace TypingExercise.WordSet.PokemonSet
 
             // 最速タイムを更新したかどうか.
             this.pBoxUp.Visible = judgResult.UpdateETime;
-            Console.WriteLine("Update:" + judgResult.UpdateETime);
 
             // ボーナス.
             this.lblBonus.Text = @"＋" + judgResult.GetTotalBonus();

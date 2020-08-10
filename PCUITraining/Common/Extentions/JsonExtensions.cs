@@ -66,7 +66,7 @@ namespace Common.Extentions
             };
 
             // ENUMを文字列で出力する.
-//            options.Converters.Add(new JsonStringEnumConverter());
+            //            options.Converters.Add(new JsonStringEnumConverter());
 
             // シリアライズしてファイルに出力する.
             var jsonString = JsonSerializer.Serialize(self, options);
