@@ -69,14 +69,14 @@ namespace TypingExercise.Views
         {
             this.lblWord.Text = word;
 
+            // 画像を取得して表示.
+            var imageStore = this.pPanel.CreateNewImageStore();
             if (PCUIT.Conf.EnableWeb)
             {
-                // 画像を取得して表示.
-                var imageStore = this.pPanel.CreateNewImageStore();
                 imageStore.DownLoadFromGoogle(word);
             }
 
-            return null;
+            return imageStore;
         }
 
         /// <summary>

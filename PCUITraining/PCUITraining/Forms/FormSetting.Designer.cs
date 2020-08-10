@@ -198,6 +198,7 @@
             // btnCommonConf
             // 
             this.btnCommonConf.BackColor = System.Drawing.Color.DimGray;
+            this.btnCommonConf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCommonConf.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.btnCommonConf.ForeColor = System.Drawing.Color.White;
             this.btnCommonConf.Location = new System.Drawing.Point(413, 427);

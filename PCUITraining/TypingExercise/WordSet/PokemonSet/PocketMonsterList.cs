@@ -43,7 +43,8 @@ namespace TypingExercise.WordSet.PokemonSet
                 {
                     LoadListFromWiki();
                 }
-                else
+
+                if (null == PockMonList || PockMonList.Count <= 0)
                 {
                     LoadListFromFile();
                 }

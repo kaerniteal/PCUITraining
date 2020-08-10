@@ -109,7 +109,7 @@ namespace PCUITraining.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnConf3_Click(object sender, EventArgs e)
+        private void btnConf3_Click(object sender, System.EventArgs e)
         {
             var userData = this.UserIconGrp.GetSelectedUserData();
             if (null == userData)
@@ -212,7 +212,7 @@ namespace PCUITraining.Forms
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private void btnCommonConf_Click(object sender, EventArgs e)
+        private void btnCommonConf_Click(object sender, System.EventArgs e)
         {
             var dlg = new FormCommonConf();
             dlg.ShowDialog();

@@ -85,7 +85,6 @@ namespace TypingExercise.Executors
             // 入力対象文字列に対するイメージストアを貰い、結果に保持する.
             this.WordResult.ImageStore = this.Viewer.SetNewWord(word.orgWord);
 
-
             // 入力時間の計測開始.
             this.Stopwatch.Start();
 
