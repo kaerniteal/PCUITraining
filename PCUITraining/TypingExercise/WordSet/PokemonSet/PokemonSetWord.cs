@@ -24,6 +24,14 @@ namespace TypingExercise.WordSet.PokemonSet
         }
 
         /// <summary>
+        /// コンストラクタ(JsonI/O用).
+        /// </summary>
+        public PokemonSetWord()
+        {
+            this.Num = @"000";
+        }
+
+        /// <summary>
         /// コンストラクタ.
         /// </summary>
         /// <param name="num">ポケモン図鑑番号</param>

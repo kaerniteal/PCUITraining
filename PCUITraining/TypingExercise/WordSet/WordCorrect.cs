@@ -61,6 +61,18 @@ namespace TypingExercise.WordSet
 
 
         /// <summary>
+        /// コンストラクタ(JsonI/O用).
+        /// </summary>
+        public WordCorrect()
+        {
+            this.TargetCharacter = string.Empty;
+            this.CorrectSpelling1 = new CorrectSpelling();
+            this.CorrectSpelling2 = new CorrectSpelling();
+            this.CorrectSpellingEx2 = new CorrectSpelling();
+            this.CorrectSpellingEx3 = new CorrectSpelling();
+        }
+
+        /// <summary>
         /// コンストラクタ.
         /// </summary>
         /// <param name="character">対象文字列</param>

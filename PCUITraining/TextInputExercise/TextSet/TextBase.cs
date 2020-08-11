@@ -12,7 +12,7 @@ namespace TextInputExercise.TextSet
         /// <summary>
         /// オリジナル文字列.
         /// </summary>
-        public string Text { get; private set; }
+        public string Text { get; set; }
 
         /// <summary>
         /// 正答リスト.

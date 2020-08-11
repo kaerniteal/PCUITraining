@@ -1,8 +1,10 @@
 ﻿using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
+using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 
@@ -13,11 +15,6 @@ namespace TextInputExercise.TextSet.PokeaniSet
     /// </summary>
     public static class PokeaniTitleList
     {
-        /// <summary>
-        /// WikiのUrl
-        /// </summary>
-        private static readonly string WikiUrl = @"https://wiki.xn--rckteqa2e.com/wiki/アニメのサブタイトル一覧";
-
         /// <summary>
         /// ポケモンタイトルリスト.
         /// </summary>
@@ -30,42 +27,62 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// <returns></returns>
         public static List<PokeaniSetText> GetPokemonTitleList()
         {
-            if (null == TitleList)
+            // ロード済みであればそれを返す.
+            if (null != TitleList)
             {
-                LoadListFromWiki();
+                return TitleList;
+            }
+
+            //****************//
+            // 未ロード時処理 //
+            //****************//
+
+            // Webが有効な場合は.
+            if (PCUIT.Conf.EnableWeb)
+            {
+                // WebのWikiからロード.
+                var wc = PCUIT.CreateWebClient();
+                var fromWiki = new PocketMonsterTitleListFromWiki(wc);
+                TitleList = fromWiki.GetPocketMonsterList();
+
+                // Webから取得できた場合.
+                if (0 < TitleList.Count)
+                {
+                    // ファイルに保存しておく.
+                    var toFile = new PocketMonsterTitleListFromFile
+                    {
+                        TitleFileList = TitleList,
+                    };
+                    toFile.Save();
+                }
+            }
+
+            // Webからダウンロードできなかった場合、
+            // 最後にローカルに保存したファイルからロード.
+            if (null == TitleList || TitleList.Count <= 0)
+            {
+                TitleList = PocketMonsterTitleListFromFile.Load();
             }
 
             return TitleList;
         }
 
-        /// <summary>
-        /// ロード処理(WebのWikiから).
-        /// </summary>
-        /// <returns>ポケモンリスト</returns>
-        private static void LoadListFromWiki()
-        {
-            try
-            {
-                var wc = PCUIT.CreateWebClient();
-                var fromWiki = new PocketMonsterTitleListFromWiki(wc);
-                TitleList = fromWiki.GetPocketMonsterList();
-            }
-            catch (Exception ex)
-            {
-                ex.ShowMessageBox("ポケモンタイトルリストの読み込みに失敗しました。\nfile:{0}".Fmt(WikiUrl));
-            }
-        }
 
         /// <summary>
         /// Wikiのアニメのサブタイトル一覧から一覧を取得する.
         /// </summary>
 
-        private class PocketMonsterTitleListFromWiki : HtmlAnalizerBase
+        public class PocketMonsterTitleListFromWiki : HtmlAnalizerBase
         {
+            /// <summary>
+            /// WikiのUrl
+            /// </summary>
+            private static readonly string WikiUrl = @"https://wiki.xn--rckteqa2e.com/wiki/アニメのサブタイトル一覧";
+
             /// <summary>
             /// リストを格納する.
             /// </summary>
-            private List<PokeaniSetText> TitleList { get; set; }
+            private List<PokeaniSetText> TitleWikiList { get; set; }
 
             /// <summary>
             /// シリーズ行正規表現パターン.
@@ -120,7 +137,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
 
             public PocketMonsterTitleListFromWiki(WebClient wc) : base(wc)
             {
-                this.TitleList = new List<PokeaniSetText>();
+                this.TitleWikiList = new List<PokeaniSetText>();
 
                 this.SeriesLinRegex = new Regex("^<h2><span id=\"", RegexOptions.Compiled);
                 this.VolumeLinRegex = new Regex("^<h[3-4]><span id=\"", RegexOptions.Compiled);
@@ -141,7 +158,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
             public List<PokeaniSetText> GetPocketMonsterList()
             {
                 this.Url(WikiUrl);
-                return this.TitleList;
+                return this.TitleWikiList;
             }
 
             /// <summary>
@@ -209,12 +226,92 @@ namespace TextInputExercise.TextSet.PokeaniSet
                         this.HookEpisode,
                         title);
 
-                    this.TitleList.Add(text);
+                    this.TitleWikiList.Add(text);
 
                     // Episodeは他の要素とペアリングされないように潰しておく.
                     this.HookEpisode = string.Empty;
                     this.HookTotal = string.Empty;
                 }
+            }
+        }
+
+        /// <summary>
+        /// ファイルとの入出力を行う.
+        /// </summary>
+        public class PocketMonsterTitleListFromFile
+        {
+            /// <summary>
+            /// リソースファイル.
+            /// </summary>
+            private static readonly string FileName = @"PokeaniTitle.list";
+
+            /// <summary>
+            /// タイトルリスト.
+            /// </summary>
+            public List<PokeaniSetText> TitleFileList { get; set; }
+
+            /// <summary>
+            /// コンストラクタ.
+            /// </summary>
+            public PocketMonsterTitleListFromFile()
+            {
+                this.TitleFileList = new List<PokeaniSetText>();
+            }
+
+            /// <summary>
+            /// ファイルパスを返す.
+            /// </summary>
+            /// <returns></returns>
+            private static string GetFilePath()
+            {
+                return UserDataManager.RootPath + FileName;
+            }
+
+            /// <summary>
+            /// ロード処理.
+            /// </summary>
+            /// <remarks>失敗時にはNULLを返す</remarks>
+            /// <returns>正答テーブル</returns>
+            public static List<PokeaniSetText> Load()
+            {
+                var list = new PocketMonsterTitleListFromFile();
+
+                var filePath = GetFilePath();
+
+                // ファイルの存在をチェックし、存在する場合のみ読み込む。
+                if (File.Exists(filePath))
+                {
+                    try
+                    {
+                        list = filePath.JsonLoad<PocketMonsterTitleListFromFile>();
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ShowMessageBox(@"ファイル[{0}]の読み込みに失敗しました".Fmt(filePath));
+                    }
+                }
+
+                return list.TitleFileList;
+            }
+
+            /// <summary>
+            /// セーブ処理.
+            /// </summary>
+            public bool Save()
+            {
+                var filePath = GetFilePath();
+
+                try
+                {
+                    this.JsonSave(filePath);
+                }
+                catch (Exception ex)
+                {
+                    ex.ShowMessageBox(@"ファイル[{0}]の保存に失敗しました".Fmt(filePath));
+                    return false;
+                }
+
+                return true;
             }
         }
     }

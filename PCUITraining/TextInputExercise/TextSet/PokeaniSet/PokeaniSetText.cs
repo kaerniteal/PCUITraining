@@ -27,6 +27,17 @@
 
 
         /// <summary>
+        /// コンストラクタ(JsonI/O用).
+        /// </summary>
+        public PokeaniSetText()
+        {
+            this.Total = 0;
+            this.Series = string.Empty;
+            this.Volume = string.Empty;
+            this.Episode = string.Empty;
+        }
+
+        /// <summary>
         /// コンストラクタ.
         /// </summary>
         /// <param name="total">トータル話数</param>

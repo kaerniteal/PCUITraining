@@ -13,12 +13,12 @@ namespace TypingExercise.WordSet
         /// <summary>
         /// オリジナル文字列.
         /// </summary>
-        public string orgWord { get; private set; }
+        public string orgWord { get; set; }
 
         /// <summary>
         /// 入力対象文字列.
         /// </summary>
-        public string targetWord { get; private set; }
+        public string targetWord { get; set; }
 
         /// <summary>
         /// 正答リスト.

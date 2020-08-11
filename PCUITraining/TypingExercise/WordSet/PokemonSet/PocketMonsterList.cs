@@ -1,7 +1,7 @@
 ﻿using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
-using PCUITCommon.Views;
+using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,16 +16,6 @@ namespace TypingExercise.WordSet.PokemonSet
     public static class PocketMonsterList
     {
         /// <summary>
-        /// リソースファイル.
-        /// </summary>
-        private static readonly string FileName = @".\WordSet\PokemonSet\PocketMonsterList.txt";
-
-        /// <summary>
-        /// WikiのUrl
-        /// </summary>
-        private static readonly string WikiUrl = @"https://ja.wikipedia.org/wiki/全国ポケモン図鑑順のポケモン一覧";
-
-        /// <summary>
         /// ポケモンリスト.
         /// </summary>
         private static List<PokemonSetWord> PockMonList = null;
@@ -37,86 +27,63 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <returns></returns>
         public static List<PokemonSetWord> GetPockeMonList()
         {
-            if (null == PockMonList)
+            // ロード済みであればそれを返す.
+            if (null != PockMonList)
             {
-                if (PCUIT.Conf.EnableWeb)
-                {
-                    LoadListFromWiki();
-                }
+                return PockMonList;
+            }
 
-                if (null == PockMonList || PockMonList.Count <= 0)
+            //****************//
+            // 未ロード時処理 //
+            //****************//
+
+            // Webが有効な場合は.
+            if (PCUIT.Conf.EnableWeb)
+            {
+                // WebのWikiからロード.
+                var wc = PCUIT.CreateWebClient();
+                var fromWiki = new PocketMonsterListFromWiki(wc);
+                PockMonList = fromWiki.GetPocketMonsterList();
+
+                // Webから取得できた場合.
+                if (0 < PockMonList.Count)
                 {
-                    LoadListFromFile();
+                    // ファイルに保存しておく.
+                    var toFile = new PocketMonsterListFromFile
+                    {
+                        PockMonFileList = PockMonList,
+                    };
+                    toFile.Save();
                 }
+            }
+
+            // Webからダウンロードできなかった場合、
+            // 最後にローカルに保存したファイルからロード.
+            if (null == PockMonList || PockMonList.Count <= 0)
+            {
+                //var fromFile = new PocketMonsterListFromFile();
+                //PockMonList = fromFile.LoadListFromFile();
+                PockMonList = PocketMonsterListFromFile.Load();
             }
 
             return PockMonList;
         }
 
-        /// <summary>
-        /// ロード処理(ファイルから).
-        /// </summary>
-        /// <returns>ポケモンリスト</returns>
-        private static void LoadListFromFile()
-        {
-            try
-            {
-                PockMonList = new List<PokemonSetWord>();
-
-                var listFile = new StreamReader(FileName);
-
-                var line = string.Empty;
-                while ((line = listFile.ReadLine()) != null)
-                {
-                    var sep = line.IndexOf(",");
-                    if (0 < sep)
-                    {
-                        var num = line.Substring(0, sep);
-                        var word = line.Substring(sep + 1);
-                        PockMonList.Add(new PokemonSetWord(num, word));
-                    }
-                    else
-                    {
-                        FormMessageBox.Show("ポケモンデータの読み取りに失敗しました\n{0}".Fmt(line));
-                    }
-                }
-
-                listFile.Close();
-            }
-            catch (Exception ex)
-            {
-                ex.ShowMessageBox("ポケモンリストの読み込みに失敗しました。\nfile:{0}".Fmt(FileName));
-            }
-        }
-
-        /// <summary>
-        /// ロード処理(WebのWikiから).
-        /// </summary>
-        /// <returns>ポケモンリスト</returns>
-        private static void LoadListFromWiki()
-        {
-            try
-            {
-                var wc = PCUIT.CreateWebClient();
-                var fromWiki = new PocketMonsterListFromWiki(wc);
-                PockMonList = fromWiki.GetPocketMonsterList();
-            }
-            catch (Exception ex)
-            {
-                ex.ShowMessageBox("ポケモンリストの読み込みに失敗しました。\nfile:{0}".Fmt(WikiUrl));
-            }
-        }
 
         /// <summary>
         /// Wikiの全国ポケモン図鑑順のポケモン一覧から一覧を取得する.
         /// </summary>
-
-        private class PocketMonsterListFromWiki : HtmlAnalizerBase
+        public class PocketMonsterListFromWiki : HtmlAnalizerBase
         {
+            /// <summary>
+            /// WikiのUrl
+            /// </summary>
+            private static readonly string WikiUrl = @"https://ja.wikipedia.org/wiki/全国ポケモン図鑑順のポケモン一覧";
+
             /// <summary>
             /// リストを格納する.
             /// </summary>
-            private List<PokemonSetWord> PockMonList { get; set; }
+            private List<PokemonSetWord> PockMonWikiList { get; set; }
 
             /// <summary>
             /// ポケモンNo.行正規表現パターン.
@@ -141,7 +108,7 @@ namespace TypingExercise.WordSet.PokemonSet
 
             public PocketMonsterListFromWiki(WebClient wc) : base(wc)
             {
-                this.PockMonList = new List<PokemonSetWord>();
+                this.PockMonWikiList = new List<PokemonSetWord>();
                 this.HookNo = string.Empty;
 
                 this.NoLinRegex = new Regex("^[0-9]{1,4}</td>$", RegexOptions.Compiled);
@@ -156,7 +123,7 @@ namespace TypingExercise.WordSet.PokemonSet
             {
                 this.Url(WikiUrl);
 
-                return this.PockMonList;
+                return this.PockMonWikiList;
             }
 
             /// <summary>
@@ -192,11 +159,93 @@ namespace TypingExercise.WordSet.PokemonSet
 
                     // 最後に確保したNo.と組み合わせてレコードを生成.
                     var word = new PokemonSetWord(this.HookNo, name);
-                    this.PockMonList.Add(word);
+                    this.PockMonWikiList.Add(word);
 
                     // No.は他の要素とペアリングされないように潰しておく.
                     this.HookNo = string.Empty;
                 }
+            }
+        }
+
+
+        /// <summary>
+        /// ローカルファイルとの入出力を行う.
+        /// </summary>
+        public class PocketMonsterListFromFile
+        {
+            /// <summary>
+            /// リソースファイル.
+            /// </summary>
+            private static readonly string FileName = @"PocketMonster.list";
+
+            /// <summary>
+            /// ポケモンリスト.
+            /// </summary>
+            public List<PokemonSetWord> PockMonFileList { get; set; }
+
+
+            /// <summary>
+            /// コンストラクタ.
+            /// </summary>
+            public PocketMonsterListFromFile()
+            {
+                this.PockMonFileList = new List<PokemonSetWord>();
+            }
+
+            /// <summary>
+            /// ファイルパスを返す.
+            /// </summary>
+            /// <returns></returns>
+            private static string GetFilePath()
+            {
+                return UserDataManager.RootPath + FileName;
+            }
+
+            /// <summary>
+            /// ロード処理.
+            /// </summary>
+            /// <remarks>失敗時にはNULLを返す</remarks>
+            /// <returns>正答テーブル</returns>
+            public static List<PokemonSetWord> Load()
+            {
+                var list = new PocketMonsterListFromFile();
+
+                var filePath = GetFilePath();
+
+                // ファイルの存在をチェックし、存在する場合のみ読み込む。
+                if (File.Exists(filePath))
+                {
+                    try
+                    {
+                        list = filePath.JsonLoad<PocketMonsterListFromFile>();
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ShowMessageBox(@"ファイル[{0}]の読み込みに失敗しました".Fmt(filePath));
+                    }
+                }
+
+                return list.PockMonFileList;
+            }
+
+            /// <summary>
+            /// セーブ処理.
+            /// </summary>
+            public bool Save()
+            {
+                var filePath = GetFilePath();
+
+                try
+                {
+                    this.JsonSave(filePath);
+                }
+                catch (Exception ex)
+                {
+                    ex.ShowMessageBox(@"ファイル[{0}]の保存に失敗しました".Fmt(filePath));
+                    return false;
+                }
+
+                return true;
             }
         }
     }

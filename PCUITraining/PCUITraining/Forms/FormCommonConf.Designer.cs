@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.tBoxID = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblProxy = new System.Windows.Forms.Label();
             this.lbliD = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.bLblProxyUse = new PCUITCommon.Views.BoolLabel();
-            this.tBoxID = new System.Windows.Forms.TextBox();
             this.tBoxPassword = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +64,19 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(878, 369);
             this.tableLayoutPanel.TabIndex = 0;
+            // 
+            // tBoxID
+            // 
+            this.tBoxID.BackColor = System.Drawing.Color.DimGray;
+            this.tableLayoutPanel.SetColumnSpan(this.tBoxID, 2);
+            this.tBoxID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tBoxID.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 48F);
+            this.tBoxID.ForeColor = System.Drawing.Color.Aqua;
+            this.tBoxID.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.tBoxID.Location = new System.Drawing.Point(354, 95);
+            this.tBoxID.Name = "tBoxID";
+            this.tBoxID.Size = new System.Drawing.Size(521, 71);
+            this.tBoxID.TabIndex = 108;
             // 
             // btnSave
             // 
@@ -148,19 +161,6 @@
             this.bLblProxyUse.Text = "しない";
             this.bLblProxyUse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bLblProxyUse.TrueColor = System.Drawing.Color.Aqua;
-            // 
-            // tBoxID
-            // 
-            this.tBoxID.BackColor = System.Drawing.Color.DimGray;
-            this.tableLayoutPanel.SetColumnSpan(this.tBoxID, 2);
-            this.tBoxID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tBoxID.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 48F);
-            this.tBoxID.ForeColor = System.Drawing.Color.Aqua;
-            this.tBoxID.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.tBoxID.Location = new System.Drawing.Point(354, 95);
-            this.tBoxID.Name = "tBoxID";
-            this.tBoxID.Size = new System.Drawing.Size(521, 71);
-            this.tBoxID.TabIndex = 108;
             // 
             // tBoxPassword
             // 

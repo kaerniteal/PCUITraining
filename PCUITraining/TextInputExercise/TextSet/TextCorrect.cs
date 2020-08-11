@@ -47,6 +47,15 @@ namespace TextInputExercise.TextSet
 
 
         /// <summary>
+        /// コンストラクタ(JsonI/O用).
+        /// </summary>
+        public TextCorrect()
+        {
+            this.Char = string.Empty;
+            this.Correct = new HashSet<string>();
+        }
+
+        /// <summary>
         /// コンストラクタ.
         /// </summary>
         /// <param name="character">対象文字列</param>
