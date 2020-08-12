@@ -45,7 +45,7 @@
             this.ShowKeyboard = true;
             this.ShowFinger = true;
             this.ShowWordResult = true;
-            this.ShowSpellUpper = false;
+            this.ShowSpellUpper = true;
             this.ShowAllSpell = true;
         }
     }

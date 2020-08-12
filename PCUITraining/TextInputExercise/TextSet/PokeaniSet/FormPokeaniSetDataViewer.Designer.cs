@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tBoxFilter = new System.Windows.Forms.TextBox();
-            this.cmbSort = new System.Windows.Forms.ComboBox();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +41,7 @@
             this.userSelector = new PCUITCommon.Views.UserSelector();
             this.lblTitleFilter = new System.Windows.Forms.Label();
             this.chkBoxAll = new System.Windows.Forms.CheckBox();
+            this.cmbSort = new System.Windows.Forms.ComboBox();
             this.lblCount = new System.Windows.Forms.Label();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -88,39 +88,21 @@
             this.tBoxFilter.TabIndex = 113;
             this.tBoxFilter.TextChanged += new System.EventHandler(this.tBoxFilter_TextChanged);
             // 
-            // cmbSort
-            // 
-            this.cmbSort.BackColor = System.Drawing.Color.Black;
-            this.cmbSort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmbSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbSort.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 24F);
-            this.cmbSort.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.cmbSort.FormattingEnabled = true;
-            this.cmbSort.Items.AddRange(new object[] {
-            "シリーズ順",
-            "最速タイム順"});
-            this.cmbSort.Location = new System.Drawing.Point(233, 134);
-            this.cmbSort.Name = "cmbSort";
-            this.cmbSort.Size = new System.Drawing.Size(224, 41);
-            this.cmbSort.TabIndex = 110;
-            this.cmbSort.SelectedIndexChanged += new System.EventHandler(this.cmbSort_SelectedIndexChanged);
-            // 
             // dgv
             // 
             this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
             this.dgv.AllowUserToResizeColumns = false;
             this.dgv.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgv.BackgroundColor = System.Drawing.Color.Black;
@@ -134,15 +116,15 @@
             this.Column3,
             this.Column4});
             this.tableLayoutPanel.SetColumnSpan(this.dgv, 5);
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.GridColor = System.Drawing.Color.Black;
             this.dgv.Location = new System.Drawing.Point(3, 166);
@@ -242,6 +224,24 @@
             this.chkBoxAll.UseVisualStyleBackColor = true;
             this.chkBoxAll.CheckedChanged += new System.EventHandler(this.chkBoxAll_CheckedChanged);
             // 
+            // cmbSort
+            // 
+            this.cmbSort.BackColor = System.Drawing.Color.Black;
+            this.cmbSort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmbSort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbSort.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 24F);
+            this.cmbSort.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.cmbSort.FormattingEnabled = true;
+            this.cmbSort.Items.AddRange(new object[] {
+            "シリーズ順",
+            "最速タイム順"});
+            this.cmbSort.Location = new System.Drawing.Point(233, 134);
+            this.cmbSort.Name = "cmbSort";
+            this.cmbSort.Size = new System.Drawing.Size(224, 41);
+            this.cmbSort.TabIndex = 110;
+            this.cmbSort.SelectedIndexChanged += new System.EventHandler(this.cmbSort_SelectedIndexChanged);
+            // 
             // lblCount
             // 
             this.lblCount.AutoSize = true;
@@ -252,7 +252,6 @@
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(224, 32);
             this.lblCount.TabIndex = 114;
-            this.lblCount.Text = "/";
             // 
             // FormPokeaniSetDataViewer
             // 

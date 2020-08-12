@@ -97,6 +97,12 @@
     <Compile Include="WordSet\PokemonSet\CtrlPokemonSetDataViewerList.Designer.cs">
       <DependentUpon>CtrlPokemonSetDataViewerList.cs</DependentUpon>
     </Compile>
+    <Compile Include="WordSet\PokemonSet\FormPokemonSetConf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WordSet\PokemonSet\FormPokemonSetConf.Designer.cs">
+      <DependentUpon>FormPokemonSetConf.cs</DependentUpon>
+    </Compile>
     <Compile Include="WordSet\PokemonSet\FormPokemonSetDataViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WordSet\PokemonSet\CtrlPokemonSetResultSetRecord.resx">
       <DependentUpon>CtrlPokemonSetResultSetRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WordSet\PokemonSet\FormPokemonSetConf.resx">
+      <DependentUpon>FormPokemonSetConf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WordSet\PokemonSet\FormPokemonSetDataViewer.resx">
       <DependentUpon>FormPokemonSetDataViewer.cs</DependentUpon>

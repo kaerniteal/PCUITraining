@@ -2,6 +2,7 @@
 using PCUITCommon;
 using PCUITCommon.Views;
 using System.Windows.Forms;
+using TypingExercise.WordSet.PokemonSet;
 using static PCUITCommon.Views.UserIcon;
 
 namespace PCUITraining.Forms
@@ -85,7 +86,8 @@ namespace PCUITraining.Forms
                 return;
             }
 
-            FormMessageBox.Show("ポケモンタイピングの設定画面です。\n・・が、まだできてないよ！");
+            var conf = new FormPokemonSetConf(userData);
+            conf.ShowDialog();
         }
 
         /// <summary>
