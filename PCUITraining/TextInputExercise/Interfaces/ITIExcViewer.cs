@@ -1,4 +1,5 @@
 ﻿using TextInputExercise.Executors;
+using TextInputExercise.TextSet;
 
 namespace TextInputExercise.Interfaces
 {
@@ -10,8 +11,8 @@ namespace TextInputExercise.Interfaces
         /// <summary>
         /// 新しい入力対象文字列をセットする.
         /// </summary>
-        /// <param name="text">入力対象文字列</param>
-        void SetNewText(string text);
+        /// <param name="word">入力対象</param>
+        void SetNewText(TextBase word);
 
         /// <summary>
         /// 入力文字列に対する結果を通知.

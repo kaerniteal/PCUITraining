@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using TextInputExercise.Executors;
 using TextInputExercise.Interfaces;
+using TextInputExercise.TextSet;
 
 namespace TextInputExercise.Views
 {
@@ -137,10 +138,10 @@ namespace TextInputExercise.Views
         /// <summary>
         /// 新しい入力対象文字列をセットする.
         /// </summary>
-        /// <param name="text">入力対象文字列</param>
-        public void SetNewText(string text)
+        /// <param name="word">入力対象</param>
+        public void SetNewText(TextBase word)
         {
-            this.tBpxText.Text = text;
+            this.tBpxText.Text = word.Text;
             this.SetYomi();
             this.rtBoxText.Text = string.Empty;
 
@@ -151,7 +152,7 @@ namespace TextInputExercise.Views
                 var imageStore = this.mPanel.CreateNewImageStore();
 
                 // 画像をロードする.
-                var keyword = this.GameInstance.CreateWebKeyWord(text);
+                var keyword = this.GameInstance.CreateWebKeyWord(word);
                 imageStore.DownLoadFromGoogle(keyword);
             }
         }

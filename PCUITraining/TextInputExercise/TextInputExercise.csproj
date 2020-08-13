@@ -59,6 +59,41 @@
     <Compile Include="Interfaces\ITIExcExecutor.cs" />
     <Compile Include="Interfaces\ITIExcViewer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\AnimeTitleList.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSet.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetGameData.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetGameDataRecord.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetGameInstance.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetText.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetTextResult.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\CtrlAnimeTitleSetResultSetRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextSet\AnimeTitleSet\CtrlAnimeTitleSetResultSetRecord.Designer.cs">
+      <DependentUpon>CtrlAnimeTitleSetResultSetRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextSet\AnimeTitleSet\FormAnimeTitleSetResultText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextSet\AnimeTitleSet\FormAnimeTitleSetResultText.Designer.cs">
+      <DependentUpon>FormAnimeTitleSetResultText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextSet\AnimeTitleSet\FormAnimeTitleSetResultSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextSet\AnimeTitleSet\FormAnimeTitleSetResultSet.Designer.cs">
+      <DependentUpon>FormAnimeTitleSetResultSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextSet\AnimeTitleSet\FormAnimeTitleSetDataViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextSet\AnimeTitleSet\FormAnimeTitleSetDataViewer.Designer.cs">
+      <DependentUpon>FormAnimeTitleSetDataViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextSet\AnimeTitleSet\Naruto\AnimeTitleListPokemonNaruto.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\Naruto\AnimeTitleSetTextNaruto.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\Pokemon\AnimeTitleListPokemon.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\Pokemon\AnimeTitleSetTextPokemon.cs" />
     <Compile Include="TextSet\PokeaniSet\CtrlPokeaniSetResultSetRecord.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +152,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TextSet\AnimeTitleSet\CtrlAnimeTitleSetResultSetRecord.resx">
+      <DependentUpon>CtrlAnimeTitleSetResultSetRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextSet\AnimeTitleSet\FormAnimeTitleSetResultText.resx">
+      <DependentUpon>FormAnimeTitleSetResultText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextSet\AnimeTitleSet\FormAnimeTitleSetResultSet.resx">
+      <DependentUpon>FormAnimeTitleSetResultSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextSet\AnimeTitleSet\FormAnimeTitleSetDataViewer.resx">
+      <DependentUpon>FormAnimeTitleSetDataViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TextSet\PokeaniSet\CtrlPokeaniSetResultSetRecord.resx">
       <DependentUpon>CtrlPokeaniSetResultSetRecord.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,5 +207,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

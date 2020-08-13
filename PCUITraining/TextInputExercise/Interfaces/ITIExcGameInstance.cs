@@ -26,8 +26,8 @@ namespace TextInputExercise.Interfaces
         /// <summary>
         /// Web検索キーワードを生成する.
         /// </summary>
-        /// <returns>キーワード</returns>
-        string CreateWebKeyWord(string word);
+        /// <param name="word">入力対象</param>
+        string CreateWebKeyWord(TextBase word);
 
         /// <summary>
         /// 文字列入力毎の結果を表示する.

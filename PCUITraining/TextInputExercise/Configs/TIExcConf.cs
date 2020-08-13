@@ -28,7 +28,7 @@ namespace TextInputExercise.Configs
         public void SetDefault()
         {
             // デフォルトはここで与える.
-            this.NnumberOfQuestions = 10;
+            this.NnumberOfQuestions = 5;
             this.MarqueeUpdateInterval = 50;
             this.MarqueeAmountOfMovement = 2;
         }

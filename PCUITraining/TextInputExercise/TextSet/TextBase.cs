@@ -44,7 +44,7 @@ namespace TextInputExercise.TextSet
         /// <param name="text">文字列</param>
         public void SetText(string text)
         {
-            this.Text = text;
+            this.Text = text.Trim();
             this.correctList = Parse(this.Text);
         }
 

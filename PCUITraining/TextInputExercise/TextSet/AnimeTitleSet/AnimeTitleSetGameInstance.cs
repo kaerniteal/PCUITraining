@@ -6,17 +6,17 @@ using System.Windows.Forms;
 using TextInputExercise.Executors;
 using TextInputExercise.Interfaces;
 
-namespace TextInputExercise.TextSet.PokeaniSet
+namespace TextInputExercise.TextSet.AnimeTitleSet
 {
     /// <summary>
-    /// ポケアニライティングゲームインスタンス.
+    /// アニタイライティングゲームインスタンス.
     /// </summary>
-    public class PokeaniSetGameInstance : ITIExcGameInstance
+    public class AnimeTitleSetGameInstance : ITIExcGameInstance
     {
         /// <summary>
-        /// ポケモンセット.
+        /// アニタイセット.
         /// </summary>
-        private PokeaniSet PokeaniSet { get; set; }
+        private AnimeTitleSet AnimeTitleSet { get; set; }
 
         /// <summary>
         /// ユーザーデータ.
@@ -26,19 +26,19 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// <summary>
         /// ゲームデータ.
         /// </summary>
-        private PokeaniSetGameData GameData { get; set; }
+        private AnimeTitleSetGameData GameData { get; set; }
 
 
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="pokeaniSet">ポケアニセット</param>
+        /// <param name="aniTtlSet">アニタイセット</param>
         /// <param name="userData">ユーザーデータ</param>
-        public PokeaniSetGameInstance(PokeaniSet pokeaniSet, UserData userData)
+        public AnimeTitleSetGameInstance(AnimeTitleSet aniTtlSet, UserData userData)
         {
-            this.PokeaniSet = pokeaniSet;
+            this.AnimeTitleSet = aniTtlSet;
             this.UserData = userData;
-            this.GameData = PokeaniSetGameData.Load(userData);
+            this.GameData = AnimeTitleSetGameData.Load(userData);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// <returns>単語リスト</returns>
         public List<TextBase> CreateNewTextList(int length)
         {
-            return this.PokeaniSet.CreateNewWordList(length);
+            return this.AnimeTitleSet.CreateNewWordList(length);
         }
 
         /// <summary>
@@ -66,14 +66,17 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// <param name="word">入力対象</param>
         public string CreateWebKeyWord(TextBase word)
         {
-            var count = this.GameData.AddWebImageSearchKeywordList.Count;
-            if (count <= 0)
+            // 検索キーワード.
+            var text = word.Text;
+
+            // アニメタイトルをKeyword に加える.
+            var aniTtl = word as AnimeTitleSetText;
+            if (null == aniTtl)
             {
-                return word.Text;
+                return text;
             }
 
-            var keyword = this.GameData.AddWebImageSearchKeywordList.GetRandom();
-            return keyword + "+" + word.Text;
+            return $"{aniTtl.GetAnimation()}+{text}";
         }
 
         /// <summary>
@@ -88,7 +91,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
             }
 
             // 文字列の結果表示ダイアログを表示.
-            var dlg = new FormPokeaniSetResultText(result);
+            var dlg = new FormAnimeTitleSetResultText(result);
             dlg.ShowDialog();
         }
 
@@ -99,10 +102,11 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// <returns>表示結果</returns>
         public DialogResult ShowSetResultDlg(SetResult result)
         {
+            // 結果生成.
             var resList = result.TextResultList
                 .Select(textResult =>
                 {
-                    var pokeAni = textResult.TextBase as PokeaniSetText;
+                    var pokeAni = textResult.TextBase as AnimeTitleSetText;
                     if (null == pokeAni)
                     {
                         return null;
@@ -115,7 +119,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
                     // 存在しない場合は新たに生成して追加しておく.
                     if (null == record)
                     {
-                        record = new PokeaniSetGameDataRecord(pokeAni);
+                        record = new AnimeTitleSetGameDataRecord(pokeAni);
                         this.GameData.RecordList.Add(record);
                     }
 
@@ -132,7 +136,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
                     record.InputedCount++;
 
                     // 結果表示用のデータにして返す.
-                    return new PokeaniSetTextResult(textResult, update);
+                    return new AnimeTitleSetTextResult(textResult, update);
                 })
                 .ToList();
 
@@ -143,14 +147,15 @@ namespace TextInputExercise.TextSet.PokeaniSet
             {
                 // ソートしときます.
                 this.GameData.RecordList = this.GameData.RecordList
-                                                    .OrderBy(rec => rec.Total)
+                                                    .OrderBy(rec => rec.Animation)
+                                                    .ThenBy(rec => rec.ID)
                                                     .ToList();
 
                 this.GameData.Save(this.UserData);
             }
 
             // 結果表示ダイアログを表示.
-            var setResultDlg = new FormPokeaniSetResultSet(resList);
+            var setResultDlg = new FormAnimeTitleSetResultSet(resList);
             return setResultDlg.ShowDialog();
         }
     }

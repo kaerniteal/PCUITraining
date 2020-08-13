@@ -43,6 +43,29 @@ namespace TextInputExercise.TextSet
                 "—",    // [?]:8212
                 "−",    // [?]:8722
             },
+
+            // 波線パターン.
+            new List<string>
+            {
+                "∼",
+                "~",
+                "〜",
+                "～",
+            },
+
+            // 左「パターン.
+            new List<string>
+            {
+                "「",
+                "『",
+            },
+
+            // 右」パターン.
+            new List<string>
+            {
+                "」",
+                "』",
+            },
         };
 
 
@@ -100,9 +123,18 @@ namespace TextInputExercise.TextSet
         /// 正答の確認の除外対象かどうか(例：スペースやタブはチェック不要).
         /// </summary>
         /// <param name="cha">チェック対象文字</param>
-        /// <returns>不要な場合：true  必要な場合：flase</returns>
+        /// <returns>除外対象：true  それ以外：flase</returns>
         public static bool IsIgnoreCorrectCheck(char cha)
         {
+            // 下記制御コードを除外.
+            // left-to-right mark(LRM): &lrm; 又は &#x200e; (U+200E)
+            // right-to-left mark(RLM): &rlm; 又は &#x200f; (U+200F)
+            if (0x200e == cha || 0x200f == cha)
+            {
+                return true;
+            }
+
+            // 除外文字列を正規表現化.
             if (null == IgnoreCheck)
             {
                 IgnoreCheck = new Regex("\\s+", RegexOptions.Compiled);

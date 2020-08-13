@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using TypingExercise;
 using TypingExercise.Views;
@@ -32,6 +34,35 @@ namespace PCUITraining.Forms
 
         private void btnTest2_Click(object sender, EventArgs e)
         {
+            var h = new List<string>
+            {
+                "-",    // [-]:45
+                "‐",   // [‐]:8208
+                "―",   // [―]:8213
+                "ー",   // [ー]:12540
+                "ｰ",    // [ｰ]:65392
+                "－",   // [－]:65293
+                "‑",    // [?]:8209
+                "–",    // [?]:8211
+                "—",    // [?]:8212
+                "−",    // [?]:8722
+            };
+
+
+            var list = new List<string>
+            {
+                "∼",
+                "~",
+                "~",
+                "〜",
+                "～",
+            };
+
+            foreach(var ll in h)
+            {
+                var c = list.Where(el => el.Equals(ll)).Count();
+                Console.WriteLine(c);
+            }
         }
 
         private void btnTest3_Click(object sender, EventArgs e)

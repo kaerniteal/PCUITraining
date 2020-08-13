@@ -5,6 +5,7 @@ using PCUITCommon.Views;
 using System;
 using System.Windows.Forms;
 using TextInputExercise;
+using TextInputExercise.TextSet.AnimeTitleSet;
 using TextInputExercise.TextSet.PokeaniSet;
 using TextInputExercise.Views;
 using TypingExercise;
@@ -155,6 +156,45 @@ namespace PCUITraining.Forms
 
             // ユーザーデータは未選択(null)を許容する.
             var formDataView = new FormPokeaniSetDataViewer(userData);
+            formDataView.ShowDialog();
+        }
+
+        /// <summary>
+        /// アニタイライティング.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAniTtlWriting_Click(object sender, EventArgs e)
+        {
+            var userData = UserIconGrp.GetSelectedUserData();
+            if (null == userData)
+            {
+                FormMessageBox.Show("ユーザーを選択してください");
+                return;
+            }
+
+            var textSet = TIExc.GetTextSet(AnimeTitleSet.Name);
+            if (null == textSet)
+            {
+                return;
+            }
+
+            var instance = textSet.GetGameInstance(userData);
+            var formExec = new FormTIExc(instance);
+            formExec.ShowDialog();
+        }
+
+        /// <summary>
+        /// アニタイライティング－ゲームデータ表示.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAniTtlWritingDataView_Click(object sender, EventArgs e)
+        {
+            var userData = UserIconGrp.GetSelectedUserData();
+
+            // ユーザーデータは未選択(null)を許容する.
+            var formDataView = new FormAnimeTitleSetDataViewer(userData);
             formDataView.ShowDialog();
         }
 

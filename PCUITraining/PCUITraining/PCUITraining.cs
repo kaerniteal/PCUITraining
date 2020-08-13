@@ -78,7 +78,7 @@ namespace PCUITraining
                 return false;
             }
 
-            // ポケアニライト.
+            // テキストライティングゲーム.
             if (!TIExc.Init())
             {
                 MessageBox.Show("TIExcの初期化に失敗しました");

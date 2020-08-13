@@ -52,7 +52,7 @@ namespace TextInputExercise.Executors
             this.TextResult = new TextResult(word);
 
             // 新しい入力単語の表示への反映は一度だけ.
-            this.Viewer.SetNewText(this.CorrectText);
+            this.Viewer.SetNewText(word);
 
             // 入力時間の計測開始.
             this.Stopwatch.Start();

@@ -3,6 +3,7 @@ using PCUITCommon.Views;
 using System.Collections.Generic;
 using TextInputExercise.Configs;
 using TextInputExercise.TextSet;
+using TextInputExercise.TextSet.AnimeTitleSet;
 using TextInputExercise.TextSet.PokeaniSet;
 
 namespace TextInputExercise
@@ -35,6 +36,7 @@ namespace TextInputExercise
             TextSetList = new List<TextSetBase>
             {
                 new PokeaniSet(),
+                new AnimeTitleSet(),
             };
 
             // テキストセットをロード.
