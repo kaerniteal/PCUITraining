@@ -182,7 +182,7 @@
             this.lblEnableAnimePokemon.Name = "lblEnableAnimePokemon";
             this.lblEnableAnimePokemon.Size = new System.Drawing.Size(698, 80);
             this.lblEnableAnimePokemon.TabIndex = 1;
-            this.lblEnableAnimePokemon.Text = "ポケモンデータを使用";
+            this.lblEnableAnimePokemon.Text = "ポケモンデータ有効";
             this.lblEnableAnimePokemon.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lblEnableAnimeNaruto
@@ -195,7 +195,7 @@
             this.lblEnableAnimeNaruto.Name = "lblEnableAnimeNaruto";
             this.lblEnableAnimeNaruto.Size = new System.Drawing.Size(698, 80);
             this.lblEnableAnimeNaruto.TabIndex = 1;
-            this.lblEnableAnimeNaruto.Text = "NARUTOデータを使用";
+            this.lblEnableAnimeNaruto.Text = "NARUTOデータ有効";
             this.lblEnableAnimeNaruto.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lblEnableAnimeBoruto
@@ -208,7 +208,7 @@
             this.lblEnableAnimeBoruto.Name = "lblEnableAnimeBoruto";
             this.lblEnableAnimeBoruto.Size = new System.Drawing.Size(698, 80);
             this.lblEnableAnimeBoruto.TabIndex = 1;
-            this.lblEnableAnimeBoruto.Text = "BORUTOデータを使用";
+            this.lblEnableAnimeBoruto.Text = "BORUTOデータ有効";
             this.lblEnableAnimeBoruto.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // bLblEnableAnimePokemon

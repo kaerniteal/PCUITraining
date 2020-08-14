@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using MouseExercise.MusExcSet.InsectCollectingSet;
 using PCUITCommon;
 using PCUITCommon.Views;
 using System.Windows.Forms;
@@ -104,7 +105,8 @@ namespace PCUITraining.Forms
                 return;
             }
 
-            FormMessageBox.Show("昆虫採集の設定画面です。\n・・が、まだできてないよ！");
+            var conf = new FormInsectCollectingSetConf(userData);
+            conf.ShowDialog();
         }
 
         /// <summary>

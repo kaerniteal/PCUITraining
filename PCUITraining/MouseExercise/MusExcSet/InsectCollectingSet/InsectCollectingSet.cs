@@ -28,8 +28,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         /// <returns>成否</returns>
         public override bool LoadList()
         {
-            var qList = InsectCollectingSetQuestionList.Load();
-            this.QuestionList = qList.QuestionList;
+            this.QuestionList = InsectCollectingSetQuestionList.GetQuestionList();
 
             return true;
         }

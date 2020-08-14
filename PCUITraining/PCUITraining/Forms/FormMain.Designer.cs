@@ -39,6 +39,7 @@
             this.btnInsectCollecting = new System.Windows.Forms.Button();
             this.btnAniTtlWriting = new System.Windows.Forms.Button();
             this.btnAniTtlWritingDataView = new System.Windows.Forms.Button();
+            this.btnInsectCollectingDataView = new System.Windows.Forms.Button();
             this.tableMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxConfig)).BeginInit();
             this.SuspendLayout();
@@ -90,6 +91,7 @@
             this.tableMain.Controls.Add(this.btnInsectCollecting, 1, 2);
             this.tableMain.Controls.Add(this.btnAniTtlWriting, 1, 3);
             this.tableMain.Controls.Add(this.btnAniTtlWritingDataView, 3, 3);
+            this.tableMain.Controls.Add(this.btnInsectCollectingDataView, 3, 2);
             this.tableMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableMain.Location = new System.Drawing.Point(0, 0);
             this.tableMain.Name = "tableMain";
@@ -156,13 +158,13 @@
             // btnInsectCollecting
             // 
             this.btnInsectCollecting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tableMain.SetColumnSpan(this.btnInsectCollecting, 3);
+            this.tableMain.SetColumnSpan(this.btnInsectCollecting, 2);
             this.btnInsectCollecting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnInsectCollecting.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInsectCollecting.ForeColor = System.Drawing.Color.LimeGreen;
             this.btnInsectCollecting.Location = new System.Drawing.Point(97, 201);
             this.btnInsectCollecting.Name = "btnInsectCollecting";
-            this.btnInsectCollecting.Size = new System.Drawing.Size(746, 90);
+            this.btnInsectCollecting.Size = new System.Drawing.Size(652, 90);
             this.btnInsectCollecting.TabIndex = 1;
             this.btnInsectCollecting.Text = "マウスで昆虫採集";
             this.btnInsectCollecting.UseVisualStyleBackColor = false;
@@ -197,6 +199,20 @@
             this.btnAniTtlWritingDataView.UseVisualStyleBackColor = false;
             this.btnAniTtlWritingDataView.Click += new System.EventHandler(this.btnAniTtlWritingDataView_Click);
             // 
+            // btnInsectCollectingDataView
+            // 
+            this.btnInsectCollectingDataView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnInsectCollectingDataView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInsectCollectingDataView.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsectCollectingDataView.ForeColor = System.Drawing.Color.Yellow;
+            this.btnInsectCollectingDataView.Image = ((System.Drawing.Image)(resources.GetObject("btnInsectCollectingDataView.Image")));
+            this.btnInsectCollectingDataView.Location = new System.Drawing.Point(755, 201);
+            this.btnInsectCollectingDataView.Name = "btnInsectCollectingDataView";
+            this.btnInsectCollectingDataView.Size = new System.Drawing.Size(88, 90);
+            this.btnInsectCollectingDataView.TabIndex = 2;
+            this.btnInsectCollectingDataView.UseVisualStyleBackColor = false;
+            this.btnInsectCollectingDataView.Click += new System.EventHandler(this.btnInsectCollectingDataView_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -228,5 +244,6 @@
         private System.Windows.Forms.Button btnInsectCollecting;
         private System.Windows.Forms.Button btnAniTtlWriting;
         private System.Windows.Forms.Button btnAniTtlWritingDataView;
+        private System.Windows.Forms.Button btnInsectCollectingDataView;
     }
 }

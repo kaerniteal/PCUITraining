@@ -17,6 +17,11 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         public static readonly string FileNameFormat = @"{0}.dat";
 
         /// <summary>
+        /// 個別設定.
+        /// </summary>
+        public MusExcUserConf MusExcUserConf { get; set; }
+
+        /// <summary>
         /// トータルスコアリスト.
         /// </summary>
         public List<int> ScoreList { get; set; }
@@ -32,6 +37,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         /// </summary>
         public InsectCollectingSetGameData()
         {
+            this.MusExcUserConf = new MusExcUserConf();
             this.RecordList = new List<InsectCollectingSetGameDataRecord>();
             this.ScoreList = new List<int>();
         }

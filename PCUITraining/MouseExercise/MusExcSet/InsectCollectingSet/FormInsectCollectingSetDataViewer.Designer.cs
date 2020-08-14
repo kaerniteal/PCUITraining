@@ -1,6 +1,6 @@
 ﻿namespace MouseExercise.MusExcSet.InsectCollectingSet
 {
-    partial class FormInsectCollectingSetResult
+    partial class FormInsectCollectingSetDataViewer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btonOK = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCapture = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,41 +37,15 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvHighScore = new System.Windows.Forms.DataGridView();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTitleScore = new System.Windows.Forms.Label();
-            this.lblScore = new System.Windows.Forms.Label();
             this.lblTitleHighScore = new System.Windows.Forms.Label();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.userSelector = new PCUITCommon.Views.UserSelector();
+            this.lblCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCapture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHighScore)).BeginInit();
+            this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.DimGray;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnCancel.ForeColor = System.Drawing.Color.Red;
-            this.btnCancel.Location = new System.Drawing.Point(588, 698);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(562, 89);
-            this.btnCancel.TabIndex = 101;
-            this.btnCancel.Text = "おわる";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btonOK
-            // 
-            this.btonOK.BackColor = System.Drawing.Color.DimGray;
-            this.btonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btonOK.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btonOK.ForeColor = System.Drawing.Color.Yellow;
-            this.btonOK.Location = new System.Drawing.Point(12, 698);
-            this.btonOK.Name = "btonOK";
-            this.btonOK.Size = new System.Drawing.Size(562, 89);
-            this.btonOK.TabIndex = 100;
-            this.btonOK.Text = "もういっかい";
-            this.btonOK.UseVisualStyleBackColor = false;
-            this.btonOK.Click += new System.EventHandler(this.btonOK_Click);
             // 
             // dgvCapture
             // 
@@ -91,15 +63,17 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.LimeGreen;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.LimeGreen;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCapture.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvCapture.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanel.SetColumnSpan(this.dgvCapture, 2);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.LimeGreen;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.LimeGreen;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCapture.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvCapture.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCapture.Location = new System.Drawing.Point(3, 201);
             this.dgvCapture.MultiSelect = false;
             this.dgvCapture.Name = "dgvCapture";
             this.dgvCapture.ReadOnly = true;
@@ -107,7 +81,7 @@
             this.dgvCapture.RowHeadersVisible = false;
             this.dgvCapture.RowTemplate.Height = 21;
             this.dgvCapture.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCapture.Size = new System.Drawing.Size(789, 680);
+            this.dgvCapture.Size = new System.Drawing.Size(865, 513);
             this.dgvCapture.TabIndex = 0;
             this.dgvCapture.TabStop = false;
             // 
@@ -122,29 +96,33 @@
             // 
             // Column2
             // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column2.Width = 440;
+            this.Column2.Width = 5;
             // 
             // Column3
             // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.Column3.HeaderText = "Column3";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column3.Width = 5;
             // 
             // Column4
             // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.Column4.HeaderText = "Column4";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column4.Width = 180;
+            this.Column4.Width = 5;
             // 
             // dgvHighScore
             // 
@@ -158,25 +136,26 @@
             this.dgvHighScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHighScore.ColumnHeadersVisible = false;
             this.dgvHighScore.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column5,
-            this.Column6});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 24F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.LimeGreen;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.LimeGreen;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvHighScore.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvHighScore.Location = new System.Drawing.Point(807, 172);
+            this.Column5});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.LimeGreen;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(71)))), ((int)(((byte)(71)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.LimeGreen;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvHighScore.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvHighScore.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvHighScore.Location = new System.Drawing.Point(874, 201);
             this.dgvHighScore.MultiSelect = false;
             this.dgvHighScore.Name = "dgvHighScore";
             this.dgvHighScore.ReadOnly = true;
             this.dgvHighScore.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvHighScore.RowHeadersVisible = false;
             this.dgvHighScore.RowTemplate.Height = 21;
+            this.dgvHighScore.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvHighScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHighScore.Size = new System.Drawing.Size(343, 520);
+            this.dgvHighScore.Size = new System.Drawing.Size(285, 513);
             this.dgvHighScore.TabIndex = 0;
             this.dgvHighScore.TabStop = false;
             // 
@@ -190,92 +169,110 @@
             this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column5.Width = 5;
             // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column6.HeaderText = "Column6";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column6.Width = 5;
-            // 
-            // lblTitleScore
-            // 
-            this.lblTitleScore.AutoSize = true;
-            this.lblTitleScore.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitleScore.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblTitleScore.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lblTitleScore.Location = new System.Drawing.Point(807, 12);
-            this.lblTitleScore.Name = "lblTitleScore";
-            this.lblTitleScore.Size = new System.Drawing.Size(239, 37);
-            this.lblTitleScore.TabIndex = 103;
-            this.lblTitleScore.Text = "今回のスコア";
-            // 
-            // lblScore
-            // 
-            this.lblScore.BackColor = System.Drawing.Color.Transparent;
-            this.lblScore.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblScore.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblScore.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lblScore.Location = new System.Drawing.Point(814, 60);
-            this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(336, 39);
-            this.lblScore.TabIndex = 103;
-            this.lblScore.Text = "0点";
-            this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // lblTitleHighScore
             // 
             this.lblTitleHighScore.AutoSize = true;
             this.lblTitleHighScore.BackColor = System.Drawing.Color.Transparent;
             this.lblTitleHighScore.Font = new System.Drawing.Font("HGS創英角ﾎﾟｯﾌﾟ体", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblTitleHighScore.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lblTitleHighScore.Location = new System.Drawing.Point(807, 132);
+            this.lblTitleHighScore.Location = new System.Drawing.Point(874, 159);
             this.lblTitleHighScore.Name = "lblTitleHighScore";
             this.lblTitleHighScore.Size = new System.Drawing.Size(202, 37);
             this.lblTitleHighScore.TabIndex = 103;
             this.lblTitleHighScore.Text = "ハイスコア";
             // 
-            // FormInsectCollectingSetResult
+            // tableLayoutPanel
             // 
-            this.AcceptButton = this.btonOK;
+            this.tableLayoutPanel.ColumnCount = 3;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel.Controls.Add(this.lblCount, 0, 1);
+            this.tableLayoutPanel.Controls.Add(this.btnClose, 0, 3);
+            this.tableLayoutPanel.Controls.Add(this.userSelector, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.dgvCapture, 0, 2);
+            this.tableLayoutPanel.Controls.Add(this.dgvHighScore, 2, 2);
+            this.tableLayoutPanel.Controls.Add(this.lblTitleHighScore, 2, 1);
+            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 4;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(1162, 799);
+            this.tableLayoutPanel.TabIndex = 104;
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tableLayoutPanel.SetColumnSpan(this.btnClose, 6);
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnClose.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnClose.ForeColor = System.Drawing.Color.LightSalmon;
+            this.btnClose.Location = new System.Drawing.Point(3, 720);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(1156, 76);
+            this.btnClose.TabIndex = 108;
+            this.btnClose.Text = "とじる";
+            this.btnClose.UseVisualStyleBackColor = false;
+            // 
+            // userSelector
+            // 
+            this.userSelector.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel.SetColumnSpan(this.userSelector, 6);
+            this.userSelector.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userSelector.Location = new System.Drawing.Point(3, 3);
+            this.userSelector.Name = "userSelector";
+            this.userSelector.Size = new System.Drawing.Size(1156, 153);
+            this.userSelector.TabIndex = 107;
+            // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblCount.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F);
+            this.lblCount.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.lblCount.Location = new System.Drawing.Point(3, 159);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(284, 39);
+            this.lblCount.TabIndex = 115;
+            // 
+            // FormInsectCollectingSetDataViewer
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gray;
-            this.CancelButton = this.btnCancel;
+            this.BackColor = System.Drawing.Color.Black;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(1162, 799);
-            this.Controls.Add(this.lblScore);
-            this.Controls.Add(this.lblTitleHighScore);
-            this.Controls.Add(this.lblTitleScore);
-            this.Controls.Add(this.dgvHighScore);
-            this.Controls.Add(this.dgvCapture);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btonOK);
+            this.Controls.Add(this.tableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormInsectCollectingSetResult";
+            this.Name = "FormInsectCollectingSetDataViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvCapture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHighScore)).EndInit();
+            this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btonOK;
         private System.Windows.Forms.DataGridView dgvCapture;
         private System.Windows.Forms.DataGridView dgvHighScore;
+        private System.Windows.Forms.Label lblTitleHighScore;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+        private PCUITCommon.Views.UserSelector userSelector;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.Label lblTitleScore;
-        private System.Windows.Forms.Label lblScore;
-        private System.Windows.Forms.Label lblTitleHighScore;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Label lblCount;
     }
 }

@@ -22,5 +22,11 @@ namespace MouseExercise.Interfaces
         /// <param name="result">実行結果</param>
         /// <returns>ダイアログリザルト</returns>
         DialogResult ShowSetResultDlg(MusExcSharedDataResult result);
+
+        /// <summary>
+        /// ユーザー個別設定を取得する.
+        /// </summary>
+        /// <returns></returns>
+        MusExcUserConf GetMusExcSetConf();
     }
 }

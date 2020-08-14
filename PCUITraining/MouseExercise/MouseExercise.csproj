@@ -69,6 +69,18 @@
     <Compile Include="Interfaces\IMusExcExecutor.cs" />
     <Compile Include="Interfaces\IMusExcViewer.cs" />
     <Compile Include="MusExc.cs" />
+    <Compile Include="MusExcSet\InsectCollectingSet\FormInsectCollectingSetConf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusExcSet\InsectCollectingSet\FormInsectCollectingSetConf.Designer.cs">
+      <DependentUpon>FormInsectCollectingSetConf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MusExcSet\InsectCollectingSet\FormInsectCollectingSetDataViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusExcSet\InsectCollectingSet\FormInsectCollectingSetDataViewer.Designer.cs">
+      <DependentUpon>FormInsectCollectingSetDataViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="MusExcSet\InsectCollectingSet\FormInsectCollectingSetResult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +92,7 @@
     <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSet.cs" />
     <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSetQuestionList.cs" />
     <Compile Include="MusExcSet\InsectCollectingSet\InsectCollectingSetGameData.cs" />
+    <Compile Include="MusExcSet\MusExcUserConf.cs" />
     <Compile Include="MusExcSet\MusExcQuestionDefUnit.cs" />
     <Compile Include="MusExcSet\MusExcSharedData.cs" />
     <Compile Include="MusExcSet\MusExcQuestionDef.cs" />
@@ -112,6 +125,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MusExcSet\InsectCollectingSet\FormInsectCollectingSetConf.resx">
+      <DependentUpon>FormInsectCollectingSetConf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusExcSet\InsectCollectingSet\FormInsectCollectingSetDataViewer.resx">
+      <DependentUpon>FormInsectCollectingSetDataViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MusExcSet\InsectCollectingSet\FormInsectCollectingSetResult.resx">
       <DependentUpon>FormInsectCollectingSetResult.cs</DependentUpon>
     </EmbeddedResource>

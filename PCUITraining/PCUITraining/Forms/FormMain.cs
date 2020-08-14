@@ -120,6 +120,20 @@ namespace PCUITraining.Forms
         }
 
         /// <summary>
+        /// マウスで昆虫採集－ゲームデータ表示..
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnInsectCollectingDataView_Click(object sender, EventArgs e)
+        {
+            var userData = UserIconGrp.GetSelectedUserData();
+
+            // ユーザーデータは未選択(null)を許容する.
+            var formDataView = new FormInsectCollectingSetDataViewer(userData);
+            formDataView.ShowDialog();
+        }
+
+        /// <summary>
         /// アニタイライティング.
         /// </summary>
         /// <param name="sender"></param>

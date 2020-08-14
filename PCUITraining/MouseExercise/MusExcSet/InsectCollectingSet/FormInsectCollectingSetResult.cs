@@ -6,27 +6,18 @@ using System.Windows.Forms;
 namespace MouseExercise.MusExcSet.InsectCollectingSet
 {
     /// <summary>
-    /// 昆虫採集セット－結果標示ダイアログ.
+    /// 昆虫採集セット－結果表示ダイアログ.
     /// </summary>
     public partial class FormInsectCollectingSetResult : Form
     {
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        public FormInsectCollectingSetResult()
-        {
-            InitializeComponent();
-        }
-
-        /// <summary>
-        /// 総合結果表示
-        /// </summary>
         /// <param name="result">捕獲判定結果</param>
         /// <param name="gameData">捕獲判定結果</param>
-        /// <returns>DialogResult</returns>
-        public DialogResult ShowSetResultDlg(MusExcSharedDataResult result, InsectCollectingSetGameData gameData)
+        public FormInsectCollectingSetResult(MusExcSharedDataResult result, InsectCollectingSetGameData gameData)
         {
-            // 結果をセット.
+            InitializeComponent();
 
             // 捕獲ユニット一覧.
             this.dgvCapture.Rows.Clear();
@@ -47,8 +38,6 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             {
                 this.AddHighScoreRecord(score, currentScore);
             }
-
-            return this.ShowDialog();
         }
 
         /// <summary>

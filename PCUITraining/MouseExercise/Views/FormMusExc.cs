@@ -99,7 +99,10 @@ namespace MouseExercise.Views
             this.ViewSize = new Size(this.Size.Width, this.Size.Height);
 
             // Cusor をセット.
-            this.Cursor = this.CursorOff;
+            if (this.GameInstance.GetMusExcSetConf().UseCustomMouseIcon)
+            {
+                this.Cursor = this.CursorOff;
+            }
 
             this.StartNewGame();
         }
@@ -137,16 +140,9 @@ namespace MouseExercise.Views
         private void FormMusExc_MouseDown(object sender, MouseEventArgs e)
         {
             // Cusor をセット.
-            this.Cursor = this.CursorOn;
-
-            switch (e.Button)
+            if (this.GameInstance.GetMusExcSetConf().UseCustomMouseIcon)
             {
-                case MouseButtons.Left:
-                    break;
-                case MouseButtons.Middle:
-                    break;
-                case MouseButtons.Right:
-                    break;
+                this.Cursor = this.CursorOn;
             }
         }
 
@@ -158,7 +154,10 @@ namespace MouseExercise.Views
         private void FormMusExc_MouseUp(object sender, MouseEventArgs e)
         {
             // Cusor をセット.
-            this.Cursor = this.CursorOff;
+            if (this.GameInstance.GetMusExcSetConf().UseCustomMouseIcon)
+            {
+                this.Cursor = this.CursorOff;
+            }
         }
 
         /// <summary>

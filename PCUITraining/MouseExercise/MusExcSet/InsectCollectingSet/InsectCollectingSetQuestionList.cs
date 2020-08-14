@@ -1,7 +1,4 @@
-﻿using Common.Extentions;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using static MouseExercise.Definitions.MusExcEnums;
 
 namespace MouseExercise.MusExcSet.InsectCollectingSet
@@ -9,152 +6,29 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
     /// <summary>
     /// 昆虫採集セット－設問定義リスト.
     /// </summary>
-    public class InsectCollectingSetQuestionList
+    public static class InsectCollectingSetQuestionList
     {
-        /// <summary>
-        /// リソースファイル.
-        /// </summary>
-        private static readonly string FileName = @".\MusExcSet\InsectCollectingSet\InsectCollectingSetQuestionList.dat";
-
-        /// <summary>
-        /// 使用ガイド
-        /// </summary>
-        public string[] Usage { get; set; }
-
         /// <summary>
         /// 設問定義リスト.
         /// </summary>
-        public List<MusExcQuestionDef> QuestionList { get; set; }
+        public static List<MusExcQuestionDef> QuestionList = null;
 
 
         /// <summary>
-        /// コンストラクタ.
+        /// 設問リスト取得.
         /// </summary>
-        public InsectCollectingSetQuestionList()
+        /// <returns>設問</returns>
+        public static List<MusExcQuestionDef> GetQuestionList()
         {
-            this.Usage = CreateUsage();
-            this.QuestionList = new List<MusExcQuestionDef>();
-        }
-
-        /// <summary>
-        /// ロード処理.
-        /// </summary>
-        /// <remarks>失敗時にはNULLを返す</remarks>
-        /// <returns>正答テーブル</returns>
-        public static InsectCollectingSetQuestionList Load()
-        {
-            var qList = new InsectCollectingSetQuestionList();
-
-            // ファイルの存在をチェックし、存在する場合のみ読み込む。
-            if (File.Exists(FileName))
+            if (null != QuestionList)
             {
-                try
-                {
-                    qList = FileName.JsonLoad<InsectCollectingSetQuestionList>();
-                }
-                catch (Exception ex)
-                {
-                    ex.ShowMessageBox(@"ファイル[{0}]の読み込みに失敗しました".Fmt(FileName));
-                }
+                return QuestionList;
             }
 
-            // 下記の２ケースを想定して毎回出力する
-            // ・読み込んだ設定ファイルに項目が不足している場合.
-            // ・設定ファイルが存在しない場合.
-            qList.Save();
-
-            return qList;
-        }
-
-        /// <summary>
-        /// セーブ処理.
-        /// </summary>
-        public bool Save()
-        {
-            try
-            {
-                this.Usage = CreateUsage();
-                this.AddNewTemplate();
-
-                this.JsonSave(FileName);
-            }
-            catch (Exception ex)
-            {
-                ex.ShowMessageBox(@"ファイル[{0}]の保存に失敗しました".Fmt(FileName));
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// 使用ガイドを生成する.
-        /// </summary>
-        /// <returns>使用ガイド文字列</returns>
-        public static string[] CreateUsage()
-        {
-            return new string[]
-            {
-                "**************************************",
-                "****     このファイルの使い方     ****",
-                "**************************************",
-                "* Difficulty",
-                "*   {0}:Very easy".Fmt((int)DIFFICULTY.VERY_EASY),
-                "*   {0}:Easy".Fmt((int)DIFFICULTY.EASY),
-                "*   {0}:Normal".Fmt((int)DIFFICULTY.NORMAL),
-                "*   {0}:Hard".Fmt((int)DIFFICULTY.HARD),
-                "*   {0}:Very hard".Fmt((int)DIFFICULTY.VERY_HARD),
-                "* BgType",
-                "*   {0}:Color".Fmt((int)BG_TYPE.COLOR),
-                "*   {0}:Image".Fmt((int)BG_TYPE.IMAGE),
-                "* Movement",
-                "*   {0}:静止".Fmt((int)MOVEMENT.STATIONARY),
-                "*   {0}:水平方向(反転)".Fmt((int)MOVEMENT.HORIZONTAL_REFLECT),
-                "*   {0}:水平方向(反転)".Fmt((int)MOVEMENT.VERTICAL_REFLECT),
-                "*   {0}:十字(反転)".Fmt((int)MOVEMENT.CROSS_REFLECT),
-                "*   {0}:斜め(反転)".Fmt((int)MOVEMENT.SLANT_REFLECT),
-                "*   {0}:左".Fmt((int)MOVEMENT.LEFT),
-                "*   {0}:右".Fmt((int)MOVEMENT.RIGHT),
-                "*   {0}:上".Fmt((int)MOVEMENT.UP),
-                "*   {0}:下".Fmt((int)MOVEMENT.DOWN),
-                "*   {0}:水平".Fmt((int)MOVEMENT.HORIZONTAL),
-                "*   {0}:垂直".Fmt((int)MOVEMENT.VERTICAL),
-                "*   {0}:十字".Fmt((int)MOVEMENT.CROSS),
-                "*   {0}:左上".Fmt((int)MOVEMENT.LEFTUP),
-                "*   {0}:左下".Fmt((int)MOVEMENT.LEFTDOWN),
-                "*   {0}:右上".Fmt((int)MOVEMENT.RIGHTUP),
-                "*   {0}:右下".Fmt((int)MOVEMENT.RIGHTDOWN),
-                "*   {0}:斜め".Fmt((int)MOVEMENT.SLANT),
-                "*   {0}:ランダム(10%方向転換)".Fmt((int)MOVEMENT.RANDOM_10),
-                "*   {0}:ランダム(20%方向転換)".Fmt((int)MOVEMENT.RANDOM_20),
-                "*   {0}:ランダム(25%方向転換)".Fmt((int)MOVEMENT.RANDOM_25),
-                "*   {0}:ランダム(30%方向転換)".Fmt((int)MOVEMENT.RANDOM_30),
-                "*   {0}:ランダム(35%方向転換)".Fmt((int)MOVEMENT.RANDOM_35),
-                "*   {0}:ランダム(40%方向転換)".Fmt((int)MOVEMENT.RANDOM_40),
-                "*   {0}:ランダム(50%方向転換)".Fmt((int)MOVEMENT.RANDOM_50),
-                "*   {0}:ランダム(60%方向転換)".Fmt((int)MOVEMENT.RANDOM_60),
-                "*   {0}:ランダム(70%方向転換)".Fmt((int)MOVEMENT.RANDOM_70),
-                "*   {0}:ランダム(75%方向転換)".Fmt((int)MOVEMENT.RANDOM_75),
-                "*   {0}:ランダム(80%方向転換)".Fmt((int)MOVEMENT.RANDOM_80),
-                "*   {0}:ランダム(90%方向転換)".Fmt((int)MOVEMENT.RANDOM_90),
-                "* Behavior",
-                "*   {0}:なし".Fmt((int)BEHAVIOR.NON),
-                "*   {0}:左右揺れ".Fmt((int)BEHAVIOR.SWAY_LR),
-                "*   {0}:上下揺れ".Fmt((int)BEHAVIOR.SWAY_UD),
-                "*   {0}:円運動".Fmt((int)BEHAVIOR.CIRCLE),
-                "**************************************",
-            };
-        }
-
-        /// <summary>
-        /// 保存時にテンプレートを追加する.
-        /// </summary>
-        private void AddNewTemplate()
-        {
-            this.QuestionList.Clear();
+            QuestionList = new List<MusExcQuestionDef>();
 
             // 01_01 草むらカマキリ
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.VERY_EASY,
                 UnitNum = 3,
@@ -184,7 +58,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 01_02 木のセミ
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.VERY_EASY,
                 UnitNum = 3,
@@ -214,7 +88,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 01_03 水辺のトンボ
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.VERY_EASY,
                 UnitNum = 3,
@@ -243,7 +117,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 02_01 暗闇のホタル
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.EASY,
                 UnitNum = 5,
@@ -276,7 +150,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 02_02 夏山のトンボ
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.EASY,
                 UnitNum = 3,
@@ -307,7 +181,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 02_03 オレンジアップ花とハチ
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.EASY,
                 UnitNum = 3,
@@ -338,7 +212,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 03_01 AAワールド
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.NORMAL,
                 UnitNum = 5,
@@ -396,7 +270,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 03_02 チューリップと蜂達
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.NORMAL,
                 UnitNum = 5,
@@ -445,7 +319,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 03_03 甲虫の世界
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.NORMAL,
                 UnitNum = 3,
@@ -485,7 +359,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 04_01 赤い花と白い蝶
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.HARD,
                 UnitNum = 5,
@@ -519,7 +393,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 04_02 低草とテントウムシ.
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.HARD,
                 UnitNum = 5,
@@ -550,7 +424,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 05_01 高原蝶々.
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.VERY_HARD,
                 UnitNum = 5,
@@ -596,7 +470,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 05_02 マーガレット畑のハチ.
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.VERY_HARD,
                 UnitNum = 5,
@@ -629,7 +503,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 05_03 チューリップ畑の蝶.
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.VERY_HARD,
                 UnitNum = 5,
@@ -662,7 +536,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             });
 
             // 05_04 赤い花アップの蝶.
-            this.QuestionList.Add(new MusExcQuestionDef
+            QuestionList.Add(new MusExcQuestionDef
             {
                 Difficulty = DIFFICULTY.VERY_HARD,
                 UnitNum = 5,
@@ -693,6 +567,8 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                         },
                     },
             });
+
+            return QuestionList;
         }
     }
 }

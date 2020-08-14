@@ -113,8 +113,17 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             }
 
             // 結果ダイアログ表示.
-            var dlg = new FormInsectCollectingSetResult();
-            return dlg.ShowSetResultDlg(result, this.GameData);
+            var dlg = new FormInsectCollectingSetResult(result, this.GameData);
+            return dlg.ShowDialog();
+        }
+
+        /// <summary>
+        /// ユーザー個別設定を取得する.
+        /// </summary>
+        /// <returns></returns>
+        public MusExcUserConf GetMusExcSetConf()
+        {
+            return this.GameData.MusExcUserConf;
         }
     }
 }
