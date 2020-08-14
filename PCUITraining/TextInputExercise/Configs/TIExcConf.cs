@@ -31,6 +31,10 @@ namespace TextInputExercise.Configs
             this.NnumberOfQuestions = 5;
             this.MarqueeUpdateInterval = 50;
             this.MarqueeAmountOfMovement = 2;
+
+            this.EnableAnimePokemon = true;
+            this.EnableAnimeNaruto = true;
+            this.EnableAnimeBoruto = true;
         }
 
         /// <summary>
@@ -47,6 +51,21 @@ namespace TextInputExercise.Configs
         /// Marqueeの移動量.
         /// </summary>
         public int MarqueeAmountOfMovement { get; set; }
+
+        /// <summary>
+        /// ポケモンが有効かどうか.
+        /// </summary>
+        public bool EnableAnimePokemon { get; set; }
+
+        /// <summary>
+        /// Narutoが有効かどうか.
+        /// </summary>
+        public bool EnableAnimeNaruto { get; set; }
+
+        /// <summary>
+        /// Borutoが有効かどうか.
+        /// </summary>
+        public bool EnableAnimeBoruto { get; set; }
 
 
         /// <summary>

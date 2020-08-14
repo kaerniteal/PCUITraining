@@ -10,7 +10,6 @@
         /// </summary>
         public bool ShowTextResult { get; set; }
 
-
         /// <summary>
         /// コンストラクタ.
         /// </summary>

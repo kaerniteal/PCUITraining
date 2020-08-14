@@ -40,10 +40,10 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Pokemon
             // Webが有効な場合は.
             if (PCUIT.Conf.EnableWeb)
             {
-                // WebのWikiからロード.
+                // Webからロード.
                 var wc = PCUIT.CreateWebClient();
-                var fromWiki = new AnimeTitleListPokemonFromWiki(wc);
-                TitleList = fromWiki.GetPocketMonsterList();
+                var fromWiki = new AnimeTitleListPokemonFromWeb(wc);
+                TitleList = fromWiki.GetTitleList();
 
                 // Webから取得できた場合.
                 if (0 < TitleList.Count)
@@ -69,20 +69,20 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Pokemon
 
 
         /// <summary>
-        /// Wikiのアニメのサブタイトル一覧から一覧を取得する.
+        /// Webからアニメのサブタイトル一覧をスクレイピングする.
         /// </summary>
 
-        public class AnimeTitleListPokemonFromWiki : HtmlAnalizerBase
+        public class AnimeTitleListPokemonFromWeb : HtmlAnalizerBase
         {
             /// <summary>
-            /// WikiのUrl
+            /// 取得元URL
             /// </summary>
-            private static readonly string WikiUrl = @"https://wiki.xn--rckteqa2e.com/wiki/アニメのサブタイトル一覧";
+            private static readonly string SorceURL = @"https://wiki.xn--rckteqa2e.com/wiki/アニメのサブタイトル一覧";
 
             /// <summary>
             /// リストを格納する.
             /// </summary>
-            private List<AnimeTitleSetTextPokemon> TitleWikiList { get; set; }
+            private List<AnimeTitleSetTextPokemon> TitleWebList { get; set; }
 
             /// <summary>
             /// シリーズ行正規表現パターン.
@@ -135,9 +135,9 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Pokemon
             /// </summary>
             /// <param name="wc">WebClient</param>
 
-            public AnimeTitleListPokemonFromWiki(WebClient wc) : base(wc)
+            public AnimeTitleListPokemonFromWeb(WebClient wc) : base(wc)
             {
-                this.TitleWikiList = new List<AnimeTitleSetTextPokemon>();
+                this.TitleWebList = new List<AnimeTitleSetTextPokemon>();
 
                 this.SeriesLinRegex = new Regex("^<h2><span id=\"", RegexOptions.Compiled);
                 this.VolumeLinRegex = new Regex("^<h[3-4]><span id=\"", RegexOptions.Compiled);
@@ -155,10 +155,10 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Pokemon
             /// リストを取得する.
             /// </summary>
             /// <returns>リスト</returns>
-            public List<AnimeTitleSetTextPokemon> GetPocketMonsterList()
+            public List<AnimeTitleSetTextPokemon> GetTitleList()
             {
-                this.Url(WikiUrl);
-                return this.TitleWikiList;
+                this.Url(SorceURL);
+                return this.TitleWebList;
             }
 
             /// <summary>
@@ -226,7 +226,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Pokemon
                         this.HookEpisode,
                         title);
 
-                    this.TitleWikiList.Add(text);
+                    this.TitleWebList.Add(text);
 
                     // Episodeは他の要素とペアリングされないように潰しておく.
                     this.HookEpisode = string.Empty;

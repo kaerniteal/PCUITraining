@@ -1,9 +1,9 @@
-﻿namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
+﻿namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
 {
     /// <summary>
-    /// アニタイライティング－アニメタイトルデータ(Naruto).
+    /// アニタイライティング－アニメタイトルデータ(Boruto).
     /// </summary>
-    public class AnimeTitleSetTextNaruto : AnimeTitleSetText
+    public class AnimeTitleSetTextBoruto : AnimeTitleSetText
     {
         /// <summary>
         /// 話数.
@@ -14,7 +14,7 @@
         /// <summary>
         /// コンストラクタ(JsonI/O用).
         /// </summary>
-        public AnimeTitleSetTextNaruto()
+        public AnimeTitleSetTextBoruto()
         {
             Episode = 0;
         }
@@ -24,7 +24,7 @@
         /// </summary>
         /// <param name="episode">話数</param>
         /// <param name="title">タイトル</param>
-        public AnimeTitleSetTextNaruto(
+        public AnimeTitleSetTextBoruto(
             int episode,
             string title) : base(title)
         {
@@ -38,7 +38,7 @@
         /// <returns></returns>
         public override string GetAnimation()
         {
-            return @"NARUTO";
+            return @"BORUTO";
         }
 
         /// <summary>

@@ -121,45 +121,6 @@ namespace PCUITraining.Forms
         }
 
         /// <summary>
-        /// ポケモンライティング.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnPokeMonWriting_Click(object sender, EventArgs e)
-        {
-            var userData = UserIconGrp.GetSelectedUserData();
-            if (null == userData)
-            {
-                FormMessageBox.Show("ユーザーを選択してください");
-                return;
-            }
-
-            var textSet = TIExc.GetTextSet(PokeaniSet.Name);
-            if (null == textSet)
-            {
-                return;
-            }
-
-            var instance = textSet.GetGameInstance(userData);
-            var formExec = new FormTIExc(instance);
-            formExec.ShowDialog();
-        }
-
-        /// <summary>
-        /// ポケモンライティング－ゲームデータ表示.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnPokeMonWritingDataView_Click(object sender, EventArgs e)
-        {
-            var userData = UserIconGrp.GetSelectedUserData();
-
-            // ユーザーデータは未選択(null)を許容する.
-            var formDataView = new FormPokeaniSetDataViewer(userData);
-            formDataView.ShowDialog();
-        }
-
-        /// <summary>
         /// アニタイライティング.
         /// </summary>
         /// <param name="sender"></param>

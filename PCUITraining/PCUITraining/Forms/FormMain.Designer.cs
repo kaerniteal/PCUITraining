@@ -37,8 +37,6 @@
             this.userSelector = new PCUITCommon.Views.UserSelector();
             this.pBoxConfig = new System.Windows.Forms.PictureBox();
             this.btnInsectCollecting = new System.Windows.Forms.Button();
-            this.btnPokeMonWriting = new System.Windows.Forms.Button();
-            this.btnPokeMonWritingDataView = new System.Windows.Forms.Button();
             this.btnAniTtlWriting = new System.Windows.Forms.Button();
             this.btnAniTtlWritingDataView = new System.Windows.Forms.Button();
             this.tableMain.SuspendLayout();
@@ -90,10 +88,8 @@
             this.tableMain.Controls.Add(this.userSelector, 1, 0);
             this.tableMain.Controls.Add(this.pBoxConfig, 3, 0);
             this.tableMain.Controls.Add(this.btnInsectCollecting, 1, 2);
-            this.tableMain.Controls.Add(this.btnPokeMonWriting, 1, 3);
-            this.tableMain.Controls.Add(this.btnPokeMonWritingDataView, 3, 3);
-            this.tableMain.Controls.Add(this.btnAniTtlWriting, 1, 4);
-            this.tableMain.Controls.Add(this.btnAniTtlWritingDataView, 3, 4);
+            this.tableMain.Controls.Add(this.btnAniTtlWriting, 1, 3);
+            this.tableMain.Controls.Add(this.btnAniTtlWritingDataView, 3, 3);
             this.tableMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableMain.Location = new System.Drawing.Point(0, 0);
             this.tableMain.Name = "tableMain";
@@ -172,35 +168,6 @@
             this.btnInsectCollecting.UseVisualStyleBackColor = false;
             this.btnInsectCollecting.Click += new System.EventHandler(this.btnInsectCollecting_Click);
             // 
-            // btnPokeMonWriting
-            // 
-            this.btnPokeMonWriting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tableMain.SetColumnSpan(this.btnPokeMonWriting, 2);
-            this.btnPokeMonWriting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPokeMonWriting.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPokeMonWriting.ForeColor = System.Drawing.Color.Aqua;
-            this.btnPokeMonWriting.Location = new System.Drawing.Point(97, 297);
-            this.btnPokeMonWriting.Name = "btnPokeMonWriting";
-            this.btnPokeMonWriting.Size = new System.Drawing.Size(652, 90);
-            this.btnPokeMonWriting.TabIndex = 1;
-            this.btnPokeMonWriting.Text = "ポケアニライティング！";
-            this.btnPokeMonWriting.UseVisualStyleBackColor = false;
-            this.btnPokeMonWriting.Click += new System.EventHandler(this.btnPokeMonWriting_Click);
-            // 
-            // btnPokeMonWritingDataView
-            // 
-            this.btnPokeMonWritingDataView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnPokeMonWritingDataView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPokeMonWritingDataView.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPokeMonWritingDataView.ForeColor = System.Drawing.Color.Yellow;
-            this.btnPokeMonWritingDataView.Image = ((System.Drawing.Image)(resources.GetObject("btnPokeMonWritingDataView.Image")));
-            this.btnPokeMonWritingDataView.Location = new System.Drawing.Point(755, 297);
-            this.btnPokeMonWritingDataView.Name = "btnPokeMonWritingDataView";
-            this.btnPokeMonWritingDataView.Size = new System.Drawing.Size(88, 90);
-            this.btnPokeMonWritingDataView.TabIndex = 2;
-            this.btnPokeMonWritingDataView.UseVisualStyleBackColor = false;
-            this.btnPokeMonWritingDataView.Click += new System.EventHandler(this.btnPokeMonWritingDataView_Click);
-            // 
             // btnAniTtlWriting
             // 
             this.btnAniTtlWriting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -208,7 +175,7 @@
             this.btnAniTtlWriting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAniTtlWriting.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAniTtlWriting.ForeColor = System.Drawing.Color.Aqua;
-            this.btnAniTtlWriting.Location = new System.Drawing.Point(97, 393);
+            this.btnAniTtlWriting.Location = new System.Drawing.Point(97, 297);
             this.btnAniTtlWriting.Name = "btnAniTtlWriting";
             this.btnAniTtlWriting.Size = new System.Drawing.Size(652, 90);
             this.btnAniTtlWriting.TabIndex = 1;
@@ -223,7 +190,7 @@
             this.btnAniTtlWritingDataView.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAniTtlWritingDataView.ForeColor = System.Drawing.Color.Yellow;
             this.btnAniTtlWritingDataView.Image = ((System.Drawing.Image)(resources.GetObject("btnAniTtlWritingDataView.Image")));
-            this.btnAniTtlWritingDataView.Location = new System.Drawing.Point(755, 393);
+            this.btnAniTtlWritingDataView.Location = new System.Drawing.Point(755, 297);
             this.btnAniTtlWritingDataView.Name = "btnAniTtlWritingDataView";
             this.btnAniTtlWritingDataView.Size = new System.Drawing.Size(88, 90);
             this.btnAniTtlWritingDataView.TabIndex = 2;
@@ -259,8 +226,6 @@
         private PCUITCommon.Views.UserSelector userSelector;
         private System.Windows.Forms.PictureBox pBoxConfig;
         private System.Windows.Forms.Button btnInsectCollecting;
-        private System.Windows.Forms.Button btnPokeMonWriting;
-        private System.Windows.Forms.Button btnPokeMonWritingDataView;
         private System.Windows.Forms.Button btnAniTtlWriting;
         private System.Windows.Forms.Button btnAniTtlWritingDataView;
     }

@@ -119,7 +119,7 @@ namespace PCUITraining.Forms
                 return;
             }
 
-            FormMessageBox.Show("ポケアニライティングの設定画面です。\n・・が、まだできてないよ！");
+            FormMessageBox.Show("アニタイライティングの設定画面です。\n・・が、まだできてないよ！");
         }
 
         /// <summary>

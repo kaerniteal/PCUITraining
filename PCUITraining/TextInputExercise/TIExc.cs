@@ -35,7 +35,7 @@ namespace TextInputExercise
             // テキストセットのリストを生成.
             TextSetList = new List<TextSetBase>
             {
-                new PokeaniSet(),
+//                new PokeaniSet(),
                 new AnimeTitleSet(),
             };
 

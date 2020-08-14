@@ -191,7 +191,7 @@
             this.btnConf3.Name = "btnConf3";
             this.btnConf3.Size = new System.Drawing.Size(404, 47);
             this.btnConf3.TabIndex = 101;
-            this.btnConf3.Text = "ポケアニライティング！";
+            this.btnConf3.Text = "アニタイライティング！";
             this.btnConf3.UseVisualStyleBackColor = false;
             this.btnConf3.Click += new System.EventHandler(this.btnConf3_Click);
             // 

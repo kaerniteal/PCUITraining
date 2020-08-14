@@ -30,6 +30,11 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
         /// </summary>
         private List<AnimeTitleSetGameDataRecord> UserList { get; set; }
 
+        /// <summary>
+        /// オールデータリスト.
+        /// </summary>
+        private List<AnimeTitleSetGameDataRecord> AllList { get; set; }
+
 
         /// <summary>
         /// コンストラクタ.
@@ -48,6 +53,9 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             // ユーザーデータリスト.
             this.UserList = new List<AnimeTitleSetGameDataRecord>();
 
+            // オールデータリスト.
+            this.AllList = new List<AnimeTitleSetGameDataRecord>();
+
             // 最初からユーザーが選択されている場合.
             if (null != userData)
             {
@@ -56,19 +64,6 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             }
 
             this.cmbSort.SelectedIndex = 0;
-
-            // アニメーションリスト.
-            var animeList = this.AllTitleList
-                .Select(ttl => ttl.GetAnimation())
-                .Distinct()
-                .ToList();
-
-            animeList.Insert(0, "全て表示");
-
-            // コンボボックスに追加.
-            this.cmbFilter.Items.AddRange(animeList.ToArray());
-
-            this.cmbFilter.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -93,8 +88,42 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
                 return;
             }
 
+            // ユーザーデータを確保.
             this.UserList = gameData.RecordList;
 
+            // 全リストを作成しておく.
+            // 全タイトルリストをユーザーデータに変換する.
+            this.AllList = this.AllTitleList
+                .Select(ttl =>
+                {
+                    // ユーザーデータに該当データがあれば充当、なければ新規レコードを作成.
+                    return this.UserList
+                                    .Find(ud => ud.Animation.Equals(ttl.GetAnimation()) && ttl.GetID() == ud.ID)
+                                    ?? new AnimeTitleSetGameDataRecord(ttl);
+                })
+                .ToList();
+
+            // 全タイトルリストに存在せずに、ユーザーデータだけに存在するレコードを補完.
+            // ※ 設定で無効にしたアニメが該当
+            var addList = this.UserList
+                .Where(ud => null == this.AllList.Find(ad => ad.Animation.Equals(ud.Animation) && ad.ID == ud.ID))
+                .ToList();
+            this.AllList.AddRange(addList);
+
+            // アニメーションリスト.
+            var itemList = new List<string> { @"全て表示" };
+            var animeList = this.AllList
+                .Select(ttl => ttl.Animation)
+                .Distinct()
+                .ToList();
+            itemList.AddRange(animeList);
+
+            // コンボボックスにセット.
+            this.cmbFilter.Items.Clear();
+            this.cmbFilter.Items.AddRange(itemList.ToArray());
+            this.cmbFilter.SelectedIndex = 0;
+
+            // 件数をセット.
             this.lblCount.Text = $"{this.UserList.Count}/{this.AllTitleList.Count}";
 
             // リストにデータを反映.
@@ -106,30 +135,16 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
         /// </summary>
         private void ShowList()
         {
+            // いったんクリア.
             this.dgv.Rows.Clear();
 
-            // 全て表示の場合(ソートが最速タイム順でないことも条件).
-            var list = this.UserList;
-            if (this.chkBoxAll.Checked && 1 != this.cmbSort.SelectedIndex)
-            {
-                list = this.AllTitleList
-                    .Select(ttl =>
-                    {
-                        // ユーザーデータに該当データがあれば充当.
-                        var userData = this.UserList.Find(ud =>
-                        {
-                            return ud.Animation.Equals(ttl.GetAnimation()) && ud.ID.Equals(ttl.GetID());
-                        });
-
-                        if (null == userData)
-                        {
-                            return new AnimeTitleSetGameDataRecord(ttl);
-                        }
-
-                        return userData;
-                    })
-                    .ToList();
-            }
+            // 元となるリストを選択.
+            // 下記の条件を満たした場合全て表示.
+            // ・全て表示
+            // ・ソートが最速タイム順でない
+            var list = (this.chkBoxAll.Checked && 1 != this.cmbSort.SelectedIndex)
+                ? this.AllList
+                : this.UserList;
 
             // アニメフィルタ.
             if (0 < this.cmbFilter.SelectedIndex)
@@ -166,7 +181,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
                     break;
             }
 
-            // フィルタしつつセット.
+            // 結果をセット.
             foreach (var record in list)
             {
                 this.AddRecord(record);

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using TextInputExercise.TextSet.AnimeTitleSet.Boruto;
 using TextInputExercise.TextSet.AnimeTitleSet.Naruto;
 using TextInputExercise.TextSet.AnimeTitleSet.Pokemon;
 
@@ -34,12 +36,31 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             TitleList = new List<AnimeTitleSetText>();
 
             // ポケモン.
-            var pokemon = AnimeTitleListPokemon.GetPokemonTitleList();
-            TitleList.AddRange(pokemon);
+            if (TIExc.Conf.EnableAnimePokemon)
+            {
+                var pokemon = AnimeTitleListPokemon.GetPokemonTitleList();
+                TitleList.AddRange(pokemon);
+            }
 
             // ナルト.
-            var naruto = AnimeTitleListNaruto.GetNarutoTitleList();
-            TitleList.AddRange(naruto);
+            if (TIExc.Conf.EnableAnimeNaruto)
+            {
+                var naruto = AnimeTitleListNaruto.GetNarutoTitleList();
+                TitleList.AddRange(naruto);
+            }
+
+            // ボルト.
+            if (TIExc.Conf.EnableAnimeBoruto)
+            {
+                var boruto = AnimeTitleListBoruto.GetBorutoTitleList();
+                TitleList.AddRange(boruto);
+            }
+
+            // ソート.
+            TitleList = TitleList
+                .OrderBy(rec => rec.GetAnimation())
+                .ThenBy(rec => rec.GetID())
+                .ToList();
 
             // トータルを返す.
             return TitleList;
