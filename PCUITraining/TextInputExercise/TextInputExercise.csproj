@@ -92,6 +92,12 @@
     <Compile Include="TextSet\AnimeTitleSet\FormAnimeTitleSetDataViewer.Designer.cs">
       <DependentUpon>FormAnimeTitleSetDataViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="TextSet\AnimeTitleSet\FormAnimeTitleSetConf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextSet\AnimeTitleSet\FormAnimeTitleSetConf.Designer.cs">
+      <DependentUpon>FormAnimeTitleSetConf.cs</DependentUpon>
+    </Compile>
     <Compile Include="TextSet\AnimeTitleSet\Naruto\AnimeTitleListPokemonNaruto.cs" />
     <Compile Include="TextSet\AnimeTitleSet\Naruto\AnimeTitleSetTextNaruto.cs" />
     <Compile Include="TextSet\AnimeTitleSet\Pokemon\AnimeTitleListPokemon.cs" />
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TextSet\AnimeTitleSet\FormAnimeTitleSetDataViewer.resx">
       <DependentUpon>FormAnimeTitleSetDataViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextSet\AnimeTitleSet\FormAnimeTitleSetConf.resx">
+      <DependentUpon>FormAnimeTitleSetConf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TextSet\PokeaniSet\CtrlPokeaniSetResultSetRecord.resx">
       <DependentUpon>CtrlPokeaniSetResultSetRecord.cs</DependentUpon>

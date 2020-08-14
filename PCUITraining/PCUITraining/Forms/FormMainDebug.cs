@@ -58,7 +58,7 @@ namespace PCUITraining.Forms
                 "～",
             };
 
-            foreach(var ll in h)
+            foreach (var ll in h)
             {
                 var c = list.Where(el => el.Equals(ll)).Count();
                 Console.WriteLine(c);

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.gBoxCommon = new System.Windows.Forms.GroupBox();
-            this.gBoxUser = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelCommon = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanelUser = new System.Windows.Forms.TableLayoutPanel();
             this.numKeybordFont = new System.Windows.Forms.NumericUpDown();
             this.lblKeybordFontSize = new System.Windows.Forms.Label();
+            this.gBoxUser = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanelUser = new System.Windows.Forms.TableLayoutPanel();
             this.lblShowCorrectSpelling = new System.Windows.Forms.Label();
             this.lblShowKeybord = new System.Windows.Forms.Label();
             this.lblShowFinger = new System.Windows.Forms.Label();
@@ -51,10 +51,10 @@
             this.bLblShowAllSpell = new PCUITCommon.Views.BoolLabel();
             this.tableLayoutPanel.SuspendLayout();
             this.gBoxCommon.SuspendLayout();
-            this.gBoxUser.SuspendLayout();
             this.tableLayoutPanelCommon.SuspendLayout();
-            this.tableLayoutPanelUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numKeybordFont)).BeginInit();
+            this.gBoxUser.SuspendLayout();
+            this.tableLayoutPanelUser.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel
@@ -76,20 +76,6 @@
             this.tableLayoutPanel.Size = new System.Drawing.Size(986, 833);
             this.tableLayoutPanel.TabIndex = 0;
             // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.DimGray;
-            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSave.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnSave.ForeColor = System.Drawing.Color.Yellow;
-            this.btnSave.Location = new System.Drawing.Point(3, 752);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(487, 78);
-            this.btnSave.TabIndex = 106;
-            this.btnSave.Text = "保存";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.DimGray;
@@ -103,6 +89,20 @@
             this.btnCancel.TabIndex = 107;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.DimGray;
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSave.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnSave.ForeColor = System.Drawing.Color.Yellow;
+            this.btnSave.Location = new System.Drawing.Point(3, 752);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(487, 78);
+            this.btnSave.TabIndex = 106;
+            this.btnSave.Text = "保存";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // gBoxCommon
             // 
@@ -118,20 +118,6 @@
             this.gBoxCommon.TabStop = false;
             this.gBoxCommon.Text = "共通設定";
             // 
-            // gBoxUser
-            // 
-            this.tableLayoutPanel.SetColumnSpan(this.gBoxUser, 2);
-            this.gBoxUser.Controls.Add(this.tableLayoutPanelUser);
-            this.gBoxUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gBoxUser.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.gBoxUser.ForeColor = System.Drawing.Color.Yellow;
-            this.gBoxUser.Location = new System.Drawing.Point(3, 169);
-            this.gBoxUser.Name = "gBoxUser";
-            this.gBoxUser.Size = new System.Drawing.Size(980, 577);
-            this.gBoxUser.TabIndex = 108;
-            this.gBoxUser.TabStop = false;
-            this.gBoxUser.Text = "ユーザー個別設定";
-            // 
             // tableLayoutPanelCommon
             // 
             this.tableLayoutPanelCommon.ColumnCount = 2;
@@ -146,36 +132,6 @@
             this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelCommon.Size = new System.Drawing.Size(974, 106);
             this.tableLayoutPanelCommon.TabIndex = 0;
-            // 
-            // tableLayoutPanelUser
-            // 
-            this.tableLayoutPanelUser.ColumnCount = 2;
-            this.tableLayoutPanelUser.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanelUser.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanelUser.Controls.Add(this.lblShowCorrectSpelling, 0, 0);
-            this.tableLayoutPanelUser.Controls.Add(this.lblShowKeybord, 0, 1);
-            this.tableLayoutPanelUser.Controls.Add(this.lblShowFinger, 0, 2);
-            this.tableLayoutPanelUser.Controls.Add(this.lblShowWordResult, 0, 3);
-            this.tableLayoutPanelUser.Controls.Add(this.lblShowSpellUpper, 0, 4);
-            this.tableLayoutPanelUser.Controls.Add(this.lblShowAllSpell, 0, 5);
-            this.tableLayoutPanelUser.Controls.Add(this.bLblShowCorrectSpelling, 1, 0);
-            this.tableLayoutPanelUser.Controls.Add(this.bLblShowKeybord, 1, 1);
-            this.tableLayoutPanelUser.Controls.Add(this.bLblShowFinger, 1, 2);
-            this.tableLayoutPanelUser.Controls.Add(this.bLblShowWordResult, 1, 3);
-            this.tableLayoutPanelUser.Controls.Add(this.bLblShowSpellUpper, 1, 4);
-            this.tableLayoutPanelUser.Controls.Add(this.bLblShowAllSpell, 1, 5);
-            this.tableLayoutPanelUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelUser.Location = new System.Drawing.Point(3, 51);
-            this.tableLayoutPanelUser.Name = "tableLayoutPanelUser";
-            this.tableLayoutPanelUser.RowCount = 6;
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanelUser.Size = new System.Drawing.Size(974, 523);
-            this.tableLayoutPanelUser.TabIndex = 0;
             // 
             // numKeybordFont
             // 
@@ -215,8 +171,52 @@
             this.lblKeybordFontSize.Name = "lblKeybordFontSize";
             this.lblKeybordFontSize.Size = new System.Drawing.Size(675, 106);
             this.lblKeybordFontSize.TabIndex = 1;
-            this.lblKeybordFontSize.Text = "キーボードのフォントサイズ";
+            this.lblKeybordFontSize.Text = "キーボードナビのフォントサイズ";
             this.lblKeybordFontSize.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // gBoxUser
+            // 
+            this.tableLayoutPanel.SetColumnSpan(this.gBoxUser, 2);
+            this.gBoxUser.Controls.Add(this.tableLayoutPanelUser);
+            this.gBoxUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gBoxUser.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.gBoxUser.ForeColor = System.Drawing.Color.Yellow;
+            this.gBoxUser.Location = new System.Drawing.Point(3, 169);
+            this.gBoxUser.Name = "gBoxUser";
+            this.gBoxUser.Size = new System.Drawing.Size(980, 577);
+            this.gBoxUser.TabIndex = 108;
+            this.gBoxUser.TabStop = false;
+            this.gBoxUser.Text = "ユーザー個別設定";
+            // 
+            // tableLayoutPanelUser
+            // 
+            this.tableLayoutPanelUser.ColumnCount = 2;
+            this.tableLayoutPanelUser.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanelUser.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanelUser.Controls.Add(this.lblShowCorrectSpelling, 0, 0);
+            this.tableLayoutPanelUser.Controls.Add(this.lblShowKeybord, 0, 1);
+            this.tableLayoutPanelUser.Controls.Add(this.lblShowFinger, 0, 2);
+            this.tableLayoutPanelUser.Controls.Add(this.lblShowWordResult, 0, 3);
+            this.tableLayoutPanelUser.Controls.Add(this.lblShowSpellUpper, 0, 4);
+            this.tableLayoutPanelUser.Controls.Add(this.lblShowAllSpell, 0, 5);
+            this.tableLayoutPanelUser.Controls.Add(this.bLblShowCorrectSpelling, 1, 0);
+            this.tableLayoutPanelUser.Controls.Add(this.bLblShowKeybord, 1, 1);
+            this.tableLayoutPanelUser.Controls.Add(this.bLblShowFinger, 1, 2);
+            this.tableLayoutPanelUser.Controls.Add(this.bLblShowWordResult, 1, 3);
+            this.tableLayoutPanelUser.Controls.Add(this.bLblShowSpellUpper, 1, 4);
+            this.tableLayoutPanelUser.Controls.Add(this.bLblShowAllSpell, 1, 5);
+            this.tableLayoutPanelUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelUser.Location = new System.Drawing.Point(3, 51);
+            this.tableLayoutPanelUser.Name = "tableLayoutPanelUser";
+            this.tableLayoutPanelUser.RowCount = 6;
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanelUser.Size = new System.Drawing.Size(974, 523);
+            this.tableLayoutPanelUser.TabIndex = 0;
             // 
             // lblShowCorrectSpelling
             // 
@@ -394,12 +394,12 @@
             this.Text = "FormPokemonSetConf";
             this.tableLayoutPanel.ResumeLayout(false);
             this.gBoxCommon.ResumeLayout(false);
-            this.gBoxUser.ResumeLayout(false);
             this.tableLayoutPanelCommon.ResumeLayout(false);
             this.tableLayoutPanelCommon.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numKeybordFont)).EndInit();
+            this.gBoxUser.ResumeLayout(false);
             this.tableLayoutPanelUser.ResumeLayout(false);
             this.tableLayoutPanelUser.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numKeybordFont)).EndInit();
             this.ResumeLayout(false);
 
         }

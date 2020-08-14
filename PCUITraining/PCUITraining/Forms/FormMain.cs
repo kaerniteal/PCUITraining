@@ -6,7 +6,6 @@ using System;
 using System.Windows.Forms;
 using TextInputExercise;
 using TextInputExercise.TextSet.AnimeTitleSet;
-using TextInputExercise.TextSet.PokeaniSet;
 using TextInputExercise.Views;
 using TypingExercise;
 using TypingExercise.Views;

@@ -2,6 +2,7 @@
 using PCUITCommon;
 using PCUITCommon.Views;
 using System.Windows.Forms;
+using TextInputExercise.TextSet.AnimeTitleSet;
 using TypingExercise.WordSet.PokemonSet;
 using static PCUITCommon.Views.UserIcon;
 
@@ -119,7 +120,8 @@ namespace PCUITraining.Forms
                 return;
             }
 
-            FormMessageBox.Show("アニタイライティングの設定画面です。\n・・が、まだできてないよ！");
+            var conf = new FormAnimeTitleSetConf(userData);
+            conf.ShowDialog();
         }
 
         /// <summary>
