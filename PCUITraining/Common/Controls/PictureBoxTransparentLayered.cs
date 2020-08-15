@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
@@ -26,25 +27,32 @@ namespace Common.Controls
             // 最も下位の背景を描画する.
             base.OnPaintBackground(pevent);
 
-            // 親コントロールと自身との間のコントロールを、親方向から描画.
-            for (var ii = this.Parent.Controls.Count - 1; 0 <= ii; ii--)
+            try
             {
-                var ctrl = this.Parent.Controls[ii];
-
-                // 自身まできたらそれ以上の描画は不要.
-                if (this.Equals(ctrl))
+                // 親コントロールと自身との間のコントロールを、親方向から描画.
+                for (var ii = this.Parent.Controls.Count - 1; 0 <= ii; ii--)
                 {
-                    break;
-                }
+                    var ctrl = this.Parent.Controls[ii];
 
-                // 重なり合っていないコントロールは考慮不要.
-                if (!this.Bounds.IntersectsWith(ctrl.Bounds))
-                {
-                    continue;
-                }
+                    // 自身まできたらそれ以上の描画は不要.
+                    if (this.Equals(ctrl))
+                    {
+                        break;
+                    }
 
-                // 描画する.
-                this.DrawBackControl(ctrl, pevent);
+                    // 重なり合っていないコントロールは考慮不要.
+                    if (!this.Bounds.IntersectsWith(ctrl.Bounds))
+                    {
+                        continue;
+                    }
+
+                    // 描画する.
+                    this.DrawBackControl(ctrl, pevent);
+                }
+            }
+            catch (Exception)
+            {
+                // 処理なし.
             }
         }
 
