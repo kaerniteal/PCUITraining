@@ -43,10 +43,14 @@
             this.bLblEnableAnimeBoruto = new PCUITCommon.Views.BoolLabel();
             this.numMarqueeUpdateInterval = new System.Windows.Forms.NumericUpDown();
             this.numMarqueeAmountOfMovement = new System.Windows.Forms.NumericUpDown();
+            this.lblEnableAnimeKimetsu = new System.Windows.Forms.Label();
+            this.bLblEnableAnimeKimetsu = new PCUITCommon.Views.BoolLabel();
             this.gBoxUser = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelUser = new System.Windows.Forms.TableLayoutPanel();
             this.lblShowTextResult = new System.Windows.Forms.Label();
             this.bLblShowTextResult = new PCUITCommon.Views.BoolLabel();
+            this.lblEnableAnimeCellsAtWork = new System.Windows.Forms.Label();
+            this.bLblEnableAnimeCellsAtWork = new PCUITCommon.Views.BoolLabel();
             this.tableLayoutPanel.SuspendLayout();
             this.gBoxCommon.SuspendLayout();
             this.tableLayoutPanelCommon.SuspendLayout();
@@ -132,17 +136,22 @@
             this.tableLayoutPanelCommon.Controls.Add(this.bLblEnableAnimeBoruto, 1, 4);
             this.tableLayoutPanelCommon.Controls.Add(this.numMarqueeUpdateInterval, 1, 0);
             this.tableLayoutPanelCommon.Controls.Add(this.numMarqueeAmountOfMovement, 1, 1);
+            this.tableLayoutPanelCommon.Controls.Add(this.lblEnableAnimeKimetsu, 0, 5);
+            this.tableLayoutPanelCommon.Controls.Add(this.bLblEnableAnimeKimetsu, 1, 5);
+            this.tableLayoutPanelCommon.Controls.Add(this.lblEnableAnimeCellsAtWork, 0, 6);
+            this.tableLayoutPanelCommon.Controls.Add(this.bLblEnableAnimeCellsAtWork, 1, 6);
             this.tableLayoutPanelCommon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelCommon.Location = new System.Drawing.Point(3, 51);
             this.tableLayoutPanelCommon.Name = "tableLayoutPanelCommon";
-            this.tableLayoutPanelCommon.RowCount = 7;
-            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanelCommon.RowCount = 8;
+            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanelCommon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelCommon.Size = new System.Drawing.Size(1007, 564);
             this.tableLayoutPanelCommon.TabIndex = 0;
             // 
@@ -154,7 +163,7 @@
             this.lblMarqueeUpdateInterval.ForeColor = System.Drawing.Color.White;
             this.lblMarqueeUpdateInterval.Location = new System.Drawing.Point(3, 0);
             this.lblMarqueeUpdateInterval.Name = "lblMarqueeUpdateInterval";
-            this.lblMarqueeUpdateInterval.Size = new System.Drawing.Size(698, 80);
+            this.lblMarqueeUpdateInterval.Size = new System.Drawing.Size(698, 70);
             this.lblMarqueeUpdateInterval.TabIndex = 1;
             this.lblMarqueeUpdateInterval.Text = "画像マーキーの更新間隔";
             this.lblMarqueeUpdateInterval.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -165,9 +174,9 @@
             this.lblMarqueeAmountOfMovement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMarqueeAmountOfMovement.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblMarqueeAmountOfMovement.ForeColor = System.Drawing.Color.White;
-            this.lblMarqueeAmountOfMovement.Location = new System.Drawing.Point(3, 80);
+            this.lblMarqueeAmountOfMovement.Location = new System.Drawing.Point(3, 70);
             this.lblMarqueeAmountOfMovement.Name = "lblMarqueeAmountOfMovement";
-            this.lblMarqueeAmountOfMovement.Size = new System.Drawing.Size(698, 80);
+            this.lblMarqueeAmountOfMovement.Size = new System.Drawing.Size(698, 70);
             this.lblMarqueeAmountOfMovement.TabIndex = 1;
             this.lblMarqueeAmountOfMovement.Text = "画像マーキーの移動量";
             this.lblMarqueeAmountOfMovement.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -178,9 +187,9 @@
             this.lblEnableAnimePokemon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblEnableAnimePokemon.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblEnableAnimePokemon.ForeColor = System.Drawing.Color.White;
-            this.lblEnableAnimePokemon.Location = new System.Drawing.Point(3, 160);
+            this.lblEnableAnimePokemon.Location = new System.Drawing.Point(3, 140);
             this.lblEnableAnimePokemon.Name = "lblEnableAnimePokemon";
-            this.lblEnableAnimePokemon.Size = new System.Drawing.Size(698, 80);
+            this.lblEnableAnimePokemon.Size = new System.Drawing.Size(698, 70);
             this.lblEnableAnimePokemon.TabIndex = 1;
             this.lblEnableAnimePokemon.Text = "ポケモンデータ有効";
             this.lblEnableAnimePokemon.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -191,9 +200,9 @@
             this.lblEnableAnimeNaruto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblEnableAnimeNaruto.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblEnableAnimeNaruto.ForeColor = System.Drawing.Color.White;
-            this.lblEnableAnimeNaruto.Location = new System.Drawing.Point(3, 240);
+            this.lblEnableAnimeNaruto.Location = new System.Drawing.Point(3, 210);
             this.lblEnableAnimeNaruto.Name = "lblEnableAnimeNaruto";
-            this.lblEnableAnimeNaruto.Size = new System.Drawing.Size(698, 80);
+            this.lblEnableAnimeNaruto.Size = new System.Drawing.Size(698, 70);
             this.lblEnableAnimeNaruto.TabIndex = 1;
             this.lblEnableAnimeNaruto.Text = "NARUTOデータ有効";
             this.lblEnableAnimeNaruto.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -204,9 +213,9 @@
             this.lblEnableAnimeBoruto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblEnableAnimeBoruto.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblEnableAnimeBoruto.ForeColor = System.Drawing.Color.White;
-            this.lblEnableAnimeBoruto.Location = new System.Drawing.Point(3, 320);
+            this.lblEnableAnimeBoruto.Location = new System.Drawing.Point(3, 280);
             this.lblEnableAnimeBoruto.Name = "lblEnableAnimeBoruto";
-            this.lblEnableAnimeBoruto.Size = new System.Drawing.Size(698, 80);
+            this.lblEnableAnimeBoruto.Size = new System.Drawing.Size(698, 70);
             this.lblEnableAnimeBoruto.TabIndex = 1;
             this.lblEnableAnimeBoruto.Text = "BORUTOデータ有効";
             this.lblEnableAnimeBoruto.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -217,9 +226,9 @@
             this.bLblEnableAnimePokemon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bLblEnableAnimePokemon.FalseColor = System.Drawing.Color.Red;
             this.bLblEnableAnimePokemon.ForeColor = System.Drawing.Color.Red;
-            this.bLblEnableAnimePokemon.Location = new System.Drawing.Point(707, 160);
+            this.bLblEnableAnimePokemon.Location = new System.Drawing.Point(707, 140);
             this.bLblEnableAnimePokemon.Name = "bLblEnableAnimePokemon";
-            this.bLblEnableAnimePokemon.Size = new System.Drawing.Size(297, 80);
+            this.bLblEnableAnimePokemon.Size = new System.Drawing.Size(297, 70);
             this.bLblEnableAnimePokemon.TabIndex = 2;
             this.bLblEnableAnimePokemon.Text = "いいえ";
             this.bLblEnableAnimePokemon.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -231,9 +240,9 @@
             this.bLblEnableAnimeNaruto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bLblEnableAnimeNaruto.FalseColor = System.Drawing.Color.Red;
             this.bLblEnableAnimeNaruto.ForeColor = System.Drawing.Color.Red;
-            this.bLblEnableAnimeNaruto.Location = new System.Drawing.Point(707, 240);
+            this.bLblEnableAnimeNaruto.Location = new System.Drawing.Point(707, 210);
             this.bLblEnableAnimeNaruto.Name = "bLblEnableAnimeNaruto";
-            this.bLblEnableAnimeNaruto.Size = new System.Drawing.Size(297, 80);
+            this.bLblEnableAnimeNaruto.Size = new System.Drawing.Size(297, 70);
             this.bLblEnableAnimeNaruto.TabIndex = 2;
             this.bLblEnableAnimeNaruto.Text = "いいえ";
             this.bLblEnableAnimeNaruto.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -245,9 +254,9 @@
             this.bLblEnableAnimeBoruto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bLblEnableAnimeBoruto.FalseColor = System.Drawing.Color.Red;
             this.bLblEnableAnimeBoruto.ForeColor = System.Drawing.Color.Red;
-            this.bLblEnableAnimeBoruto.Location = new System.Drawing.Point(707, 320);
+            this.bLblEnableAnimeBoruto.Location = new System.Drawing.Point(707, 280);
             this.bLblEnableAnimeBoruto.Name = "bLblEnableAnimeBoruto";
-            this.bLblEnableAnimeBoruto.Size = new System.Drawing.Size(297, 80);
+            this.bLblEnableAnimeBoruto.Size = new System.Drawing.Size(297, 70);
             this.bLblEnableAnimeBoruto.TabIndex = 2;
             this.bLblEnableAnimeBoruto.Text = "いいえ";
             this.bLblEnableAnimeBoruto.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -288,7 +297,7 @@
             this.numMarqueeAmountOfMovement.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.numMarqueeAmountOfMovement.ForeColor = System.Drawing.Color.Aqua;
             this.numMarqueeAmountOfMovement.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.numMarqueeAmountOfMovement.Location = new System.Drawing.Point(707, 83);
+            this.numMarqueeAmountOfMovement.Location = new System.Drawing.Point(707, 73);
             this.numMarqueeAmountOfMovement.Maximum = new decimal(new int[] {
             128,
             0,
@@ -308,6 +317,33 @@
             0,
             0,
             0});
+            // 
+            // lblEnableAnimeKimetsu
+            // 
+            this.lblEnableAnimeKimetsu.AutoSize = true;
+            this.lblEnableAnimeKimetsu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblEnableAnimeKimetsu.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblEnableAnimeKimetsu.ForeColor = System.Drawing.Color.White;
+            this.lblEnableAnimeKimetsu.Location = new System.Drawing.Point(3, 350);
+            this.lblEnableAnimeKimetsu.Name = "lblEnableAnimeKimetsu";
+            this.lblEnableAnimeKimetsu.Size = new System.Drawing.Size(698, 70);
+            this.lblEnableAnimeKimetsu.TabIndex = 1;
+            this.lblEnableAnimeKimetsu.Text = "鬼滅の刃データ有効";
+            this.lblEnableAnimeKimetsu.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // bLblEnableAnimeKimetsu
+            // 
+            this.bLblEnableAnimeKimetsu.AutoSize = true;
+            this.bLblEnableAnimeKimetsu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bLblEnableAnimeKimetsu.FalseColor = System.Drawing.Color.Red;
+            this.bLblEnableAnimeKimetsu.ForeColor = System.Drawing.Color.Red;
+            this.bLblEnableAnimeKimetsu.Location = new System.Drawing.Point(707, 350);
+            this.bLblEnableAnimeKimetsu.Name = "bLblEnableAnimeKimetsu";
+            this.bLblEnableAnimeKimetsu.Size = new System.Drawing.Size(297, 70);
+            this.bLblEnableAnimeKimetsu.TabIndex = 2;
+            this.bLblEnableAnimeKimetsu.Text = "いいえ";
+            this.bLblEnableAnimeKimetsu.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bLblEnableAnimeKimetsu.TrueColor = System.Drawing.Color.Aqua;
             // 
             // gBoxUser
             // 
@@ -365,6 +401,33 @@
             this.bLblShowTextResult.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.bLblShowTextResult.TrueColor = System.Drawing.Color.Aqua;
             // 
+            // lblEnableAnimeCellsAtWork
+            // 
+            this.lblEnableAnimeCellsAtWork.AutoSize = true;
+            this.lblEnableAnimeCellsAtWork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblEnableAnimeCellsAtWork.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblEnableAnimeCellsAtWork.ForeColor = System.Drawing.Color.White;
+            this.lblEnableAnimeCellsAtWork.Location = new System.Drawing.Point(3, 420);
+            this.lblEnableAnimeCellsAtWork.Name = "lblEnableAnimeCellsAtWork";
+            this.lblEnableAnimeCellsAtWork.Size = new System.Drawing.Size(698, 70);
+            this.lblEnableAnimeCellsAtWork.TabIndex = 1;
+            this.lblEnableAnimeCellsAtWork.Text = "働く細胞データ有効";
+            this.lblEnableAnimeCellsAtWork.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // bLblEnableAnimeCellsAtWork
+            // 
+            this.bLblEnableAnimeCellsAtWork.AutoSize = true;
+            this.bLblEnableAnimeCellsAtWork.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bLblEnableAnimeCellsAtWork.FalseColor = System.Drawing.Color.Red;
+            this.bLblEnableAnimeCellsAtWork.ForeColor = System.Drawing.Color.Red;
+            this.bLblEnableAnimeCellsAtWork.Location = new System.Drawing.Point(707, 420);
+            this.bLblEnableAnimeCellsAtWork.Name = "bLblEnableAnimeCellsAtWork";
+            this.bLblEnableAnimeCellsAtWork.Size = new System.Drawing.Size(297, 70);
+            this.bLblEnableAnimeCellsAtWork.TabIndex = 2;
+            this.bLblEnableAnimeCellsAtWork.Text = "いいえ";
+            this.bLblEnableAnimeCellsAtWork.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bLblEnableAnimeCellsAtWork.TrueColor = System.Drawing.Color.Aqua;
+            // 
             // FormAnimeTitleSetConf
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -411,5 +474,9 @@
         private PCUITCommon.Views.BoolLabel bLblEnableAnimeBoruto;
         private System.Windows.Forms.NumericUpDown numMarqueeUpdateInterval;
         private System.Windows.Forms.NumericUpDown numMarqueeAmountOfMovement;
+        private System.Windows.Forms.Label lblEnableAnimeKimetsu;
+        private PCUITCommon.Views.BoolLabel bLblEnableAnimeKimetsu;
+        private System.Windows.Forms.Label lblEnableAnimeCellsAtWork;
+        private PCUITCommon.Views.BoolLabel bLblEnableAnimeCellsAtWork;
     }
 }

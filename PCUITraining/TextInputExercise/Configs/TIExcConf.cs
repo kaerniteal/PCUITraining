@@ -35,6 +35,8 @@ namespace TextInputExercise.Configs
             this.EnableAnimePokemon = true;
             this.EnableAnimeNaruto = true;
             this.EnableAnimeBoruto = true;
+            this.EnableAnimeKimetsu = true;
+            this.EnableAnimeCellsAtWork = true;
         }
 
         /// <summary>
@@ -66,6 +68,16 @@ namespace TextInputExercise.Configs
         /// Borutoが有効かどうか.
         /// </summary>
         public bool EnableAnimeBoruto { get; set; }
+
+        /// <summary>
+        /// 鬼滅の刃が有効かどうか.
+        /// </summary>
+        public bool EnableAnimeKimetsu { get; set; }
+
+        /// <summary>
+        /// 働く細胞が有効かどうか.
+        /// </summary>
+        public bool EnableAnimeCellsAtWork { get; set; }
 
 
         /// <summary>

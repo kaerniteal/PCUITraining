@@ -56,6 +56,8 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             this.bLblEnableAnimePokemon.Init(BoolLabel.BOOL_LABEL_TYPE.TYPE_YES_NO, commonConf.EnableAnimePokemon);
             this.bLblEnableAnimeNaruto.Init(BoolLabel.BOOL_LABEL_TYPE.TYPE_YES_NO, commonConf.EnableAnimeNaruto);
             this.bLblEnableAnimeBoruto.Init(BoolLabel.BOOL_LABEL_TYPE.TYPE_YES_NO, commonConf.EnableAnimeBoruto);
+            this.bLblEnableAnimeKimetsu.Init(BoolLabel.BOOL_LABEL_TYPE.TYPE_YES_NO, commonConf.EnableAnimeKimetsu);
+            this.bLblEnableAnimeCellsAtWork.Init(BoolLabel.BOOL_LABEL_TYPE.TYPE_YES_NO, commonConf.EnableAnimeCellsAtWork);
 
             // ユーザー.
             this.bLblShowTextResult.Init(BoolLabel.BOOL_LABEL_TYPE.TYPE_YES_NO, userConf.ShowTextResult);
@@ -81,6 +83,8 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             commonConf.EnableAnimePokemon = this.bLblEnableAnimePokemon.Value;
             commonConf.EnableAnimeNaruto = this.bLblEnableAnimeNaruto.Value;
             commonConf.EnableAnimeBoruto = this.bLblEnableAnimeBoruto.Value;
+            commonConf.EnableAnimeKimetsu = this.bLblEnableAnimeKimetsu.Value;
+            commonConf.EnableAnimeCellsAtWork = this.bLblEnableAnimeCellsAtWork.Value;
 
             // ユーザー.
             userConf.ShowTextResult = this.bLblShowTextResult.Value;

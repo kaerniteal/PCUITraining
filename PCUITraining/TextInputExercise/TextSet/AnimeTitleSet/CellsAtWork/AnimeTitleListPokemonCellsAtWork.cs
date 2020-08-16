@@ -8,24 +8,24 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
+namespace TextInputExercise.TextSet.AnimeTitleSet.CellsAtWork
 {
     /// <summary>
-    /// ボルト－アニメのサブタイトルリスト
+    /// 働く細胞－アニメのサブタイトルリスト
     /// </summary>
-    public static class AnimeTitleListBoruto
+    public static class AnimeTitleListCellsAtWork
     {
         /// <summary>
         /// タイトルリスト.
         /// </summary>
-        private static List<AnimeTitleSetTextBoruto> TitleList = null;
+        private static List<AnimeTitleSetTextCellsAtWork> TitleList = null;
 
 
         /// <summary>
         /// タイトルリストを取得する.
         /// </summary>
         /// <returns></returns>
-        public static List<AnimeTitleSetTextBoruto> GetBorutoTitleList()
+        public static List<AnimeTitleSetTextCellsAtWork> GetCellsAtWorkTitleList()
         {
             // ロード済みであればそれを返す.
             if (null != TitleList)
@@ -42,14 +42,14 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
             {
                 // Webからロード.
                 var wc = PCUIT.CreateWebClient();
-                var fromWiki = new AnimeTitleListBorutoFromWeb(wc);
+                var fromWiki = new AnimeTitleListCellsAtWorkFromWeb(wc);
                 TitleList = fromWiki.GetTitleList();
 
                 // Webから取得できた場合.
                 if (0 < TitleList.Count)
                 {
                     // ファイルに保存しておく.
-                    var toFile = new AnimeTitleListBorutoFromFile
+                    var toFile = new AnimeTitleListCellsAtWorkFromFile
                     {
                         TitleFileList = TitleList,
                     };
@@ -61,7 +61,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
             // 最後にローカルに保存したファイルからロード.
             if (null == TitleList || TitleList.Count <= 0)
             {
-                TitleList = AnimeTitleListBorutoFromFile.Load();
+                TitleList = AnimeTitleListCellsAtWorkFromFile.Load();
             }
 
             return TitleList;
@@ -73,22 +73,22 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
         /// Webからアニメのサブタイトル一覧をスクレイピングする.
         /// </summary>
 
-        public class AnimeTitleListBorutoFromWeb : HtmlAnalizerBase
+        public class AnimeTitleListCellsAtWorkFromWeb : HtmlAnalizerBase
         {
             /// <summary>
             /// 取得元URL
             /// </summary>
-            private static readonly string SorceURL = @"https://cal.syoboi.jp/tid/4546/subtitle";
+            private static readonly string SorceURL = @"https://cal.syoboi.jp/tid/4961/subtitle";
 
             /// <summary>
             /// 目印の為の置き換え文字列.
             /// </summary>
-            private static readonly string MarkStr = @"<boruto data>";
+            private static readonly string MarkStr = @"<caw data>";
 
             /// <summary>
             /// リストを格納する.
             /// </summary>
-            private List<AnimeTitleSetTextBoruto> TitleWebList { get; set; }
+            private List<AnimeTitleSetTextCellsAtWork> TitleWebList { get; set; }
 
             /// <summary>
             /// タイトル行正規表現パターン.
@@ -101,9 +101,9 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
             /// </summary>
             /// <param name="wc">WebClient</param>
 
-            public AnimeTitleListBorutoFromWeb(WebClient wc) : base(wc)
+            public AnimeTitleListCellsAtWorkFromWeb(WebClient wc) : base(wc)
             {
-                this.TitleWebList = new List<AnimeTitleSetTextBoruto>();
+                this.TitleWebList = new List<AnimeTitleSetTextCellsAtWork>();
 
                 this.TitleLinRegex = new Regex("^" + MarkStr, RegexOptions.Compiled);
             }
@@ -112,9 +112,15 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
             /// リストを取得する.
             /// </summary>
             /// <returns>リスト</returns>
-            public List<AnimeTitleSetTextBoruto> GetTitleList()
+            public List<AnimeTitleSetTextCellsAtWork> GetTitleList()
             {
                 this.Url(SorceURL);
+
+                foreach (var ttl in this.TitleWebList)
+                {
+                    Console.WriteLine($"{ttl.GetEpisode()}:{ttl.Text}");
+                }
+
                 return this.TitleWebList;
             }
 
@@ -144,11 +150,8 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
                     var episode = line.Right(MarkStr).Left("</td><td>");
                     var title = line.Right("</td><td>").Left("</td></tr>");
 
-                    // フリガナのサプレス
-                    title = Regex.Replace(title, @"\(.*?\)", @"");
-
                     // 最後に確保したEpisodeと組み合わせてレコードを生成.
-                    var text = new AnimeTitleSetTextBoruto(
+                    var text = new AnimeTitleSetTextCellsAtWork(
                         episode.ToInt(),
                         title);
 
@@ -160,24 +163,24 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
         /// <summary>
         /// ファイルとの入出力を行う.
         /// </summary>
-        public class AnimeTitleListBorutoFromFile
+        public class AnimeTitleListCellsAtWorkFromFile
         {
             /// <summary>
             /// リソースファイル.
             /// </summary>
-            private static readonly string FileName = @"BorutoTitle.list";
+            private static readonly string FileName = @"CellsAtWorkTitle.list";
 
             /// <summary>
             /// タイトルリスト.
             /// </summary>
-            public List<AnimeTitleSetTextBoruto> TitleFileList { get; set; }
+            public List<AnimeTitleSetTextCellsAtWork> TitleFileList { get; set; }
 
             /// <summary>
             /// コンストラクタ.
             /// </summary>
-            public AnimeTitleListBorutoFromFile()
+            public AnimeTitleListCellsAtWorkFromFile()
             {
-                this.TitleFileList = new List<AnimeTitleSetTextBoruto>();
+                this.TitleFileList = new List<AnimeTitleSetTextCellsAtWork>();
             }
 
             /// <summary>
@@ -194,9 +197,9 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
             /// </summary>
             /// <remarks>失敗時にはNULLを返す</remarks>
             /// <returns>正答テーブル</returns>
-            public static List<AnimeTitleSetTextBoruto> Load()
+            public static List<AnimeTitleSetTextCellsAtWork> Load()
             {
-                var list = new AnimeTitleListBorutoFromFile();
+                var list = new AnimeTitleListCellsAtWorkFromFile();
 
                 var filePath = GetFilePath();
 
@@ -205,7 +208,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
                 {
                     try
                     {
-                        list = filePath.JsonLoad<AnimeTitleListBorutoFromFile>();
+                        list = filePath.JsonLoad<AnimeTitleListCellsAtWorkFromFile>();
                     }
                     catch (Exception ex)
                     {

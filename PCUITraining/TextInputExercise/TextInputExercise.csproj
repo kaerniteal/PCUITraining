@@ -66,6 +66,10 @@
     <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetGameInstance.cs" />
     <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetText.cs" />
     <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetTextResult.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\CellsAtWork\AnimeTitleListPokemonCellsAtWork.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\CellsAtWork\AnimeTitleSetTextCellsAtWork.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\Kimetsu\AnimeTitleListPokemonKimetsu.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\Kimetsu\AnimeTitleSetTextKimetsu.cs" />
     <Compile Include="TextSet\AnimeTitleSet\Boruto\AnimeTitleListPokemonBoruto.cs" />
     <Compile Include="TextSet\AnimeTitleSet\Boruto\AnimeTitleSetTextBoruto.cs" />
     <Compile Include="TextSet\AnimeTitleSet\CtrlAnimeTitleSetResultSetRecord.cs">

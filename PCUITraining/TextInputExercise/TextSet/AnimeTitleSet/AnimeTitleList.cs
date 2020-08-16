@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TextInputExercise.TextSet.AnimeTitleSet.Boruto;
+using TextInputExercise.TextSet.AnimeTitleSet.CellsAtWork;
+using TextInputExercise.TextSet.AnimeTitleSet.Kimetsu;
 using TextInputExercise.TextSet.AnimeTitleSet.Naruto;
 using TextInputExercise.TextSet.AnimeTitleSet.Pokemon;
 
@@ -54,6 +56,20 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             {
                 var boruto = AnimeTitleListBoruto.GetBorutoTitleList();
                 TitleList.AddRange(boruto);
+            }
+
+            // 鬼滅の刃.
+            if (TIExc.Conf.EnableAnimeKimetsu)
+            {
+                var kimetsu = AnimeTitleListKimetsu.GetKimetsuTitleList();
+                TitleList.AddRange(kimetsu);
+            }
+
+            // 働く細胞.
+            if (TIExc.Conf.EnableAnimeCellsAtWork)
+            {
+                var caw = AnimeTitleListCellsAtWork.GetCellsAtWorkTitleList();
+                TitleList.AddRange(caw);
             }
 
             // ソート.
