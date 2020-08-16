@@ -1,9 +1,11 @@
 ﻿using MouseExercise;
 using PCUITCommon;
 using PCUITraining.Forms;
+using System.Threading;
 using System.Windows.Forms;
 using TextInputExercise;
 using TypingExercise;
+using static Common.Controls.ProgressBar.FromProgressBar;
 
 namespace PCUITraining
 {
@@ -28,12 +30,16 @@ namespace PCUITraining
         /// </summary>
         public static void Start()
         {
-            if (!PCUIT.Init())
+            // 共通初期化
+            if (!PCUIT.CommonInit())
             {
                 MessageBox.Show("初期化に失敗しました");
                 return;
             }
 
+            // ※ ゲームセットアップは時間がかかるため、フォームロード後に変更
+
+            // フォームロード.
             if (PCUIT.Conf.IsDebug)
             {
                 Application.Run(new FormMainDebug());
@@ -53,17 +59,24 @@ namespace PCUITraining
         }
 
         /// <summary>
-        /// 初期化処理.
+        /// ゲームセットアップ.
         /// </summary>
         /// <returns>成否</returns>
-        public static bool InitGames()
+        public static bool SetUp(IProgressCtl pc)
         {
+            // 最大をセット.
+            pc.SetMax(3);
+
+            pc.SetProgress(0);
+
             // タイピングゲーム.
             if (!TypExc.Init())
             {
                 MessageBox.Show("TypExcの初期化に失敗しました");
                 return false;
             }
+
+            pc.SetProgress(1);
 
             // マウスクリックゲーム.
             if (!MusExc.Init())
@@ -72,12 +85,19 @@ namespace PCUITraining
                 return false;
             }
 
+            pc.SetProgress(2);
+
             // テキストライティングゲーム.
             if (!TIExc.Init())
             {
                 MessageBox.Show("TIExcの初期化に失敗しました");
                 return false;
             }
+
+            pc.SetProgress(3);
+
+            // ちょっと焦らす.
+            Thread.Sleep(1000);
 
             return true;
         }

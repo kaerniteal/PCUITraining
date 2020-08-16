@@ -33,23 +33,23 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.gBoxCommon = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelCommon = new System.Windows.Forms.TableLayoutPanel();
+            this.lblEnableDifficultyEasy = new System.Windows.Forms.Label();
             this.lblViewUpdateWait = new System.Windows.Forms.Label();
-            this.lblUnitMax = new System.Windows.Forms.Label();
+            this.lblEnableDifficultyVeryHard = new System.Windows.Forms.Label();
+            this.lblEnableDifficultyHard = new System.Windows.Forms.Label();
+            this.lblEnableDifficultyNormal = new System.Windows.Forms.Label();
             this.lblEnableDifficultyVeryEasy = new System.Windows.Forms.Label();
-            this.bLblEnableDifficultyVeryEasy = new PCUITCommon.Views.BoolLabel();
+            this.lblUnitMax = new System.Windows.Forms.Label();
             this.numViewUpdateWait = new System.Windows.Forms.NumericUpDown();
             this.numUnitMax = new System.Windows.Forms.NumericUpDown();
             this.gBoxUser = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelUser = new System.Windows.Forms.TableLayoutPanel();
-            this.lblEnableDifficultyEasy = new System.Windows.Forms.Label();
-            this.bLblEnableDifficultyEasy = new PCUITCommon.Views.BoolLabel();
-            this.lblEnableDifficultyNormal = new System.Windows.Forms.Label();
-            this.lblEnableDifficultyHard = new System.Windows.Forms.Label();
-            this.lblEnableDifficultyVeryHard = new System.Windows.Forms.Label();
-            this.bLblEnableDifficultyNormal = new PCUITCommon.Views.BoolLabel();
-            this.bLblEnableDifficultyHard = new PCUITCommon.Views.BoolLabel();
-            this.bLblEnableDifficultyVeryHard = new PCUITCommon.Views.BoolLabel();
             this.lblUseCustomMouseIcon = new System.Windows.Forms.Label();
+            this.bLblEnableDifficultyVeryHard = new PCUITCommon.Views.BoolLabel();
+            this.bLblEnableDifficultyHard = new PCUITCommon.Views.BoolLabel();
+            this.bLblEnableDifficultyNormal = new PCUITCommon.Views.BoolLabel();
+            this.bLblEnableDifficultyEasy = new PCUITCommon.Views.BoolLabel();
+            this.bLblEnableDifficultyVeryEasy = new PCUITCommon.Views.BoolLabel();
             this.bLblUseCustomMouseIcon = new PCUITCommon.Views.BoolLabel();
             this.tableLayoutPanel.SuspendLayout();
             this.gBoxCommon.SuspendLayout();
@@ -154,6 +154,19 @@
             this.tableLayoutPanelCommon.Size = new System.Drawing.Size(1007, 564);
             this.tableLayoutPanelCommon.TabIndex = 0;
             // 
+            // lblEnableDifficultyEasy
+            // 
+            this.lblEnableDifficultyEasy.AutoSize = true;
+            this.lblEnableDifficultyEasy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblEnableDifficultyEasy.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblEnableDifficultyEasy.ForeColor = System.Drawing.Color.White;
+            this.lblEnableDifficultyEasy.Location = new System.Drawing.Point(3, 240);
+            this.lblEnableDifficultyEasy.Name = "lblEnableDifficultyEasy";
+            this.lblEnableDifficultyEasy.Size = new System.Drawing.Size(698, 80);
+            this.lblEnableDifficultyEasy.TabIndex = 1;
+            this.lblEnableDifficultyEasy.Text = "イージー有効";
+            this.lblEnableDifficultyEasy.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // lblViewUpdateWait
             // 
             this.lblViewUpdateWait.AutoSize = true;
@@ -167,18 +180,44 @@
             this.lblViewUpdateWait.Text = "描画更新Wait(ms)";
             this.lblViewUpdateWait.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // lblUnitMax
+            // lblEnableDifficultyVeryHard
             // 
-            this.lblUnitMax.AutoSize = true;
-            this.lblUnitMax.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblUnitMax.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblUnitMax.ForeColor = System.Drawing.Color.White;
-            this.lblUnitMax.Location = new System.Drawing.Point(3, 80);
-            this.lblUnitMax.Name = "lblUnitMax";
-            this.lblUnitMax.Size = new System.Drawing.Size(698, 80);
-            this.lblUnitMax.TabIndex = 1;
-            this.lblUnitMax.Text = "描画オブジェクト最大数";
-            this.lblUnitMax.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblEnableDifficultyVeryHard.AutoSize = true;
+            this.lblEnableDifficultyVeryHard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblEnableDifficultyVeryHard.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblEnableDifficultyVeryHard.ForeColor = System.Drawing.Color.White;
+            this.lblEnableDifficultyVeryHard.Location = new System.Drawing.Point(3, 480);
+            this.lblEnableDifficultyVeryHard.Name = "lblEnableDifficultyVeryHard";
+            this.lblEnableDifficultyVeryHard.Size = new System.Drawing.Size(698, 84);
+            this.lblEnableDifficultyVeryHard.TabIndex = 1;
+            this.lblEnableDifficultyVeryHard.Text = "ベリーハード有効";
+            this.lblEnableDifficultyVeryHard.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lblEnableDifficultyHard
+            // 
+            this.lblEnableDifficultyHard.AutoSize = true;
+            this.lblEnableDifficultyHard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblEnableDifficultyHard.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblEnableDifficultyHard.ForeColor = System.Drawing.Color.White;
+            this.lblEnableDifficultyHard.Location = new System.Drawing.Point(3, 400);
+            this.lblEnableDifficultyHard.Name = "lblEnableDifficultyHard";
+            this.lblEnableDifficultyHard.Size = new System.Drawing.Size(698, 80);
+            this.lblEnableDifficultyHard.TabIndex = 1;
+            this.lblEnableDifficultyHard.Text = "ハード有効";
+            this.lblEnableDifficultyHard.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lblEnableDifficultyNormal
+            // 
+            this.lblEnableDifficultyNormal.AutoSize = true;
+            this.lblEnableDifficultyNormal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblEnableDifficultyNormal.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblEnableDifficultyNormal.ForeColor = System.Drawing.Color.White;
+            this.lblEnableDifficultyNormal.Location = new System.Drawing.Point(3, 320);
+            this.lblEnableDifficultyNormal.Name = "lblEnableDifficultyNormal";
+            this.lblEnableDifficultyNormal.Size = new System.Drawing.Size(698, 80);
+            this.lblEnableDifficultyNormal.TabIndex = 1;
+            this.lblEnableDifficultyNormal.Text = "ノーマル有効";
+            this.lblEnableDifficultyNormal.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lblEnableDifficultyVeryEasy
             // 
@@ -193,19 +232,18 @@
             this.lblEnableDifficultyVeryEasy.Text = "ベリーイージー有効";
             this.lblEnableDifficultyVeryEasy.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // bLblEnableDifficultyVeryEasy
+            // lblUnitMax
             // 
-            this.bLblEnableDifficultyVeryEasy.AutoSize = true;
-            this.bLblEnableDifficultyVeryEasy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bLblEnableDifficultyVeryEasy.FalseColor = System.Drawing.Color.Red;
-            this.bLblEnableDifficultyVeryEasy.ForeColor = System.Drawing.Color.Red;
-            this.bLblEnableDifficultyVeryEasy.Location = new System.Drawing.Point(707, 160);
-            this.bLblEnableDifficultyVeryEasy.Name = "bLblEnableDifficultyVeryEasy";
-            this.bLblEnableDifficultyVeryEasy.Size = new System.Drawing.Size(297, 80);
-            this.bLblEnableDifficultyVeryEasy.TabIndex = 2;
-            this.bLblEnableDifficultyVeryEasy.Text = "いいえ";
-            this.bLblEnableDifficultyVeryEasy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.bLblEnableDifficultyVeryEasy.TrueColor = System.Drawing.Color.Aqua;
+            this.lblUnitMax.AutoSize = true;
+            this.lblUnitMax.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUnitMax.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblUnitMax.ForeColor = System.Drawing.Color.White;
+            this.lblUnitMax.Location = new System.Drawing.Point(3, 80);
+            this.lblUnitMax.Name = "lblUnitMax";
+            this.lblUnitMax.Size = new System.Drawing.Size(698, 80);
+            this.lblUnitMax.TabIndex = 1;
+            this.lblUnitMax.Text = "描画オブジェクト最大数";
+            this.lblUnitMax.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // numViewUpdateWait
             // 
@@ -284,107 +322,26 @@
             this.tableLayoutPanelUser.Name = "tableLayoutPanelUser";
             this.tableLayoutPanelUser.RowCount = 1;
             this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanelUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.tableLayoutPanelUser.Size = new System.Drawing.Size(1007, 64);
             this.tableLayoutPanelUser.TabIndex = 0;
             // 
-            // lblEnableDifficultyEasy
+            // lblUseCustomMouseIcon
             // 
-            this.lblEnableDifficultyEasy.AutoSize = true;
-            this.lblEnableDifficultyEasy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblEnableDifficultyEasy.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblEnableDifficultyEasy.ForeColor = System.Drawing.Color.White;
-            this.lblEnableDifficultyEasy.Location = new System.Drawing.Point(3, 240);
-            this.lblEnableDifficultyEasy.Name = "lblEnableDifficultyEasy";
-            this.lblEnableDifficultyEasy.Size = new System.Drawing.Size(698, 80);
-            this.lblEnableDifficultyEasy.TabIndex = 1;
-            this.lblEnableDifficultyEasy.Text = "イージー有効";
-            this.lblEnableDifficultyEasy.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // bLblEnableDifficultyEasy
-            // 
-            this.bLblEnableDifficultyEasy.AutoSize = true;
-            this.bLblEnableDifficultyEasy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bLblEnableDifficultyEasy.FalseColor = System.Drawing.Color.Red;
-            this.bLblEnableDifficultyEasy.ForeColor = System.Drawing.Color.Red;
-            this.bLblEnableDifficultyEasy.Location = new System.Drawing.Point(707, 240);
-            this.bLblEnableDifficultyEasy.Name = "bLblEnableDifficultyEasy";
-            this.bLblEnableDifficultyEasy.Size = new System.Drawing.Size(297, 80);
-            this.bLblEnableDifficultyEasy.TabIndex = 2;
-            this.bLblEnableDifficultyEasy.Text = "いいえ";
-            this.bLblEnableDifficultyEasy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.bLblEnableDifficultyEasy.TrueColor = System.Drawing.Color.Aqua;
-            // 
-            // lblEnableDifficultyNormal
-            // 
-            this.lblEnableDifficultyNormal.AutoSize = true;
-            this.lblEnableDifficultyNormal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblEnableDifficultyNormal.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblEnableDifficultyNormal.ForeColor = System.Drawing.Color.White;
-            this.lblEnableDifficultyNormal.Location = new System.Drawing.Point(3, 320);
-            this.lblEnableDifficultyNormal.Name = "lblEnableDifficultyNormal";
-            this.lblEnableDifficultyNormal.Size = new System.Drawing.Size(698, 80);
-            this.lblEnableDifficultyNormal.TabIndex = 1;
-            this.lblEnableDifficultyNormal.Text = "ノーマル有効";
-            this.lblEnableDifficultyNormal.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lblEnableDifficultyHard
-            // 
-            this.lblEnableDifficultyHard.AutoSize = true;
-            this.lblEnableDifficultyHard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblEnableDifficultyHard.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblEnableDifficultyHard.ForeColor = System.Drawing.Color.White;
-            this.lblEnableDifficultyHard.Location = new System.Drawing.Point(3, 400);
-            this.lblEnableDifficultyHard.Name = "lblEnableDifficultyHard";
-            this.lblEnableDifficultyHard.Size = new System.Drawing.Size(698, 80);
-            this.lblEnableDifficultyHard.TabIndex = 1;
-            this.lblEnableDifficultyHard.Text = "ハード有効";
-            this.lblEnableDifficultyHard.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lblEnableDifficultyVeryHard
-            // 
-            this.lblEnableDifficultyVeryHard.AutoSize = true;
-            this.lblEnableDifficultyVeryHard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblEnableDifficultyVeryHard.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblEnableDifficultyVeryHard.ForeColor = System.Drawing.Color.White;
-            this.lblEnableDifficultyVeryHard.Location = new System.Drawing.Point(3, 480);
-            this.lblEnableDifficultyVeryHard.Name = "lblEnableDifficultyVeryHard";
-            this.lblEnableDifficultyVeryHard.Size = new System.Drawing.Size(698, 84);
-            this.lblEnableDifficultyVeryHard.TabIndex = 1;
-            this.lblEnableDifficultyVeryHard.Text = "ベリーハード有効";
-            this.lblEnableDifficultyVeryHard.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // bLblEnableDifficultyNormal
-            // 
-            this.bLblEnableDifficultyNormal.AutoSize = true;
-            this.bLblEnableDifficultyNormal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bLblEnableDifficultyNormal.FalseColor = System.Drawing.Color.Red;
-            this.bLblEnableDifficultyNormal.ForeColor = System.Drawing.Color.Red;
-            this.bLblEnableDifficultyNormal.Location = new System.Drawing.Point(707, 320);
-            this.bLblEnableDifficultyNormal.Name = "bLblEnableDifficultyNormal";
-            this.bLblEnableDifficultyNormal.Size = new System.Drawing.Size(297, 80);
-            this.bLblEnableDifficultyNormal.TabIndex = 2;
-            this.bLblEnableDifficultyNormal.Text = "いいえ";
-            this.bLblEnableDifficultyNormal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.bLblEnableDifficultyNormal.TrueColor = System.Drawing.Color.Aqua;
-            // 
-            // bLblEnableDifficultyHard
-            // 
-            this.bLblEnableDifficultyHard.AutoSize = true;
-            this.bLblEnableDifficultyHard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bLblEnableDifficultyHard.FalseColor = System.Drawing.Color.Red;
-            this.bLblEnableDifficultyHard.ForeColor = System.Drawing.Color.Red;
-            this.bLblEnableDifficultyHard.Location = new System.Drawing.Point(707, 400);
-            this.bLblEnableDifficultyHard.Name = "bLblEnableDifficultyHard";
-            this.bLblEnableDifficultyHard.Size = new System.Drawing.Size(297, 80);
-            this.bLblEnableDifficultyHard.TabIndex = 2;
-            this.bLblEnableDifficultyHard.Text = "いいえ";
-            this.bLblEnableDifficultyHard.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.bLblEnableDifficultyHard.TrueColor = System.Drawing.Color.Aqua;
+            this.lblUseCustomMouseIcon.AutoSize = true;
+            this.lblUseCustomMouseIcon.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUseCustomMouseIcon.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblUseCustomMouseIcon.ForeColor = System.Drawing.Color.White;
+            this.lblUseCustomMouseIcon.Location = new System.Drawing.Point(3, 0);
+            this.lblUseCustomMouseIcon.Name = "lblUseCustomMouseIcon";
+            this.lblUseCustomMouseIcon.Size = new System.Drawing.Size(698, 64);
+            this.lblUseCustomMouseIcon.TabIndex = 1;
+            this.lblUseCustomMouseIcon.Text = "マウスアイコンを変更する";
+            this.lblUseCustomMouseIcon.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // bLblEnableDifficultyVeryHard
             // 
@@ -400,18 +357,61 @@
             this.bLblEnableDifficultyVeryHard.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.bLblEnableDifficultyVeryHard.TrueColor = System.Drawing.Color.Aqua;
             // 
-            // lblUseCustomMouseIcon
+            // bLblEnableDifficultyHard
             // 
-            this.lblUseCustomMouseIcon.AutoSize = true;
-            this.lblUseCustomMouseIcon.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblUseCustomMouseIcon.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblUseCustomMouseIcon.ForeColor = System.Drawing.Color.White;
-            this.lblUseCustomMouseIcon.Location = new System.Drawing.Point(3, 0);
-            this.lblUseCustomMouseIcon.Name = "lblUseCustomMouseIcon";
-            this.lblUseCustomMouseIcon.Size = new System.Drawing.Size(698, 64);
-            this.lblUseCustomMouseIcon.TabIndex = 1;
-            this.lblUseCustomMouseIcon.Text = "マウスアイコンを変更する";
-            this.lblUseCustomMouseIcon.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.bLblEnableDifficultyHard.AutoSize = true;
+            this.bLblEnableDifficultyHard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bLblEnableDifficultyHard.FalseColor = System.Drawing.Color.Red;
+            this.bLblEnableDifficultyHard.ForeColor = System.Drawing.Color.Red;
+            this.bLblEnableDifficultyHard.Location = new System.Drawing.Point(707, 400);
+            this.bLblEnableDifficultyHard.Name = "bLblEnableDifficultyHard";
+            this.bLblEnableDifficultyHard.Size = new System.Drawing.Size(297, 80);
+            this.bLblEnableDifficultyHard.TabIndex = 2;
+            this.bLblEnableDifficultyHard.Text = "いいえ";
+            this.bLblEnableDifficultyHard.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bLblEnableDifficultyHard.TrueColor = System.Drawing.Color.Aqua;
+            // 
+            // bLblEnableDifficultyNormal
+            // 
+            this.bLblEnableDifficultyNormal.AutoSize = true;
+            this.bLblEnableDifficultyNormal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bLblEnableDifficultyNormal.FalseColor = System.Drawing.Color.Red;
+            this.bLblEnableDifficultyNormal.ForeColor = System.Drawing.Color.Red;
+            this.bLblEnableDifficultyNormal.Location = new System.Drawing.Point(707, 320);
+            this.bLblEnableDifficultyNormal.Name = "bLblEnableDifficultyNormal";
+            this.bLblEnableDifficultyNormal.Size = new System.Drawing.Size(297, 80);
+            this.bLblEnableDifficultyNormal.TabIndex = 2;
+            this.bLblEnableDifficultyNormal.Text = "いいえ";
+            this.bLblEnableDifficultyNormal.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bLblEnableDifficultyNormal.TrueColor = System.Drawing.Color.Aqua;
+            // 
+            // bLblEnableDifficultyEasy
+            // 
+            this.bLblEnableDifficultyEasy.AutoSize = true;
+            this.bLblEnableDifficultyEasy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bLblEnableDifficultyEasy.FalseColor = System.Drawing.Color.Red;
+            this.bLblEnableDifficultyEasy.ForeColor = System.Drawing.Color.Red;
+            this.bLblEnableDifficultyEasy.Location = new System.Drawing.Point(707, 240);
+            this.bLblEnableDifficultyEasy.Name = "bLblEnableDifficultyEasy";
+            this.bLblEnableDifficultyEasy.Size = new System.Drawing.Size(297, 80);
+            this.bLblEnableDifficultyEasy.TabIndex = 2;
+            this.bLblEnableDifficultyEasy.Text = "いいえ";
+            this.bLblEnableDifficultyEasy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bLblEnableDifficultyEasy.TrueColor = System.Drawing.Color.Aqua;
+            // 
+            // bLblEnableDifficultyVeryEasy
+            // 
+            this.bLblEnableDifficultyVeryEasy.AutoSize = true;
+            this.bLblEnableDifficultyVeryEasy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bLblEnableDifficultyVeryEasy.FalseColor = System.Drawing.Color.Red;
+            this.bLblEnableDifficultyVeryEasy.ForeColor = System.Drawing.Color.Red;
+            this.bLblEnableDifficultyVeryEasy.Location = new System.Drawing.Point(707, 160);
+            this.bLblEnableDifficultyVeryEasy.Name = "bLblEnableDifficultyVeryEasy";
+            this.bLblEnableDifficultyVeryEasy.Size = new System.Drawing.Size(297, 80);
+            this.bLblEnableDifficultyVeryEasy.TabIndex = 2;
+            this.bLblEnableDifficultyVeryEasy.Text = "いいえ";
+            this.bLblEnableDifficultyVeryEasy.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bLblEnableDifficultyVeryEasy.TrueColor = System.Drawing.Color.Aqua;
             // 
             // bLblUseCustomMouseIcon
             // 

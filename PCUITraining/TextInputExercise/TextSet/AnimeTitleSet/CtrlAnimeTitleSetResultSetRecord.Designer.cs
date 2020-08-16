@@ -104,7 +104,7 @@
             // 
             this.lblAnime.AutoSize = true;
             this.lblAnime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblAnime.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 27.75F);
+            this.lblAnime.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblAnime.ForeColor = System.Drawing.Color.White;
             this.lblAnime.Location = new System.Drawing.Point(3, 0);
             this.lblAnime.Name = "lblAnime";

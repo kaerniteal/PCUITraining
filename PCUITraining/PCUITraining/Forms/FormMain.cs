@@ -1,9 +1,9 @@
-﻿using MouseExercise;
+﻿using Common.Controls.ProgressBar;
+using MouseExercise;
 using MouseExercise.MusExcSet.InsectCollectingSet;
 using MouseExercise.Views;
 using PCUITCommon.Views;
 using System;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TextInputExercise;
 using TextInputExercise.TextSet.AnimeTitleSet;
@@ -45,18 +45,20 @@ namespace PCUITraining.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void FormMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
-            // 非同期でロード.
-            var result  = await Task.Run(() =>
+            // プログレスバー付き非同期処理.
+            var dlg = new FromProgressBar((ctl) =>
             {
-                // 元はフォームロード前に初期化していたが.
-                // 時間がかかるようになったため、このタイミングに変更.
-                // 画面を触れないようにしてロードする.
-                return PCUITraining.InitGames();
+                PCUITraining.SetUp(ctl);
             });
 
-            // ロード完了後に有効化.
+            // プログレスバー表示.
+            // モーダルで表示するが、非同期処理終了後に自動的に閉じられる.
+            dlg.ShowDialog();
+
+            // 非同期処理終了後に実行
+            // 画面を有効化.
             this.tableMain.Enabled = true;
         }
 

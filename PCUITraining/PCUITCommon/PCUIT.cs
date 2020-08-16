@@ -34,10 +34,10 @@ namespace PCUITCommon
 
 
         /// <summary>
-        /// 初期化処理.
+        /// 共通初期化処理.
         /// </summary>
         /// <returns>成否</returns>
-        public static bool Init()
+        public static bool CommonInit()
         {
             Conf = PCUITConf.Load();
 
