@@ -226,6 +226,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PCUIT";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.tableMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pBoxConfig)).EndInit();
             this.ResumeLayout(false);

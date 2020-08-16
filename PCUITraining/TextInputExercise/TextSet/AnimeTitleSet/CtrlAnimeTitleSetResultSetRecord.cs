@@ -24,6 +24,8 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
         /// <param name="textResult">入力結果</param>
         public void SetTextResult(AnimeTitleSetTextResult textResult)
         {
+            this.lblAnime.Text = textResult.Result.GetAnimation();
+            this.lblEpisode.Text = textResult.Result.GetEpisode();
             this.lblText.Text = textResult.Result.Text;
             this.lblETime.Text = "{0}ms".Fmt(textResult.MeasuredTime);
             this.pBoxUp.Visible = textResult.Update;

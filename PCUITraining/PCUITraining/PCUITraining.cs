@@ -15,7 +15,7 @@ namespace PCUITraining
         /// <summary>
         /// APP名
         /// </summary>
-        public static readonly string APP_VER = @"1.0.0";
+        public static readonly string APP_VER = @"1.1.0";
 
         /// <summary>
         /// APP名
@@ -29,12 +29,6 @@ namespace PCUITraining
         public static void Start()
         {
             if (!PCUIT.Init())
-            {
-                MessageBox.Show("初期化に失敗しました");
-                return;
-            }
-
-            if (!Init())
             {
                 MessageBox.Show("初期化に失敗しました");
                 return;
@@ -62,7 +56,7 @@ namespace PCUITraining
         /// 初期化処理.
         /// </summary>
         /// <returns>成否</returns>
-        private static bool Init()
+        public static bool InitGames()
         {
             // タイピングゲーム.
             if (!TypExc.Init())

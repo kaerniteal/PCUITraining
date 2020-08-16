@@ -1,6 +1,7 @@
 ﻿using Common.Controls;
 using Common.Threads;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace TextInputExercise.TextSet.AnimeTitleSet
@@ -35,6 +36,12 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
 
                 // Load時、上から順にAnimationで表示する為に非表示にしておく.
                 ctrl.Visible = false;
+
+                // 色をオルタネートに変更.
+                if (0 == ii % 2)
+                {
+                    ctrl.BackColor = Color.DimGray;
+                }
 
                 this.CtrlList.Add(ctrl);
                 this.tableLayoutPanel.Controls.Add(ctrl, 0, ii);

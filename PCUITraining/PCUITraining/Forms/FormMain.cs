@@ -3,6 +3,7 @@ using MouseExercise.MusExcSet.InsectCollectingSet;
 using MouseExercise.Views;
 using PCUITCommon.Views;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TextInputExercise;
 using TextInputExercise.TextSet.AnimeTitleSet;
@@ -34,6 +35,29 @@ namespace PCUITraining.Forms
 
             // ユーザーアイコンをセット.
             this.UserIconGrp = this.userSelector.SetUserIcons();
+
+            // ロード完了まで触れないように.
+            this.tableMain.Enabled = false;
+        }
+
+        /// <summary>
+        /// フォームロード.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void FormMain_Load(object sender, EventArgs e)
+        {
+            // 非同期でロード.
+            var result  = await Task.Run(() =>
+            {
+                // 元はフォームロード前に初期化していたが.
+                // 時間がかかるようになったため、このタイミングに変更.
+                // 画面を触れないようにしてロードする.
+                return PCUITraining.InitGames();
+            });
+
+            // ロード完了後に有効化.
+            this.tableMain.Enabled = true;
         }
 
         /// <summary>
