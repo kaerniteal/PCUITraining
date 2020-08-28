@@ -1,4 +1,4 @@
-﻿using Common.Controls.ProgressBar;
+﻿using Common.Progress;
 using MouseExercise;
 using MouseExercise.MusExcSet.InsectCollectingSet;
 using MouseExercise.Views;

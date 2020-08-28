@@ -1,4 +1,4 @@
-﻿namespace Common.Controls.ProgressBar
+﻿namespace Common.Progress
 {
     partial class FromProgressBar
     {
