@@ -17,10 +17,10 @@ namespace Common.Lang.Japanese
         /// <returns>読みリスト</returns>
         public static List<string> PhoneticAnalyze(string text)
         {
-            //var wrods = JapanesePhoneticAnalyzer.GetWords(text);
-            //return wrods
-            //    .Select(s => s.YomiText)
-            //    .ToList();
+            var wrods = JapanesePhoneticAnalyzer.GetWords(text);
+            return wrods
+                .Select(s => s.YomiText)
+                .ToList();
             return new List<string> { text };
         }
     }
