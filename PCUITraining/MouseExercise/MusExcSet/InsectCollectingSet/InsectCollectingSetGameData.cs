@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
@@ -61,7 +62,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             {
                 try
                 {
-                    gameData = filePath.JsonLoad<InsectCollectingSetGameData>();
+                    gameData = JsonIO<InsectCollectingSetGameData>.Load(filePath);
                 }
                 catch (Exception ex)
                 {
@@ -89,7 +90,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
 
             try
             {
-                this.JsonSave(filePath);
+                JsonIO<InsectCollectingSetGameData>.Save(this, filePath);
             }
             catch (Exception ex)
             {

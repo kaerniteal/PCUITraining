@@ -2,15 +2,16 @@
 using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Text.Unicode;
 
-namespace Common.Extentions
+namespace Common.DataIO
 {
     /// <summary>
-    /// Json ドキュメントをシリアラズ－デシリアライズするための拡張メソッドを定義します.
+    /// Jsonデータとの入出力を行う.
     /// </summary>
-    public static class JsonExtensions
+    /// <remarks>NuGetでText.Jsonをインポートする必要がある</remarks>
+    /// <typeparam name="T">ターゲットクラス</typeparam>
+    public static class JsonIO<T>
     {
         /// <summary>
         /// Jsonドキュメントをデシリアライズします。
@@ -21,32 +22,32 @@ namespace Common.Extentions
         /// <exception cref="ArgumentNullException">ファイル名が空文字の場合に発生します。</exception>
         /// <exception cref="FileNotFoundException">指定したファイルが見つからない場合に発生します。</exception>
         /// <exception cref="InvalidOperationException">シリアライズに失敗した場合に発生します。</exception>
-        public static T JsonLoad<T>(this string self) where T : class
+        public static T Load(string path)
         {
-            if (string.IsNullOrEmpty(self))
+            if (string.IsNullOrEmpty(path))
             {
                 throw new ArgumentNullException();
             }
 
-            if (!File.Exists(self))
+            if (!File.Exists(path))
             {
-                throw new FileNotFoundException("指定したファイルが見つかりません", self);
+                throw new FileNotFoundException("指定したファイルが見つかりません", path);
             }
 
             // ファイルを読み取りデシリアライズする.
-            var jsonString = File.ReadAllText(self);
+            var jsonString = File.ReadAllText(path);
             return JsonSerializer.Deserialize<T>(jsonString);
         }
 
         /// <summary>
         /// Jsonシリアライズして出力する.
         /// </summary>
-        /// <param name="self">自分自身</param>
+        /// <param name="target">シリアライズするターゲット</param>
         /// <param name="filePath">出力先パス</param>
         /// <param name="Indented">出力するファイルのインデントを整えるかどうか(default:true)</param>
-        public static void JsonSave(this object self, string filePath, bool indented = true)
+        public static void Save(T target, string filePath, bool indented = true)
         {
-            if ((null == self) || string.IsNullOrEmpty(filePath))
+            if ((null == target) || string.IsNullOrEmpty(filePath))
             {
                 throw new ArgumentNullException();
             }
@@ -69,27 +70,8 @@ namespace Common.Extentions
             //            options.Converters.Add(new JsonStringEnumConverter());
 
             // シリアライズしてファイルに出力する.
-            var jsonString = JsonSerializer.Serialize(self, options);
+            var jsonString = JsonSerializer.Serialize(target, options);
             File.WriteAllText(filePath, jsonString);
-        }
-
-        /// <summary>
-        /// シリアライズオプションを取得する.
-        /// </summary>
-        /// <returns>シリアライズオプション</returns>
-        private static JsonSerializerOptions GetSerializerOption()
-        {
-            // シリアライズオプションを設定する.
-            var options = new JsonSerializerOptions
-            {
-                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),  // これを指定しないと日本語として読めなくなる\uXXXXみたいな値で出力される
-                WriteIndented = true,
-            };
-
-            // ENUMを文字列で出力する.
-            options.Converters.Add(new JsonStringEnumConverter());
-
-            return options;
         }
     }
 }

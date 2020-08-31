@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using System;
 using System.Drawing;
 using System.IO;
@@ -89,7 +90,7 @@ namespace PCUITCommon.Users
                 // ファイルの存在をチェックし、存在する場合のみ読み込む。
                 if (File.Exists(path))
                 {
-                    userData = path.JsonLoad<UserData>();
+                    userData = JsonIO<UserData>.Load(path);
                 }
             }
             catch (Exception ex)
@@ -116,7 +117,7 @@ namespace PCUITCommon.Users
 
             try
             {
-                this.JsonSave(path);
+                JsonIO<UserData>.Save(this, path);
             }
             catch (Exception ex)
             {

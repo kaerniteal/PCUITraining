@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using System;
 using System.Collections.Generic;
 
@@ -43,7 +44,7 @@ namespace TypingExercise.Definitions
         {
             try
             {
-                return FileName.JsonLoad<CorrectSpellingTable>();
+                return JsonIO<CorrectSpellingTable>.Load(FileName);
             }
             catch (Exception ex)
             {
@@ -60,7 +61,7 @@ namespace TypingExercise.Definitions
         {
             try
             {
-                this.JsonSave(FileName);
+                JsonIO<CorrectSpellingTable>.Save(this, FileName);
             }
             catch (Exception ex)
             {

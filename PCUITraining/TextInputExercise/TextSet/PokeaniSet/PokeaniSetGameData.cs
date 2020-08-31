@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
@@ -66,7 +67,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
             {
                 try
                 {
-                    gameData = filePath.JsonLoad<PokeaniSetGameData>();
+                    gameData = JsonIO<PokeaniSetGameData>.Load(filePath);
                 }
                 catch (Exception ex)
                 {
@@ -94,7 +95,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
 
             try
             {
-                this.JsonSave(filePath);
+                JsonIO<PokeaniSetGameData>.Save(this, filePath);
             }
             catch (Exception ex)
             {

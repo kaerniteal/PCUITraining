@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
@@ -208,7 +209,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.CellsAtWork
                 {
                     try
                     {
-                        list = filePath.JsonLoad<AnimeTitleListCellsAtWorkFromFile>();
+                        list = JsonIO<AnimeTitleListCellsAtWorkFromFile>.Load(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -228,7 +229,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.CellsAtWork
 
                 try
                 {
-                    this.JsonSave(filePath);
+                    JsonIO<AnimeTitleListCellsAtWorkFromFile>.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

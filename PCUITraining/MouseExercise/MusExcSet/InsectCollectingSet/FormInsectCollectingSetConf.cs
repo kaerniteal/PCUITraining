@@ -90,7 +90,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             userConf.UseCustomMouseIcon = this.bLblUseCustomMouseIcon.Value;
 
             // 共通設定保存.
-            if (!commonConf.Save())
+            if (commonConf.Save().IsNG)
             {
                 MessageBox.Show("共通設定の保存に失敗しました");
                 return;

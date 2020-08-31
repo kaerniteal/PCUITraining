@@ -75,28 +75,16 @@
   <ItemGroup>
     <Compile Include="Conf\ConfBase.cs" />
     <Compile Include="Conf\IConfBase.cs" />
-    <Compile Include="Conf\Sample\SampleConf.cs" />
     <Compile Include="Controls\AnimationOpacityEffect.cs" />
     <Compile Include="Controls\AnimationCircleEffect.cs" />
     <Compile Include="Controls\PictureBoxTransparentLayered.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DataIO\CsvReader.cs" />
-    <Compile Include="Dialogs\DlgFileSave.cs" />
-    <Compile Include="Dialogs\DlgFileSelect.cs" />
-    <Compile Include="Dialogs\DlgFolderSelect.cs" />
+    <Compile Include="DataIO\JsonIO.cs" />
     <Compile Include="Extentions\ArrayExtensions.cs" />
     <Compile Include="Lang\Japanese\MorphologicalAnalysis.cs" />
     <Compile Include="Logger\ILogWriter.cs" />
     <Compile Include="Logger\Logger.cs" />
-    <Compile Include="Network\Ssh\ISshOutputWriter.cs" />
-    <Compile Include="Network\Ssh\Sample\FormSshTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Network\Ssh\Sample\FormSshTest.Designer.cs">
-      <DependentUpon>FormSshTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Network\Ssh\SshConnection.cs" />
     <Compile Include="Progress\FromProgressBar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,21 +104,11 @@
     <Compile Include="Controls\FormMediaPlayer.Designer.cs">
       <DependentUpon>FormMediaPlayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Sample\TestCircleEffectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\Sample\TestCircleEffectForm.Designer.cs">
-      <DependentUpon>TestCircleEffectForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Extentions\CommonExtentions.cs" />
     <Compile Include="Extentions\ControlExtensions.cs" />
     <Compile Include="Extentions\DateTimeExtentions.cs" />
-    <Compile Include="Extentions\JsonExtensions.cs" />
     <Compile Include="Extentions\StringExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Threads\Sample\TaskSample.cs" />
-    <Compile Include="Threads\Sample\AsyncAwaitSample.cs" />
-    <Compile Include="Threads\Sample\ThreadSample.cs" />
     <Compile Include="Utilities\UtilColor.cs" />
     <Compile Include="Utilities\UtilRandom.cs" />
     <Compile Include="Value\Result.cs" />
@@ -145,12 +123,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\FormMediaPlayer.resx">
       <DependentUpon>FormMediaPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Sample\TestCircleEffectForm.resx">
-      <DependentUpon>TestCircleEffectForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Network\Ssh\Sample\FormSshTest.resx">
-      <DependentUpon>FormSshTest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

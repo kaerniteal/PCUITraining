@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
@@ -224,7 +225,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
                 {
                     try
                     {
-                        list = filePath.JsonLoad<AnimeTitleListNarutoFromFile>();
+                        list = JsonIO<AnimeTitleListNarutoFromFile>.Load(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -244,7 +245,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
 
                 try
                 {
-                    this.JsonSave(filePath);
+                    JsonIO<AnimeTitleListNarutoFromFile>.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

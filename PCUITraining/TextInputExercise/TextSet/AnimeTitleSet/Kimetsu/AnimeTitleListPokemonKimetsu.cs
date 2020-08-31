@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
@@ -196,7 +197,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
                 {
                     try
                     {
-                        list = filePath.JsonLoad<AnimeTitleListKimetsuFromFile>();
+                        list = JsonIO<AnimeTitleListKimetsuFromFile>.Load(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -216,7 +217,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
 
                 try
                 {
-                    this.JsonSave(filePath);
+                    JsonIO<AnimeTitleListKimetsuFromFile>.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

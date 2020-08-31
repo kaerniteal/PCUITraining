@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Windows.Globalization;
 
 namespace Common.Lang.Japanese
 {
@@ -21,7 +23,6 @@ namespace Common.Lang.Japanese
             return wrods
                 .Select(s => s.YomiText)
                 .ToList();
-            return new List<string> { text };
         }
     }
 }

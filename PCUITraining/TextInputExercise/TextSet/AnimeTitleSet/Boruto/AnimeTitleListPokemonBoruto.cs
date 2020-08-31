@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
@@ -205,7 +206,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
                 {
                     try
                     {
-                        list = filePath.JsonLoad<AnimeTitleListBorutoFromFile>();
+                        list = JsonIO<AnimeTitleListBorutoFromFile>.Load(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -225,7 +226,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
 
                 try
                 {
-                    this.JsonSave(filePath);
+                    JsonIO<AnimeTitleListBorutoFromFile>.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

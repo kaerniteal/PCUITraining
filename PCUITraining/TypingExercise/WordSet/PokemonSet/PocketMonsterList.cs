@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
@@ -217,7 +218,7 @@ namespace TypingExercise.WordSet.PokemonSet
                 {
                     try
                     {
-                        list = filePath.JsonLoad<PocketMonsterListFromFile>();
+                        list = JsonIO<PocketMonsterListFromFile>.Load(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -237,7 +238,7 @@ namespace TypingExercise.WordSet.PokemonSet
 
                 try
                 {
-                    this.JsonSave(filePath);
+                    JsonIO<PocketMonsterListFromFile>.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

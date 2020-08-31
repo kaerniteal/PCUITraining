@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
@@ -56,7 +57,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             {
                 try
                 {
-                    gameData = filePath.JsonLoad<AnimeTitleSetGameData>();
+                    gameData = JsonIO<AnimeTitleSetGameData>.Load(filePath);
                 }
                 catch (Exception ex)
                 {
@@ -84,7 +85,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
 
             try
             {
-                this.JsonSave(filePath);
+                JsonIO<AnimeTitleSetGameData>.Save(this, filePath);
             }
             catch (Exception ex)
             {

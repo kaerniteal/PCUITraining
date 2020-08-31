@@ -1,31 +1,25 @@
-﻿using Common.Extentions;
-using System;
-using System.IO;
+﻿using Common.Conf;
 
 namespace PCUITCommon.Configs
 {
     /// <summary>
     /// PCUITの設定クラス.
     /// </summary>
-    public class PCUITConf
+    public class PCUITConf : ConfBase<PCUITConf>
     {
         /// <summary>
-        /// 設定ファイルパス.
+        /// 設定ファイルパスを返す.
         /// </summary>
-        private const string PCUITConfFile = @".\PCUIT.conf";
-
-        /// <summary>
-        /// コンストラクタ.
-        /// </summary>
-        public PCUITConf()
+        /// <returns>設定ファイルのパス</returns>
+        public override string GetConfFilePath()
         {
-            SetDefault();
+            return @".\PCUIT.conf";
         }
 
         /// <summary>
         /// デフォルトをセット.
         /// </summary>
-        public void SetDefault()
+        public override void SetDefault()
         {
             // デフォルトはここで与える.
             this.IsDebug = false;
@@ -60,54 +54,5 @@ namespace PCUITCommon.Configs
         /// ProxyのPassword
         /// </summary>
         public string ProxyPassword { get; set; }
-
-
-        /// <summary>
-        /// ロード処理.
-        /// </summary>
-        /// <remarks>失敗時にはNULLを返す</remarks>
-        /// <returns>正答テーブル</returns>
-        public static PCUITConf Load()
-        {
-            var config = new PCUITConf();
-
-            // ファイルの存在をチェックし、存在する場合のみ読み込む。
-            if (File.Exists(PCUITConfFile))
-            {
-                try
-                {
-                    config = PCUITConfFile.JsonLoad<PCUITConf>();
-                }
-                catch (Exception ex)
-                {
-                    ex.ShowMessageBox(@"ファイル[{0}]の読み込みに失敗しました".Fmt(PCUITConfFile));
-                }
-            }
-
-            // 下記の２ケースを想定して毎回出力する
-            // ・読み込んだ設定ファイルに項目が不足している場合.
-            // ・設定ファイルが存在しない場合.
-            config.Save();
-
-            return config;
-        }
-
-        /// <summary>
-        /// セーブ処理.
-        /// </summary>
-        public bool Save()
-        {
-            try
-            {
-                this.JsonSave(PCUITConfFile);
-            }
-            catch (Exception ex)
-            {
-                ex.ShowMessageBox(@"ファイル[{0}]の保存に失敗しました".Fmt(PCUITConfFile));
-                return false;
-            }
-
-            return true;
-        }
     }
 }

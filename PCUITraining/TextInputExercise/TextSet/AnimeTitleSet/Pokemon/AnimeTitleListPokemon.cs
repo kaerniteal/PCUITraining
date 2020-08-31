@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
@@ -283,7 +284,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Pokemon
                 {
                     try
                     {
-                        list = filePath.JsonLoad<AnimeTitleListPokemonFromFile>();
+                        list = JsonIO<AnimeTitleListPokemonFromFile>.Load(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -303,7 +304,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Pokemon
 
                 try
                 {
-                    this.JsonSave(filePath);
+                    JsonIO<AnimeTitleListPokemonFromFile>.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

@@ -1,4 +1,5 @@
-﻿using Common.Extentions;
+﻿using Common.DataIO;
+using Common.Extentions;
 using Common.Value;
 using System;
 using System.IO;
@@ -46,11 +47,11 @@ namespace Common.Conf
             {
                 try
                 {
-                    config = confFile.JsonLoad<T>();
+                    config = JsonIO<T>.Load(confFile);
                 }
                 catch (Exception ex)
                 {
-                    ex.ShowMessageBox(@"ファイル[{0}]の読み込みに失敗しました".Fmt(confFile));
+                    ex.ShowMessageBox($@"ファイル[{confFile}]の読み込みに失敗しました");
                 }
             }
 
@@ -80,11 +81,12 @@ namespace Common.Conf
                     Directory.CreateDirectory(folder);
                 }
 
-                this.JsonSave(confFile);
+                var target = this as T;
+                JsonIO<T>.Save(target, confFile);
             }
             catch (Exception ex)
             {
-                return Result.NG(@"ファイル[{0}]の保存に失敗しました".Fmt(confFile), ex);
+                return Result.NG($@"ファイル[{confFile}]の保存に失敗しました", ex);
             }
 
             return Result.OK();

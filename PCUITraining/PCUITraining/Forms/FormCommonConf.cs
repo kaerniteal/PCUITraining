@@ -48,7 +48,7 @@ namespace PCUITraining.Forms
             conf.ProxyId = this.tBoxID.Text.Trim();
             conf.ProxyPassword = this.tBoxPassword.Text.Trim();
 
-            if (!conf.Save())
+            if (conf.Save().IsNG)
             {
                 MessageBox.Show("共通データの保存に失敗しました");
                 return;

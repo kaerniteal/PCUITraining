@@ -90,7 +90,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             userConf.ShowTextResult = this.bLblShowTextResult.Value;
 
             // 共通設定保存.
-            if (!commonConf.Save())
+            if (commonConf.Save().IsNG)
             {
                 MessageBox.Show("共通設定の保存に失敗しました");
                 return;
