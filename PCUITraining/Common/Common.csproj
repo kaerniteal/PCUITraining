@@ -35,6 +35,7 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
@@ -72,24 +73,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conf\ConfBase.cs" />
+    <Compile Include="Conf\IConfBase.cs" />
+    <Compile Include="Conf\Sample\SampleConf.cs" />
     <Compile Include="Controls\AnimationOpacityEffect.cs" />
     <Compile Include="Controls\AnimationCircleEffect.cs" />
-    <Compile Include="Controls\FormImageBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\FormImageBox.Designer.cs">
-      <DependentUpon>FormImageBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\PictureBoxTransparentLayered.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\ProgressBar\FromProgressBar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\ProgressBar\FromProgressBar.Designer.cs">
-      <DependentUpon>FromProgressBar.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DataIO\CsvReader.cs" />
+    <Compile Include="Dialogs\DlgFileSave.cs" />
+    <Compile Include="Dialogs\DlgFileSelect.cs" />
+    <Compile Include="Dialogs\DlgFolderSelect.cs" />
+    <Compile Include="Extentions\ArrayExtensions.cs" />
     <Compile Include="Lang\Japanese\MorphologicalAnalysis.cs" />
+    <Compile Include="Logger\ILogWriter.cs" />
+    <Compile Include="Logger\Logger.cs" />
     <Compile Include="Network\Ssh\ISshOutputWriter.cs" />
     <Compile Include="Network\Ssh\Sample\FormSshTest.cs">
       <SubType>Form</SubType>
@@ -98,6 +97,15 @@
       <DependentUpon>FormSshTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Network\Ssh\SshConnection.cs" />
+    <Compile Include="Progress\FromProgressBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Progress\FromProgressBar.Designer.cs">
+      <DependentUpon>FromProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Progress\IProgressObserver.cs" />
+    <Compile Include="Progress\ProgressAction.cs" />
+    <Compile Include="Progress\ProgressCtl.cs" />
     <Compile Include="Threads\AnimationTimer.cs" />
     <Compile Include="Controls\CustomToolTip.cs">
       <SubType>Component</SubType>
@@ -125,6 +133,7 @@
     <Compile Include="Threads\Sample\ThreadSample.cs" />
     <Compile Include="Utilities\UtilColor.cs" />
     <Compile Include="Utilities\UtilRandom.cs" />
+    <Compile Include="Value\Result.cs" />
     <Compile Include="Web\Downloader.cs" />
     <Compile Include="Web\HtmlAnalizerBase.cs" />
     <Compile Include="Web\GetImageUrlFromGoogle.cs" />
@@ -134,14 +143,8 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\FormImageBox.resx">
-      <DependentUpon>FormImageBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\FormMediaPlayer.resx">
       <DependentUpon>FormMediaPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ProgressBar\FromProgressBar.resx">
-      <DependentUpon>FromProgressBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Sample\TestCircleEffectForm.resx">
       <DependentUpon>TestCircleEffectForm.cs</DependentUpon>

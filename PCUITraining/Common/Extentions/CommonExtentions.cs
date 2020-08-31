@@ -14,7 +14,7 @@ namespace Common.Extentions
         /// <param name="self">自身</param>
         public static void ShowMessageBox(this Exception self)
         {
-            MessageBox.Show("{0}\n\n{1}\n{2}".Fmt(self.Message, self, self.StackTrace));
+            MessageBox.Show(self.ToString());
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Common.Extentions
         /// <param name="message">メッセージ</param>
         public static void ShowMessageBox(this Exception self, string message)
         {
-            MessageBox.Show("{0}\n{1}".Fmt(message, self.Message));
+            MessageBox.Show("{0}\n{1}".Fmt(message, self.ToString()));
         }
 
         /// <summary>

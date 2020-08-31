@@ -1,11 +1,11 @@
-﻿using MouseExercise;
+﻿using Common.Progress;
+using MouseExercise;
 using PCUITCommon;
 using PCUITraining.Forms;
 using System.Threading;
 using System.Windows.Forms;
 using TextInputExercise;
 using TypingExercise;
-using static Common.Controls.ProgressBar.FromProgressBar;
 
 namespace PCUITraining
 {
@@ -62,12 +62,10 @@ namespace PCUITraining
         /// ゲームセットアップ.
         /// </summary>
         /// <returns>成否</returns>
-        public static bool SetUp(IProgressCtl pc)
+        public static bool SetUp(ProgressCtl ctl)
         {
             // 最大をセット.
-            pc.SetMax(3);
-
-            pc.SetProgress(0);
+            ctl.Begin(3);
 
             // タイピングゲーム.
             if (!TypExc.Init())
@@ -76,7 +74,7 @@ namespace PCUITraining
                 return false;
             }
 
-            pc.SetProgress(1);
+            ctl.Increment();
 
             // マウスクリックゲーム.
             if (!MusExc.Init())
@@ -85,7 +83,7 @@ namespace PCUITraining
                 return false;
             }
 
-            pc.SetProgress(2);
+            ctl.Increment();
 
             // テキストライティングゲーム.
             if (!TIExc.Init())
@@ -94,7 +92,8 @@ namespace PCUITraining
                 return false;
             }
 
-            pc.SetProgress(3);
+            ctl.Increment();
+            ctl.Finish();
 
             // ちょっと焦らす.
             Thread.Sleep(1000);
