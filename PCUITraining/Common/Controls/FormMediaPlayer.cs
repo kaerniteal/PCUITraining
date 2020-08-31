@@ -1,5 +1,4 @@
-﻿using Common.Extentions;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Forms;
 
 namespace Common.Controls
@@ -33,7 +32,7 @@ namespace Common.Controls
 
             if (!File.Exists(url))
             {
-                MessageBox.Show("ファイルが見つかりません：{0}".Fmt(url));
+                MessageBox.Show($"ファイルが見つかりません：{url}");
                 return;
             }
 
