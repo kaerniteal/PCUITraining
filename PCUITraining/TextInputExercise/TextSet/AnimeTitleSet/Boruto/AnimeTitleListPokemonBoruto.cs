@@ -206,7 +206,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
                 {
                     try
                     {
-                        list = JsonIO<AnimeTitleListBorutoFromFile>.Load(filePath);
+                        list = JsonIO.Load<AnimeTitleListBorutoFromFile>(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -226,7 +226,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
 
                 try
                 {
-                    JsonIO<AnimeTitleListBorutoFromFile>.Save(this, filePath);
+                    JsonIO.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

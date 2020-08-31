@@ -47,7 +47,7 @@ namespace Common.Conf
             {
                 try
                 {
-                    config = JsonIO<T>.Load(confFile);
+                    config = JsonIO.Load<T>(confFile);
                 }
                 catch (Exception ex)
                 {
@@ -82,7 +82,7 @@ namespace Common.Conf
                 }
 
                 var target = this as T;
-                JsonIO<T>.Save(target, confFile);
+                JsonIO.Save(target, confFile);
             }
             catch (Exception ex)
             {

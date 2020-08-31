@@ -57,7 +57,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             {
                 try
                 {
-                    gameData = JsonIO<AnimeTitleSetGameData>.Load(filePath);
+                    gameData = JsonIO.Load<AnimeTitleSetGameData>(filePath);
                 }
                 catch (Exception ex)
                 {
@@ -85,7 +85,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
 
             try
             {
-                JsonIO<AnimeTitleSetGameData>.Save(this, filePath);
+                JsonIO.Save(this, filePath);
             }
             catch (Exception ex)
             {

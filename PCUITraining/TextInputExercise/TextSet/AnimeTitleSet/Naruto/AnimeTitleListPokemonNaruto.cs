@@ -225,7 +225,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
                 {
                     try
                     {
-                        list = JsonIO<AnimeTitleListNarutoFromFile>.Load(filePath);
+                        list = JsonIO.Load<AnimeTitleListNarutoFromFile>(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -245,7 +245,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
 
                 try
                 {
-                    JsonIO<AnimeTitleListNarutoFromFile>.Save(this, filePath);
+                    JsonIO.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

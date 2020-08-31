@@ -209,7 +209,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.CellsAtWork
                 {
                     try
                     {
-                        list = JsonIO<AnimeTitleListCellsAtWorkFromFile>.Load(filePath);
+                        list = JsonIO.Load<AnimeTitleListCellsAtWorkFromFile>(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -229,7 +229,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.CellsAtWork
 
                 try
                 {
-                    JsonIO<AnimeTitleListCellsAtWorkFromFile>.Save(this, filePath);
+                    JsonIO.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

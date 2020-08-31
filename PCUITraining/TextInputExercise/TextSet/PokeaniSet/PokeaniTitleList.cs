@@ -284,7 +284,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
                 {
                     try
                     {
-                        list = JsonIO<PocketMonsterTitleListFromFile>.Load(filePath);
+                        list = JsonIO.Load<PocketMonsterTitleListFromFile>(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -304,7 +304,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
 
                 try
                 {
-                    JsonIO<PocketMonsterTitleListFromFile>.Save(this, filePath);
+                    JsonIO.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

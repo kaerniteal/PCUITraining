@@ -218,7 +218,7 @@ namespace TypingExercise.WordSet.PokemonSet
                 {
                     try
                     {
-                        list = JsonIO<PocketMonsterListFromFile>.Load(filePath);
+                        list = JsonIO.Load<PocketMonsterListFromFile>(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -238,7 +238,7 @@ namespace TypingExercise.WordSet.PokemonSet
 
                 try
                 {
-                    JsonIO<PocketMonsterListFromFile>.Save(this, filePath);
+                    JsonIO.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

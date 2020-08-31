@@ -67,7 +67,7 @@ namespace TypingExercise.WordSet.PokemonSet
             {
                 try
                 {
-                    gameData = JsonIO<PokemonSetGameData>.Load(filePath);
+                    gameData = JsonIO.Load<PokemonSetGameData>(filePath);
                 }
                 catch (Exception ex)
                 {
@@ -95,7 +95,7 @@ namespace TypingExercise.WordSet.PokemonSet
 
             try
             {
-                JsonIO<PokemonSetGameData>.Save(this, filePath);
+                JsonIO.Save(this, filePath);
             }
             catch (Exception ex)
             {

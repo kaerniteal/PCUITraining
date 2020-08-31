@@ -284,7 +284,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Pokemon
                 {
                     try
                     {
-                        list = JsonIO<AnimeTitleListPokemonFromFile>.Load(filePath);
+                        list = JsonIO.Load<AnimeTitleListPokemonFromFile>(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -304,7 +304,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Pokemon
 
                 try
                 {
-                    JsonIO<AnimeTitleListPokemonFromFile>.Save(this, filePath);
+                    JsonIO.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

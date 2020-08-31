@@ -44,7 +44,7 @@ namespace TypingExercise.Definitions
         {
             try
             {
-                return JsonIO<CorrectSpellingTable>.Load(FileName);
+                return JsonIO.Load<CorrectSpellingTable>(FileName);
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace TypingExercise.Definitions
         {
             try
             {
-                JsonIO<CorrectSpellingTable>.Save(this, FileName);
+                JsonIO.Save(this, FileName);
             }
             catch (Exception ex)
             {

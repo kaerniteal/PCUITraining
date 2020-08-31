@@ -197,7 +197,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
                 {
                     try
                     {
-                        list = JsonIO<AnimeTitleListKimetsuFromFile>.Load(filePath);
+                        list = JsonIO.Load<AnimeTitleListKimetsuFromFile>(filePath);
                     }
                     catch (Exception ex)
                     {
@@ -217,7 +217,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
 
                 try
                 {
-                    JsonIO<AnimeTitleListKimetsuFromFile>.Save(this, filePath);
+                    JsonIO.Save(this, filePath);
                 }
                 catch (Exception ex)
                 {

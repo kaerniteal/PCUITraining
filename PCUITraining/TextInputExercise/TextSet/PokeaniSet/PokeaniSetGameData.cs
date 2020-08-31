@@ -67,7 +67,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
             {
                 try
                 {
-                    gameData = JsonIO<PokeaniSetGameData>.Load(filePath);
+                    gameData = JsonIO.Load<PokeaniSetGameData>(filePath);
                 }
                 catch (Exception ex)
                 {
@@ -95,7 +95,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
 
             try
             {
-                JsonIO<PokeaniSetGameData>.Save(this, filePath);
+                JsonIO.Save(this, filePath);
             }
             catch (Exception ex)
             {

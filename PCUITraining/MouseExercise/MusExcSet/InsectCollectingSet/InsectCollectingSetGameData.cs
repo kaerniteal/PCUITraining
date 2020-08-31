@@ -62,7 +62,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             {
                 try
                 {
-                    gameData = JsonIO<InsectCollectingSetGameData>.Load(filePath);
+                    gameData = JsonIO.Load<InsectCollectingSetGameData>(filePath);
                 }
                 catch (Exception ex)
                 {
@@ -90,7 +90,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
 
             try
             {
-                JsonIO<InsectCollectingSetGameData>.Save(this, filePath);
+                JsonIO.Save(this, filePath);
             }
             catch (Exception ex)
             {

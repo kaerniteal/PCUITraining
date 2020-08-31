@@ -11,7 +11,7 @@ namespace Common.DataIO
     /// </summary>
     /// <remarks>NuGetでText.Jsonをインポートする必要がある</remarks>
     /// <typeparam name="T">ターゲットクラス</typeparam>
-    public static class JsonIO<T>
+    public static class JsonIO
     {
         /// <summary>
         /// Jsonドキュメントをデシリアライズします。
@@ -22,7 +22,7 @@ namespace Common.DataIO
         /// <exception cref="ArgumentNullException">ファイル名が空文字の場合に発生します。</exception>
         /// <exception cref="FileNotFoundException">指定したファイルが見つからない場合に発生します。</exception>
         /// <exception cref="InvalidOperationException">シリアライズに失敗した場合に発生します。</exception>
-        public static T Load(string path)
+        public static T Load<T>(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
@@ -42,10 +42,11 @@ namespace Common.DataIO
         /// <summary>
         /// Jsonシリアライズして出力する.
         /// </summary>
+        /// <typeparam name="T">第一引数の型</typeparam>
         /// <param name="target">シリアライズするターゲット</param>
         /// <param name="filePath">出力先パス</param>
         /// <param name="Indented">出力するファイルのインデントを整えるかどうか(default:true)</param>
-        public static void Save(T target, string filePath, bool indented = true)
+        public static void Save<T>(T target, string filePath, bool indented = true)
         {
             if ((null == target) || string.IsNullOrEmpty(filePath))
             {
