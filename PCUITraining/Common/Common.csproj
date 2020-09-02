@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="DataIO\JsonIO.cs" />
     <Compile Include="Extentions\ArrayExtensions.cs" />
+    <Compile Include="Extentions\ControlWinApiExtensions.cs" />
     <Compile Include="Lang\Japanese\MorphologicalAnalysis.cs" />
     <Compile Include="Logger\ILogWriter.cs" />
     <Compile Include="Logger\Logger.cs" />
@@ -94,6 +95,8 @@
     <Compile Include="Progress\IProgressObserver.cs" />
     <Compile Include="Progress\ProgressAction.cs" />
     <Compile Include="Progress\ProgressCtl.cs" />
+    <Compile Include="Sort\NaturalComparer.cs" />
+    <Compile Include="Sort\Sample\NaturalComparerSample.cs" />
     <Compile Include="Threads\AnimationTimer.cs" />
     <Compile Include="Controls\CustomToolTip.cs">
       <SubType>Component</SubType>

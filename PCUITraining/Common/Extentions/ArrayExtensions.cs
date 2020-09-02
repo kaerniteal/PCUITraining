@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Common.Extentions
 {
@@ -35,6 +36,18 @@ namespace Common.Extentions
             }
 
             return self.GetRange(index, self.Count - index);
+        }
+
+        /// <summary>
+        /// Index付きのforeach
+        /// </summary>
+        /// <param name="act">実行処理</param>
+        public static void ForIndexEach<T>(this IList<T> self, Action<T, int> act)
+        {
+            for (var i = 0; i < self.Count; i++)
+            {
+                act(self[i], i);
+            }
         }
     }
 }
