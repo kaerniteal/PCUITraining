@@ -115,6 +115,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="WebSite\PCUITraining\Archives\PCUITraining.1.1.0.zip" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -123,6 +124,11 @@
     <Content Include="PCUITResorce\setting.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WebSite\PCUITraining\Img\PCUIAniWrit.png" />
+    <Content Include="WebSite\PCUITraining\Img\PCUITInsctClct.png" />
+    <Content Include="WebSite\PCUITraining\Img\PCUITMenu.png" />
+    <Content Include="WebSite\PCUITraining\Img\PCUITPokeTyp.png" />
+    <Content Include="WebSite\PCUITraining\index.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -145,6 +151,9 @@
       <Project>{a652e426-0777-427f-ab78-4afa03e444bb}</Project>
       <Name>TypingExercise</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WebSite\PCUITraining\Latest\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
