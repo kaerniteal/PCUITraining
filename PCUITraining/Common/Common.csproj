@@ -44,6 +44,8 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -75,17 +77,26 @@
   <ItemGroup>
     <Compile Include="Conf\ConfBase.cs" />
     <Compile Include="Conf\IConfBase.cs" />
-    <Compile Include="Controls\AnimationOpacityEffect.cs" />
-    <Compile Include="Controls\AnimationCircleEffect.cs" />
-    <Compile Include="Controls\PictureBoxTransparentLayered.cs">
+    <Compile Include="DataIO\JsonDataBase.cs" />
+    <Compile Include="DataIO\ZipIO.cs" />
+    <Compile Include="Updater\UpdaterControler.cs" />
+    <Compile Include="Updater\Ver1_0_0\Executors\UpdaterVer1_0_0.cs" />
+    <Compile Include="Updater\Ver1_0_0\Executors\VerCheckerVer1_0_0.cs" />
+    <Compile Include="Updater\Ver1_0_0\ProxyInfo.cs" />
+    <Compile Include="Updater\Ver1_0_0\UpdateInfoVer1_0_0.cs" />
+    <Compile Include="Updater\Ver1_0_0\VerCheckInfoVer1_0_0.cs" />
+    <Compile Include="Utilities\UtilFolder.cs" />
+    <Compile Include="Versions\Ver.cs" />
+    <Compile Include="Web\WebClientCreator.cs" />
+    <Compile Include="WinForms\AnimationOpacityEffect.cs" />
+    <Compile Include="WinForms\AnimationCircleEffect.cs" />
+    <Compile Include="WinForms\PictureBoxTransparentLayered.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataIO\JsonIO.cs" />
     <Compile Include="Extentions\ArrayExtensions.cs" />
     <Compile Include="Extentions\ControlWinApiExtensions.cs" />
     <Compile Include="Lang\Japanese\MorphologicalAnalysis.cs" />
-    <Compile Include="Logger\ILogWriter.cs" />
-    <Compile Include="Logger\Logger.cs" />
     <Compile Include="Progress\FromProgressBar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,16 +106,14 @@
     <Compile Include="Progress\IProgressObserver.cs" />
     <Compile Include="Progress\ProgressAction.cs" />
     <Compile Include="Progress\ProgressCtl.cs" />
-    <Compile Include="Sort\NaturalComparer.cs" />
-    <Compile Include="Sort\Sample\NaturalComparerSample.cs" />
     <Compile Include="Threads\AnimationTimer.cs" />
-    <Compile Include="Controls\CustomToolTip.cs">
+    <Compile Include="WinForms\CustomToolTip.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\FormMediaPlayer.cs">
+    <Compile Include="WinForms\FormMediaPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\FormMediaPlayer.Designer.cs">
+    <Compile Include="WinForms\FormMediaPlayer.Designer.cs">
       <DependentUpon>FormMediaPlayer.cs</DependentUpon>
     </Compile>
     <Compile Include="Extentions\CommonExtentions.cs" />
@@ -114,17 +123,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\UtilColor.cs" />
     <Compile Include="Utilities\UtilRandom.cs" />
-    <Compile Include="Value\Result.cs" />
+    <Compile Include="Values\Result.cs" />
     <Compile Include="Web\Downloader.cs" />
     <Compile Include="Web\HtmlAnalizerBase.cs" />
     <Compile Include="Web\GetImageUrlFromGoogle.cs" />
-    <Compile Include="Web\WebClientWithSystemProxy.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\FormMediaPlayer.resx">
+    <EmbeddedResource Include="WinForms\FormMediaPlayer.resx">
       <DependentUpon>FormMediaPlayer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -153,6 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\UwpDesktop.10.0.14393.3\analyzers\dotnet\UwpDesktopAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Updater\Ver1_0_0\UpdaterVer1.0.0.仕様.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets" Condition="Exists('..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets')" />

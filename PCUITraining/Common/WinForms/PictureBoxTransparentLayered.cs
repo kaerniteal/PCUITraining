@@ -3,11 +3,16 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 
-namespace Common.Controls
+namespace Common.WinForms
 {
     /// <summary>
     /// 透過画像を重ねられるPictureBox
     /// </summary>
+    /// <remarks>
+    /// 普通のPictureBoxに透過画像を入れて複数重ねると、
+    /// 透過部分は背景(通常はフォーム)の色で塗りつぶされてしまう.
+    /// 透過部分にさらに下位の透過画像を重ねて描画させるためのコンポーネント.
+    /// </remarks>
     public class PictureBoxTransparentLayered : PictureBox
     {
         /// <summary>

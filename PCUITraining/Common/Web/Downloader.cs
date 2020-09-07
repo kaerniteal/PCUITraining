@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using Common.Values;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,6 +16,7 @@ namespace Common.Web
         /// Web Client
         /// </summary>
         private WebClient Wc { get; set; }
+
 
         /// <summary>
         /// コンストラクタ.
@@ -68,6 +70,26 @@ namespace Common.Web
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// ファイルをダウンロードする.
+        /// </summary>
+        /// <param name="url">URL</param>
+        /// <param name="savePath">保存先のファイル名</param>
+        /// <returns>成否</returns>
+        public Result FileDownLoad(string url, string savePath)
+        {
+            try
+            {
+                this.Wc.DownloadFile(url, savePath);
+            }
+            catch (Exception ex)
+            {
+                return Result.NG($@"ファイルのダウンロードに失敗しました。\n{url}", ex);
+            }
+
+            return Result.OK();
         }
     }
 }

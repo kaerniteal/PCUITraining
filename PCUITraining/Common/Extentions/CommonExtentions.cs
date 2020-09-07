@@ -24,7 +24,7 @@ namespace Common.Extentions
         /// <param name="message">メッセージ</param>
         public static void ShowMessageBox(this Exception self, string message)
         {
-            MessageBox.Show("{0}\n{1}".Fmt(message, self.ToString()));
+            MessageBox.Show("{message}\n{self.ToString()}");
         }
 
         /// <summary>

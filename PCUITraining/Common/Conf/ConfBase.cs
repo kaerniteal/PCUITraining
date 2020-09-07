@@ -1,8 +1,5 @@
 ﻿using Common.DataIO;
-using Common.Extentions;
-using Common.Value;
-using System;
-using System.IO;
+using Common.Values;
 
 namespace Common.Conf
 {
@@ -10,7 +7,7 @@ namespace Common.Conf
     /// 設定ファイル基底クラス
     /// </summary>
     /// <typeparam name="T">継承したクラス自身を指定する</typeparam>
-    public abstract class ConfBase<T> : IConfBase where T : class, IConfBase, new()
+    public abstract class ConfBase<T> : JsonDataBase<T>, IConfBase where T : class, IConfBase, new()
     {
         /// <summary>
         /// コンストラクタ.
@@ -40,19 +37,12 @@ namespace Common.Conf
         public static T Load()
         {
             var config = new T();
-            var confFile = config.GetConfFilePath();
+            var path = config.GetConfFilePath();
 
-            // ファイルの存在をチェックし、存在する場合のみ読み込む。
-            if (File.Exists(confFile))
+            // 基底クラスのロード処理.
+            if (Load(path, out var loadConf).IsOK)
             {
-                try
-                {
-                    config = JsonIO.Load<T>(confFile);
-                }
-                catch (Exception ex)
-                {
-                    ex.ShowMessageBox($@"ファイル[{confFile}]の読み込みに失敗しました");
-                }
+                config = loadConf;
             }
 
             // 下記の２ケースを想定して毎回出力する
@@ -70,26 +60,10 @@ namespace Common.Conf
         /// <returns>成否</returns>
         public Result Save()
         {
-            var confFile = this.GetConfFilePath();
+            var path = this.GetConfFilePath();
 
-            try
-            {
-                // 対象のディレクトリが存在しない場合は生成する.
-                var folder = Path.GetDirectoryName(confFile);
-                if (!Directory.Exists(folder))
-                {
-                    Directory.CreateDirectory(folder);
-                }
-
-                var target = this as T;
-                JsonIO.Save(target, confFile);
-            }
-            catch (Exception ex)
-            {
-                return Result.NG($@"ファイル[{confFile}]の保存に失敗しました", ex);
-            }
-
-            return Result.OK();
+            // 基底クラスの保存処理.
+            return base.Save(path);
         }
     }
 }

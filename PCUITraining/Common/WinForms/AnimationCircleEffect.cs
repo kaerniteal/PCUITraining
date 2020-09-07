@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace Common.Controls
+namespace Common.WinForms
 {
     /// <summary>
     /// コントロールアニメーション(円描画)クラス.
@@ -19,17 +19,17 @@ namespace Common.Controls
         /// <summary>
         /// 半径.
         /// </summary>
-        private int radius { get; set; }
+        private int Radius { get; set; }
 
         /// <summary>
         /// 描画幅.
         /// </summary>
-        private int ox { get; set; }
+        private int Ox { get; set; }
 
         /// <summary>
         /// 描画高.
         /// </summary>
-        private int oy { get; set; }
+        private int Oy { get; set; }
 
 
         /// <summary>
@@ -40,9 +40,9 @@ namespace Common.Controls
         {
             this.Control = control;
 
-            this.radius = (int)(Math.Sqrt(this.Control.Width * this.Control.Width + this.Control.Height * this.Control.Height) / 2);
-            this.ox = this.Control.Width / 2;
-            this.oy = this.Control.Height / 2;
+            this.Radius = (int)(Math.Sqrt(this.Control.Width * this.Control.Width + this.Control.Height * this.Control.Height) / 2);
+            this.Ox = this.Control.Width / 2;
+            this.Oy = this.Control.Height / 2;
 
             this.Control.Region = new Region(new GraphicsPath());
         }
@@ -62,11 +62,11 @@ namespace Common.Controls
                     return false;
                 }
 
-                var r = this.radius * frame / frequency;
+                var r = this.Radius * frame / frequency;
 
                 using (var gp = new GraphicsPath())
                 {
-                    gp.AddEllipse(new Rectangle(this.ox - r, this.oy - r, r * 2, r * 2));
+                    gp.AddEllipse(new Rectangle(this.Ox - r, this.Oy - r, r * 2, r * 2));
                     this.Control.Region = new Region(gp);
                 }
 
@@ -98,11 +98,11 @@ namespace Common.Controls
                     return false;
                 }
 
-                int r = (int)(this.radius * ((frequency - (float)frame) / frequency));
+                int r = (int)(this.Radius * ((frequency - (float)frame) / frequency));
 
                 using (var gp = new GraphicsPath())
                 {
-                    gp.AddEllipse(new Rectangle(this.ox - r, this.oy - r, r * 2, r * 2));
+                    gp.AddEllipse(new Rectangle(this.Ox - r, this.Oy - r, r * 2, r * 2));
                     this.Control.Region = new Region(gp);
                 }
 

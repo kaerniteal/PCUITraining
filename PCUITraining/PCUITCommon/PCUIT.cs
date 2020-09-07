@@ -80,9 +80,7 @@ namespace PCUITCommon
         /// <returns></returns>
         public static WebClient CreateWebClient()
         {
-            return Conf.ProxyUse
-                ? new WebClientWithSystemProxy(Conf.ProxyId, Conf.ProxyPassword)
-                : new WebClient();
+            return WebClientCreator.Create(Conf.ProxyUse, Conf.ProxyId, Conf.ProxyPassword);
         }
     }
 }

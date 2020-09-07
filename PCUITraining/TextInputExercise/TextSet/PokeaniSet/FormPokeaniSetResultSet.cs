@@ -1,5 +1,5 @@
-﻿using Common.Controls;
-using Common.Threads;
+﻿using Common.Threads;
+using Common.WinForms;
 using System.Collections.Generic;
 using System.Windows.Forms;
 

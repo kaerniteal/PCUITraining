@@ -1,7 +1,7 @@
 ﻿using Common.Threads;
 using System.Windows.Forms;
 
-namespace Common.Controls
+namespace Common.WinForms
 {
     /// <summary>
     /// コントロールアニメーション(透明⇒不透明)クラス.

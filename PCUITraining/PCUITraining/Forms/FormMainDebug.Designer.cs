@@ -1,4 +1,6 @@
-﻿namespace PCUITraining.Forms
+﻿using Common.WinForms;
+
+namespace PCUITraining.Forms
 {
     partial class FormMainDebug
     {
@@ -36,9 +38,9 @@
             this.btnTest3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.mPanel = new TextInputExercise.Views.MarqueePanel();
-            this.lBox2 = new Common.Controls.PictureBoxTransparentLayered();
-            this.lBox1 = new Common.Controls.PictureBoxTransparentLayered();
-            this.lBox3 = new Common.Controls.PictureBoxTransparentLayered();
+            this.lBox2 = new PictureBoxTransparentLayered();
+            this.lBox1 = new PictureBoxTransparentLayered();
+            this.lBox3 = new PictureBoxTransparentLayered();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lBox1)).BeginInit();
@@ -192,8 +194,8 @@
         private System.Windows.Forms.Button btnTest3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private TextInputExercise.Views.MarqueePanel mPanel;
-        private Common.Controls.PictureBoxTransparentLayered lBox1;
-        private Common.Controls.PictureBoxTransparentLayered lBox2;
-        private Common.Controls.PictureBoxTransparentLayered lBox3;
+        private PictureBoxTransparentLayered lBox1;
+        private PictureBoxTransparentLayered lBox2;
+        private PictureBoxTransparentLayered lBox3;
     }
 }

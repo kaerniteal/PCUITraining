@@ -57,7 +57,7 @@ namespace Common.Utilities
         /// <summary>
         /// 1/2 の確率でTRUEを返す.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true/false 50%/50%</returns>
         public static bool Half()
         {
             return 0 == Next(2);

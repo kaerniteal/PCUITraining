@@ -1,4 +1,4 @@
-﻿namespace Common.Controls
+﻿namespace Common.WinForms
 {
     partial class FormMediaPlayer
     {

@@ -1,4 +1,4 @@
-﻿using Common.Value;
+﻿using Common.Values;
 
 namespace Common.Conf
 {

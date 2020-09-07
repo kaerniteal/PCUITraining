@@ -8,6 +8,7 @@ namespace Common.Progress
     /// <summary>
     /// 進捗管理クラス.
     /// </summary>
+    /// <remarks>ProgressActionから呼び出される非同期処理の引数</remarks>
     public class ProgressCtl : IProgressParent
     {
         /// <summary>
@@ -76,8 +77,8 @@ namespace Common.Progress
         /// 均等な重みで子管理を生成する.
         /// </summary>
         /// <remarks>子要素を生成した時点で自身の進捗は子要素のサマリとなる.</remarks>
-        /// <param name="num"></param>
-        /// <returns></returns>
+        /// <param name="num">生成する要素数</param>
+        /// <returns>生成した子要素</returns>
         public List<ProgressCtl> CreateChildren(int num)
         {
             // 重みが均等なint配列にして子要素生成.
@@ -90,8 +91,8 @@ namespace Common.Progress
         /// 重みを指定して子管理を生成する.
         /// </summary>
         /// <remarks>子要素を生成した時点で自身の進捗は子要素のサマリとなる.</remarks>
-        /// <param name="ratios"></param>
-        /// <returns></returns>
+        /// <param name="ratios">重みリスト</param>
+        /// <returns>生成した子要素</returns>
         public List<ProgressCtl> CreateChildren(int[] ratios)
         {
             var ratioList = ratios.ToList();
@@ -126,7 +127,7 @@ namespace Common.Progress
         /// <summary>
         /// 現在の進捗をセット.
         /// </summary>
-        /// <param name="cur"></param>
+        /// <param name="cur">現在の進捗</param>
         protected void SetCur(int cur)
         {
             if (this.Cur != cur)
@@ -190,9 +191,9 @@ namespace Common.Progress
         }
 
         /// <summary>
-        /// 自身の進捗を文字列に変換.
+        /// 自身の進捗を文字列としてコンソールに出力する.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="prefix">接頭文字列</param>
         public void Report(string prefix)
         {
             if (!this.PutReport)
@@ -250,7 +251,7 @@ namespace Common.Progress
         /// <summary>
         /// 自身のIDを返す.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ID</returns>
         public string GetId()
         {
             return 0 == this.NestLv

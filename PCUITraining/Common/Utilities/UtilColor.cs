@@ -8,12 +8,12 @@ namespace Common.Utilities
     /// <summary>
     /// カラーユーティリティ
     /// </summary>
-    public class UtilColor
+    public static class UtilColor
     {
         /// <summary>
         /// Webカラーリストを取得する.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>カラーリスト</returns>
         public static List<Color> GetWebColors()
         {
             return GetConstants(typeof(Color));
@@ -22,7 +22,7 @@ namespace Common.Utilities
         /// <summary>
         /// システムカラーリストを取得する.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>カラーリスト</returns>
         public static List<Color> GetSysColors()
         {
             return GetConstants(typeof(SystemColors));

@@ -8,6 +8,9 @@ namespace Common.Progress
     /// <summary>
     /// 進捗管理付き非同期処理クラス.
     /// </summary>
+    /// <remarks>
+    /// 進捗管理コントロール[ProgressCtl]を引数とした非同期処理を実施する
+    /// </remarks>
     public class ProgressAction : IProgressParent
     {
         /// <summary>
@@ -129,7 +132,7 @@ namespace Common.Progress
             /// <summary>
             /// 自身のIDを返す.
             /// </summary>
-            /// <returns></returns>
+            /// <returns>ID</returns>
             string GetId();
         }
     }

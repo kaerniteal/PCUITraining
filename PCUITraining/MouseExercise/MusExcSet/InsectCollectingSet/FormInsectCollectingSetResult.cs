@@ -1,5 +1,5 @@
-﻿using Common.Controls;
-using Common.Extentions;
+﻿using Common.Extentions;
+using Common.WinForms;
 using System.Drawing;
 using System.Windows.Forms;
 

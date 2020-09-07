@@ -10,14 +10,46 @@ namespace Common.DataIO
     /// Jsonデータとの入出力を行う.
     /// </summary>
     /// <remarks>NuGetでText.Jsonをインポートする必要がある</remarks>
-    /// <typeparam name="T">ターゲットクラス</typeparam>
     public static class JsonIO
     {
+        /// <summary>
+        /// Json文字列にシリアライズします。
+        /// </summary>
+        /// <typeparam name="T">戻り値の型</typeparam>
+        /// <param name="target">シリアライズするターゲット</param>
+        /// <param name="Indented">出力するファイルのインデントを整えるかどうか(default:true)</param>
+        /// <returns>シリアライズしたJson文字列</returns>
+        public static string Serialize<T>(T target, bool indented = true)
+        {
+            // シリアライズオプションを設定する.
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),  // これを指定しないと日本語として読めなくなる\uXXXXみたいな値で出力される
+                WriteIndented = indented,
+            };
+
+            // ENUMを文字列で出力する.
+            // options.Converters.Add(new JsonStringEnumConverter());
+
+            return JsonSerializer.Serialize(target, options);
+        }
+
+        /// <summary>
+        /// Json文字列をデシリアライズします。
+        /// </summary>
+        /// <typeparam name="T">戻り値の型</typeparam>
+        /// <param name="json">Json文字列</param>
+        /// <returns>デシリアライズしたオブジェクト</returns>
+        public static T Deserialize<T>(string json)
+        {
+            return JsonSerializer.Deserialize<T>(json);
+        }
+
         /// <summary>
         /// Jsonドキュメントをデシリアライズします。
         /// </summary>
         /// <typeparam name="T">戻り値の型</typeparam>
-        /// <param name="self">自分自身</param>
+        /// <param name="path">読み込むファイル</param>
         /// <returns>デシリアライズしたオブジェクト</returns>
         /// <exception cref="ArgumentNullException">ファイル名が空文字の場合に発生します。</exception>
         /// <exception cref="FileNotFoundException">指定したファイルが見つからない場合に発生します。</exception>
@@ -55,23 +87,13 @@ namespace Common.DataIO
 
             // ディレクトリがない場合は作っておく。
             var dir = Path.GetDirectoryName(filePath);
-            if (null != dir)
+            if (null != dir && !Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
             }
 
-            // シリアライズオプションを設定する.
-            var options = new JsonSerializerOptions
-            {
-                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),  // これを指定しないと日本語として読めなくなる\uXXXXみたいな値で出力される
-                WriteIndented = indented,
-            };
-
-            // ENUMを文字列で出力する.
-            //            options.Converters.Add(new JsonStringEnumConverter());
-
             // シリアライズしてファイルに出力する.
-            var jsonString = JsonSerializer.Serialize(target, options);
+            var jsonString = Serialize(target, indented);
             File.WriteAllText(filePath, jsonString);
         }
     }

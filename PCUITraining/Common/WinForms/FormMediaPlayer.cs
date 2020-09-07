@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Forms;
 
-namespace Common.Controls
+namespace Common.WinForms
 {
     /// <summary>
     /// Media Player
@@ -11,6 +11,13 @@ namespace Common.Controls
         /// <summary>
         /// コンストラクタ.
         /// </summary>
+        /// <remarks>
+        /// Windows Media Player 導入手順
+        ///  1.ツールボックス上で右クリックメニューを出す
+        ///  2.[アイテムの選択]を実行
+        ///  3.COMコンポーネントタブを選択
+        ///  4.Windows Media Playerにチェックを入れる
+        /// </remarks>
         public FormMediaPlayer()
         {
             InitializeComponent();

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Value
+namespace Common.Values
 {
     /// <summary>
     /// 戻り値
