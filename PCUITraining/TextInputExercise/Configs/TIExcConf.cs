@@ -13,7 +13,7 @@ namespace TextInputExercise.Configs
         /// <returns>設定ファイルのパス</returns>
         public override string GetConfFilePath()
         {
-            return @".\TIExcConf.conf";
+            return @".\Conf\TIExcConf.conf";
         }
 
         /// <summary>

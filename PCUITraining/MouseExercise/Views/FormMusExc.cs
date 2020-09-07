@@ -4,6 +4,7 @@ using MouseExercise.Executors;
 using MouseExercise.Interfaces;
 using MouseExercise.MusExcSet;
 using PCUITCommon;
+using PCUITCommon.Datas;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -174,6 +175,11 @@ namespace MouseExercise.Views
             this.BackColor = Color.FromArgb(qDef.BgColorR, qDef.BgColorG, qDef.BgColorB);
             if (BG_TYPE.IMAGE == qDef.BgType)
             {
+                // 背景が未ロードであれば、Webからロードする.
+                var fl = new FileLoader();
+                fl.Load(qDef.BgImageFilePath);
+
+                // 背景をローカルからロード.
                 this.BackgroundImage = new Bitmap(qDef.BgImageFilePath);
             }
             else

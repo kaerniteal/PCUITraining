@@ -3,30 +3,31 @@ using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
+using PCUITCommon.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
+namespace TextInputExercise.TextSet.AnimeTitleSet.Boruto
 {
     /// <summary>
-    /// 鬼滅の刃－アニメのサブタイトルリスト
+    /// ボルト－アニメのサブタイトルリスト
     /// </summary>
-    public static class AnimeTitleListKimetsu
+    public static class AnimeTitleListBoruto
     {
         /// <summary>
         /// タイトルリスト.
         /// </summary>
-        private static List<AnimeTitleSetTextKimetsu> TitleList = null;
+        private static List<AnimeTitleSetTextBoruto> TitleList = null;
 
 
         /// <summary>
         /// タイトルリストを取得する.
         /// </summary>
         /// <returns></returns>
-        public static List<AnimeTitleSetTextKimetsu> GetKimetsuTitleList()
+        public static List<AnimeTitleSetTextBoruto> GetBorutoTitleList()
         {
             // ロード済みであればそれを返す.
             if (null != TitleList)
@@ -43,14 +44,14 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
             {
                 // Webからロード.
                 var wc = PCUIT.CreateWebClient();
-                var fromWiki = new AnimeTitleListKimetsuFromWeb(wc);
+                var fromWiki = new AnimeTitleListBorutoFromWeb(wc);
                 TitleList = fromWiki.GetTitleList();
 
                 // Webから取得できた場合.
                 if (0 < TitleList.Count)
                 {
                     // ファイルに保存しておく.
-                    var toFile = new AnimeTitleListKimetsuFromFile
+                    var toFile = new AnimeTitleListBorutoFromFile
                     {
                         TitleFileList = TitleList,
                     };
@@ -62,7 +63,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
             // 最後にローカルに保存したファイルからロード.
             if (null == TitleList || TitleList.Count <= 0)
             {
-                TitleList = AnimeTitleListKimetsuFromFile.Load();
+                TitleList = AnimeTitleListBorutoFromFile.Load();
             }
 
             return TitleList;
@@ -74,17 +75,22 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
         /// Webからアニメのサブタイトル一覧をスクレイピングする.
         /// </summary>
 
-        public class AnimeTitleListKimetsuFromWeb : HtmlAnalizerBase
+        public class AnimeTitleListBorutoFromWeb : HtmlAnalizerBase
         {
             /// <summary>
             /// 取得元URL
             /// </summary>
-            private static readonly string SorceURL = @"https://manga-tei.com/kimetsu-no-yaiba-title/";
+            private static readonly string SorceURL = @"https://cal.syoboi.jp/tid/4546/subtitle";
+
+            /// <summary>
+            /// 目印の為の置き換え文字列.
+            /// </summary>
+            private static readonly string MarkStr = @"<boruto data>";
 
             /// <summary>
             /// リストを格納する.
             /// </summary>
-            private List<AnimeTitleSetTextKimetsu> TitleWebList { get; set; }
+            private List<AnimeTitleSetTextBoruto> TitleWebList { get; set; }
 
             /// <summary>
             /// タイトル行正規表現パターン.
@@ -97,20 +103,25 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
             /// </summary>
             /// <param name="wc">WebClient</param>
 
-            public AnimeTitleListKimetsuFromWeb(WebClient wc) : base(wc)
+            public AnimeTitleListBorutoFromWeb(WebClient wc) : base(wc)
             {
-                this.TitleWebList = new List<AnimeTitleSetTextKimetsu>();
+                this.TitleWebList = new List<AnimeTitleSetTextBoruto>();
 
-                this.TitleLinRegex = new Regex("^<li>.[0-9]{1,3}.*</li>", RegexOptions.Compiled);
+                this.TitleLinRegex = new Regex("^" + MarkStr, RegexOptions.Compiled);
             }
 
             /// <summary>
             /// リストを取得する.
             /// </summary>
             /// <returns>リスト</returns>
-            public List<AnimeTitleSetTextKimetsu> GetTitleList()
+            public List<AnimeTitleSetTextBoruto> GetTitleList()
             {
-                this.Url(SorceURL);
+                var res = this.Url(SorceURL);
+                if (res.IsNG)
+                {
+                    FormMessageBox.Show($@"[BORUTO]のタイトルリストの取得に失敗しました。\n{res.Message}");
+                }
+
                 return this.TitleWebList;
             }
 
@@ -122,8 +133,9 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
             protected override string BeforeAnalize(string html)
             {
                 return html
-                    .Right("<h2>鬼滅の刃のサブタイトル一覧</h2>")
-                    .Left("<h2>まとめ</h2>");
+                    .Right("<!-- サブタイトル一覧 -->")
+                    .Left("<!-- /サブタイトル一覧 -->")
+                    .Replace("<tr><td align=\"right\">", "\n" + MarkStr);
             }
 
             /// <summary>
@@ -136,11 +148,14 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
                 // タイトル行に一致する行の場合.
                 if (this.TitleLinRegex.IsMatch(line))
                 {
-                    var episode = line.Right("<li>").Left("話").Replace("第", "").Trim();
-                    var title = line.Right("話").Left("</li>").Trim();
+                    var episode = line.Right(MarkStr).Left("</td><td>");
+                    var title = line.Right("</td><td>").Left("</td></tr>");
+
+                    // フリガナのサプレス
+                    title = Regex.Replace(title, @"\(.*?\)", @"");
 
                     // 最後に確保したEpisodeと組み合わせてレコードを生成.
-                    var text = new AnimeTitleSetTextKimetsu(
+                    var text = new AnimeTitleSetTextBoruto(
                         episode.ToInt(),
                         title);
 
@@ -152,24 +167,24 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
         /// <summary>
         /// ファイルとの入出力を行う.
         /// </summary>
-        public class AnimeTitleListKimetsuFromFile
+        public class AnimeTitleListBorutoFromFile
         {
             /// <summary>
             /// リソースファイル.
             /// </summary>
-            private static readonly string FileName = @"KimetsuTitle.list";
+            private static readonly string FileName = @"BorutoTitle.list";
 
             /// <summary>
             /// タイトルリスト.
             /// </summary>
-            public List<AnimeTitleSetTextKimetsu> TitleFileList { get; set; }
+            public List<AnimeTitleSetTextBoruto> TitleFileList { get; set; }
 
             /// <summary>
             /// コンストラクタ.
             /// </summary>
-            public AnimeTitleListKimetsuFromFile()
+            public AnimeTitleListBorutoFromFile()
             {
-                this.TitleFileList = new List<AnimeTitleSetTextKimetsu>();
+                this.TitleFileList = new List<AnimeTitleSetTextBoruto>();
             }
 
             /// <summary>
@@ -186,9 +201,9 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
             /// </summary>
             /// <remarks>失敗時にはNULLを返す</remarks>
             /// <returns>正答テーブル</returns>
-            public static List<AnimeTitleSetTextKimetsu> Load()
+            public static List<AnimeTitleSetTextBoruto> Load()
             {
-                var list = new AnimeTitleListKimetsuFromFile();
+                var list = new AnimeTitleListBorutoFromFile();
 
                 var filePath = GetFilePath();
 
@@ -197,7 +212,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Kimetsu
                 {
                     try
                     {
-                        list = JsonIO.Load<AnimeTitleListKimetsuFromFile>(filePath);
+                        list = JsonIO.Load<AnimeTitleListBorutoFromFile>(filePath);
                     }
                     catch (Exception ex)
                     {

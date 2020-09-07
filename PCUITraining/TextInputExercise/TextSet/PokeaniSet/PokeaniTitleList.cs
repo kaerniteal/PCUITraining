@@ -3,6 +3,7 @@ using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
+using PCUITCommon.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -78,7 +79,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
             /// <summary>
             /// WikiのUrl
             /// </summary>
-            private static readonly string WikiUrl = @"https://wiki.xn--rckteqa2e.com/wiki/アニメのサブタイトル一覧";
+            private static readonly string SorceURL = @"https://wiki.xn--rckteqa2e.com/wiki/アニメのサブタイトル一覧";
 
             /// <summary>
             /// リストを格納する.
@@ -158,7 +159,12 @@ namespace TextInputExercise.TextSet.PokeaniSet
             /// <returns>リスト</returns>
             public List<PokeaniSetText> GetPocketMonsterList()
             {
-                this.Url(WikiUrl);
+                var res = this.Url(SorceURL);
+                if (res.IsNG)
+                {
+                    FormMessageBox.Show($@"[ポケットモンスター]のリストの取得に失敗しました。\n{res.Message}");
+                }
+
                 return this.TitleWikiList;
             }
 

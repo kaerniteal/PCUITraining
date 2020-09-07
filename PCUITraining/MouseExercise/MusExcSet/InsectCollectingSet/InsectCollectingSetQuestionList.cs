@@ -34,7 +34,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 3,
                 MaxNum = 3,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\01_01_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\01_01_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -64,7 +64,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 3,
                 MaxNum = 3,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\01_02_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\01_02_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -94,7 +94,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 3,
                 MaxNum = 3,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\01_03_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\01_03_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -156,7 +156,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 3,
                 MaxNum = 10,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\02_02_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\02_02_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -187,7 +187,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 3,
                 MaxNum = 10,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\02_03_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\02_03_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -218,7 +218,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 5,
                 MaxNum = 10,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\03_01_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\03_01_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -276,7 +276,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 5,
                 MaxNum = 10,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\03_02_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\03_02_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -325,7 +325,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 3,
                 MaxNum = 10,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\03_03_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\03_03_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -365,7 +365,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 5,
                 MaxNum = 5,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\04_01_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\04_01_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -399,7 +399,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 5,
                 MaxNum = 10,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\04_02_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\04_02_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -430,7 +430,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 5,
                 MaxNum = 10,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\05_01_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\05_01_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -476,7 +476,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 5,
                 MaxNum = 10,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\05_02_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\05_02_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -509,7 +509,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 5,
                 MaxNum = 10,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\05_03_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\05_03_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit
@@ -542,7 +542,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
                 UnitNum = 5,
                 MaxNum = 10,
                 BgType = BG_TYPE.IMAGE,
-                BgImageFilePath = @".\MusExcResorce\05_04_bg.jpg",
+                BgImageFilePath = @"MusExcResorce\05_04_bg.jpg",
                 UnitList = new List<MusExcQuestionDefUnit>
                     {
                         new MusExcQuestionDefUnit

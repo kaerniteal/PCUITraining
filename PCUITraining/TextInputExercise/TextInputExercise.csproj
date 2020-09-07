@@ -66,11 +66,11 @@
     <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetGameInstance.cs" />
     <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetText.cs" />
     <Compile Include="TextSet\AnimeTitleSet\AnimeTitleSetTextResult.cs" />
-    <Compile Include="TextSet\AnimeTitleSet\CellsAtWork\AnimeTitleListPokemonCellsAtWork.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\CellsAtWork\AnimeTitleListCellsAtWork.cs" />
     <Compile Include="TextSet\AnimeTitleSet\CellsAtWork\AnimeTitleSetTextCellsAtWork.cs" />
-    <Compile Include="TextSet\AnimeTitleSet\Kimetsu\AnimeTitleListPokemonKimetsu.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\Kimetsu\AnimeTitleListKimetsu.cs" />
     <Compile Include="TextSet\AnimeTitleSet\Kimetsu\AnimeTitleSetTextKimetsu.cs" />
-    <Compile Include="TextSet\AnimeTitleSet\Boruto\AnimeTitleListPokemonBoruto.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\Boruto\AnimeTitleListBoruto.cs" />
     <Compile Include="TextSet\AnimeTitleSet\Boruto\AnimeTitleSetTextBoruto.cs" />
     <Compile Include="TextSet\AnimeTitleSet\CtrlAnimeTitleSetResultSetRecord.cs">
       <SubType>UserControl</SubType>
@@ -102,7 +102,7 @@
     <Compile Include="TextSet\AnimeTitleSet\FormAnimeTitleSetConf.Designer.cs">
       <DependentUpon>FormAnimeTitleSetConf.cs</DependentUpon>
     </Compile>
-    <Compile Include="TextSet\AnimeTitleSet\Naruto\AnimeTitleListPokemonNaruto.cs" />
+    <Compile Include="TextSet\AnimeTitleSet\Naruto\AnimeTitleListNaruto.cs" />
     <Compile Include="TextSet\AnimeTitleSet\Naruto\AnimeTitleSetTextNaruto.cs" />
     <Compile Include="TextSet\AnimeTitleSet\Pokemon\AnimeTitleListPokemon.cs" />
     <Compile Include="TextSet\AnimeTitleSet\Pokemon\AnimeTitleSetTextPokemon.cs" />

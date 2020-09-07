@@ -3,30 +3,31 @@ using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
+using PCUITCommon.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
+namespace TextInputExercise.TextSet.AnimeTitleSet.CellsAtWork
 {
     /// <summary>
-    /// ナルト－アニメのサブタイトルリスト
+    /// 働く細胞－アニメのサブタイトルリスト
     /// </summary>
-    public static class AnimeTitleListNaruto
+    public static class AnimeTitleListCellsAtWork
     {
         /// <summary>
         /// タイトルリスト.
         /// </summary>
-        private static List<AnimeTitleSetTextNaruto> TitleList = null;
+        private static List<AnimeTitleSetTextCellsAtWork> TitleList = null;
 
 
         /// <summary>
         /// タイトルリストを取得する.
         /// </summary>
         /// <returns></returns>
-        public static List<AnimeTitleSetTextNaruto> GetNarutoTitleList()
+        public static List<AnimeTitleSetTextCellsAtWork> GetCellsAtWorkTitleList()
         {
             // ロード済みであればそれを返す.
             if (null != TitleList)
@@ -43,14 +44,14 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
             {
                 // Webからロード.
                 var wc = PCUIT.CreateWebClient();
-                var fromWiki = new AnimeTitleListNarutoFromWeb(wc);
+                var fromWiki = new AnimeTitleListCellsAtWorkFromWeb(wc);
                 TitleList = fromWiki.GetTitleList();
 
                 // Webから取得できた場合.
                 if (0 < TitleList.Count)
                 {
                     // ファイルに保存しておく.
-                    var toFile = new AnimeTitleListNarutoFromFile
+                    var toFile = new AnimeTitleListCellsAtWorkFromFile
                     {
                         TitleFileList = TitleList,
                     };
@@ -62,7 +63,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
             // 最後にローカルに保存したファイルからロード.
             if (null == TitleList || TitleList.Count <= 0)
             {
-                TitleList = AnimeTitleListNarutoFromFile.Load();
+                TitleList = AnimeTitleListCellsAtWorkFromFile.Load();
             }
 
             return TitleList;
@@ -74,32 +75,27 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
         /// Webからアニメのサブタイトル一覧をスクレイピングする.
         /// </summary>
 
-        public class AnimeTitleListNarutoFromWeb : HtmlAnalizerBase
+        public class AnimeTitleListCellsAtWorkFromWeb : HtmlAnalizerBase
         {
             /// <summary>
             /// 取得元URL
             /// </summary>
-            private static readonly string SorceURL = @"https://ja.wikipedia.org/wiki/NARUTO_-ナルト-_(アニメ)";
+            private static readonly string SorceURL = @"https://cal.syoboi.jp/tid/4961/subtitle";
+
+            /// <summary>
+            /// 目印の為の置き換え文字列.
+            /// </summary>
+            private static readonly string MarkStr = @"<caw data>";
 
             /// <summary>
             /// リストを格納する.
             /// </summary>
-            private List<AnimeTitleSetTextNaruto> TitleWebList { get; set; }
-
-            /// <summary>
-            /// 「第○話」行正規表現パターン.
-            /// </summary>
-            private Regex EpisodeLinRegex { get; set; }
+            private List<AnimeTitleSetTextCellsAtWork> TitleWebList { get; set; }
 
             /// <summary>
             /// タイトル行正規表現パターン.
             /// </summary>
             private Regex TitleLinRegex { get; set; }
-
-            /// <summary>
-            /// フックしている話数.
-            /// </summary>
-            private string HookEpisode { get; set; }
 
 
             /// <summary>
@@ -107,24 +103,39 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
             /// </summary>
             /// <param name="wc">WebClient</param>
 
-            public AnimeTitleListNarutoFromWeb(WebClient wc) : base(wc)
+            public AnimeTitleListCellsAtWorkFromWeb(WebClient wc) : base(wc)
             {
-                this.TitleWebList = new List<AnimeTitleSetTextNaruto>();
+                this.TitleWebList = new List<AnimeTitleSetTextCellsAtWork>();
 
-                this.EpisodeLinRegex = new Regex("^<td>[0-9]{1,3}</td>", RegexOptions.Compiled);
-                this.TitleLinRegex = new Regex("^<td colspan=\"2\">.*</td>", RegexOptions.Compiled);
-
-                this.HookEpisode = string.Empty;
+                this.TitleLinRegex = new Regex("^" + MarkStr, RegexOptions.Compiled);
             }
 
             /// <summary>
             /// リストを取得する.
             /// </summary>
             /// <returns>リスト</returns>
-            public List<AnimeTitleSetTextNaruto> GetTitleList()
+            public List<AnimeTitleSetTextCellsAtWork> GetTitleList()
             {
-                this.Url(SorceURL);
+                var res = this.Url(SorceURL);
+                if (res.IsNG)
+                {
+                    FormMessageBox.Show($@"[働く細胞]のタイトルリストの取得に失敗しました。\n{res.Message}");
+                }
+
                 return this.TitleWebList;
+            }
+
+            /// <summary>
+            /// 解析前処理.
+            /// </summary>
+            /// <param name="html">取得したHTML</param>
+            /// <returns>解析に与えるHTML</returns>
+            protected override string BeforeAnalize(string html)
+            {
+                return html
+                    .Right("<!-- サブタイトル一覧 -->")
+                    .Left("<!-- /サブタイトル一覧 -->")
+                    .Replace("<tr><td align=\"right\">", "\n" + MarkStr);
             }
 
             /// <summary>
@@ -134,45 +145,18 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
 
             protected override void LineAnalize(string line)
             {
-                // 第○話に一致する行かどうか.
-                if (this.EpisodeLinRegex.IsMatch(line))
-                {
-                    // 一致する場合エピソードを格納しておく.
-                    this.HookEpisode = line.Right("<td>").Left("</td>");
-                    return;
-                }
-
-                // 話数が格納されている状態で、
                 // タイトル行に一致する行の場合.
-                if (!this.HookEpisode.IsEmpty() &&
-                    this.TitleLinRegex.IsMatch(line))
+                if (this.TitleLinRegex.IsMatch(line))
                 {
-                    var title = line.Right("<td colspan=\"2\">").Left("</td>");
-
-                    // 例外対応1
-                    title = Regex.Replace(title, @"<style.*?</style>", @"");
-
-                    // 例外対応2
-                    title = Regex.Replace(title, @"\[.*?\]", @"");
-
-                    // タグのサプレス.
-                    title = Regex.Replace(title, @"<.*?>", @"");
-
-                    // フリガナのサプレス
-                    title = Regex.Replace(title, @"（.*?）", @"");
-
-                    // 例外の例外対応
-                    title = title.Replace("♥", "-");
+                    var episode = line.Right(MarkStr).Left("</td><td>");
+                    var title = line.Right("</td><td>").Left("</td></tr>");
 
                     // 最後に確保したEpisodeと組み合わせてレコードを生成.
-                    var text = new AnimeTitleSetTextNaruto(
-                        this.HookEpisode.ToInt(),
+                    var text = new AnimeTitleSetTextCellsAtWork(
+                        episode.ToInt(),
                         title);
 
                     this.TitleWebList.Add(text);
-
-                    // Episodeは他の要素とペアリングされないように潰しておく.
-                    this.HookEpisode = string.Empty;
                 }
             }
         }
@@ -180,24 +164,24 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
         /// <summary>
         /// ファイルとの入出力を行う.
         /// </summary>
-        public class AnimeTitleListNarutoFromFile
+        public class AnimeTitleListCellsAtWorkFromFile
         {
             /// <summary>
             /// リソースファイル.
             /// </summary>
-            private static readonly string FileName = @"NarutoTitle.list";
+            private static readonly string FileName = @"CellsAtWorkTitle.list";
 
             /// <summary>
             /// タイトルリスト.
             /// </summary>
-            public List<AnimeTitleSetTextNaruto> TitleFileList { get; set; }
+            public List<AnimeTitleSetTextCellsAtWork> TitleFileList { get; set; }
 
             /// <summary>
             /// コンストラクタ.
             /// </summary>
-            public AnimeTitleListNarutoFromFile()
+            public AnimeTitleListCellsAtWorkFromFile()
             {
-                this.TitleFileList = new List<AnimeTitleSetTextNaruto>();
+                this.TitleFileList = new List<AnimeTitleSetTextCellsAtWork>();
             }
 
             /// <summary>
@@ -214,9 +198,9 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
             /// </summary>
             /// <remarks>失敗時にはNULLを返す</remarks>
             /// <returns>正答テーブル</returns>
-            public static List<AnimeTitleSetTextNaruto> Load()
+            public static List<AnimeTitleSetTextCellsAtWork> Load()
             {
-                var list = new AnimeTitleListNarutoFromFile();
+                var list = new AnimeTitleListCellsAtWorkFromFile();
 
                 var filePath = GetFilePath();
 
@@ -225,7 +209,7 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Naruto
                 {
                     try
                     {
-                        list = JsonIO.Load<AnimeTitleListNarutoFromFile>(filePath);
+                        list = JsonIO.Load<AnimeTitleListCellsAtWorkFromFile>(filePath);
                     }
                     catch (Exception ex)
                     {

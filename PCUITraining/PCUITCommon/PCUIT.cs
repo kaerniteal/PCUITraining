@@ -68,7 +68,7 @@ namespace PCUITCommon
                 return instance.FontMap[size];
             }
 
-            var font = new Font("HGP創英角ﾎﾟｯﾌﾟ体", size);
+            var font = new Font(Def.FONT, size);
             instance.FontMap.Add(size, font);
 
             return font;

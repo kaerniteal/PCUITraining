@@ -1,4 +1,6 @@
 ﻿using Common.Progress;
+using Common.Updater;
+using Common.Updater.Ver1_0_0;
 using MouseExercise;
 using PCUITCommon;
 using PCUITraining.Forms;
@@ -14,17 +16,6 @@ namespace PCUITraining
     /// </summary>
     public static class PCUITraining
     {
-        /// <summary>
-        /// APP名
-        /// </summary>
-        public static readonly string APP_VER = @"1.1.0";
-
-        /// <summary>
-        /// APP名
-        /// </summary>
-        public static readonly string APP_NAME = $"PCUITraining";
-
-
         /// <summary>
         /// 開始.
         /// </summary>
@@ -64,7 +55,39 @@ namespace PCUITraining
         /// <returns>成否</returns>
         public static bool SetUp(ProgressCtl ctl)
         {
-            // 最大をセット.
+            // 更新管理を生成.
+            var info = new VerCheckInfoVer1_0_0
+            {
+                SrcVer = Def.Ver,
+                Url = Def.UPDATE_URL,
+                ModuleName = Def.APP_NAME,
+                Proxy = new ProxyInfo(),
+            };
+
+            // アップデータを生成.
+            var updater = new UpdaterControler(info, Def.UPDATER_NAME);
+
+            // バージョンチェック.
+            if (updater.CheckVersion())
+            {
+                if (DialogResult.Yes == MessageBox.Show("新しいバージョンが存在します。\n更新しますか？", "更新確認", MessageBoxButtons.YesNo))
+                {
+                    // 更新ツールの更新.
+                    if (updater.UpdaterUpdate(Def.UPDATER_URL).IsNG)
+                    {
+                        MessageBox.Show("更新ツールの更新に失敗しました。");
+                    }
+
+                    // アプリケーションの更新.
+                    if (updater.AppUpdate())
+                    {
+                        // 更新の為に終了.
+                        Stop();
+                    }
+                }
+            }
+
+            // 進捗の最大をセット.
             ctl.Begin(3);
 
             // タイピングゲーム.

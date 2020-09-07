@@ -13,7 +13,7 @@ namespace TypingExercise.Configs
         /// <returns>設定ファイルのパス</returns>
         public override string GetConfFilePath()
         {
-            return @".\TypExc.conf";
+            return @".\Conf\TypExc.conf";
         }
 
         /// <summary>

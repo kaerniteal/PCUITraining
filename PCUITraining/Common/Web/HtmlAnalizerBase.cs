@@ -1,8 +1,8 @@
 ﻿using Common.Extentions;
+using Common.Values;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Windows.Forms;
 
 namespace Common.Web
 {
@@ -30,7 +30,8 @@ namespace Common.Web
         /// Htmlを取得してテキストを解析する.
         /// </summary>
         /// <param name="url">アクセスするURL</param>
-        protected void Url(string url)
+        /// <returns>成否</returns>
+        protected Result Url(string url)
         {
             try
             {
@@ -48,8 +49,10 @@ namespace Common.Web
             }
             catch (WebException ex)
             {
-                MessageBox.Show(ex.Message);
+                Result.NG(ex);
             }
+
+            return Result.OK();
         }
 
         /// <summary>

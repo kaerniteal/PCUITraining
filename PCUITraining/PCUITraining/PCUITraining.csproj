@@ -115,7 +115,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="WebSite\PCUITraining\Archives\PCUITraining.1.1.0.zip" />
+    <None Include="WebSite\PCUITraining\Archives\PCUITraining.1.2.0.zip" />
+    <None Include="WebSite\PCUITraining\Latest\PCUITraining.1.2.0.zip" />
+    <None Include="WebSite\PCUITraining\Latest\PCUITraining.version" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -129,6 +131,20 @@
     <Content Include="WebSite\PCUITraining\Img\PCUITMenu.png" />
     <Content Include="WebSite\PCUITraining\Img\PCUITPokeTyp.png" />
     <Content Include="WebSite\PCUITraining\index.html" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\01_01_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\01_02_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\01_03_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\02_02_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\02_03_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\03_01_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\03_02_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\03_03_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\04_01_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\04_02_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\05_01_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\05_02_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\05_03_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\MusExcResorce\05_04_bg.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -152,8 +168,6 @@
       <Name>TypingExercise</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WebSite\PCUITraining\Latest\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

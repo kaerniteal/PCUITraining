@@ -3,6 +3,7 @@ using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
+using PCUITCommon.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -79,7 +80,7 @@ namespace TypingExercise.WordSet.PokemonSet
             /// <summary>
             /// WikiのUrl
             /// </summary>
-            private static readonly string WikiUrl = @"https://ja.wikipedia.org/wiki/全国ポケモン図鑑順のポケモン一覧";
+            private static readonly string SorceURL = @"https://ja.wikipedia.org/wiki/全国ポケモン図鑑順のポケモン一覧";
 
             /// <summary>
             /// リストを格納する.
@@ -122,7 +123,11 @@ namespace TypingExercise.WordSet.PokemonSet
             /// <returns>リスト</returns>
             public List<PokemonSetWord> GetPocketMonsterList()
             {
-                this.Url(WikiUrl);
+                var res = this.Url(SorceURL);
+                if (res.IsNG)
+                {
+                    FormMessageBox.Show($@"[ポケットモンスター]のリストの取得に失敗しました。\n{res.Message}");
+                }
 
                 return this.PockMonWikiList;
             }

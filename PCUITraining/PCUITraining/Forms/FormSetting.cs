@@ -27,7 +27,7 @@ namespace PCUITraining.Forms
         {
             InitializeComponent();
 
-            this.lblVersion.Text = $"{PCUITraining.APP_NAME} Ver{PCUITraining.APP_VER}";
+            this.lblVersion.Text = $"{Def.APP_NAME} Ver{Def.Ver}";
 
             // ユーザーアイコンをセット.
             this.ReloadUsers();

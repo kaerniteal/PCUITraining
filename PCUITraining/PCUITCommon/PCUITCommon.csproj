@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configs\PCUITConf.cs" />
+    <Compile Include="Datas\FileLoader.cs" />
     <Compile Include="Datas\ImageStore.cs" />
     <Compile Include="Datas\ImageStoreDownloadFromGoogle.cs" />
+    <Compile Include="Def.cs" />
     <Compile Include="PCUIT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\UserData.cs" />

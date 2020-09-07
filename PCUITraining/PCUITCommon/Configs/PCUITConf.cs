@@ -13,7 +13,7 @@ namespace PCUITCommon.Configs
         /// <returns>設定ファイルのパス</returns>
         public override string GetConfFilePath()
         {
-            return @".\PCUIT.conf";
+            return @".\Conf\PCUIT.conf";
         }
 
         /// <summary>

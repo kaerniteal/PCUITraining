@@ -3,6 +3,7 @@ using Common.Extentions;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
+using PCUITCommon.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -158,7 +159,12 @@ namespace TextInputExercise.TextSet.AnimeTitleSet.Pokemon
             /// <returns>リスト</returns>
             public List<AnimeTitleSetTextPokemon> GetTitleList()
             {
-                this.Url(SorceURL);
+                var res = this.Url(SorceURL);
+                if (res.IsNG)
+                {
+                    FormMessageBox.Show($@"[ポケットモンスター]のタイトルリストの取得に失敗しました。\n{res.Message}");
+                }
+
                 return this.TitleWebList;
             }
 

@@ -15,6 +15,11 @@ namespace Common.Web
         /// <returns>WebClient</returns>
         public static WebClient Create(bool useSystemProxy, string user, string password)
         {
+            // パスカル事務所でいくつかのアクセスの際にSSL証明のエラーが出たことの対応.
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            // Webクライアントを作成.
             var wc = new WebClient();
 
             // システムProxyの設定

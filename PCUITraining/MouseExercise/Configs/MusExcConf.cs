@@ -13,7 +13,7 @@ namespace MouseExercise.Configs
         /// <returns>設定ファイルのパス</returns>
         public override string GetConfFilePath()
         {
-            return @".\MusExc.conf";
+            return @".\Conf\MusExc.conf";
         }
 
         /// <summary>
