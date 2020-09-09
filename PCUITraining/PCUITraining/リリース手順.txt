@@ -1,0 +1,41 @@
+
+リリース手順
+
+
+1.Releaseフォルダを消してリビルドする。
+
+2.Readme.txtを最新にする.
+	＞PCUITraining/WebSite/PCUITraining/Readme.txt
+		＞【ReleaseVer】 1.2.1
+		＞【更  新  日】 2020/09/10
+		＞● 履歴
+
+3.Releaseフォルダを複製し、PCUITrainingにリネームする.
+	＞次の手順で仮実行するために、元のReleaseフォルダは残しておく.
+	＞2で更新したReadmeをPCUITrainingフォルダに複製する.
+
+4.Releaseフォルダ内の実行ファイルを一度実行して、.versionファイルを作成する.
+	＞中身が最新のバージョンになっていることを確認すること。
+
+5.3で作成したPCUITrainingフォルダをzip圧縮し、
+	＞PCUITraining.X.X.X.zip の名前にリネームする.
+
+6.5で作成したzipと、4で作成したversionファイルをLatestフォルダに配置する。
+
+7.元々Latestフォルダにあったアーカイブは、Archivesフォルダへ移動させる
+	＞修正結果はVisual Studioのソリューションエクスプローラーでプロジェクトへ反映させる
+
+8.index.htmlを修正する
+	＞PCUITraining/WebSite/PCUITraining/index.html
+		＞公開日
+		＞リンク先 Latestを新しいファイルに
+		＞リンク先 旧バージョンに以前のLatestを追加
+	＞ローカルでリンクが正しくされていることを確認すること
+
+9.サイトにアップロードする.
+	＞PCUITraining/WebSite/以下をすべて
+
+
+
+
+

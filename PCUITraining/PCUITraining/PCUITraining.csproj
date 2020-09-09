@@ -119,7 +119,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="WebSite\PCUITraining\Archives\PCUITraining.1.2.0.zip" />
-    <None Include="WebSite\PCUITraining\Latest\PCUITraining.1.2.0.zip" />
+    <None Include="WebSite\PCUITraining\Latest\PCUITraining.1.2.1.zip" />
     <None Include="WebSite\PCUITraining\Latest\PCUITraining.version" />
   </ItemGroup>
   <ItemGroup>
@@ -148,9 +148,8 @@
     <Content Include="WebSite\PCUITraining\MusExcResorce\05_02_bg.jpg" />
     <Content Include="WebSite\PCUITraining\MusExcResorce\05_03_bg.jpg" />
     <Content Include="WebSite\PCUITraining\MusExcResorce\05_04_bg.jpg" />
-    <Content Include="WebSite\PCUITraining\Readme.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="WebSite\PCUITraining\Readme.txt" />
+    <Content Include="リリース手順.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
