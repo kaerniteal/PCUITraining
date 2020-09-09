@@ -60,6 +60,12 @@ namespace PCUITraining.Forms
             // 非同期処理終了後に実行
             // 画面を有効化.
             this.tableMain.Enabled = true;
+
+            // ユーザーが登録されていない場合のアナウンス.
+            if (this.UserIconGrp.GetUserCount() <= 0)
+            {
+                FormMessageBox.Show("ユーザーが登録されていません。\nまずは画面右上のギアのアイコンをクリックし\nユーザーを作成してください。");
+            }
         }
 
         /// <summary>

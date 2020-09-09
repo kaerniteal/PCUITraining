@@ -40,9 +40,10 @@ namespace Common.Conf
             var path = config.GetConfFilePath();
 
             // 基底クラスのロード処理.
-            if (Load(path, out var loadConf).IsOK)
+            var loadResult = Load(path);
+            if (loadResult.IsOK)
             {
-                config = loadConf;
+                config = loadResult.Value;
             }
 
             // 下記の２ケースを想定して毎回出力する
@@ -54,7 +55,7 @@ namespace Common.Conf
         }
 
         /// <summary>
-        /// IConfBaseの実装：保存処理.
+        /// デフォルト保存処理：あらかじめ決められたパスに保存する.
         /// </summary>
         /// <remarks>指定したパスのフォルダが存在しない場合は生成する</remarks>
         /// <returns>成否</returns>

@@ -2,6 +2,7 @@
 using PCUITCommon.Users;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using TextInputExercise.Interfaces;
 
 namespace TextInputExercise.TextSet
@@ -38,8 +39,8 @@ namespace TextInputExercise.TextSet
         /// <summary>
         /// 新たな単語リストを作成して返す.
         /// </summary>
-        /// <param name="length"></param>
-        /// <returns></returns>
+        /// <param name="length">取得したいリスト長、0を指定すると全件</param>
+        /// <returns>新たなリスト</returns>
         public virtual List<TextBase> CreateNewWordList(int length = 0)
         {
             var newlist = WordList

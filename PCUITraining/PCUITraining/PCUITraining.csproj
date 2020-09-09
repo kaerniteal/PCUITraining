@@ -148,6 +148,9 @@
     <Content Include="WebSite\PCUITraining\MusExcResorce\05_02_bg.jpg" />
     <Content Include="WebSite\PCUITraining\MusExcResorce\05_03_bg.jpg" />
     <Content Include="WebSite\PCUITraining\MusExcResorce\05_04_bg.jpg" />
+    <Content Include="WebSite\PCUITraining\Readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

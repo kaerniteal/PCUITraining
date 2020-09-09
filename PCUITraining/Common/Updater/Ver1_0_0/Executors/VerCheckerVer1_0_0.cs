@@ -45,7 +45,7 @@ namespace Common.Updater.Ver1_0_0.Executors
         /// 更新が必要かどうかをチェックする.
         /// </summary>
         /// <param name="archiveUrl">更新が必要な場合、ダウンロードすべきアーカイブファイルへのURL</param>
-        /// <returns></returns>
+        /// <returns>更新要否</returns>
         public bool NeedUpdate(out string archiveUrl)
         {
             // 途中抜けに備えて初期化.
@@ -60,12 +60,14 @@ namespace Common.Updater.Ver1_0_0.Executors
                 Log.Info($@"バージョン確認：{dstUrl}");
 
                 // デコードする.
-                var result = Ver.Deserialize(json, out var dstVer);
+                var result = Ver.Deserialize(json);
                 if (result.IsNG)
                 {
                     Log.Error($"Deserializeに失敗しました。\n{result.Message}");
                     return false;
                 }
+
+                var dstVer = result.Value;
 
                 // 更新要否確認.
                 if (!this.Info.SrcVer.NeedUpdate(dstVer))

@@ -82,9 +82,10 @@
             this.tBpxText.ForeColor = System.Drawing.Color.White;
             this.tBpxText.HideSelection = false;
             this.tBpxText.Location = new System.Drawing.Point(3, 3);
+            this.tBpxText.Multiline = true;
             this.tBpxText.Name = "tBpxText";
             this.tBpxText.ReadOnly = true;
-            this.tBpxText.Size = new System.Drawing.Size(794, 80);
+            this.tBpxText.Size = new System.Drawing.Size(794, 84);
             this.tBpxText.TabIndex = 0;
             this.tBpxText.TabStop = false;
             this.tBpxText.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tBpxText_MouseUp);

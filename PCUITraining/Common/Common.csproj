@@ -92,6 +92,7 @@
     <Compile Include="Updater\Ver1_0_0\UpdateInfoVer1_0_0.cs" />
     <Compile Include="Updater\Ver1_0_0\VerCheckInfoVer1_0_0.cs" />
     <Compile Include="Utilities\UtilFolder.cs" />
+    <Compile Include="Values\ResultT.cs" />
     <Compile Include="Versions\Ver.cs" />
     <Compile Include="Web\WebClientCreator.cs" />
     <Compile Include="WinForms\AnimationOpacityEffect.cs" />

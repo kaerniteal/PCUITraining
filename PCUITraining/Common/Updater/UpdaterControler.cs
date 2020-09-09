@@ -63,11 +63,11 @@ namespace Common.Updater
             var srcVer = new Ver();
 
             // 更新ツールバージョン取得.
-            var loadResult = Ver.Load($@"{this.GetUpdaterModuleName()}.version", out var loadVer);
+            var loadResult = Ver.Load($@"{this.GetUpdaterModuleName()}.version");
             if (loadResult.IsOK)
             {
                 // 取得出来たらその値を使用.
-                srcVer = loadVer;
+                srcVer = loadResult.Value;
                 Log.Info($@"更新ツールのVersion:{srcVer}");
             }
             else

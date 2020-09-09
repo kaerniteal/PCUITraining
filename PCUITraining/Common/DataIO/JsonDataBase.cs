@@ -13,13 +13,11 @@ namespace Common.DataIO
         /// <summary>
         /// ロード処理.
         /// </summary>
-        /// <remarks>失敗時にはNULLを返す</remarks>
         /// <param name="filePath">ロードするファイルパス</param>
-        /// <param name="instance">生成したインスタンス：失敗時にはnullを返す</param>
-        /// <returns>成否</returns>
-        public static Result Load(string filePath, out T instance)
+        /// <returns>成否：ロードしたインスタンス</returns>
+        public static Result<T> Load(string filePath)
         {
-            instance = new T();
+            var instance = new T();
 
             // ファイルの存在をチェックし、存在する場合のみ読み込む。
             if (File.Exists(filePath))
@@ -30,11 +28,11 @@ namespace Common.DataIO
                 }
                 catch (Exception ex)
                 {
-                    return Result.NG($@"ファイル[{filePath}]の読み込みに失敗しました", ex);
+                    return Result<T>.NG($@"ファイル[{filePath}]の読み込みに失敗しました", ex);
                 }
             }
 
-            return Result.OK();
+            return Result<T>.OK(instance);
         }
 
         /// <summary>
@@ -62,10 +60,10 @@ namespace Common.DataIO
         /// シリアライズ処理.
         /// </summary>
         /// <param name="json">シリアライズしたJson文字列</param>
-        /// <returns>成否</returns>
-        public Result Serialize(out string json)
+        /// <returns>成否：Json文字列</returns>
+        public Result<string> Serialize()
         {
-            json = string.Empty;
+            var json = string.Empty;
 
             try
             {
@@ -74,22 +72,20 @@ namespace Common.DataIO
             }
             catch (Exception ex)
             {
-                return Result.NG($@"シリアライズに失敗しました", ex);
+                return Result<string>.NG($@"シリアライズに失敗しました", ex);
             }
 
-            return Result.OK();
+            return Result<string>.OK(json);
         }
 
         /// <summary>
         /// デシリアライズ.
         /// </summary>
-        /// <remarks>失敗時にはNULLを返す</remarks>
         /// <param name="json">デシリアライズするJson文字列</param>
-        /// <param name="instance">生成したインスタンス：失敗時にはnullを返す</param>
-        /// <returns>成否</returns>
-        public static Result Deserialize(string json, out T instance)
+        /// <returns>成否：生成したインスタンス</returns>
+        public static Result<T> Deserialize(string json)
         {
-            instance = new T();
+            var instance = new T();
 
             try
             {
@@ -97,10 +93,10 @@ namespace Common.DataIO
             }
             catch (Exception ex)
             {
-                return Result.NG($@"デシリアライズに失敗しました", ex);
+                return Result<T>.NG($@"デシリアライズに失敗しました", ex);
             }
 
-            return Result.OK();
+            return Result<T>.OK(instance);
         }
     }
 }

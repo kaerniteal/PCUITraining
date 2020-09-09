@@ -38,8 +38,8 @@ namespace Common.Logger
         {
             ALL = 0,
             DEBUG = 1,
-            INFO  = 2,
-            WARN  = 3,
+            INFO = 2,
+            WARN = 3,
             ERROR = 4,
             FATAL = 5,
             NOLOG = 9,
@@ -97,13 +97,13 @@ namespace Common.Logger
             // Log4netの出力を変更.
             switch (lv)
             {
-                case LogLv.NOLOG: rootLogger.Level = Level.Off;   break;
+                case LogLv.NOLOG: rootLogger.Level = Level.Off; break;
                 case LogLv.FATAL: rootLogger.Level = Level.Fatal; break;
                 case LogLv.ERROR: rootLogger.Level = Level.Error; break;
-                case LogLv.WARN:  rootLogger.Level = Level.Warn;  break;
-                case LogLv.INFO:  rootLogger.Level = Level.Info;  break;
+                case LogLv.WARN: rootLogger.Level = Level.Warn; break;
+                case LogLv.INFO: rootLogger.Level = Level.Info; break;
                 case LogLv.DEBUG: rootLogger.Level = Level.Debug; break;
-                case LogLv.ALL:   rootLogger.Level = Level.All;   break;
+                case LogLv.ALL: rootLogger.Level = Level.All; break;
             }
         }
 
