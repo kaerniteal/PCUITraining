@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Common.Logger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using static Common.Progress.ProgressAction;
 
 namespace Common.Progress
@@ -11,6 +13,11 @@ namespace Common.Progress
     /// <remarks>ProgressActionから呼び出される非同期処理の引数</remarks>
     public class ProgressCtl : IProgressParent
     {
+        /// <summary>
+        /// ログクラス.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// デフォルトスケール.
         /// </summary>
@@ -52,7 +59,7 @@ namespace Common.Progress
         public int Ratio { get; protected set; }
 
         /// <summary>
-        /// レポートをコンソールに出力するかどうか.
+        /// レポートをLog(Info)に出力するかどうか.
         /// </summary>
         public bool PutReport { get; set; }
 
@@ -191,17 +198,15 @@ namespace Common.Progress
         }
 
         /// <summary>
-        /// 自身の進捗を文字列としてコンソールに出力する.
+        /// 自身の進捗をLog(Info)に出力するかどうか.
         /// </summary>
         /// <param name="prefix">接頭文字列</param>
         public void Report(string prefix)
         {
-            if (!this.PutReport)
+            if (this.PutReport)
             {
-                return;
+                Log.Info($"Progress({this.GetId()}):{prefix}:[{this.Cur}/{this.Max}]");
             }
-
-            Console.WriteLine($"Progress({this.GetId()}):{prefix}:[{this.Cur}/{this.Max}]");
         }
 
         /// <summary>

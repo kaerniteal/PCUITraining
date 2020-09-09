@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.9.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.9\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -79,6 +82,9 @@
     <Compile Include="Conf\IConfBase.cs" />
     <Compile Include="DataIO\JsonDataBase.cs" />
     <Compile Include="DataIO\ZipIO.cs" />
+    <Compile Include="Logger\ILogWriter.cs" />
+    <Compile Include="Logger\Log4netLogger.cs" />
+    <Compile Include="Logger\Logger.cs" />
     <Compile Include="Updater\UpdaterControler.cs" />
     <Compile Include="Updater\Ver1_0_0\Executors\UpdaterVer1_0_0.cs" />
     <Compile Include="Updater\Ver1_0_0\Executors\VerCheckerVer1_0_0.cs" />
@@ -136,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Logger\log4net.config.template" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -128,7 +128,7 @@ namespace Common.Utilities
             }
             catch (Exception ex)
             {
-                return Result.NG($@"フォルダの削除に失敗しました。\n{path}", ex);
+                return Result.NG($"フォルダの削除に失敗しました。\n{path}", ex);
             }
 
             return Result.OK();

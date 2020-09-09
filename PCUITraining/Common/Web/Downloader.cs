@@ -1,9 +1,11 @@
 ﻿using Common.Extentions;
+using Common.Logger;
 using Common.Values;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
+using System.Reflection;
 
 namespace Common.Web
 {
@@ -12,6 +14,11 @@ namespace Common.Web
     /// </summary>
     public class Downloader
     {
+        /// <summary>
+        /// ログクラス.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// Web Client
         /// </summary>
@@ -66,7 +73,7 @@ namespace Common.Web
             }
             catch (Exception ex)
             {
-                ex.ShowMessageBox("画像の取得に失敗しました");
+                Log.Error($"{url}の取得に失敗しました\n{ex}");
             }
 
             return null;
@@ -86,7 +93,7 @@ namespace Common.Web
             }
             catch (Exception ex)
             {
-                return Result.NG($@"ファイルのダウンロードに失敗しました。\n{url}", ex);
+                return Result.NG($"ファイルのダウンロードに失敗しました。\n{url}", ex);
             }
 
             return Result.OK();

@@ -1,7 +1,9 @@
-﻿using Common.Versions;
+﻿using Common.Logger;
+using Common.Versions;
 using Common.Web;
 using System;
 using System.Net;
+using System.Reflection;
 
 namespace Common.Updater.Ver1_0_0.Executors
 {
@@ -10,6 +12,11 @@ namespace Common.Updater.Ver1_0_0.Executors
     /// </summary>
     public class VerCheckerVer1_0_0
     {
+        /// <summary>
+        /// ログクラス.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// バージョンチェック情報.
         /// </summary>
@@ -50,9 +57,13 @@ namespace Common.Updater.Ver1_0_0.Executors
                 var dstUrl = $@"{this.Info.Url}{this.Info.ModuleName}.version";
                 var json = this.Wc.DownloadString(dstUrl);
 
+                Log.Info($@"バージョン確認：{dstUrl}");
+
                 // デコードする.
-                if (Ver.Deserialize(json, out var dstVer).IsNG)
+                var result = Ver.Deserialize(json, out var dstVer);
+                if (result.IsNG)
                 {
+                    Log.Error($"Deserializeに失敗しました。\n{result.Message}");
                     return false;
                 }
 
@@ -60,15 +71,19 @@ namespace Common.Updater.Ver1_0_0.Executors
                 if (!this.Info.SrcVer.NeedUpdate(dstVer))
                 {
                     // 更新不要な場合は.
+                    Log.Info($@"更新不要：SrcVer{this.Info.SrcVer} <> dstVer{dstVer}");
                     return false;
                 }
+
+                Log.Info($@"更新が必要：SrcVer{this.Info.SrcVer} <> dstVer{dstVer}");
 
                 // アーカイブURL生成.
                 archiveUrl = $@"{this.Info.Url}{this.Info.ModuleName}.{dstVer}.zip";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // 例外発生時は、更新できないと扱う.
+                Log.Error(ex.ToString());
                 return false;
             }
 

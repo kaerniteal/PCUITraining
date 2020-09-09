@@ -8,9 +8,18 @@ namespace Common.Values
     public class Result
     {
         /// <summary>
-        /// リターンコード.
+        /// 結果.
         /// </summary>
-        private int Code { get; set; }
+        public enum RESULT
+        {
+            OK,
+            NG,
+        }
+
+        /// <summary>
+        /// 結果.
+        /// </summary>
+        protected RESULT OkNg { get; set; }
 
         /// <summary>
         /// メッセージ.
@@ -25,7 +34,7 @@ namespace Common.Values
         {
             get
             {
-                return 0 == Code;
+                return RESULT.OK == this.OkNg;
             }
         }
 
@@ -36,16 +45,18 @@ namespace Common.Values
         {
             get
             {
-                return 0 != Code;
+                return RESULT.NG == this.OkNg;
             }
         }
+
 
         /// <summary>
         /// コンストラクタ.
         /// </summary>
-        private Result()
+        protected Result()
         {
-            this.Code = -1;
+            // NG値で初期化.
+            this.OkNg = RESULT.NG;
             this.Message = string.Empty;
         }
 
@@ -57,7 +68,7 @@ namespace Common.Values
         {
             return new Result
             {
-                Code = 0,
+                OkNg = RESULT.OK,
             };
         }
 
@@ -73,18 +84,6 @@ namespace Common.Values
         /// <summary>
         /// NGを生成する.
         /// </summary>
-        /// <param name="code">エラーコード</param>
-        /// <returns>NG</returns>
-        public static Result NG(int code)
-        {
-            return new Result
-            {
-                Code = code,
-            };
-        }
-        /// <summary>
-        /// NGを生成する.
-        /// </summary>
         /// <param name="message">エラーメッセージ</param>
         /// <returns>NG</returns>
         public static Result NG(string message)
@@ -95,6 +94,18 @@ namespace Common.Values
             };
         }
 
+        /// <summary>
+        /// NGを生成する.
+        /// </summary>
+        /// <param name="message">親エラー</param>
+        /// <returns>NG</returns>
+        public static Result NG(Result roots)
+        {
+            return new Result
+            {
+                Message = roots.Message,
+            };
+        }
 
         /// <summary>
         /// NGを生成する.
@@ -112,30 +123,14 @@ namespace Common.Values
         /// <summary>
         /// NGを生成する.
         /// </summary>
-        /// <param name="code">エラーコード</param>
         /// <param name="message">エラーメッセージ</param>
+        /// <param name="roots">親エラー</param>
         /// <returns>NG</returns>
-        public static Result NG(int code, string message)
+        public static Result NG(string message, Result roots)
         {
             return new Result
             {
-                Code = code,
-                Message = message,
-            };
-        }
-
-        /// <summary>
-        /// NGを生成する.
-        /// </summary>
-        /// <param name="code">エラーコード</param>
-        /// <param name="ex">例外</param>
-        /// <returns>NG</returns>
-        public static Result NG(int code, Exception ex)
-        {
-            return new Result
-            {
-                Code = code,
-                Message = ex.ToString(),
+                Message = $"{message}\n>{roots.Message}",
             };
         }
 
@@ -149,23 +144,7 @@ namespace Common.Values
         {
             return new Result
             {
-                Message = $"{message}\n{ex}",
-            };
-        }
-
-        /// <summary>
-        /// NGを生成する.
-        /// </summary>
-        /// <param name="code">エラーコード</param>
-        /// <param name="message">エラーメッセージ</param>
-        /// <param name="ex">例外</param>
-        /// <returns>NG</returns>
-        public static Result NG(int code, string message, Exception ex)
-        {
-            return new Result
-            {
-                Code = code,
-                Message = $"{message}\n{ex}",
+                Message = $"{message}\n>{ex}",
             };
         }
     }

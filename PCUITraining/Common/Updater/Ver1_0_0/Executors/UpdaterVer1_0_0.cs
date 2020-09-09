@@ -1,4 +1,5 @@
 ﻿using Common.DataIO;
+using Common.Logger;
 using Common.Progress;
 using Common.Utilities;
 using Common.Values;
@@ -6,6 +7,7 @@ using Common.Web;
 using System;
 using System.IO;
 using System.Net;
+using System.Reflection;
 
 namespace Common.Updater.Ver1_0_0.Executors
 {
@@ -14,6 +16,11 @@ namespace Common.Updater.Ver1_0_0.Executors
     /// </summary>
     public class UpdaterVer1_0_0
     {
+        /// <summary>
+        /// ログクラス.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// 一時フォルダ名.
         /// </summary>
@@ -59,6 +66,8 @@ namespace Common.Updater.Ver1_0_0.Executors
                 UtilFolder.DeleteFolder(workFolderPath);
                 Directory.CreateDirectory(workFolderPath);
 
+                Log.Info($@"更新開始 URL:{this.Info.Url}");
+
                 try
                 {
                     ctl?.Increment();
@@ -67,6 +76,8 @@ namespace Common.Updater.Ver1_0_0.Executors
                     var fileName = Path.GetFileName(this.Info.Url);
                     var archiveFilePath = $@"{workFolderPath}\{fileName}";
 
+                    Log.Info($@"保存先:{archiveFilePath}");
+
                     // ファイルダウンロード.
                     var dLoader = new Downloader(this.Wc);
                     dLoader.FileDownLoad(this.Info.Url, archiveFilePath);
@@ -74,10 +85,13 @@ namespace Common.Updater.Ver1_0_0.Executors
                     ctl?.Increment();
 
                     // アーカイブの伸長.
-                    if (ZipIO.UnZip(archiveFilePath, workFolderPath).IsNG)
+                    var result = ZipIO.UnZip(archiveFilePath, workFolderPath);
+                    if (result.IsNG)
                     {
-                        return Result.NG($"アーカイブファイルの伸長に失敗しました。\n{archiveFilePath}");
+                        return Result.NG($"アーカイブファイルの伸長に失敗しました。\n{archiveFilePath}", result);
                     }
+
+                    Log.Info($@"Zipファイル伸長成功");
 
                     ctl?.Increment();
 
@@ -85,6 +99,8 @@ namespace Common.Updater.Ver1_0_0.Executors
                     File.Delete(archiveFilePath);
 
                     ctl?.Increment();
+
+                    Log.Info($@"インストール先へ複製：{this.Info.InstallFolderPath}");
 
                     // 伸長してできたものをすべてインストール先へコピー.
                     UtilFolder.CopyFolder(workFolderPath, this.Info.InstallFolderPath);

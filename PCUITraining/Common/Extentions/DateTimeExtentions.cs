@@ -12,6 +12,7 @@ namespace Common.Extentions
         /// </summary>
         private static readonly DateTime UNIX_EPOCH = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 
+
         /// <summary>
         /// 通算秒を得る. 
         /// </summary>

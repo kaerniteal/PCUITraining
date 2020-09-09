@@ -1,10 +1,13 @@
-﻿using Common.Updater.Ver1_0_0;
+﻿using Common.Logger;
+using Common.Updater.Ver1_0_0;
 using Common.Updater.Ver1_0_0.Executors;
 using Common.Utilities;
 using Common.Values;
 using Common.Versions;
+using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Common.Updater
@@ -14,6 +17,11 @@ namespace Common.Updater
     /// </summary>
     public class UpdaterControler
     {
+        /// <summary>
+        /// ログクラス.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// バージョンチェック情報.
         /// </summary>
@@ -49,14 +57,22 @@ namespace Common.Updater
         /// <param name="updaterUrl">更新ツールのURL：「http://～/latest/」 </param>
         public Result UpdaterUpdate(string updaterUrl)
         {
+            Log.Info("更新ツールの更新チェック.");
+
             // 元バージョン
             var srcVer = new Ver();
 
             // 更新ツールバージョン取得.
-            if (Ver.Load($@"{this.GetUpdaterModuleName()}.version", out var loadVer).IsOK)
+            var loadResult = Ver.Load($@"{this.GetUpdaterModuleName()}.version", out var loadVer);
+            if (loadResult.IsOK)
             {
                 // 取得出来たらその値を使用.
                 srcVer = loadVer;
+                Log.Info($@"更新ツールのVersion:{srcVer}");
+            }
+            else
+            {
+                Log.Error($"更新ツールのVersion:取得失敗\n{loadResult.Message}");
             }
 
             // 更新ツールのバージョンチェック.
@@ -73,8 +89,11 @@ namespace Common.Updater
             if (!verChecker.NeedUpdate(out var archiveUrl))
             {
                 // 更新不要.
+                Log.Info($@"更新ツールの更新不要");
                 return Result.OK();
             }
+
+            Log.Info($@"更新ツールの更新開始");
 
             // 更新ツールを更新するための情報.
             var info = new UpdateInfoVer1_0_0
@@ -86,7 +105,11 @@ namespace Common.Updater
 
             // 更新ツール更新.
             var updaterUpdater = new UpdaterVer1_0_0(info);
-            return updaterUpdater.Update();
+            var updateResult = updaterUpdater.Update();
+
+            Log.Info($@"更新ツールの更新完了");
+
+            return updateResult;
         }
 
         /// <summary>
@@ -113,36 +136,46 @@ namespace Common.Updater
         /// <returns>true：アプリケーションを終了  false：続行</returns>
         public bool AppUpdate()
         {
-            var appPath = Application.ExecutablePath;
-            var appFolderPath = Path.GetDirectoryName(appPath);
-            var installFolderPath = Path.GetDirectoryName(appFolderPath);
-
-            // アプリケーション更新情報生成.
-            var info = new UpdateInfoVer1_0_0
+            try
             {
-                Url = this.AppArchiveUrl,
-                InstallFolderPath = installFolderPath,
-                AppExecPath = appPath,
-                Proxy = this.Info.Proxy,
-            };
+                var appPath = Application.ExecutablePath;
+                var appFolderPath = Path.GetDirectoryName(appPath);
+                var installFolderPath = Path.GetDirectoryName(appFolderPath);
 
-            // パラメータをローカルファイルとして保存.
-            var paramFilePath = $@"{appFolderPath}\UpdateInfoVer1_0_0";
-            if (info.Save(paramFilePath).IsNG)
+                // アプリケーション更新情報生成.
+                var info = new UpdateInfoVer1_0_0
+                {
+                    Url = this.AppArchiveUrl,
+                    InstallFolderPath = installFolderPath,
+                    AppExecPath = appPath,
+                    Proxy = this.Info.Proxy,
+                };
+
+                // パラメータをローカルファイルとして保存.
+                var paramFilePath = $@"{appFolderPath}\UpdateInfoVer1_0_0";
+                var saveResult = info.Save(paramFilePath);
+                if (saveResult.IsNG)
+                {
+                    // アップデート失敗.
+                    Log.Error($"パラメータファイルの保存に失敗しました。\n{saveResult.Message}");
+                    return false;
+                }
+
+                // パラメータを貰って、Updaterに渡して起動する.
+                var pInfo = new ProcessStartInfo
+                {
+                    FileName = $@"{this.GetUpdaterModuleName()}.exe",
+                    Arguments = $@"1.0.0 {paramFilePath}",
+                    UseShellExecute = true,
+                };
+
+                Process.Start(pInfo);
+            }
+            catch (Exception ex)
             {
-                // アップデート失敗.
+                Log.Error(ex.ToString());
                 return false;
             }
-
-            // パラメータを貰って、Updaterに渡して起動する.
-            var pInfo = new ProcessStartInfo
-            {
-                FileName = $@"{this.GetUpdaterModuleName()}.exe",
-                Arguments = $@"1.0.0 {paramFilePath}",
-                UseShellExecute = true,
-            };
-
-            Process.Start(pInfo);
 
             return true;
         }
