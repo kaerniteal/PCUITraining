@@ -90,15 +90,17 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             userConf.ShowTextResult = this.bLblShowTextResult.Value;
 
             // 共通設定保存.
-            if (commonConf.Save().IsNG)
+            var resultCommon = commonConf.Save();
+            if (resultCommon.IsNG)
             {
-                MessageBox.Show("共通設定の保存に失敗しました");
+                MessageBox.Show($"共通設定の保存に失敗しました\n{resultCommon.Message}");
                 return;
             }
 
-            if (!this.GameData.Save(this.UserData))
+            var resultGame = this.GameData.Save(this.UserData);
+            if (resultGame.IsNG)
             {
-                MessageBox.Show("ユーザー設定の保存に失敗しました");
+                MessageBox.Show($"ユーザー設定の保存に失敗しました\n{resultGame.Message}");
                 return;
             }
 

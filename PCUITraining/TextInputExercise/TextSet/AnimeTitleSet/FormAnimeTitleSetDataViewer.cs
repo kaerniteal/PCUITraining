@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using Common.Utilities;
 using PCUITCommon;
 using PCUITCommon.Users;
 using System;
@@ -156,12 +157,14 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
             }
 
             // テキストフィルタ.
-            var filter = this.tBoxFilter.Text;
+            var filter = this.tBoxFilter.Text.Trim();
             if (!filter.IsEmpty())
             {
-                list = list
-                    .Where(rec => (rec.Episode + rec.Title).Contains(filter))
-                    .ToList();
+                // インクリメンタルサーチ.
+                list = UtilIncrementalSearch.IncrementalSearch(
+                    list,
+                    filter,
+                    (rec) => { return rec.Episode + rec.Title; });
             }
 
             // ソートしてから表示.

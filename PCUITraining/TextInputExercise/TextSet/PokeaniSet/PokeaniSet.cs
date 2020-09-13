@@ -1,4 +1,5 @@
-﻿using PCUITCommon.Users;
+﻿using Common.Values;
+using PCUITCommon.Users;
 using System.Linq;
 using TextInputExercise.Interfaces;
 
@@ -27,13 +28,13 @@ namespace TextInputExercise.TextSet.PokeaniSet
         /// 読み込み処理.
         /// </summary>
         /// <returns>成否</returns>
-        public override bool LoadList()
+        public override Result LoadList()
         {
             this.WordList = PokeaniTitleList.GetPokemonTitleList()
                 .Select(title => (TextBase)title)
                 .ToList();
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

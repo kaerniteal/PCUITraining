@@ -1,9 +1,12 @@
-﻿using Common.Web;
+﻿using Common.Logger;
+using Common.Values;
+using Common.Web;
 using PCUITCommon.Configs;
 using PCUITCommon.Users;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
+using System.Reflection;
 
 namespace PCUITCommon
 {
@@ -12,6 +15,11 @@ namespace PCUITCommon
     /// </summary>
     public class PCUIT
     {
+        /// <summary>
+        /// ログ.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// シングルトンインスタンス.
         /// </summary>
@@ -37,23 +45,27 @@ namespace PCUITCommon
         /// 共通初期化処理.
         /// </summary>
         /// <returns>成否</returns>
-        public static bool CommonInit()
+        public static Result CommonInit()
         {
+            // 設定ロード.
             Conf = PCUITConf.Load();
 
             // ユーザーデータ管理を生成.
             UserDataManager = new UserDataManager();
 
             // ユーザーデータをロード.
-            if (!UserDataManager.LoadUserDataAll())
+            var result = UserDataManager.LoadUserDataAll();
+            if (result.IsNG)
             {
-                return false;
+                var message = "ユーザーデータのロードに失敗しました。";
+                Log.Error(message);
+                return Result.NG(message, result);
             }
 
             // Fontのコレクレクション.
             instance.FontMap = new Dictionary<int, Font>();
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

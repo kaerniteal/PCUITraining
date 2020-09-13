@@ -28,9 +28,6 @@ namespace Common.DataIO
                 WriteIndented = indented,
             };
 
-            // ENUMを文字列で出力する.
-            // options.Converters.Add(new JsonStringEnumConverter());
-
             return JsonSerializer.Serialize(target, options);
         }
 
@@ -46,7 +43,7 @@ namespace Common.DataIO
         }
 
         /// <summary>
-        /// Jsonドキュメントをデシリアライズします。
+        /// Jsonファイルをデシリアライズします。
         /// </summary>
         /// <typeparam name="T">戻り値の型</typeparam>
         /// <param name="path">読み込むファイル</param>
@@ -72,7 +69,7 @@ namespace Common.DataIO
         }
 
         /// <summary>
-        /// Jsonシリアライズして出力する.
+        /// Jsonシリアライズしてファイルへ出力する.
         /// </summary>
         /// <typeparam name="T">第一引数の型</typeparam>
         /// <param name="target">シリアライズするターゲット</param>

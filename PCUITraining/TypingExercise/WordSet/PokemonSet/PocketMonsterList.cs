@@ -1,5 +1,6 @@
 ﻿using Common.DataIO;
 using Common.Extentions;
+using Common.Values;
 using Common.Web;
 using PCUITCommon;
 using PCUITCommon.Users;
@@ -237,7 +238,8 @@ namespace TypingExercise.WordSet.PokemonSet
             /// <summary>
             /// セーブ処理.
             /// </summary>
-            public bool Save()
+            /// <returns>成否</returns>
+            public Result Save()
             {
                 var filePath = GetFilePath();
 
@@ -247,11 +249,10 @@ namespace TypingExercise.WordSet.PokemonSet
                 }
                 catch (Exception ex)
                 {
-                    ex.ShowMessageBox(@"ファイル[{0}]の保存に失敗しました".Fmt(filePath));
-                    return false;
+                    return Result.NG($"ファイルの保存に失敗しました\n{filePath}", ex);
                 }
 
-                return true;
+                return Result.OK();
             }
         }
     }

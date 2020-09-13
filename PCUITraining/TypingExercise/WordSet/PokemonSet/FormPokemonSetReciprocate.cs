@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using Common.Values;
 using Common.WinForms;
 using PCUITCommon.Users;
 using PCUITCommon.Views;
@@ -136,7 +137,8 @@ namespace TypingExercise.WordSet.PokemonSet
             md.Play(@"./TypExcResorce/loading.mp4", 3);
 
             // 交換処理.
-            if (this.DoReciprocate(leftUser, leftRec, rightUser, rightRec))
+            var result = this.DoReciprocate(leftUser, leftRec, rightUser, rightRec);
+            if (result.IsOK)
             {
                 // ゲームデータロード.
                 this.LoadGameData(this.ctrlPokemonListLeft, leftUser);
@@ -152,7 +154,7 @@ namespace TypingExercise.WordSet.PokemonSet
             else
             {
                 // 交換完了
-                FormMessageBox.Show("交換に失敗しました！");
+                FormMessageBox.Show($"交換に失敗しました！\n{result.Message}");
             }
         }
 
@@ -164,7 +166,7 @@ namespace TypingExercise.WordSet.PokemonSet
         /// <param name="rightUser">右ユーザー</param>
         /// <param name="rightRec">右ポケモン</param>
         /// <returns>成否</returns>
-        private bool DoReciprocate(
+        private Result DoReciprocate(
             UserData leftUser,
             PokemonSetGameDataRecord leftRec,
             UserData rightUser,
@@ -175,7 +177,7 @@ namespace TypingExercise.WordSet.PokemonSet
             var rightGame = PokemonSetGameData.Load(rightUser);
             if (null == leftGame || null == rightGame)
             {
-                return false;
+                return Result.NG("ゲームデータの取得に失敗しました。");
             }
 
             // 左のユーザーの対象をインクリメント.
@@ -187,16 +189,18 @@ namespace TypingExercise.WordSet.PokemonSet
                 !this.Decrement(leftGame.RecordList, leftRec.Name) ||
                 !this.Decrement(rightGame.RecordList, rightRec.Name))
             {
-                return false;
+                return Result.NG("データ移行に失敗しました。");
             }
 
             // ゲームデータ保存.
-            if (!leftGame.Save(leftUser) || !rightGame.Save(rightUser))
+            var resultLeft = leftGame.Save(leftUser);
+            var resultRight = rightGame.Save(rightUser);
+            if (resultLeft.IsNG || resultRight.IsNG)
             {
-                return false;
+                return Result.NG($"データ更新に失敗しました。\n左：{resultLeft.Message}\n右：{resultRight.Message}");
             }
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

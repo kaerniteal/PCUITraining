@@ -212,6 +212,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "実行中";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormTypExc_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FormExec_KeyPress);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();

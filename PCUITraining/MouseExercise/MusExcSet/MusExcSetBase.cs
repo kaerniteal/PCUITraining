@@ -1,4 +1,5 @@
-﻿using MouseExercise.Interfaces;
+﻿using Common.Values;
+using MouseExercise.Interfaces;
 using PCUITCommon.Users;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace MouseExercise.MusExcSet
         /// ロード処理.
         /// </summary>
         /// <returns>成否</returns>
-        public abstract bool LoadList();
+        public abstract Result LoadList();
 
         /// <summary>
         /// 難易度でフィルタした設問リストを返す.

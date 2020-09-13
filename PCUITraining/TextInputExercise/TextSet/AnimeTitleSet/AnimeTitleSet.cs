@@ -1,4 +1,5 @@
-﻿using PCUITCommon.Users;
+﻿using Common.Values;
+using PCUITCommon.Users;
 using System.Collections.Generic;
 using TextInputExercise.Interfaces;
 
@@ -27,11 +28,11 @@ namespace TextInputExercise.TextSet.AnimeTitleSet
         /// 読み込み処理.
         /// </summary>
         /// <returns>成否</returns>
-        public override bool LoadList()
+        public override Result LoadList()
         {
             this.WordList = new List<TextBase>();
             this.WordList.AddRange(AnimeTitleList.GetTitleList());
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using Common.DataIO;
 using Common.Extentions;
+using Common.Values;
 using PCUITCommon.Users;
 using System;
 using System.Collections.Generic;
@@ -82,7 +83,7 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         /// 保存処理.
         /// </summary>
         /// <param name="userData">対象ユーザーデータ</param>
-        public bool Save(UserData userData)
+        public Result Save(UserData userData)
         {
             var userPath = userData.CreateUserDataFolderPath();
             var folderPath = CreateDataFolder(userPath);
@@ -94,11 +95,10 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             }
             catch (Exception ex)
             {
-                ex.ShowMessageBox(@"ファイル[{0}]の保存に失敗しました}".Fmt(filePath));
-                return false;
+                return Result.NG($"ファイルの保存に失敗しました\n{filePath}", ex);
             }
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

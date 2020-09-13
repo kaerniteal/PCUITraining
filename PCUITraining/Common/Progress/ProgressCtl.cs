@@ -82,11 +82,14 @@ namespace Common.Progress
         /// <summary>
         /// 均等な重みで子管理を生成する.
         /// </summary>
-        /// <remarks>子要素を生成した時点で自身の進捗は子要素のサマリとなる.</remarks>
+        /// 子要素を生成した時点で自身の進捗は子要素のサマリとなるため、
+        /// 自身のIncrementを呼び出しても進捗に変化はない.
         /// <param name="num">生成する要素数</param>
         /// <returns>生成した子要素</returns>
         public List<ProgressCtl> CreateChildren(int num)
         {
+            this.Report($"CreateChildren({num})");
+
             // 重みが均等なint配列にして子要素生成.
             return this.CreateChildren((new int[num])
                 .Select(ch => DEFAULT_SCALE / num)
@@ -96,7 +99,10 @@ namespace Common.Progress
         /// <summary>
         /// 重みを指定して子管理を生成する.
         /// </summary>
-        /// <remarks>子要素を生成した時点で自身の進捗は子要素のサマリとなる.</remarks>
+        /// <remarks>
+        /// 子要素を生成した時点で自身の進捗は子要素のサマリとなるため、
+        /// 自身のIncrementを呼び出しても進捗に変化はない.
+        /// </remarks>
         /// <param name="ratios">重みリスト</param>
         /// <returns>生成した子要素</returns>
         public List<ProgressCtl> CreateChildren(int[] ratios)
@@ -134,57 +140,77 @@ namespace Common.Progress
         /// 現在の進捗をセット.
         /// </summary>
         /// <param name="cur">現在の進捗</param>
-        protected void SetCur(int cur)
+        /// <param name="message">メッセージ</param>
+        protected void SetCur(int cur, string message)
         {
-            if (this.Cur != cur)
+            if (this.Cur != cur || null != message)
             {
                 this.Cur = cur;
-                this.Parent.Notify();
+                this.Parent.Notify(message);
             }
         }
 
         /// <summary>
-        /// 開始する.
+        /// 開始する(開始と終了しかない場合).
         /// </summary>
-        /// <remarks>ここでセットしたMax回数分Incrementを呼ぶことで、進捗が100%になる</remarks>
-        /// <param name="max">進捗の最大値</param>
-        public void Begin(int max = 100)
+        /// <param name="message">メッセージ</param>
+        public void Begin(string message = null)
         {
-            this.Max = max;
-            this.SetCur(0);
+            this.Max = DEFAULT_SCALE;
+            this.SetCur(0, message);
+            this.Report("Begin");
+        }
+
+        /// <summary>
+        /// 開始する(Incrementで途中進捗を管理する場合).
+        /// </summary>
+        /// <remarks>ここでセットしたincrementNum回数分Incrementを呼ぶことで、進捗が100%になる</remarks>
+        /// <param name="incrementNum">Incrementの呼び出し回数(1以上を指定すること)</param>
+        /// <param name="message">メッセージ</param>
+        public void Begin(int incrementNum, string message = null)
+        {
+            this.Max = 0 < incrementNum ? incrementNum : DEFAULT_SCALE;
+            this.SetCur(0, message);
             this.Report("Begin");
         }
 
         /// <summary>
         /// 進捗を１進める.
         /// </summary>
-        public void Increment()
+        /// <param name="message">メッセージ</param>
+        public void Increment(string message = null)
         {
-            this.SetCur(this.Cur + 1);
+            this.SetCur(this.Cur + 1, message);
         }
 
         /// <summary>
         /// 完了にする.
         /// </summary>
-        public void Finish()
+        /// <param name="message">メッセージ</param>
+        public void Finish(string message = null)
         {
-            this.InnterFinish();
+            // 実体は innerFinish の呼び出し.
+            this.innerFinish(message);
             this.Report("Finish");
         }
 
         /// <summary>
-        /// Finishの実体(Reportを再帰呼び出ししないようにする苦肉の策)
+        /// Finishの実体
         /// </summary>
-        protected void InnterFinish()
+        /// <remarks>
+        /// Reportを再帰呼び出ししないようにするための構造.
+        /// 外から呼ばれたFinishの場合にはReportを呼びたいが、
+        /// 子要素を再帰でFinishする時にはReportを呼びたくないため.
+        /// </remarks>
+        /// <param name="message">メッセージ</param>
+        protected void innerFinish(string message)
         {
             if (0 < this.Children.Count)
             {
-                this.Children.ForEach(child => child.InnterFinish());
+                this.Children.ForEach(child => child.innerFinish(null));
             }
-            else
-            {
-                this.SetCur(this.Max);
-            }
+
+            this.SetCur(this.Max, message);
         }
 
         /// <summary>
@@ -211,11 +237,16 @@ namespace Common.Progress
         /// <summary>
         /// IProgressParentの実装(自身の子要素から呼ばれる).
         /// </summary>
-        public void Notify()
+        /// <param name="message">メッセージ</param>
+        public void Notify(string message)
         {
-            // 子要素の進捗リストを生成.
+            // 匿名クラスで子要素の進捗を重みと進捗をペアにしてリスト化.
             var childProgressList = this.Children
-                .Select(child => new { ratio = child.Ratio, progress = child.GetProgress() })
+                .Select(child => new
+                {
+                    ratio = child.Ratio,
+                    progress = child.GetProgress(),
+                })
                 .ToList();
 
             // 完了している場合.
@@ -223,13 +254,13 @@ namespace Common.Progress
             if (childProgressList.All(child => DEFAULT_SCALE == child.progress))
             {
                 this.Cur = this.Max;
-                this.Parent?.Notify();
+                this.Parent?.Notify(message);
                 return;
             }
 
             // 未完了の場合.
 
-            // 自身の子要素の進捗をサマリする.
+            // 自身の子要素の進捗に重みを加味してサマリする.
             var myProgress = childProgressList
                 .Sum(child =>
                 {
@@ -240,7 +271,7 @@ namespace Common.Progress
             this.Cur = (this.Max * myProgress) / DEFAULT_SCALE;
 
             // 親へイベントを伝播する.
-            this.Parent?.Notify();
+            this.Parent?.Notify(message);
         }
 
         /// <summary>

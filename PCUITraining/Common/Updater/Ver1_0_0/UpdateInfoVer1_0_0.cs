@@ -8,6 +8,25 @@ namespace Common.Updater.Ver1_0_0
     public class UpdateInfoVer1_0_0 : JsonDataBase<UpdateInfoVer1_0_0>
     {
         /// <summary>
+        /// 更新モード.
+        /// </summary>
+        public enum UPDATE_MODE
+        {
+            INSTALL,
+            UPDATE,
+        }
+
+        /// <summary>
+        /// アプリケーション更新情報のフォーマットを表す文字列
+        /// </summary>
+        public static readonly string FORMAT_VER = "100";
+
+        /// <summary>
+        /// 更新モード.
+        /// </summary>
+        public UPDATE_MODE Mode { get; set; }
+
+        /// <summary>
         /// ダウンロード元URL
         /// </summary>
         public string Url { get; set; }
@@ -33,6 +52,7 @@ namespace Common.Updater.Ver1_0_0
         /// </summary>
         public UpdateInfoVer1_0_0()
         {
+            this.Mode = UPDATE_MODE.INSTALL;
             this.Url = string.Empty;
             this.InstallFolderPath = string.Empty;
             this.AppExecPath = string.Empty;

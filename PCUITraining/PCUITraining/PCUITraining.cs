@@ -1,9 +1,11 @@
-﻿using Common.Progress;
+﻿using Common.Logger;
+using Common.Progress;
 using Common.Updater;
 using Common.Updater.Ver1_0_0;
 using MouseExercise;
 using PCUITCommon;
 using PCUITraining.Forms;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using TextInputExercise;
@@ -17,28 +19,31 @@ namespace PCUITraining
     public static class PCUITraining
     {
         /// <summary>
+        /// ログ.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+
+        /// <summary>
         /// 開始.
         /// </summary>
         public static void Start()
         {
+            Log.Info("PCUITraining Start");
+
             // 共通初期化
-            if (!PCUIT.CommonInit())
+            var resultInit = PCUIT.CommonInit();
+            if (resultInit.IsNG)
             {
-                MessageBox.Show("初期化に失敗しました");
+                MessageBox.Show($"初期化に失敗しました\n{resultInit.Message}");
                 return;
             }
 
             // ※ ゲームセットアップは時間がかかるため、フォームロード後に変更
+            Log.Info("初期化成功");
 
             // フォームロード.
-            if (PCUIT.Conf.IsDebug)
-            {
-                Application.Run(new FormMainDebug());
-            }
-            else
-            {
-                Application.Run(new FormMain());
-            }
+            Application.Run(new FormMain());
         }
 
         /// <summary>
@@ -46,15 +51,17 @@ namespace PCUITraining
         /// </summary>
         public static void Stop()
         {
+            Log.Info("PCUITraining Stop");
             Application.Exit();
         }
 
         /// <summary>
         /// ゲームセットアップ.
         /// </summary>
-        /// <returns>成否</returns>
-        public static bool SetUp(ProgressCtl ctl)
+        public static void SetUp(ProgressCtl ctl)
         {
+            Log.Info("PCUITraining SetUp Begin");
+            
             // 更新管理を生成.
             var info = new VerCheckInfoVer1_0_0
             {
@@ -72,16 +79,21 @@ namespace PCUITraining
             {
                 if (DialogResult.Yes == MessageBox.Show("新しいバージョンが存在します。\n更新しますか？", "更新確認", MessageBoxButtons.YesNo))
                 {
+                    Log.Info("PCUITraining 更新開始");
+
                     // 更新ツールの更新.
                     if (updater.UpdaterUpdate(Def.UPDATER_URL).IsNG)
                     {
                         MessageBox.Show("更新ツールの更新に失敗しました。");
                     }
 
+                    Log.Info("PCUITraining AppUpdate");
+
                     // アプリケーションの更新.
                     if (updater.AppUpdate())
                     {
                         // 更新の為に終了.
+                        Log.Info("更新の為に終了");
                         Stop();
                     }
                 }
@@ -91,28 +103,31 @@ namespace PCUITraining
             ctl.Begin(3);
 
             // タイピングゲーム.
-            if (!TypExc.Init())
+            var typResult = TypExc.Init();
+            if (typResult.IsNG)
             {
-                MessageBox.Show("TypExcの初期化に失敗しました");
-                return false;
+                MessageBox.Show($"TypExcの初期化に失敗しました\n{typResult.Message}");
+                return;
             }
 
             ctl.Increment();
 
             // マウスクリックゲーム.
-            if (!MusExc.Init())
+            var musResult = MusExc.Init();
+            if (musResult.IsNG)
             {
-                MessageBox.Show("MusExcの初期化に失敗しました");
-                return false;
+                MessageBox.Show($"MusExcの初期化に失敗しました\n{musResult.Message}");
+                return;
             }
 
             ctl.Increment();
 
             // テキストライティングゲーム.
-            if (!TIExc.Init())
+            var tiResult = TIExc.Init();
+            if (tiResult.IsNG)
             {
-                MessageBox.Show("TIExcの初期化に失敗しました");
-                return false;
+                MessageBox.Show($"TIExcの初期化に失敗しました\n{tiResult.Message}");
+                return;
             }
 
             ctl.Increment();
@@ -120,8 +135,6 @@ namespace PCUITraining
 
             // ちょっと焦らす.
             Thread.Sleep(1000);
-
-            return true;
         }
     }
 }

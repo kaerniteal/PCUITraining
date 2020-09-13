@@ -92,6 +92,7 @@ namespace Common.Web
             }
             catch (Exception ex)
             {
+                Log.Error(ex.ToString());
                 return Result.NG($"ファイルのダウンロードに失敗しました。\n{url}", ex);
             }
 

@@ -5,7 +5,7 @@ namespace PCUITCommon.Configs
     /// <summary>
     /// PCUITの設定クラス.
     /// </summary>
-    public class PCUITConf : ConfBase<PCUITConf>
+    public class PCUITConf : JsonConfBase<PCUITConf>
     {
         /// <summary>
         /// 設定ファイルパスを返す.

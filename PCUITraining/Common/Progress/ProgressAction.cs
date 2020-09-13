@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Extentions;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using static Common.Progress.ProgressAction;
@@ -29,6 +30,11 @@ namespace Common.Progress
         private bool ContinueFlg { get; set; }
 
         /// <summary>
+        /// 最後にセットされたメッセージ.
+        /// </summary>
+        private string LastMessage { get; set; }
+
+        /// <summary>
         /// コンソールに進捗レポートを出力するかどうか.
         /// </summary>
         public bool ConsoleReport
@@ -53,6 +59,7 @@ namespace Common.Progress
             this.Observer = observer;
             this.ProgressCtl = new ProgressCtl(this);
             this.ContinueFlg = true;
+            this.LastMessage = string.Empty;
         }
 
         /// <summary>
@@ -87,10 +94,16 @@ namespace Common.Progress
         /// IProgressParentの実装(外から呼ぶ意味はない).
         /// </summary>
         /// <remarks>コンストラクタに渡されたIProgressObserverに現状を通知する</remarks>
-        public void Notify()
+        /// <param name="message">メッセージ</param>
+        public void Notify(string message)
         {
+            if (!message.IsEmpty())
+            {
+                this.LastMessage = message;
+            }
+
             var progress = this.ProgressCtl.GetProgress();
-            this.Observer.ProgressNotify(progress);
+            this.Observer.ProgressNotify(progress, this.LastMessage);
         }
 
         /// <summary>
@@ -121,7 +134,8 @@ namespace Common.Progress
             /// <summary>
             /// 進捗更新イベント.
             /// </summary>
-            void Notify();
+            /// <param name="message">メッセージ</param>
+            void Notify(string message);
 
             /// <summary>
             /// 処理継続可否判定.

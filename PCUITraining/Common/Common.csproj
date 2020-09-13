@@ -78,8 +78,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conf\ConfBase.cs" />
     <Compile Include="Conf\IConfBase.cs" />
+    <Compile Include="Conf\JsonConfBase.cs" />
     <Compile Include="DataIO\JsonDataBase.cs" />
     <Compile Include="DataIO\ZipIO.cs" />
     <Compile Include="Logger\ILogWriter.cs" />
@@ -92,31 +92,32 @@
     <Compile Include="Updater\Ver1_0_0\UpdateInfoVer1_0_0.cs" />
     <Compile Include="Updater\Ver1_0_0\VerCheckInfoVer1_0_0.cs" />
     <Compile Include="Utilities\UtilFolder.cs" />
+    <Compile Include="Utilities\UtilIncrementalSearch.cs" />
     <Compile Include="Values\ResultT.cs" />
     <Compile Include="Versions\Ver.cs" />
     <Compile Include="Web\WebClientCreator.cs" />
-    <Compile Include="WinForms\AnimationOpacityEffect.cs" />
-    <Compile Include="WinForms\AnimationCircleEffect.cs" />
-    <Compile Include="WinForms\PictureBoxTransparentLayered.cs">
+    <Compile Include="WinForms\Animation\AnimationCircleEffect.cs" />
+    <Compile Include="WinForms\Animation\AnimationOpacityEffect.cs" />
+    <Compile Include="WinForms\Ccontrols\PictureBoxTransparentLayered.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinForms\Ccontrols\ProgressBarWithMessage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WinForms\Forms\FormProgressBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\Forms\FormProgressBar.Designer.cs">
+      <DependentUpon>FormProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="DataIO\JsonIO.cs" />
     <Compile Include="Extentions\ArrayExtensions.cs" />
     <Compile Include="Extentions\ControlWinApiExtensions.cs" />
     <Compile Include="Lang\Japanese\MorphologicalAnalysis.cs" />
-    <Compile Include="Progress\FromProgressBar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Progress\FromProgressBar.Designer.cs">
-      <DependentUpon>FromProgressBar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Progress\IProgressObserver.cs" />
     <Compile Include="Progress\ProgressAction.cs" />
     <Compile Include="Progress\ProgressCtl.cs" />
     <Compile Include="Threads\AnimationTimer.cs" />
-    <Compile Include="WinForms\CustomToolTip.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="WinForms\FormMediaPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,7 +170,7 @@
     <Analyzer Include="..\packages\UwpDesktop.10.0.14393.3\analyzers\dotnet\UwpDesktopAnalyzer.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Updater\Ver1_0_0\UpdaterVer1.0.0.仕様.txt" />
+    <Content Include="Updater\UpdaterVer1.0.0.仕様.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets" Condition="Exists('..\packages\UwpDesktop.10.0.14393.3\build\portable-net45+uap\UwpDesktop.targets')" />

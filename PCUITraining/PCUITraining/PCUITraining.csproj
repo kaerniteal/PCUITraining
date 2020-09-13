@@ -61,12 +61,6 @@
     <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormMainDebug.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormMainDebug.Designer.cs">
-      <DependentUpon>FormMainDebug.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,9 +81,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormMainDebug.resx">
-      <DependentUpon>FormMainDebug.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSetting.resx">
       <DependentUpon>FormSetting.cs</DependentUpon>
@@ -119,7 +110,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="WebSite\PCUITraining\Archives\PCUITraining.1.2.0.zip" />
-    <None Include="WebSite\PCUITraining\Latest\PCUITraining.1.2.1.zip" />
+    <None Include="WebSite\PCUITraining\Archives\PCUITraining.1.2.1.zip" />
+    <None Include="WebSite\PCUITraining\Latest\PCUITraining.1.2.2.zip" />
     <None Include="WebSite\PCUITraining\Latest\PCUITraining.version" />
   </ItemGroup>
   <ItemGroup>

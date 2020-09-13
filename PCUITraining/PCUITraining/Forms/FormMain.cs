@@ -1,4 +1,4 @@
-﻿using Common.Progress;
+﻿using Common.WinForms.Forms;
 using MouseExercise;
 using MouseExercise.MusExcSet.InsectCollectingSet;
 using MouseExercise.Views;
@@ -48,7 +48,7 @@ namespace PCUITraining.Forms
         private void FormMain_Load(object sender, EventArgs e)
         {
             // プログレスバー付き非同期処理.
-            var dlg = new FromProgressBar((ctl) =>
+            var dlg = new FormProgressBar((ctl) =>
             {
                 PCUITraining.SetUp(ctl);
             });
@@ -102,6 +102,12 @@ namespace PCUITraining.Forms
             }
 
             var instance = wordSet.GetGameInstance(userData);
+            if (instance.CreateNewWordList(1).Count <= 0)
+            {
+                FormMessageBox.Show("プレイ可能なリストが存在しません\n");
+                return;
+            }
+
             var formExec = new FormTypExc(instance);
             formExec.ShowDialog();
         }
@@ -186,6 +192,12 @@ namespace PCUITraining.Forms
             }
 
             var instance = textSet.GetGameInstance(userData);
+            if (instance.CreateNewTextList(1).Count <= 0)
+            {
+                FormMessageBox.Show("プレイ可能なリストが存在しません\n");
+                return;
+            }
+
             var formExec = new FormTIExc(instance);
             formExec.ShowDialog();
         }

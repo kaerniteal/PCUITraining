@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using Common.Values;
 using PCUITCommon.Views;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace PCUITCommon.Users
         /// 全て読み込み
         /// </summary>
         /// <returns>成否</returns>
-        public bool LoadUserDataAll()
+        public Result LoadUserDataAll()
         {
             this.CreateRoot();
 
@@ -48,37 +49,37 @@ namespace PCUITCommon.Users
             }
             catch (Exception ex)
             {
-                ex.ShowMessageBox("ユーザーデータの取得に失敗しました");
-                return false;
+                return Result.NG("ユーザーデータの取得に失敗しました", ex);
             }
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>
         /// 全て保存
         /// </summary>
         /// <returns>成否</returns>
-        public bool SaveAll()
+        public Result SaveAll()
         {
             this.CreateRoot();
 
             foreach (var userData in this.UserDataList)
             {
-                if (!userData.Save())
+                var result = userData.Save();
+                if (result.IsNG)
                 {
-                    return false;
+                    return result;
                 }
             }
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>
         /// 個別に保存
         /// </summary>
         /// <returns>成否</returns>
-        public bool Save(string name)
+        public Result Save(string name)
         {
             this.CreateRoot();
 
@@ -90,12 +91,8 @@ namespace PCUITCommon.Users
                 FormMessageBox.Show("[{0}]のユーザーデータが存在しません".Fmt(name));
             }
 
-            if (!userData.Save())
-            {
-                return false;
-            }
-
-            return true;
+            // 保存.
+            return userData.Save();
         }
 
         /// <summary>

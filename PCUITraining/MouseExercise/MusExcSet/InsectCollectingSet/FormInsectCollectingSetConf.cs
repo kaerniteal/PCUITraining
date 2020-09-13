@@ -90,16 +90,18 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
             userConf.UseCustomMouseIcon = this.bLblUseCustomMouseIcon.Value;
 
             // 共通設定保存.
-            if (commonConf.Save().IsNG)
+            var resultCommonSave = commonConf.Save();
+            if (resultCommonSave.IsNG)
             {
-                MessageBox.Show("共通設定の保存に失敗しました");
+                MessageBox.Show($"共通設定の保存に失敗しました\n{resultCommonSave.Message}");
                 return;
             }
 
             // ユーザー設定.
-            if (!this.GameData.Save(this.UserData))
+            var resultGameSave = this.GameData.Save(this.UserData);
+            if (resultGameSave.IsNG)
             {
-                MessageBox.Show("ユーザー設定の保存に失敗しました");
+                MessageBox.Show($"ユーザー設定の保存に失敗しました\n{resultGameSave.Message}");
                 return;
             }
 

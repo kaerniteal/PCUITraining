@@ -28,5 +28,35 @@ namespace Common.Extentions
             // 経過秒数に変換
             return (long)span.TotalSeconds;
         }
+
+        /// <summary> 
+        /// 積算秒(JST)を取得する. 
+        /// </summary> 
+        /// <returns>積算秒(JST)</returns>
+        public static long GetUnixTimeJST(this DateTime self)
+        {
+            // JSTでUNIXエポックからの経過を取得して秒に変換.
+            return (long)(self - UNIX_EPOCH).TotalSeconds;
+        }
+
+        /// <summary> 
+        /// 正分を取得する. 
+        /// </summary> 
+        /// <returns>正分に整えたオブジェクト</returns>
+        public static DateTime GetOnMinute(this DateTime self)
+        {
+            // 正分に整えたオブジェクト.
+            return self.AddSeconds(-self.Second);
+        }
+
+        /// <summary> 
+        /// 正時を取得する. 
+        /// </summary> 
+        /// <returns>正時に整えたオブジェクト</returns>
+        public static DateTime GetOnHour(this DateTime self)
+        {
+            // 正時に整えたオブジェクト.
+            return self.AddSeconds(-(self.Second + (self.Minute * 60)));
+        }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using Common.Extentions;
+using Common.Logger;
+using Common.Values;
 using MouseExercise.Configs;
 using MouseExercise.MusExcSet;
 using MouseExercise.MusExcSet.InsectCollectingSet;
 using PCUITCommon.Views;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace MouseExercise
 {
@@ -12,6 +15,11 @@ namespace MouseExercise
     /// </summary>
     public static class MusExc
     {
+        /// <summary>
+        /// ログ.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// 設定.
         /// </summary>
@@ -27,7 +35,7 @@ namespace MouseExercise
         /// 初期化処理.
         /// </summary>
         /// <returns>成否</returns>
-        public static bool Init()
+        public static Result Init()
         {
             Conf = MusExcConf.Load();
 
@@ -40,13 +48,16 @@ namespace MouseExercise
             // ワードセットをロード.
             foreach (var set in MusExcSetList)
             {
-                if (!set.LoadList())
+                var result = set.LoadList();
+                if (result.IsNG)
                 {
-                    return false;
+                    var message = $"ワードセットのロードに失敗しました。";
+                    Log.Error(message);
+                    return Result.NG(message, result);
                 }
             }
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

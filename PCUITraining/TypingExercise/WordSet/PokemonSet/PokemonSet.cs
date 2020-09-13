@@ -1,4 +1,5 @@
-﻿using PCUITCommon.Users;
+﻿using Common.Values;
+using PCUITCommon.Users;
 using System.Linq;
 using TypingExercise.Interfaces;
 
@@ -27,13 +28,13 @@ namespace TypingExercise.WordSet.PokemonSet
         /// 読み込み処理.
         /// </summary>
         /// <returns>成否</returns>
-        public override bool LoadList()
+        public override Result LoadList()
         {
             this.WordList = PocketMonsterList.GetPockeMonList()
                 .Select(pockemon => (WordBase)pockemon)
                 .ToList();
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

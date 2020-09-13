@@ -10,7 +10,7 @@ namespace PCUITCommon
         /// <summary>
         /// バージョン.
         /// </summary>
-        public static readonly Ver Ver = new Ver(1, 2, 1);
+        public static readonly Ver Ver = new Ver(1, 2, 2);
 
         /// <summary>
         /// APP名.

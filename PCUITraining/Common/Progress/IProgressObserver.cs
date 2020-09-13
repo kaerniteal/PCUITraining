@@ -9,6 +9,7 @@
         /// 進捗更新イベント.
         /// </summary>
         /// <param name="progress">進捗(0～100)</param>
-        void ProgressNotify(int progress);
+        /// <param name="message">メッセージ</param>
+        void ProgressNotify(int progress, string message);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using Common.Values;
 using PCUITCommon.Views;
 using System.Collections.Generic;
 using TypingExercise.Configs;
@@ -33,14 +34,14 @@ namespace TypingExercise
         /// 初期化処理.
         /// </summary>
         /// <returns>成否</returns>
-        public static bool Init()
+        public static Result Init()
         {
             Conf = TypExcConf.Load();
 
             CorrectSpellingTable = CorrectSpellingTable.Load();
             if (null == CorrectSpellingTable)
             {
-                return false;
+                return Result.NG($"正しい綴りテーブルのロードに失敗しました。");
             }
 
             // ワードセットのリストを生成.
@@ -52,13 +53,14 @@ namespace TypingExercise
             // ワードセットをロード.
             foreach (var set in WordSetList)
             {
-                if (!set.LoadList())
+                var result = set.LoadList();
+                if (result.IsNG)
                 {
-                    return false;
+                    return Result.NG($"テキストセットのロードに失敗しました。\n{set.GetGameName()}", result);
                 }
             }
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

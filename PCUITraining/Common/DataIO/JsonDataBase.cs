@@ -1,6 +1,8 @@
-﻿using Common.Values;
+﻿using Common.Logger;
+using Common.Values;
 using System;
 using System.IO;
+using System.Reflection;
 
 namespace Common.DataIO
 {
@@ -10,6 +12,11 @@ namespace Common.DataIO
     /// <typeparam name="T">継承したクラス自身を指定する</typeparam>
     public abstract class JsonDataBase<T> where T : class, new()
     {
+        /// <summary>
+        /// ログ.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// ロード処理.
         /// </summary>
@@ -28,6 +35,7 @@ namespace Common.DataIO
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex.ToString());
                     return Result<T>.NG($@"ファイル[{filePath}]の読み込みに失敗しました", ex);
                 }
             }
@@ -50,6 +58,7 @@ namespace Common.DataIO
             }
             catch (Exception ex)
             {
+                Log.Error(ex.ToString());
                 return Result.NG($@"ファイル[{filePath}]の保存に失敗しました", ex);
             }
 
@@ -59,7 +68,6 @@ namespace Common.DataIO
         /// <summary>
         /// シリアライズ処理.
         /// </summary>
-        /// <param name="json">シリアライズしたJson文字列</param>
         /// <returns>成否：Json文字列</returns>
         public Result<string> Serialize()
         {
@@ -72,6 +80,7 @@ namespace Common.DataIO
             }
             catch (Exception ex)
             {
+                Log.Error(ex.ToString());
                 return Result<string>.NG($@"シリアライズに失敗しました", ex);
             }
 
@@ -93,6 +102,7 @@ namespace Common.DataIO
             }
             catch (Exception ex)
             {
+                Log.Error(ex.ToString());
                 return Result<T>.NG($@"デシリアライズに失敗しました", ex);
             }
 

@@ -1,6 +1,8 @@
-﻿using Common.Values;
+﻿using Common.Logger;
+using Common.Values;
 using System;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Common.Utilities
@@ -10,6 +12,11 @@ namespace Common.Utilities
     /// </summary>
     public static class UtilFolder
     {
+        /// <summary>
+        /// ログ.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// アプリケーションの実行フォルダを取得する.
         /// </summary>
@@ -91,6 +98,7 @@ namespace Common.Utilities
             }
             catch (Exception ex)
             {
+                Log.Error(ex.ToString());
                 return Result.NG(ex);
             }
 
@@ -128,6 +136,7 @@ namespace Common.Utilities
             }
             catch (Exception ex)
             {
+                Log.Error(ex.ToString());
                 return Result.NG($"フォルダの削除に失敗しました。\n{path}", ex);
             }
 

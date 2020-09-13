@@ -1,5 +1,6 @@
 ﻿using Common.Threads;
 using Common.WinForms;
+using Common.WinForms.Animation;
 using System.Collections.Generic;
 using System.Windows.Forms;
 

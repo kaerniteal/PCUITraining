@@ -5,7 +5,7 @@ namespace MouseExercise.Configs
     /// <summary>
     /// MusExcの設定.
     /// </summary>
-    public class MusExcConf : ConfBase<MusExcConf>
+    public class MusExcConf : JsonConfBase<MusExcConf>
     {
         /// <summary>
         /// 設定ファイルパスを返す.

@@ -11,6 +11,11 @@ namespace Common.Versions
     public class Ver : JsonDataBase<Ver>
     {
         /// <summary>
+        /// バージョンを表すファイルの拡張子.
+        /// </summary>
+        public static readonly string VER_EXT = "version";
+
+        /// <summary>
         /// メジャーバージョン.
         /// </summary>
         public int Major { get; set; }
@@ -110,7 +115,7 @@ namespace Common.Versions
             var folderPath = Path.GetDirectoryName(appPath);
 
             // 保存する.
-            return this.Save($@"{folderPath}\{appName}.version");
+            return this.Save($@"{folderPath}\{appName}.{VER_EXT}");
         }
     }
 }

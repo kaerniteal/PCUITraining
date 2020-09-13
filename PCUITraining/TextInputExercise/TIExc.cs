@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using Common.Values;
 using PCUITCommon.Views;
 using System.Collections.Generic;
 using TextInputExercise.Configs;
@@ -27,7 +28,7 @@ namespace TextInputExercise
         /// 初期化処理.
         /// </summary>
         /// <returns>成否</returns>
-        public static bool Init()
+        public static Result Init()
         {
             Conf = TIExcConf.Load();
 
@@ -40,13 +41,14 @@ namespace TextInputExercise
             // テキストセットをロード.
             foreach (var set in TextSetList)
             {
-                if (!set.LoadList())
+                var result = set.LoadList();
+                if (result.IsNG)
                 {
-                    return false;
+                    return Result.NG($"テキストセットのロードに失敗しました。\n{set.GetGameName()}", result);
                 }
             }
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

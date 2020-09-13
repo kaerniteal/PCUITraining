@@ -1,4 +1,5 @@
 ﻿using Common.Utilities;
+using Common.Values;
 using PCUITCommon.Users;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace TextInputExercise.TextSet
         /// ロード処理.
         /// </summary>
         /// <returns>成否</returns>
-        public abstract bool LoadList();
+        public abstract Result LoadList();
 
         /// <summary>
         /// 新たな単語リストを作成して返す.

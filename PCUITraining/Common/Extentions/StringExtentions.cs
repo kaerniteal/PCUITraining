@@ -29,6 +29,22 @@ namespace Common.Extentions
         }
 
         /// <summary>
+        /// 文字列を左から指定された文字数分切り出す.
+        /// </summary>
+        /// <param name="self">自分自身</param>
+        /// <param name="dst">切り出したい文字数</param>
+        /// <returns>文字列の左部</returns>
+        public static string Left(this string self, int len)
+        {
+            if (self.Length <= len)
+            {
+                return self;
+            }
+
+            return self.Substring(0, len);
+        }
+
+        /// <summary>
         /// 指定された文字列に該当する箇所より左側を取得する.
         /// </summary>
         /// <param name="self">自分自身</param>
@@ -43,6 +59,22 @@ namespace Common.Extentions
             }
 
             return self;
+        }
+
+        /// <summary>
+        /// 文字列を右から指定された文字数分切り出す.
+        /// </summary>
+        /// <param name="self">自分自身</param>
+        /// <param name="dst">切り出したい文字数</param>
+        /// <returns>文字列の左部</returns>
+        public static string Right(this string self, int len)
+        {
+            if (self.Length <= len)
+            {
+                return self;
+            }
+
+            return self.Substring(self.Length - len, len);
         }
 
         /// <summary>

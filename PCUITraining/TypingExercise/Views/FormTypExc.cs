@@ -1,6 +1,7 @@
 ﻿using Common.Extentions;
 using PCUITCommon;
 using PCUITCommon.Datas;
+using PCUITCommon.Views;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using TypingExercise.Definitions;
@@ -80,6 +81,16 @@ namespace TypingExercise.Views
         }
 
         /// <summary>
+        /// フォームロード.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormTypExc_Load(object sender, System.EventArgs e)
+        {
+            // 現状処理なし.
+        }
+
+        /// <summary>
         /// Key入力を取得.
         /// </summary>
         /// <param name="sender"></param>
@@ -104,7 +115,6 @@ namespace TypingExercise.Views
         {
             var num = TypExc.Conf.NnumberOfQuestions;
             var newList = this.GameInstance.CreateNewWordList(num);
-
             this.Executor = new SetExecutor(newList, this);
             this.Executor.Start();
         }

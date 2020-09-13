@@ -1,5 +1,6 @@
 ﻿using Common.DataIO;
 using Common.Extentions;
+using Common.Values;
 using System;
 using System.Drawing;
 using System.IO;
@@ -109,7 +110,7 @@ namespace PCUITCommon.Users
         /// <summary>
         /// ユーザーデータ保存
         /// </summary>
-        public bool Save()
+        public Result Save()
         {
             CreateUserDataFolder();
 
@@ -121,18 +122,17 @@ namespace PCUITCommon.Users
             }
             catch (Exception ex)
             {
-                ex.ShowMessageBox(@"ファイル[{0}]の保存に失敗しました}".Fmt(path));
-                return false;
+                return Result.NG($"ファイルの保存に失敗しました\n{path}", ex);
             }
 
-            return true;
+            return Result.OK(); ;
         }
 
         /// <summary>
         /// ユーザーデータを削除する.
         /// </summary>
         /// <returns></returns>
-        public bool Delete()
+        public Result Delete()
         {
             try
             {
@@ -144,11 +144,10 @@ namespace PCUITCommon.Users
             }
             catch (Exception ex)
             {
-                ex.ShowMessageBox("ユーザーデータの削除に失敗しました");
-                return false;
+                return Result.NG("ユーザーデータの削除に失敗しました", ex);
             }
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ namespace TypingExercise.Configs
     /// <summary>
     /// TypExcの設定.
     /// </summary>
-    public class TypExcConf : ConfBase<TypExcConf>
+    public class TypExcConf : JsonConfBase<TypExcConf>
     {
         /// <summary>
         /// 設定ファイルパスを返す.

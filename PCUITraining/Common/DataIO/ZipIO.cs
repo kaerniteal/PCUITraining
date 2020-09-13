@@ -1,6 +1,8 @@
-﻿using Common.Values;
+﻿using Common.Logger;
+using Common.Values;
 using System;
 using System.IO.Compression;
+using System.Reflection;
 
 namespace Common.DataIO
 {
@@ -10,6 +12,11 @@ namespace Common.DataIO
 
     public static class ZipIO
     {
+        /// <summary>
+        /// ログ.
+        /// </summary>
+        private static Log4netLogger Log = new Log4netLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// ZIP解凍.
         /// </summary>
@@ -27,6 +34,7 @@ namespace Common.DataIO
             }
             catch (Exception ex)
             {
+                Log.Error(ex.ToString());
                 return Result.NG($"Zipファイルの伸長に失敗しました。\n{zipPath}", ex);
             }
 

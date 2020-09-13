@@ -5,7 +5,7 @@ namespace TextInputExercise.Configs
     /// <summary>
     /// TIExcの設定.
     /// </summary>
-    public class TIExcConf : ConfBase<TIExcConf>
+    public class TIExcConf : JsonConfBase<TIExcConf>
     {
         /// <summary>
         /// 設定ファイルパスを返す.

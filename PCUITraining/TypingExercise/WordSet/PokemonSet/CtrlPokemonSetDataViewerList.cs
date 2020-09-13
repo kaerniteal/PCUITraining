@@ -1,4 +1,5 @@
 ﻿using Common.Extentions;
+using Common.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -189,23 +190,29 @@ namespace TypingExercise.WordSet.PokemonSet
                     break;
             }
 
-            var filter = this.tBoxFilter.Text;
+            // テキストフィルタ.
+            var filter = this.tBoxFilter.Text.Trim();
+            if (!filter.IsEmpty())
+            {
+                // インクリメンタルサーチ.
+                sortedList = UtilIncrementalSearch.IncrementalSearch<PokemonSetGameDataRecord>(
+                    sortedList,
+                    filter,
+                    (rec) => { return rec.Name + rec.CapturCount; });
+            }
 
-            // フィルタしつつセット.
+            // セット.
             foreach (var record in sortedList)
             {
-                if ((record.Name + record.CapturCount).Contains(filter))
+                // 他方が持ってるポケモンを暗くする.
+                var shadow = false;
+                if (null != this.OthreSideList && null != this.OthreSideList
+                    .Find(pkmn => pkmn.Name.Equals(record.Name)))
                 {
-                    // 他方が持ってるポケモンを暗くする.
-                    var shadow = false;
-                    if (null != this.OthreSideList && null != this.OthreSideList
-                        .Find(pkmn => pkmn.Name.Equals(record.Name)))
-                    {
-                        shadow = true;
-                    }
-
-                    this.AddRecord(record, shadow);
+                    shadow = true;
                 }
+
+                this.AddRecord(record, shadow);
             }
         }
 

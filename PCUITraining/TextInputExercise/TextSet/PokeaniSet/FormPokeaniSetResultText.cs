@@ -1,5 +1,6 @@
 ﻿using Common.Extentions;
 using Common.WinForms;
+using Common.WinForms.Animation;
 using System.Windows.Forms;
 using TextInputExercise.Executors;
 

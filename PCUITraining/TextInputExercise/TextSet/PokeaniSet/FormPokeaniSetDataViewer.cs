@@ -132,7 +132,7 @@ namespace TextInputExercise.TextSet.PokeaniSet
             }
 
             // フィルタしつつセット.
-            var filter = this.tBoxFilter.Text;
+            var filter = this.tBoxFilter.Text.Trim();
             foreach (var record in sortedList)
             {
                 if ((record.Series + record.Volume + record.Episode + record.Title).Contains(filter))

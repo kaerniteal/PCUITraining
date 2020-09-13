@@ -1,4 +1,5 @@
-﻿using MouseExercise.Interfaces;
+﻿using Common.Values;
+using MouseExercise.Interfaces;
 using PCUITCommon.Users;
 
 namespace MouseExercise.MusExcSet.InsectCollectingSet
@@ -26,11 +27,11 @@ namespace MouseExercise.MusExcSet.InsectCollectingSet
         /// 読み込み処理.
         /// </summary>
         /// <returns>成否</returns>
-        public override bool LoadList()
+        public override Result LoadList()
         {
             this.QuestionList = InsectCollectingSetQuestionList.GetQuestionList();
 
-            return true;
+            return Result.OK();
         }
 
         /// <summary>

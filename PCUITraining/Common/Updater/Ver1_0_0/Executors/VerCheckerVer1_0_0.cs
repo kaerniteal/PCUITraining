@@ -54,7 +54,7 @@ namespace Common.Updater.Ver1_0_0.Executors
             try
             {
                 // URL
-                var dstUrl = $@"{this.Info.Url}{this.Info.ModuleName}.version";
+                var dstUrl = $@"{this.Info.Url}{this.Info.ModuleName}.{Ver.VER_EXT}";
                 var json = this.Wc.DownloadString(dstUrl);
 
                 Log.Info($@"バージョン確認：{dstUrl}");
@@ -67,9 +67,8 @@ namespace Common.Updater.Ver1_0_0.Executors
                     return false;
                 }
 
-                var dstVer = result.Value;
-
                 // 更新要否確認.
+                var dstVer = result.Value;
                 if (!this.Info.SrcVer.NeedUpdate(dstVer))
                 {
                     // 更新不要な場合は.
